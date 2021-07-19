@@ -1,39 +1,24 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ asset('bootstrap-5.0.2/dist/css/bootstrap.min.css') }}">
-</head>
-<body>
-    <div class="container">
-        <div class="row" style="margin-top:200px">
-            <div class="col-md-12 d-flex justify-content-center align-items-center flex-column ">
-                <h4>Login Admin</h4><hr>
-                <form action="{{ route('auth.check') }}" method="post">
-                    @if(Session::get('fail'))
-                        <div class="alert alert-danger">
-                            {{ Session::get('fail') }}
-                        </div>
-                    @endif
-                    @csrf
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" class="form-control" name="name" placeholder="Enter Name" value="{{ old('name') }}">
-                        <span class="text-danger">@error('name'){{ $message }} @enderror</span>
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Enter Password">
-                        <span class="text-danger">@error('password'){{ $message }} @enderror</span>
-                    </div>
-                    <br>
-                    <button type="submit" class="btn btn-block btn-primary">Sign in</button>
-                    <br>
-                </form>
+@extends('auth/loginMaster')
+
+@section('title',"Login Admin")
+@section('content')
+    <form action="{{ route('auth.check') }}" class="login-form" method="post">
+        @if(Session::get('fail'))
+            <div class="alert alert-danger">
+                {{ Session::get('fail') }}
             </div>
+        @endif
+        @csrf
+        <div class="form-group">
+            <input type="text" class="form-control rounded-left" name="name" placeholder="Name"  value="{{ old('name') }}">
+            <span class="text-danger">@error('name'){{ $message }} @enderror</span>
         </div>
-    </div>
-</body>
-</html>
+        <div class="form-group">
+            <input type="password" class="form-control rounded-left" name="password" placeholder="Password">
+            <span class="text-danger">@error('password'){{ $message }} @enderror</span>
+        </div>
+        <div class="form-group">
+            <button type="submit"
+                class="form-control btn btn-primary rounded submit px-3">Login</button>
+    </form>
+@endsection

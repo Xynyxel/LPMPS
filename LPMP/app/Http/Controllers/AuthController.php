@@ -60,14 +60,14 @@ class AuthController extends Controller
         $userInfo = LPMP::where('username','=', $request->username)->first();
 
         if(!$userInfo){
-            return back()->with('fail','We do not recognize your username');
+            return back()->with('failLpmp','We do not recognize your username');
         }else{
             //check password
             if($request->password  === $userInfo->password){
                 $request->session()->put('LoggedUserLpmp', $userInfo->id);
                 return redirect('/lpmp/home');
             }else{
-                return back()->with('fail','Incorrect password');
+                return back()->with('failLpmp','Incorrect password');
             }
         }
     }
@@ -94,14 +94,14 @@ class AuthController extends Controller
         $userInfo = Pengawas::where('username','=', $request->username)->first();
 
         if(!$userInfo){
-            return back()->with('fail','We do not recognize your username');
+            return back()->with('failPengawas','We do not recognize your username');
         }else{
             //check password
             if($request->password  === $userInfo->password){
                 $request->session()->put('LoggedUserPengawas', $userInfo->id);
                 return redirect('/pengawas/home');
             }else{
-                return back()->with('fail','Incorrect password');
+                return back()->with('failPengawas','Incorrect password');
             }
         }
     }
@@ -128,14 +128,14 @@ class AuthController extends Controller
         $userInfo = TPMPS::where('username','=', $request->username)->first();
 
         if(!$userInfo){
-            return back()->with('fail','We do not recognize your username');
+            return back()->with('failTpmps','We do not recognize your username');
         }else{
             //check password
             if($request->password  === $userInfo->password){
                 $request->session()->put('LoggedUserTpmps', $userInfo->id);
                 return redirect('/tpmps/home');
             }else{
-                return back()->with('fail','Incorrect password');
+                return back()->with('failTpmps','Incorrect password');
             }
         }
     }
