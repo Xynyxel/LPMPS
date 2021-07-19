@@ -1,0 +1,35 @@
+- Home
+=> Dashboard (Tergantung siklus kalau bs)
+	=> Siklus 1 (Analisa data yang dikumpulkan setiap sekolah)
+		=> Grafik Batang Pengumpulan data
+		=> Grafik Garis pengumpulan data
+	=> Siklus 2 (Analisa Program yang dibuat setiap sekolah)
+		=> Grafik Batang jumlah program sekolah
+		=> Heatmap Kalau bisa
+	=> Siklus 3 (Analisa pengumpulan bukti dokumentasi)
+		=> Grafik Batang skolah yang mengumpulkan bukti
+	=> Siklus 4 (Analisa Setiap sekolah)
+		=> Grading Sekolah
+- Data Master
+=> Input data2 master
+data sekolah
+data standar
+data akar masalah master
+data kota_kabupaten
+- Data Setting
++ Siklus SPMI
+    - Periode Siklus
+	=> Memilih angka untuk siklus
+    - Pemetaan Mutu (Siklus 1)
+	=> Pengumpulan rapot sekolah (Excel)
+	=> Pengumpulan sub indikator (Excel)
+	=> Pengumpulan Indikator (Excel)
+	=> Pengumpulan Standar (Excel)
+    - Rencana Pemenuhan Mutu (Siklus 2)
+	=> Pengumpulan data Program setiap sekolah
+    - Pelaksanaan Pemenuhan Mutu (Siklus 3)
+	=> Bukti dokumentasi realisasi program
+    - Audit Mutu (Siklus 4)
+	=> Evaluasi Program
+- Laporan
+=> Laporan tiap tahun
