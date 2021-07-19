@@ -5,8 +5,83 @@
 
 	<!-- Content area -->
 	<div class="content container pt-3">
+		{{-- First Layer --}}
+		<div class="row pb-3">
+			<div class="col-lg-12 d-flex justify-content-center">
+				<button class="btn btn-info p-3 mr-3" id="penggunaBtn">
+					<div class="d-flex flex-column align-items-center">
+						<i class="fa fa-users"></i>
+						<h1 class="m-0">Pengguna</h1>
+					</div>
+				</button>
+				<button class="btn btn-success p-3 mr-3" id="sekolahBtn">
+					<div class="d-flex flex-column align-items-center">
+						<i class="fa fa-school"></i>
+						<h1 class="m-0">Sekolah</h1>
+					</div>
+				</button>
+				<button class="btn btn-primary p-3 mr-3" id="kotaBtn">
+					<div class="d-flex flex-column align-items-center">
+						<i class="fa fa-city"></i>
+						<h1 class="m-0">Kota/Kabupaten</h1>
+					</div>
+				</button>
+				<button class="btn btn-danger p-3" id="mutuBtn">
+					<div class="d-flex flex-column align-items-center">
+						<i class="fa fa-exclamation-triangle"></i>
+						<h1 class="m-0">Pemetaan Mutu</h1>
+					</div>
+				</button>
+			</div>
+		</div>
+		<hr id="firstLayer" style="display: none">
+		{{-- Second Layer --}}
+		<div class="row pb-3" id="pengguna" style="display: none">
+			<div class="col-lg-12 d-flex justify-content-center">
+				<button class="btn btn-primary p-3 mr-3" id="pengguna1">
+					<div class="d-flex flex-column align-items-center">
+						<h1 class="m-0">TPMPS</h1>
+					</div>
+				</button>
+				<button class="btn btn-primary p-3 mr-3" id="pengguna2">
+					<div class="d-flex flex-column align-items-center">
+						<h1 class="m-0">Pengawas</h1>
+					</div>
+				</button>
+				<button class="btn btn-primary p-3 mr-3" id="pengguna3">
+					<div class="d-flex flex-column align-items-center">
+						<h1 class="m-0">LPMP</h1>
+					</div>
+				</button>
+			</div>
+		</div>
+		<div class="row pb-3" id="mutu" style="display: none">
+			<div class="col-lg-12 d-flex justify-content-center">
+				<button class="btn btn-primary p-3 mr-3" id="mutu1">
+					<div class="d-flex flex-column align-items-center">
+						<h1 class="m-0">Standar</h1>
+					</div>
+				</button>
+				<button class="btn btn-primary p-3 mr-3" id="mutu2">
+					<div class="d-flex fStlex-column align-items-center">
+						<h1 class="m-0">Indikator</h1>
+					</div>
+				</button>
+				<button class="btn btn-primary p-3 mr-3" id="mutu3">
+					<div class="d-flex flex-column align-items-center">
+						<h1 class="m-0">Sub Indikator</h1>
+					</div>
+				</button>
+				<button class="btn btn-primary p-3 mr-3" id="mutu4">
+					<div class="d-flex flex-column align-items-center">
+						<h1 class="m-0">Akar Masalah</h1>
+					</div>
+				</button>
+			</div>
+		</div>
+		<hr id="secondLayer">
 		{{-- Tabel Sekolah --}}
-		<div class="row">
+		<div class="row" id="rowSekolah" style="display: none">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
@@ -68,7 +143,7 @@
 		</div>
 
 		{{-- Tabel Standar --}}
-		<div class="row">
+		<div class="row" id="rowStandar" style="display: none">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
@@ -130,7 +205,7 @@
 		</div>
 
 		{{-- Tabel Indikator --}}
-		<div class="row">
+		<div class="row" id="rowIndikator" style="display: none">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
@@ -193,7 +268,7 @@
 		</div>
 	
 		{{-- Tabel Sub Indikator --}}
-		<div class="row">
+		<div class="row" id="rowSubIndikator" style="display: none">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
@@ -257,7 +332,7 @@
 		</div>
 
 		{{-- Tabel Akar Masalah --}}
-		<div class="row">
+		<div class="row" id="rowAkarMasalah" style="display: none">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
@@ -322,7 +397,7 @@
 		</div>
 
 		{{-- Tabel Kota --}}
-		<div class="row">
+		<div class="row" id="rowKota" style="display: none">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
@@ -377,7 +452,7 @@
 		</div>
 
 		{{-- Tabel TPMPS --}}
-		<div class="row">
+		<div class="row" id="rowTPMPS" style="display: none">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
@@ -438,7 +513,7 @@
 		</div>
 
 		{{-- Tabel Pengawas --}}
-		<div class="row">
+		<div class="row" id="rowPengawas" style="display: none">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
@@ -499,7 +574,7 @@
 		</div>
 
 		{{-- Tabel LPMP --}}
-		<div class="row">
+		<div class="row" id="rowLPMP" style="display: none">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
@@ -948,6 +1023,99 @@
 
 	<script>
 		const url = "{{URL::to('/')}}";
+		const table = ['table-kota','table-sekolah','table-standar','table-indikator',
+			'table-sub-indikator','table-akar-masalah','table-tpmps','table-pengawas',
+			'table-lpmp']
+		const row = ['rowKota','rowSekolah','rowStandar','rowIndikator',
+			'rowSubIndikator','rowAkarMasalah','rowTPMPS','rowPengawas',
+			'rowLPMP']
+
+		const penggunaBtn = document.getElementById('penggunaBtn');
+		const sekolahBtn = document.getElementById('sekolahBtn');
+		const kotaBtn = document.getElementById('kotaBtn');
+		const mutuBtn = document.getElementById('mutuBtn');
+
+		const pengguna = document.getElementById('pengguna');
+		const pengguna1 = document.getElementById('pengguna1');
+		const pengguna2 = document.getElementById('pengguna2');
+		const pengguna3 = document.getElementById('pengguna3');
+
+		const mutu = document.getElementById('mutu');
+		const mutu1 = document.getElementById('mutu1');
+		const mutu2 = document.getElementById('mutu2');
+		const mutu3 = document.getElementById('mutu3');
+		const mutu4 = document.getElementById('mutu4');
+
+		const firstLayer = document.getElementById('firstLayer');
+		const secondLayer = document.getElementById('secondLayer');
+
+		window.addEventListener("DOMContentLoaded",() => {
+			closeAll();
+			penggunaBtn.addEventListener('click',()=>{
+				blockID('pengguna');
+				firstLayer.style.display="block";
+			})
+			pengguna1.addEventListener('click',()=>{
+				blockID('rowTPMPS');
+				firstLayer.style.display="block";
+				document.getElementById("pengguna").style.display="block"
+			})
+			pengguna2.addEventListener('click',()=>{
+				blockID('rowPengawas');
+				firstLayer.style.display="block";
+				document.getElementById("pengguna").style.display="block"
+			})
+			pengguna3.addEventListener('click',()=>{
+				blockID('rowLPMP');
+				firstLayer.style.display="block";
+				document.getElementById("pengguna").style.display="block"
+			})
+			sekolahBtn.addEventListener('click',()=>{
+				blockID('rowSekolah');
+			})
+			kotaBtn.addEventListener('click',()=>{
+				blockID('rowKota');
+			})
+			mutuBtn.addEventListener('click',()=>{
+				blockID('mutu');
+				firstLayer.style.display="block";
+			})
+			mutu1.addEventListener('click',()=>{
+				blockID('rowStandar');
+				firstLayer.style.display="block";
+				document.getElementById("mutu").style.display="block"
+			})
+			mutu2.addEventListener('click',()=>{
+				blockID('rowIndikator');
+				firstLayer.style.display="block";
+				document.getElementById("mutu").style.display="block"
+			})
+			mutu3.addEventListener('click',()=>{
+				blockID('rowSubIndikator');
+				firstLayer.style.display="block";
+				document.getElementById("mutu").style.display="block"
+			})
+			mutu4.addEventListener('click',()=>{
+				blockID('rowAkarMasalah');
+				firstLayer.style.display="block";
+				document.getElementById("mutu").style.display="block"
+			})
+		})
+
+		const blockID = (id) => {
+			closeAll();
+			document.getElementById(id).style.display="block"
+		}
+
+		const closeAll = () => {
+			pengguna.style.display = "none";
+			mutu.style.display = "none";
+			firstLayer.style.display = "none";
+
+			row.forEach(id=>{
+				document.getElementById(id).style.display = "none"
+			})
+		}
 
 		const edit = (table, id) => {
 			if(table == "sekolah") {
@@ -1285,9 +1453,6 @@
 			}
 		}
 
-		const table = [
-			'table-kota','table-sekolah','table-standar','table-indikator','table-sub-indikator',
-			'table-akar-masalah','table-tpmps','table-pengawas','table-lpmp']
 		$(document).ready(function() {
 			table.forEach(id => {
 				$(`#${id}`).DataTable();
