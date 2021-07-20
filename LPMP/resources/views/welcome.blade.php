@@ -16,7 +16,7 @@
                             book.
                         </p>
                         <br>
-                        <a href="auth/loginTpmps" class="btn btn-primary btn-lg">
+                        <a href="auth/login" class="btn btn-primary btn-lg">
                             <h4>Login</h4>
                         </a>
                     </div>
