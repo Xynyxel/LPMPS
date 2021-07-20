@@ -22,7 +22,7 @@
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar fixed-top navbar-light bg-light static-top">
+    <nav class="navbar fixed-top navbar-light bg-light static-top shadow-sm bg-white rounded">
         <div class="container-fluid">
             <a href="#" class="navbar-brand">
                 <img src="{{ asset('Logo_LPMP.png') }}" width="100" height="100"
@@ -35,7 +35,7 @@
     </nav>
 
     <!-- Icons Grid-->
-    <section class="features-icons bg-light text-center"  style="padding-top:15%;">
+    <section class="features-icons bg-light text-center"  style="padding-top:14vh;">
         @yield('content')
     </section>
 

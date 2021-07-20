@@ -22,7 +22,10 @@ class MasterController extends Controller
 {
     public function index() {
         $data_log = ['LoggedUserInfo'=>Admin::where('id','=', session('LoggedUser'))-> first()];
-        return view('/admin/index', $data_log);
+        $data = [
+            "siklus" => $this->siklus(),
+        ];
+        return view('/admin/index', $data, $data_log);
     }
 
     public function dataMaster() {
@@ -38,6 +41,7 @@ class MasterController extends Controller
         $lpmp = LPMP::all();
 
         $data = [
+            "siklus" => $this->siklus(),
             "kotakab" => $kotakab,
             "listSekolah" => $sekolah,
             "listStandar" => $standar,
@@ -61,6 +65,7 @@ class MasterController extends Controller
         $listKotaKabupaten = KotaKabupaten::all();
         
         $data = [
+            "siklus" => $this->siklus(),
             "listSekolahPengawas" => $listSekolahPengawas,
             "listSekolah" => $listSekolah,
             "listPengawas" => $listPengawas,
@@ -73,15 +78,10 @@ class MasterController extends Controller
 
     public function dataOperasional() {
         $data_log = ['LoggedUserInfo'=>Admin::where('id','=', session('LoggedUser'))-> first()];
-        $today = Carbon::today();
-        $date = $today->toDateString();
-        $siklus = SiklusPeriode::orderBy('tanggal_mulai',"desc")
-            ->where('tanggal_mulai','<=',$date)
-            ->first();
         $listPeriode = SiklusPeriode::all();
 
         $data = [
-            "siklus" => $siklus,
+            "siklus" => $this->siklus(),
             "listPeriode" => $listPeriode,
         ];
         return view('/admin/dataOperasional',$data, $data_log);
@@ -91,5 +91,13 @@ class MasterController extends Controller
         $data_log = ['LoggedUserInfo'=>Admin::where('id','=', session('LoggedUser'))-> first()];
         return view('/admin/laporan', $data_log);
     }
-   
+
+    private function siklus() {
+        $today = Carbon::today();
+        $date = $today->toDateString();
+        return SiklusPeriode::orderBy('tanggal_mulai',"desc")
+            ->where('tanggal_mulai','<=',$date)
+            ->where('tanggal_selesai','>=',$date)
+            ->first();
+    }
 }

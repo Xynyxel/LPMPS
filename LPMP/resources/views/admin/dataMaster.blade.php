@@ -6,32 +6,42 @@
 	<!-- Content area -->
 	<div class="content container pt-3">
 		{{-- First Layer --}}
-		<div class="row pb-3">
-			<div class="col-lg-12 d-flex justify-content-center">
-				<button class="btn btn-info p-3 mr-3" id="penggunaBtn">
-					<div class="d-flex flex-column align-items-center">
-						<i class="fa fa-users"></i>
-						<h1 class="m-0">Pengguna</h1>
+		<div class="row pb-3 justify-content-md-center">
+			<div class="col-lg-10">
+				<div class="row">
+					<div class="col-3">
+						<button class="btn btn-info p-3 mr-3" id="penggunaBtn" style="width: 100%">
+							<div class="d-flex flex-column align-items-center">
+								<i class="fa fa-users"></i>
+								<h1 class="m-0">Pengguna</h1>
+							</div>
+						</button>
 					</div>
-				</button>
-				<button class="btn btn-success p-3 mr-3" id="sekolahBtn">
-					<div class="d-flex flex-column align-items-center">
-						<i class="fa fa-school"></i>
-						<h1 class="m-0">Sekolah</h1>
+					<div class="col-3">
+						<button class="btn btn-success p-3 mr-3" id="sekolahBtn" style="width: 100%">
+							<div class="d-flex flex-column align-items-center">
+								<i class="fa fa-school"></i>
+								<h1 class="m-0">Sekolah</h1>
+							</div>
+						</button>
 					</div>
-				</button>
-				<button class="btn btn-primary p-3 mr-3" id="kotaBtn">
-					<div class="d-flex flex-column align-items-center">
-						<i class="fa fa-city"></i>
-						<h1 class="m-0">Kota/Kabupaten</h1>
+					<div class="col-3">
+						<button class="btn btn-primary p-3 mr-3" id="kotaBtn" style="width: 100%">
+							<div class="d-flex flex-column align-items-center">
+								<i class="fa fa-city"></i>
+								<h1 class="m-0">Kota/Kabupaten</h1>
+							</div>
+						</button>
 					</div>
-				</button>
-				<button class="btn btn-danger p-3" id="mutuBtn">
-					<div class="d-flex flex-column align-items-center">
-						<i class="fa fa-exclamation-triangle"></i>
-						<h1 class="m-0">Pemetaan Mutu</h1>
+					<div class="col-3">
+						<button class="btn btn-danger p-3" id="mutuBtn" style="width: 100%">
+							<div class="d-flex flex-column align-items-center">
+								<i class="fa fa-exclamation-triangle"></i>
+								<h1 class="m-0">Pemetaan Mutu</h1>
+							</div>
+						</button>
 					</div>
-				</button>
+				</div>
 			</div>
 		</div>
 		<hr id="firstLayer" style="display: none">
