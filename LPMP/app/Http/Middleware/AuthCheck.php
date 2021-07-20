@@ -20,7 +20,7 @@ class AuthCheck
             return redirect('auth/login') -> with('fail','You must be logged in');
         }
         if(session()->has('LoggedUser') && ($request->path() == 'auth/login') ){
-            return back();
+            return back() -> with('fail','You must be logged in');
         }
 
         return $next($request)->header('Cache-Control','no-cache, no-store, max-age=0, must-revalidate')

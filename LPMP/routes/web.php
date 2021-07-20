@@ -33,12 +33,7 @@ use App\Http\Controllers\GuestController;
 |
 */
 
-// Menu
-Route::get('/home', [MasterController::class,"index"]);
-Route::get('/dataSetting', [MasterController::class,"dataSetting"]);
-Route::get('/dataMaster', [MasterController::class,"dataMaster"]);
-Route::get('/dataOperasional', [MasterController::class,"dataOperasional"]);
-Route::get('/laporan', [MasterController::class,"laporan"]);
+
 
 // Sekolah
 Route::post('/sekolah/tambah', [SekolahController::class,"tambah"]);
@@ -113,8 +108,7 @@ Route::post('/raportKPI/ubah/{id}', [RaportKPIController::class,"ubah"]);
 Route::get('/raportKPI/hapus/{id}', [RaportKPIController::class,"hapus"]);
 
 // Autentikasi
-// guest
-Route::get('/', [GuestController::class, 'index']);
+
 
 // Admin
 Route::group(['middleware'=>['AuthCheck']], function(){
@@ -123,8 +117,12 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('/dataSetting', [MasterController::class,"dataSetting"]);
     Route::get('/dataMaster', [MasterController::class,"dataMaster"]);
     Route::get('/laporan', [MasterController::class,"laporan"]);
+    // guest
+    Route::get('/', [GuestController::class, 'index']);
 });
 
+// guest
+Route::get('/', [GuestController::class, 'index']);
 
 
 // Lpmp
