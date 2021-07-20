@@ -17,19 +17,25 @@
         type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('welcomebootstrap/css/styles.css') }}" rel="stylesheet" />
+    <
 </head>
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-light bg-light static-top">
+    <nav class="navbar fixed-top navbar-light bg-light static-top">
         <div class="container-fluid">
-            <img src="{{ asset('Logo_LPMP.png') }}" width="50" height="45">
-            <a class="navbar-brand" href="#!">LPMP Riau</a>
+            <a href="#" class="navbar-brand">
+                <img src="{{ asset('Logo_LPMP.png') }}" width="100" height="100"
+                    style="vertical-align:middle;margin:20px 0px 0px 20px" />
+                <span class="MyLinkText" style="font-size:150%;">
+                    LPMP Riau
+                </span>
+            </a>
         </div>
     </nav>
 
     <!-- Icons Grid-->
-    <section class="features-icons bg-light text-center">
+    <section class="features-icons bg-light text-center"  style="padding-top:15%;">
         @yield('content')
     </section>
 
