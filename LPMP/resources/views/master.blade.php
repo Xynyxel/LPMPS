@@ -17,7 +17,6 @@
         type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('welcomebootstrap/css/styles.css') }}" rel="stylesheet" />
-    <
 </head>
 
 <body>
