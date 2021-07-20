@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="image/x-icon" href="{{ asset('Logo_LPMP.png') }}" />
 	<title>@yield('title')</title>
 
 	<!-- Global stylesheets -->
@@ -138,5 +139,34 @@
 	<!-- /page content -->
 
     @yield('notification')
+
+	@if (Session::get('fail'))
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog alert-danger" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					{{ Session::get('fail') }}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary alert alert-danger" data-dismiss="modal">Ok I Understand</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+			keyboard: false
+		})
+		myModal.show()
+	</script>
+@endif
 </body>
 </html>
