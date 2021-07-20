@@ -115,6 +115,7 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('/auth/login',    [AuthController::class, 'login']) -> name('auth.login');
     Route::get('/home', [MasterController::class,"index"]);
     Route::get('/dataSetting', [MasterController::class,"dataSetting"]);
+    Route::get('/dataOperasional', [MasterController::class,"dataOperasional"]);
     Route::get('/dataMaster', [MasterController::class,"dataMaster"]);
     Route::get('/laporan', [MasterController::class,"laporan"]);
     // guest

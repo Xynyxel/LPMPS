@@ -89,7 +89,13 @@ class MasterController extends Controller
 
     public function laporan() {
         $data_log = ['LoggedUserInfo'=>Admin::where('id','=', session('LoggedUser'))-> first()];
-        return view('/admin/laporan', $data_log);
+        $listPeriode = SiklusPeriode::all();
+
+        $data = [
+            "siklus" => $this->siklus(),
+            "listPeriode" => $listPeriode,
+        ];
+        return view('/admin/laporan',$data, $data_log);
     }
 
     private function siklus() {
