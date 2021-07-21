@@ -83,7 +83,7 @@ Menu LPMP
 - Home
 
 + Data Operasional
-	- Raport Sekolah Binaan
+	- Raport Sekolah 
 	+ Data Siklus SPMI (untuk menu pengawas, diawali dengan pilih sekolah binaan)
     		1. Pemetaan Mutu (di dalamnya ada menu approval siklus 1. Siklus 2 & 3 belum bisa dilakukan sebelum approved)
     		2. Rencana Pemenuhan Mutu

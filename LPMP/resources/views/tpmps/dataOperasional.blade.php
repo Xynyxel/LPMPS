@@ -20,27 +20,35 @@
 					<span class="card-title font-weight-semibold">Periode Siklus SPMI</span>
 				</div>
 				<div class="card-body p-3">
-					<div class="d-flex flex-row align-items-center justify-content-between">
-						<h1 class="mr-3" id="title_siklus">
-							Siklus {{ $siklus->siklus }}
-						</h1>
-						<div class="d-flex flex-row align-items-baseline">
-							<h2 id="date-now">{{ $mulai }}</h2>
-							<i class="fa fa-arrow-right mx-3"></i>
-							<h2 id="date-end">{{ $selesai }}</h2>
-						</div>
-					</div>
-					<div style="height: 2px; background-color: #ddd	"></div>
-					<div id="time" class="d-flex flex-row align-items-start justify-content-around">
-						<h1 id="days" class="display-1">0</h1>
-						<h1 id="daysText" class="display-4">days</h1>
-						<h1 id="hours" class="display-1">00</h1>
-						<h1 id="hoursText" class="display-4">hours</h1>
-						<h1 id="minutes" class="display-1">00</h1>
-						<h1 id="minutesText" class="display-4">minutes</h1>
-						<h1 id="seconds" class="display-1">00</h1>
-						<h1 id="secondsText" class="display-4">seconds</h1>
-					</div>
+					@if ($siklus)
+											<div class="d-flex flex-row align-items-center justify-content-between">
+												<h1 class="mr-3" id="title_siklus">
+													Siklus {{ $siklus->siklus }}
+												</h1>
+												<div class="d-flex flex-row align-items-baseline">
+													<h2 id="date-now">{{ $mulai }}</h2>
+													<i class="fa fa-arrow-right mx-3"></i>
+													<h2 id="date-end">{{ $selesai }}</h2>
+												</div>
+											</div>
+											<div style="height: 2px; background-color: #ddd	"></div>
+											<div id="time" class="d-flex flex-row align-items-start justify-content-around">
+												<h1 id="days" class="display-1">0</h1>
+												<h1 id="daysText" class="display-4">days</h1>
+												<h1 id="hours" class="display-1">00</h1>
+												<h1 id="hoursText" class="display-4">hours</h1>
+												<h1 id="minutes" class="display-1">00</h1>
+												<h1 id="minutesText" class="display-4">minutes</h1>
+												<h1 id="seconds" class="display-1">00</h1>
+												<h1 id="secondsText" class="display-4">seconds</h1>
+											</div>
+										@else
+											<div class="d-flex flex-row align-items-center justify-content-between">
+												<h1 class="mr-3">
+													Tidak ada siklus yang berjalan
+												</h1>
+											</div>
+										@endif
 				</div>
 			</div>
 		</div>

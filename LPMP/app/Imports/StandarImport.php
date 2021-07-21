@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Models\Standar;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class StandarImport implements ToModel
+class StandarImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -15,10 +16,10 @@ class StandarImport implements ToModel
     public function model(array $row)
     {
         return new Standar([
-            'tahun' => $row[1],
-            'nomor' => $row[2], 
-            'nama'  => $row[3],
-            'status' => $row[4] 
+            'tahun' => $row["tahun"],
+            'nomor' => $row["nomor_standar"], 
+            'nama'  => $row["nama_standar"],
+            'status' => 0 
         ]);
     }
 }
