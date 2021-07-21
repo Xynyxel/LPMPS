@@ -5,33 +5,38 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\LPMP;
 use App\Models\SiklusPeriode;
+use App\Models\Sekolah;
 use Carbon\Carbon;
 
 class LPMPController extends Controller
 {
     public function home (){
         $data_log = ['LoggedUserInfo'=>LPMP::where('id','=', session('LoggedUserLpmp'))-> first()];
-        return view('/lpmp/index',$data_log);
+        
+        $data = [
+            "siklus" => siklus(),
+        ];
+        return view('/lpmp/index',$data,$data_log);
     }
 
 	public function dataOperasional(){
         $data_log = ['LoggedUserInfo'=>LPMP::where('id','=', session('LoggedUserLpmp'))-> first()];
-        
-        $today = Carbon::today();
-        $date = $today->toDateString();
-        $siklus = SiklusPeriode::orderBy('tanggal_mulai',"desc")
-            ->where('tanggal_mulai','<=',$date)
-            ->first();
+        $listSekolah = Sekolah::all();
         
         $data = [
-            "siklus" => $siklus,
+            "siklus" => siklus(),
+            "listSekolah" => $listSekolah,
         ];
 		return view('/lpmp/dataOperasional', $data, $data_log);
 	}
 
     public function laporan(){
         $data_log = ['LoggedUserInfo'=>LPMP::where('id','=', session('LoggedUserLpmp'))-> first()];
-		return view('/lpmp/laporan', $data_log);
+        
+        $data = [
+            "siklus" => siklus(),
+        ];
+		return view('/lpmp/laporan', $data, $data_log);
 	}
     
     public function tambah(Request $request) {

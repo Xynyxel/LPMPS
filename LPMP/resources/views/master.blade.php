@@ -34,7 +34,7 @@
     </nav>
 
     <!-- Icons Grid-->
-    <section class="features-icons bg-light text-center"  style="padding-top:14vh;">
+    <section class="features-icons bg-light text-center"  style="padding-top:17vh;">
         @yield('content')
     </section>
 

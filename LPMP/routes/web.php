@@ -38,6 +38,7 @@ use App\Http\Controllers\GuestController;
 // Sekolah
 Route::post('/sekolah/tambah', [SekolahController::class,"tambah"]);
 Route::get('/sekolah/edit/{id}', [SekolahController::class,"edit"]);
+Route::get('/sekolah/fillRaport/{id}', [SekolahController::class,"fillRaport"]);
 Route::post('/sekolah/ubah/{id}', [SekolahController::class,"ubah"]);
 Route::get('/sekolah/hapus/{id}', [SekolahController::class,"hapus"]);
 

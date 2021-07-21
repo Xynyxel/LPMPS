@@ -23,7 +23,7 @@ class MasterController extends Controller
     public function index() {
         $data_log = ['LoggedUserInfo'=>Admin::where('id','=', session('LoggedUser'))-> first()];
         $data = [
-            "siklus" => $this->siklus(),
+            "siklus" => siklus(),
         ];
         return view('/admin/index', $data, $data_log);
     }
@@ -41,7 +41,7 @@ class MasterController extends Controller
         $lpmp = LPMP::all();
 
         $data = [
-            "siklus" => $this->siklus(),
+            "siklus" => siklus(),
             "kotakab" => $kotakab,
             "listSekolah" => $sekolah,
             "listStandar" => $standar,
@@ -65,7 +65,7 @@ class MasterController extends Controller
         $listKotaKabupaten = KotaKabupaten::all();
         
         $data = [
-            "siklus" => $this->siklus(),
+            "siklus" => siklus(),
             "listSekolahPengawas" => $listSekolahPengawas,
             "listSekolah" => $listSekolah,
             "listPengawas" => $listPengawas,
@@ -79,10 +79,12 @@ class MasterController extends Controller
     public function dataOperasional() {
         $data_log = ['LoggedUserInfo'=>Admin::where('id','=', session('LoggedUser'))-> first()];
         $listPeriode = SiklusPeriode::all();
+        $listSekolah = Sekolah::all();
 
         $data = [
-            "siklus" => $this->siklus(),
+            "siklus" => siklus(),
             "listPeriode" => $listPeriode,
+            "listSekolah" => $listSekolah,
         ];
         return view('/admin/dataOperasional',$data, $data_log);
     }
@@ -92,18 +94,9 @@ class MasterController extends Controller
         $listPeriode = SiklusPeriode::all();
 
         $data = [
-            "siklus" => $this->siklus(),
+            "siklus" => siklus(),
             "listPeriode" => $listPeriode,
         ];
         return view('/admin/laporan',$data, $data_log);
-    }
-
-    private function siklus() {
-        $today = Carbon::today();
-        $date = $today->toDateString();
-        return SiklusPeriode::orderBy('tanggal_mulai',"desc")
-            ->where('tanggal_mulai','<=',$date)
-            ->where('tanggal_selesai','>=',$date)
-            ->first();
     }
 }

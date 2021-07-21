@@ -13,20 +13,18 @@ class PengawasController extends Controller
 {
     public function home (){
         $data_log = ['LoggedUserInfo'=>Pengawas::where('id','=', session('LoggedUserPengawas'))-> first()];
-        return view('/pengawas/index', $data_log);
+        
+        $data = [
+            "siklus" => siklus(),
+        ];
+        return view('/pengawas/index', $data, $data_log);
     }
 
 	public function dataOperasional(){
         $data_log = ['LoggedUserInfo'=>Pengawas::where('id','=', session('LoggedUserPengawas'))-> first()];
-        
-        $today = Carbon::today();
-        $date = $today->toDateString();
-        $siklus = SiklusPeriode::orderBy('tanggal_mulai',"desc")
-            ->where('tanggal_mulai','<=',$date)
-            ->first();
-        
+
         $data = [
-            "siklus" => $siklus,
+            "siklus" => siklus(),
         ];
 		return view('/pengawas/dataOperasional', $data, $data_log);
 	}
@@ -38,13 +36,18 @@ class PengawasController extends Controller
         $data = [
             "listSekolahPengawas" => $listSekolahPengawas,
             "rapot_sekolah" => $rapot_sekolah,
+            "siklus" => siklus(),
         ];
 		return view('/pengawas/dataMaster', $data, $data_log);
 	}
 
     public function laporan(){
         $data_log = ['LoggedUserInfo'=>Pengawas::where('id','=', session('LoggedUserPengawas'))-> first()];
-		return view('/pengawas/laporan', $data_log);
+        
+        $data = [
+            "siklus" => siklus(),
+        ];
+		return view('/pengawas/laporan', $data, $data_log);
 	}
 
     public function tambah(Request $request) {

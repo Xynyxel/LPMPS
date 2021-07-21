@@ -28,7 +28,11 @@ class TPMPSController extends Controller
 {
     public function home (){
 		$data_log = ['LoggedUserInfo'=>TPMPS::where('id','=', session('LoggedUserTpmps'))-> first()];
-        return view('tpmps/index',$data_log);
+		
+        $data = [
+            "siklus" => siklus(),
+        ];
+        return view('tpmps/index',$data,$data_log);
     }
 
 	public function dataOperasional(){
@@ -37,25 +41,24 @@ class TPMPSController extends Controller
 		$standar = Standar::all();
 		$indikator = Indikator::all();
 		$subIndikator = SubIndikator::all();
-        $today = Carbon::today();
-        $date = $today->toDateString();
-        $siklus = SiklusPeriode::orderBy('tanggal_mulai',"desc")
-            ->where('tanggal_mulai','<=',$date)
-            ->first();
         
         $data = [
+            "siklus" => siklus(),
 			'rapot_sekolah' => $rapotSekolah, 
 			'standar'=>$standar,
 			'indikator'=>$indikator,
 			'sub_indikator'=>$subIndikator,
-            "siklus" => $siklus,
         ];
 		return view('/tpmps/dataOperasional', $data, $data_log);
 	}
 
     public function laporan(){
 		$data_log = ['LoggedUserInfo'=>TPMPS::where('id','=', session('LoggedUserTpmps'))-> first()];
-		return view('/tpmps/laporan',$data_log);
+		
+        $data = [
+            "siklus" => siklus(),
+        ];
+		return view('/tpmps/laporan',$data,$data_log);
 	}
 
     public function tambah(Request $request) {

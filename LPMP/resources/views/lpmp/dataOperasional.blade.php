@@ -2,44 +2,50 @@
 
 @section('title',"DataOperasional - LPMP")
 @section('content')
-@php
-    if(isset($siklus)) {
-        $arr = explode("-",$siklus->tanggal_mulai);
-        $arr2 = explode("-",$siklus->tanggal_selesai);
-        $mulai = $arr[2]."-".$arr[1]."-".$arr[0];
-        $selesai = $arr2[2]."-".$arr2[1]."-".$arr2[0];
-    }
-@endphp
 	<!-- Content area -->
 	<div class="content container pt-3">
-		{{-- Countdown --}}
+		{{-- Table Sekolah --}}
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
-						<span class="card-title font-weight-semibold">Periode Siklus SPMI</span>
+						<span class="card-title font-weight-semibold">Data Sekolah</span>
 					</div>
-					<div class="card-body p-3">
-						<div class="d-flex flex-row align-items-center justify-content-between">
-							<h1 class="mr-3" id="title_siklus">
-								Siklus {{ $siklus->siklus }}
-							</h1>
-							<div class="d-flex flex-row align-items-baseline">
-								<h2 id="date-now">{{ $mulai }}</h2>
-								<i class="fa fa-arrow-right mx-3"></i>
-								<h2 id="date-end">{{ $selesai }}</h2>
-							</div>
-						</div>
-						<div style="height: 2px; background-color: #ddd	"></div>
-						<div id="time" class="d-flex flex-row align-items-start justify-content-around">
-							<h1 id="days" class="display-1">0</h1>
-							<h1 id="daysText" class="display-4">days</h1>
-							<h1 id="hours" class="display-1">00</h1>
-							<h1 id="hoursText" class="display-4">hours</h1>
-							<h1 id="minutes" class="display-1">00</h1>
-							<h1 id="minutesText" class="display-4">minutes</h1>
-							<h1 id="seconds" class="display-1">00</h1>
-							<h1 id="secondsText" class="display-4">seconds</h1>
+					<div class="card-body">
+						<div class="table-responsive border-top-0">
+							<table class="table text-nowrap" id="table-sekolah">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Sekolah</th>
+										<th class="text-center" style="width: 20px;"><i class="fa fa-chevron-down"></i></th>
+									</tr>
+								</thead>
+								<tbody>
+								@if ($listSekolah->count() > 0)
+									@php
+									$no = 1
+									@endphp
+									@foreach ($listSekolah as $sekolah)
+										<tr>
+											<td>{{ $no++ }}</td>
+											<td>{{ $sekolah->nama }}</td>
+											<td class="text-center">
+												<div class="dropdown">
+													<a onclick="fillRaport({{ $sekolah->id }})" class="btn btn-outline-light btn-icon btn-sm text-body border-transparent rounded-pill" data-toggle="modal" data-target="#raportSekolah">
+														<i class="fa fa-chevron-right"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+									@endforeach
+								@else
+									<tr align="center">
+										<td colspan="5">Tidak ada sekolah</td>
+									</tr>
+								@endif
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -48,53 +54,73 @@
 	</div>
 	<!-- /content area -->
 
+	<!-- Modal Raport Sekolah -->
+	<div class="modal fade" id="raportSekolah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Data Raport Sekolah</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="table-responsive border-top-0">
+						<table class="table text-nowrap" id="table-raport-sekolah">
+							<thead>
+								<tr>
+									<th>No</th>
+									<th>Sub Indikator</th>
+									<th>Nilai</th>
+								</tr>
+							</thead>
+							<tbody id="data">
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" data-dismiss="modal">Okay</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Raport Sekolah -->
+
 	<script>
-		const dateEnd = document.getElementById('date-end');
+		const url = "{{URL::to('/')}}";
 
-		const daysText = document.getElementById('days');
-		const dText = document.getElementById('daysText');
-		const hoursText = document.getElementById('hours');
-		const hText = document.getElementById('hoursText');
-		const minutesText = document.getElementById('minutes');
-		const mText = document.getElementById('minutesText');
-		const secondsText = document.getElementById('seconds');
-		const sText = document.getElementById('secondsText');
-		
-		const arr = dateEnd.innerText.split("-");
-		const end = new Date(`${arr[2]}-${arr[1]}-${arr[0]} 00:00:00`);
-
-		const setTime = setInterval(()=>{
-			now();
-		},1000)
-		
-		const now = () => {
-			const date = new Date();
-			const dif = end - date;
-
-			let milliseconds = parseInt((dif % 1000) / 100);
-			let seconds = Math.floor((dif / 1000) % 60);
-			let minutes = Math.floor((dif / (1000 * 60)) % 60);
-			let hours = Math.floor((dif / (1000 * 60 * 60)) % 24);
-			let days = Math.floor((end - date) / (1000 * 60 * 60 * 24));
-
-			hours = (hours < 10) ? "0" + hours : hours;
-			minutes = (minutes < 10) ? "0" + minutes : minutes;
-			seconds = (seconds < 10) ? "0" + seconds : seconds;
-			
-			dText.innerText = (days == 1) ? "day" : "days";
-			hText.innerText = (hours == 1) ? "hour" : "hours";
-			mText.innerText = (minutes == 1) ? "minute" : "minutes";
-			sText.innerText = (seconds == 1) ? "second" : "seconds";
-			
-			if(days == 0 && hours == "00" && minutes == "00" && seconds == "00") {
-				location.reload();
-				clearInterval(setTime);
-			}
-
-			daysText.innerText = days;
-			hoursText.innerText = hours;
-			minutesText.innerText = minutes;
-			secondsText.innerText = seconds;
+		const fillRaport = (id) => {
+			const dataRaport = document.getElementById('data');
+			fetch(`${url}/sekolah/fillRaport/${id}`)
+				.then(response=>response.json())
+				.then(data=>{
+					console.log(data);
+					if (data.length > 0) {
+						data.forEach((element, index) => {
+							dataRaport.innerHTML += `
+								<tr>
+									<td>${index+1}</td>
+									<td>${element.sub_indikator}</td>
+									<td>${element.nilai}</td>
+								</tr>
+							`
+						});
+					} else {
+						dataRaport.innerHTML = `
+							<tr align="center">
+								<td colspan="3">Tidak ada raport sekolah</td>
+							</tr>
+						`
+					}
+				})
 		}
+
+		const table = ['table-siklus-periode','table-sekolah']
+		$(document).ready(function() {
+			table.forEach(id => {
+				$(`#${id}`).DataTable();
+			});
+		});
 	</script>
 @endsection

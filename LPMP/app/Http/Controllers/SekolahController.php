@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sekolah;
+use App\Models\RaportSekolah;
 
 class SekolahController extends Controller
 {
@@ -15,6 +16,18 @@ class SekolahController extends Controller
             "kota_kabupaten_id" => $request->kota,
         ]);
         return redirect("/dataMaster");
+    }
+
+    public function fillRaport($id) {
+        $sekolah = RaportSekolah::where('sekolah_id',$id)->get();
+        $array = [];
+        foreach($sekolah as $s) {
+            array_push($array, (object) [
+                'sub_indikator' => $s->subIndikator->nama,
+                'nilai' => $s->nilai,
+            ]);
+        }
+        return json_encode($array);
     }
 
     public function edit($id) {
