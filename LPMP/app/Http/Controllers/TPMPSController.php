@@ -37,7 +37,7 @@ class TPMPSController extends Controller
 
 	public function dataOperasional(){
 		$data_log = ['LoggedUserInfo'=>TPMPS::where('id','=', session('LoggedUserTpmps'))-> first()];
-		$rapotSekolah = RaportSekolah::all();
+		$rapotSekolah = RaportSekolah::where('sekolah_id','=', $data_log['LoggedUserInfo']['sekolah_id'])->get();
 		$standar = Standar::all();
 		$indikator = Indikator::all();
 		$subIndikator = SubIndikator::all();
