@@ -38,7 +38,7 @@
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             @for ($i = 1; $i <= 4; $i++)
-                                                            <a onclick="liatLaporanSiklus('{{ $sekolah->nama }},{{ $i }}')" class="dropdown-item"
+                                                            <a onclick="liatLaporanSiklus('{{ $sekolah->nama }}',{{ $i }})" class="dropdown-item"
                                                                 data-toggle="modal" data-target="#sekolah">
                                                                 <i class="fa fa-edit"></i>Siklus {{ $i }}
                                                             </a>
