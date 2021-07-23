@@ -79,7 +79,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-primary" data-dismiss="modal">Okay</button>
+					<button class="btn btn-success" data-dismiss="modal" disabled>Approve</button>
+					<button class="btn btn-danger" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
