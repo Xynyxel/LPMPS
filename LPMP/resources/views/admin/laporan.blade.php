@@ -37,11 +37,14 @@
                                                             <i class="fa fa-bars"></i>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                            <a onclick="liatLaporanSiklus1('{{ $sekolah->nama }}')" class="dropdown-item"
+                                                            @for ($i = 1; $i <= 4; $i++)
+                                                            <a onclick="liatLaporanSiklus('{{ $sekolah->nama }},{{ $i }}')" class="dropdown-item"
                                                                 data-toggle="modal" data-target="#sekolah">
-                                                                <i class="fa fa-edit"></i>Siklus 1
+                                                                <i class="fa fa-edit"></i>Siklus {{ $i }}
                                                             </a>
-                                                            <a onclick="liatLaporanSiklus2('{{ $sekolah->nama }}')" class="dropdown-item"
+                                                            @endfor
+                                                            
+                                                            {{-- <a onclick="liatLaporanSiklus2('{{ $sekolah->nama }}')" class="dropdown-item"
                                                                 data-toggle="modal" data-target="#sekolah">
                                                                 <i class="fa fa-edit"></i>Siklus 2
                                                             </a>
@@ -52,7 +55,7 @@
                                                             <a onclick="liatLaporanSiklus4('{{ $sekolah->nama }}')" class="dropdown-item"
                                                                 data-toggle="modal" data-target="#sekolah">
                                                                 <i class="fa fa-edit"></i>Siklus 4
-                                                            </a>
+                                                            </a> --}}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -113,22 +116,25 @@
 		var laporanSekolahModal = new bootstrap.Modal(document.getElementById('laporanSekolah'), {
                 keyboard: false
         })
-		function liatLaporanSiklus1(namaSekolah) {
-			document.getElementById("modal_title").innerHTML = `Laporan Sekolah ${namaSekolah} Siklus 1`;
+        const liatLaporanSiklus = (namaSekolah, siklus) => {
+            document.getElementById("modal_title").innerHTML = `Laporan Sekolah ${namaSekolah} Siklus ${siklus}`;
 			laporanSekolahModal.show();
-		}
-		function liatLaporanSiklus2(namaSekolah) {
-            laporanSekolahModal.show()
-			document.getElementById("modal_title").innerHTML = `Laporan Sekolah ${namaSekolah} Siklus 2`;
         }
-		function liatLaporanSiklus3(namaSekolah) {
-            laporanSekolahModal.show()
-			document.getElementById("modal_title").innerHTML = `Laporan Sekolah ${namaSekolah} Siklus 3`;
-        }
-		function liatLaporanSiklus4(namaSekolah) {
-            laporanSekolahModal.show()
-			document.getElementById("modal_title").innerHTML = `Laporan Sekolah ${namaSekolah} Siklus 4`;
-        }
+		// function liatLaporanSiklus1(namaSekolah) {
+			
+		// }
+		// function liatLaporanSiklus2(namaSekolah) {
+        //     laporanSekolahModal.show()
+		// 	document.getElementById("modal_title").innerHTML = `Laporan Sekolah ${namaSekolah} Siklus 2`;
+        // }
+		// function liatLaporanSiklus3(namaSekolah) {
+        //     laporanSekolahModal.show()
+		// 	document.getElementById("modal_title").innerHTML = `Laporan Sekolah ${namaSekolah} Siklus 3`;
+        // }
+		// function liatLaporanSiklus4(namaSekolah) {
+        //     laporanSekolahModal.show()
+		// 	document.getElementById("modal_title").innerHTML = `Laporan Sekolah ${namaSekolah} Siklus 4`;
+        // }
     </script>
 @endsection
 

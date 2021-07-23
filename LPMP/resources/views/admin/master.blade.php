@@ -425,7 +425,6 @@ if(isset($siklus)) {
 								</div>
 							</div>
 						</div>
-						
 					</div>
 				</div>
                 @yield('content')
