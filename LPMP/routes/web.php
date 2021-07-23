@@ -151,6 +151,8 @@ Route::group(['middleware'=>['AuthCheckTpmps']], function(){
     Route::get('/tpmps/dataOperasional',[TPMPSController::class, 'dataOperasional']);
     Route::get('/tpmps/laporan',[TPMPSController::class, 'laporan']);
     // import excel pemenuhan mutu
+    Route::post('/tpmps/dataOperasional/importExcelPemetaanMutu',       [TPMPSController::class, 'importExcelPemetaanMutu']);
+    
     Route::post('/tpmps/dataOperasional/import_excel_standar',       [TPMPSController::class, 'import_excel_standar']);
     Route::post('/tpmps/dataOperasional/import_excel_indikator',     [TPMPSController::class, 'import_excel_indikator']);
     Route::post('/tpmps/dataOperasional/import_excel_sub_indikator', [TPMPSController::class, 'import_excel_sub_indikator']);
