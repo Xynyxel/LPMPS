@@ -87,7 +87,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="table-responsive border-top-0">
-                        <table class="table text-nowrap" id="table-raport-sekolah">
+                        <table class="table text-nowrap" id="table-raport-sekolah" style="column-width: 10%;"> 
                             <thead>
                                 <tr>
                                     <th>Standar</th>
@@ -98,6 +98,34 @@
                                     <th>Masalah</th>
                                     <th>Akar Masalah</th>
                                     <th>Rekomendasi</th>
+                                </tr>
+                                <tr>
+                                    <th>2.	Isi</th>
+                                    <th>2.1.	Perangkat pembelajaran sesuai rumusan kompetensi lulusan </th>
+                                    <td>
+                                        <ul>
+                                            <li>2.1.1.	Memuat karakteristik kompetensi sikap</li>
+                                            <li>2.1.2.	Memuat karakteristik kompetensi pengetahuan </li>
+                                            <li>2.1.3.	Memuat karakteristik kompetensi keterampilan  </li>
+                                            <li>2.1.4.	Menyesuaikan tingkat kompetensi siswa  </li>
+                                            <li>2.1.5.	Menyesuaikan ruang lingkup materi pembelajaran </li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>2.1.1.	Memuat karakteristik kompetensi sikap</li>
+                                            <li>2.1.2.	Memuat karakteristik kompetensi pengetahuan </li>
+                                            <li>2.1.4.	Menyesuaikan tingkat kompetensi siswa </li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>2.1.3.	Memuat karakteristik kompetensi keterampilan </li>
+                                        </ul>
+                                    </td>
+                                    <th>a</th>
+                                    <th>a</th>
+                                    <th>a</th>
                                 </tr>
                             </thead>
                             <tbody id="data">
