@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pengawas;
 use App\Models\SiklusPeriode;
+use App\Models\Sekolah;
 use App\Models\SekolahPengawas;
 use App\Models\RaportSekolah;
 use Carbon\Carbon;
@@ -22,9 +23,13 @@ class PengawasController extends Controller
 
 	public function dataOperasional(){
         $data_log = ['LoggedUserInfo'=>Pengawas::where('id','=', session('LoggedUserPengawas'))-> first()];
+        $listPeriode = SiklusPeriode::all();
+        $listSekolah = Sekolah::all();
 
         $data = [
             "siklus" => siklus(),
+            "listPeriode" => $listPeriode,
+            "listSekolah" => $listSekolah,
         ];
 		return view('/pengawas/dataOperasional', $data, $data_log);
 	}
@@ -32,7 +37,10 @@ class PengawasController extends Controller
     public function dataMaster(){
         $data_log = ['LoggedUserInfo'=>Pengawas::where('id','=', session('LoggedUserPengawas'))-> first()];
         $listSekolahPengawas = SekolahPengawas::where('pengawas_id', session('LoggedUserPengawas'))->get();
-        $rapot_sekolah = RaportSekolah::all();
+        $rapot_sekolah = RaportSekolah::join('sekolah_pengawas as sp','sp.sekolah_id','raport_sekolah.sekolah_id')
+            ->where('sp.pengawas_id',session('LoggedUserPengawas'))
+            ->get();
+
         $data = [
             "listSekolahPengawas" => $listSekolahPengawas,
             "rapot_sekolah" => $rapot_sekolah,

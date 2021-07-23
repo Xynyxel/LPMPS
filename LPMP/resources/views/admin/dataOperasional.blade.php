@@ -218,32 +218,38 @@
 				})
 		}
 		const fillRaport = (id) => {
-			const dataRaport = document.getElementById('data');
 			fetch(`${url}/sekolah/fillRaport/${id}`)
 				.then(response=>response.json())
 				.then(data=>{
-					console.log(data);
-					if (data.length > 0) {
-						data.forEach((element, index) => {
-							dataRaport.innerHTML += `
-								<tr>
-									<td>${index+1}</td>
-									<td>${element.sub_indikator}</td>
-									<td>${element.nilai}</td>
-								</tr>
-							`
-						});
-					} else {
-						dataRaport.innerHTML = `
-							<tr align="center">
-								<td colspan="3">Tidak ada raport sekolah</td>
-							</tr>
-						`
-					}
+                    $(document).ready(function() {
+                        const raport = $(`#table-raport-sekolah`);
+                        raport.DataTable().destroy();
+                        raport.find('tbody').html("")
+                        if (data.length > 0) {
+                            data.forEach((element, index) => {
+                                raport.find('tbody').append(`
+                                    <tr>
+                                        <td>${index+1}</td>
+                                        <td>${element.sub_indikator}</td>
+                                        <td>${element.nilai}</td>
+                                    </tr>
+                                `);
+                            });
+                        } else {
+                            raport.DataTable()
+                            raport.find('tbody').append(`
+                                <tr align="center">
+                                    <td colspan="3">Tidak ada raport sekolah</td>
+                                </tr>
+                            `);
+                        }
+                        raport.DataTable().draw();
+                        
+                    });                    
 				})
 		}
 
-		const table = ['table-siklus-periode','table-sekolah']
+		const table = ['table-siklus-periode','table-sekolah', 'table-raport-sekolah']
 		$(document).ready(function() {
 			table.forEach(id => {
 				$(`#${id}`).DataTable();
