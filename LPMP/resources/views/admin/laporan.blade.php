@@ -77,7 +77,7 @@
     <!-- Modal Laporan Sekolah siklus 1 -->
     <div class="modal fade" id="laporanSekolahSiklus1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 id="modal_title_1" class="modal-title">Laporan Sekolah nama sekolah </h5>
@@ -117,7 +117,7 @@
     <!-- Modal Laporan Sekolah siklus 2 -->
     <div class="modal fade" id="laporanSekolahSiklus2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 id="modal_title_2" class="modal-title">Laporan Sekolah nama sekolah </h5>
@@ -156,7 +156,7 @@
     <!-- Modal Laporan Sekolah siklus 3 -->
     <div class="modal fade" id="laporanSekolahSiklus3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 id="modal_title_3" class="modal-title">Laporan Sekolah nama sekolah </h5>
@@ -195,7 +195,7 @@
     <!-- Modal Laporan Sekolah siklus 4 -->
     <div class="modal fade" id="laporanSekolahSiklus4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 id="modal_title_4" class="modal-title">Laporan Sekolah nama sekolah </h5>
