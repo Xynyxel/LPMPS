@@ -74,13 +74,13 @@
             </div>
         </div>
     </div>
-    <!-- Modal Laporan Sekolah -->
-    <div class="modal fade" id="laporanSekolah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- Modal Laporan Sekolah siklus 1 -->
+    <div class="modal fade" id="laporanSekolahSiklus1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 id="modal_title" class="modal-title">Laporan Sekolah nama sekolah </h5>
+                    <h5 id="modal_title_1" class="modal-title">Laporan Sekolah nama sekolah </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -111,14 +111,144 @@
             </div>
         </div>
     </div>
-    <!-- Modal Laporan Sekolah -->
+    <!-- Modal Laporan Sekolah siklus 1 -->
+
+
+    <!-- Modal Laporan Sekolah siklus 2 -->
+    <div class="modal fade" id="laporanSekolahSiklus2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modal_title_2" class="modal-title">Laporan Sekolah nama sekolah </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive border-top-0">
+                        <table class="table text-nowrap" id="table-raport-sekolah">
+                            <thead>
+                                <tr>
+                                    <th>Standar</th>
+                                    <th>Rekomendasi</th>
+                                    <th>Program</th>
+                                    <th>Kegiatan</th>
+                                    <th>Indikator Kinerja</th>
+                                    <th>Volume</th>
+                                    <th>Kebutuhan Biaya</th>
+                                    <th>Sumber Daya</th>
+                                </tr>
+                            </thead>
+                            <tbody id="data">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Laporan Sekolah siklus 2 -->
+
+    <!-- Modal Laporan Sekolah siklus 3 -->
+    <div class="modal fade" id="laporanSekolahSiklus3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modal_title_3" class="modal-title">Laporan Sekolah nama sekolah </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive border-top-0">
+                        <table class="table text-nowrap" id="table-raport-sekolah">
+                            <thead>
+                                <tr>
+                                    <th>Standar</th>
+                                    <th>Rekomendasi</th>
+                                    <th>Program</th>
+                                    <th>Kegiatan</th>
+                                    <th>Penanggung Jawab</th>
+                                    <th>Pemangku Kepentingan yang Dilibatkan</th>
+                                    <th>Waktu Pelaksanaan</th>
+                                    <th>Bukti Fisik</th>
+                                </tr>
+                            </thead>
+                            <tbody id="data">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Laporan Sekolah siklus 3 -->
+
+    <!-- Modal Laporan Sekolah siklus 4 -->
+    <div class="modal fade" id="laporanSekolahSiklus4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modal_title_4" class="modal-title">Laporan Sekolah nama sekolah </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive border-top-0">
+                        <table class="table text-nowrap" id="table-raport-sekolah">
+                            <thead>
+                                <tr>
+                                    <th>Program</th>
+                                    <th>Kegiatan</th>
+                                    <th>Input</th>
+                                    <th>Proses</th>
+                                    <th>Output</th>
+                                    <th>Outcome</th>
+                                </tr>
+                            </thead>
+                            <tbody id="data">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Laporan Sekolah siklus 4 -->
+
     <script>
-		var laporanSekolahModal = new bootstrap.Modal(document.getElementById('laporanSekolah'), {
-                keyboard: false
-        })
+		
         const liatLaporanSiklus = (namaSekolah, siklus) => {
-            document.getElementById("modal_title").innerHTML = `Laporan Sekolah ${namaSekolah} Siklus ${siklus}`;
-			laporanSekolahModal.show();
+            var laporanSekolahModal = new bootstrap.Modal(document.getElementById(`laporanSekolahSiklus${siklus}`), {
+                keyboard: false
+            })
+            if(siklus == 1){
+                document.getElementById("modal_title_1").innerHTML = `Laporan <b>Pemetaan mutu</b> Sekolah ${namaSekolah}`;
+                laporanSekolahModal.show();
+            }else if(siklus == 2){
+                document.getElementById("modal_title_2").innerHTML = `Laporan <b>Rencana Pemetaan mutu</b> Sekolah ${namaSekolah}`;
+                laporanSekolahModal.show();
+            }else if(siklus == 3){
+                document.getElementById("modal_title_3").innerHTML = `Laporan <b>Pelaksanaan Pemetaan mutu</b> Sekolah ${namaSekolah} `;
+                laporanSekolahModal.show();
+            }else if(siklus == 4){
+                document.getElementById("modal_title_4").innerHTML = `Laporan <b>Audit mutu</b> Sekolah ${namaSekolah} `;
+                laporanSekolahModal.show();
+            }
+			
         }
 		// function liatLaporanSiklus1(namaSekolah) {
 			

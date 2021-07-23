@@ -15,6 +15,10 @@ class LPMPSeeder extends Seeder
      */
     public function run()
     {
+
+        //admin
+        DB::table('admin')->insert(['name' => 'admin', 'password'=> 'admin']);
+
         // // Kota Kabupaten
         // DB::table('kota_kabupaten')->insert(['nama' => 'Kabupaten Bengkalis']);
         // DB::table('kota_kabupaten')->insert(['nama' => 'Kabupaten Indragri Hilir']);
@@ -159,6 +163,16 @@ class LPMPSeeder extends Seeder
         //     "tanggal_mulai" => Carbon::tomorrow(),
         //     "tanggal_selesai" => Carbon::today()->addDays(15),
         // ]);
+        // DB::table('siklus_periode')->insert([
+        //     "siklus" => 3,
+        //     "tanggal_mulai" => Carbon::tomorrow(),
+        //     "tanggal_selesai" => Carbon::today()->addDays(15),
+        // ]);
+        // DB::table('siklus_periode')->insert([
+        //     "siklus" => 4,
+        //     "tanggal_mulai" => Carbon::tomorrow(),
+        //     "tanggal_selesai" => Carbon::today()->addDays(15),
+        // ]);
 
         // Sekolah-Pengawas
         // DB::table('sekolah_pengawas')->insert([
@@ -166,7 +180,7 @@ class LPMPSeeder extends Seeder
         //     "tgl_sk" => Carbon::yesterday(),
         //     "nomor_sk" => "51915",
         //     "sekolah_id" => 1,
-        //     "pengawas_id" => 2,
+        //     "pengawas_id" => 1,
         // ]);
         // DB::table('sekolah_pengawas')->insert([
         //     "tahun" => Carbon::now()->isoFormat('YYYY'),
