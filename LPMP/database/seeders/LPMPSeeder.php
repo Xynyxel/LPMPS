@@ -16,8 +16,8 @@ class LPMPSeeder extends Seeder
     public function run()
     {
 
-        //admin
-        DB::table('admin')->insert(['name' => 'admin', 'password'=> 'admin']);
+        // //admin
+        // DB::table('admin')->insert(['name' => 'admin', 'password'=> 'admin']);
 
         // // Kota Kabupaten
         // DB::table('kota_kabupaten')->insert(['nama' => 'Kabupaten Bengkalis']);
@@ -64,7 +64,6 @@ class LPMPSeeder extends Seeder
         //     "status" => 0,
         //     "standar_id" => 1,
         // ]);
-
         // DB::table('indikator')->insert([
         //     "tahun" => 2021,
         //     "nomor" => "1.2",
@@ -72,7 +71,6 @@ class LPMPSeeder extends Seeder
         //     "status" => 0,
         //     "standar_id" => 1,
         // ]);
-
         // DB::table('indikator')->insert([
         //     "tahun" => 2021,
         //     "nomor" => "2.1",
@@ -80,13 +78,12 @@ class LPMPSeeder extends Seeder
         //     "status" => 0,
         //     "standar_id" => 2,
         // ]);
-
         // DB::table('indikator')->insert([
         //     "tahun" => 2021,
         //     "nomor" => "2.2",
         //     "nama" => "Proses pembelajaran dilaksanakan dengan tepat",
         //     "status" => 0,
-        //     "standar_id" => 1,
+        //     "standar_id" => 2,
         // ]);
 
         // // Sub Indikator
@@ -97,7 +94,6 @@ class LPMPSeeder extends Seeder
         //     "status" => 0,
         //     "indikator_id" => 1,
         // ]);
-
         // DB::table('sub_indikator')->insert([
         //     "tahun" => 2021,
         //     "nomor" => "1.1.2",
@@ -105,13 +101,12 @@ class LPMPSeeder extends Seeder
         //     "status" => 0,
         //     "indikator_id" => 1,
         // ]);
-
         // DB::table('sub_indikator')->insert([
         //     "tahun" => 2021,
         //     "nomor" => "2.1.1",
         //     "nama" => "Mengacu pada silabus yang telah dikembangkan ",
         //     "status" => 0,
-        //     "indikator_id" => 2,
+        //     "indikator_id" => 3,
         // ]);
 
         // // Akar Masalah
@@ -123,7 +118,7 @@ class LPMPSeeder extends Seeder
         //     "indikator_id" => 1,
         // ]);
 
-        // // TPMPS
+        // // // TPMPS
         // DB::table('tpmps')->insert([
         //     "nama" => "TPMPS 1",
         //     "username" => 1,
@@ -131,7 +126,7 @@ class LPMPSeeder extends Seeder
         //     "sekolah_id" => 1,
         // ]);
 
-        // // Pengawas
+        // // // Pengawas
         // DB::table('pengawas')->insert([
         //     "nama" => "Pengawas 1",
         //     "username" => 1,
@@ -145,14 +140,14 @@ class LPMPSeeder extends Seeder
         //     "asal" => "Kampar",
         // ]);
 
-        // // LPMP
+        // // // LPMP
         // DB::table('lpmp')->insert([
         //     "nama" => "LPMP 1",
         //     "username" => 1,
         //     "password" => "12345",
         // ]);
 
-        // Siklus Periode
+        // // Siklus Periode
         // DB::table('siklus_periode')->insert([
         //     "siklus" => 1,
         //     "tanggal_mulai" => Carbon::today(),
@@ -165,13 +160,13 @@ class LPMPSeeder extends Seeder
         // ]);
         // DB::table('siklus_periode')->insert([
         //     "siklus" => 3,
-        //     "tanggal_mulai" => Carbon::tomorrow(),
-        //     "tanggal_selesai" => Carbon::today()->addDays(15),
+        //     "tanggal_mulai" => Carbon::today()->addDays(15),
+        //     "tanggal_selesai" => Carbon::today()->addDays(30),
         // ]);
         // DB::table('siklus_periode')->insert([
         //     "siklus" => 4,
-        //     "tanggal_mulai" => Carbon::tomorrow(),
-        //     "tanggal_selesai" => Carbon::today()->addDays(15),
+        //     "tanggal_mulai" => Carbon::today()->addDays(30),
+        //     "tanggal_selesai" => Carbon::today()->addDays(45),
         // ]);
 
         // Sekolah-Pengawas
@@ -186,11 +181,11 @@ class LPMPSeeder extends Seeder
         //     "tahun" => Carbon::now()->isoFormat('YYYY'),
         //     "tgl_sk" => Carbon::yesterday(),
         //     "nomor_sk" => "51915",
-        //     "sekolah_id" => 2,
-        //     "pengawas_id" => 3,
+        //     "sekolah_id" => 1,
+        //     "pengawas_id" => 2,
         // ]);
 
-        // Raport KPI
+        // // Raport KPI
         // DB::table('raport_kpi')->insert([
         //     "tahun" => Carbon::now()->isoFormat('YYYY'),
         //     "nilai_kpi" => 86.1,
@@ -198,12 +193,12 @@ class LPMPSeeder extends Seeder
         //     "sub_indikator_id" => 1,
         // ]);
 
-        // Raport Sekolah
+        // // Raport Sekolah
         // DB::table('raport_sekolah')->insert([
         //     "tahun" => Carbon::now()->isoFormat('YYYY'),
         //     "nilai" => 86.1,
         //     "sekolah_id" => 1,
-        //     "sub_indikator_id" => 2,
+        //     "sub_indikator_id" => 1,
         // ]);
     }
 }

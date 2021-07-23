@@ -108,8 +108,11 @@ Route::get('/raportKPI/edit/{id}', [RaportKPIController::class,"edit"]);
 Route::post('/raportKPI/ubah/{id}', [RaportKPIController::class,"ubah"]);
 Route::get('/raportKPI/hapus/{id}', [RaportKPIController::class,"hapus"]);
 
-// Autentikasi
-
+// Siklus 1
+Route::get('/standar/{id}', [MasterController::class,"standar"]);
+Route::get('/indikator/{id}', [MasterController::class,"indikator"]);
+Route::get('/subIndikator/{id}', [MasterController::class,"subIndikator"]);
+Route::get('/akarMasalah/{id}', [MasterController::class,"akarMasalah"]);
 
 // Admin
 Route::group(['middleware'=>['AuthCheck']], function(){

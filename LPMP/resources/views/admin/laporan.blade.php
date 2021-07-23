@@ -2,6 +2,11 @@
 
 @section('title', 'Laporan')
 @section('content')
+    <style>
+        #data td {
+            vertical-align: text-top;
+        }
+    </style>
     <div class="content container pt-3">
         {{-- Table Sekolah --}}
         <div class="row">
@@ -38,24 +43,11 @@
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             @for ($i = 1; $i <= 4; $i++)
-                                                            <a onclick="liatLaporanSiklus('{{ $sekolah->nama }}',{{ $i }})" class="dropdown-item"
+                                                            <a onclick="liatLaporanSiklus('{{ $sekolah->nama }}',{{ $sekolah->id }},{{ $i }})" class="dropdown-item"
                                                                 data-toggle="modal" data-target="#sekolah">
                                                                 <i class="fa fa-edit"></i>Siklus {{ $i }}
                                                             </a>
                                                             @endfor
-                                                            
-                                                            {{-- <a onclick="liatLaporanSiklus2('{{ $sekolah->nama }}')" class="dropdown-item"
-                                                                data-toggle="modal" data-target="#sekolah">
-                                                                <i class="fa fa-edit"></i>Siklus 2
-                                                            </a>
-                                                            <a onclick="liatLaporanSiklus3('{{ $sekolah->nama }}')" class="dropdown-item"
-                                                                data-toggle="modal" data-target="#sekolah">
-                                                                <i class="fa fa-edit"></i>Siklus 3
-                                                            </a>
-                                                            <a onclick="liatLaporanSiklus4('{{ $sekolah->nama }}')" class="dropdown-item"
-                                                                data-toggle="modal" data-target="#sekolah">
-                                                                <i class="fa fa-edit"></i>Siklus 4
-                                                            </a> --}}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -86,8 +78,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="table-responsive border-top-0">
-                        <table class="table text-nowrap" id="table-raport-sekolah" style="column-width: 10%;"> 
+                    <div class="border-top-0">
+                        <table class="table" id="table-raport-sekolah" style="column-width: 10%;"> 
                             <thead>
                                 <tr>
                                     <th>Standar</th>
@@ -99,9 +91,12 @@
                                     <th>Akar Masalah</th>
                                     <th>Rekomendasi</th>
                                 </tr>
+                                    
+                            </thead>
+                            <tbody id="data1">
                                 <tr>
-                                    <th>2.	Isi</th>
-                                    <th>2.1.	Perangkat pembelajaran sesuai rumusan kompetensi lulusan </th>
+                                    <td>2. Isi</td>
+                                    <td>2.1.	Perangkat pembelajaran sesuai rumusan kompetensi lulusan </td>
                                     <td>
                                         <ul>
                                             <li>2.1.1.	Memuat karakteristik kompetensi sikap</li>
@@ -123,12 +118,10 @@
                                             <li>2.1.3.	Memuat karakteristik kompetensi keterampilan </li>
                                         </ul>
                                     </td>
-                                    <th>a</th>
-                                    <th>a</th>
-                                    <th>a</th>
+                                    <td>a</td>
+                                    <td>a</td>
+                                    <td>a</td>
                                 </tr>
-                            </thead>
-                            <tbody id="data">
                             </tbody>
                         </table>
                     </div>
@@ -168,7 +161,7 @@
                                     <th>Sumber Daya</th>
                                 </tr>
                             </thead>
-                            <tbody id="data">
+                            <tbody id="data2">
                             </tbody>
                         </table>
                     </div>
@@ -207,7 +200,7 @@
                                     <th>Bukti Fisik</th>
                                 </tr>
                             </thead>
-                            <tbody id="data">
+                            <tbody id="data3">
                             </tbody>
                         </table>
                     </div>
@@ -244,7 +237,7 @@
                                     <th>Outcome</th>
                                 </tr>
                             </thead>
-                            <tbody id="data">
+                            <tbody id="data4">
                             </tbody>
                         </table>
                     </div>
@@ -258,12 +251,71 @@
     <!-- Modal Laporan Sekolah siklus 4 -->
 
     <script>
+		const url = "{{URL::to('/')}}";
 		
-        const liatLaporanSiklus = (namaSekolah, siklus) => {
+        const liatLaporanSiklus = (namaSekolah, id, siklus) => {
             var laporanSekolahModal = new bootstrap.Modal(document.getElementById(`laporanSekolahSiklus${siklus}`), {
                 keyboard: false
             })
             if(siklus == 1){
+                const data = document.getElementById("data1");
+                fetch(`${url}/standar/${id}`)
+                    .then(response1=>response1.json())
+                    .then(dataStandar=>{
+                        console.log("standar");
+                        console.log(dataStandar);
+                        data.innerHTML = ""
+                        if(dataStandar.length > 0) {
+                            dataStandar.forEach((standar,idx) => {
+                                data.innerHTML +=`
+                                <tr>
+                                    <td>${standar.nomor}. ${standar.nama}</td>
+                                    <td><ul class="indikator"></ul></td>
+                                    <td><ul class="subIndikator"></ul></td>
+                                    <td><ul class="kekuatan"></ul></td>
+                                    <td><ul class="kelemahan"></ul></td>
+                                    <td><ul class="masalah"></ul></td>
+                                    <td><ul class="akarMasalah"></ul></td>
+                                    <td><ul class="rekomendasi"></ul></td>
+                                </tr>`;
+
+                                fetch(`${url}/indikator/${standar.id}`)
+                                    .then(response2=>response2.json())
+                                    .then(dataIndikator=>{ 
+                                        const indikatorClass = document.getElementsByClassName('indikator')[idx]
+                                        console.log("indikator");
+                                        console.log(dataIndikator);
+                                        
+                                        dataIndikator.forEach((indikator) => {
+                                            indikatorClass.innerHTML += `<li>${indikator.nomor}. ${indikator.nama}</li>`;
+
+                                            fetch(`${url}/subIndikator/${indikator.id}`)
+                                                .then(response3=>response3.json())
+                                                .then(dataSubIndikator=>{ 
+                                                    console.log("subIndikator");
+                                                    console.log(dataSubIndikator);
+                                                    const SubIndikatorClass = document.getElementsByClassName('subIndikator')[idx]
+                                                    dataSubIndikator.forEach(subIndikator => {
+                                                        SubIndikatorClass.innerHTML += `<li>${subIndikator.nomor}. ${subIndikator.nama}</li>`;
+                                                    });
+                                                });
+                                            fetch(`${url}/akarMasalah/${indikator.id}`)
+                                                .then(response3=>response3.json())
+                                                .then(dataAkarMasalah=>{ 
+                                                    console.log("akarMasalah");
+                                                    console.log(dataAkarMasalah);
+                                                    const akarMasalahClass = document.getElementsByClassName('akarMasalah')[idx]
+                                                    dataAkarMasalah.forEach(akarMasalah => {
+                                                        akarMasalahClass.innerHTML += `<li>${akarMasalah.deskripsi}</li>`;
+                                                    });
+                                                });
+                                        });
+                                    });
+                            });
+                        } else {
+                            console.log("no standar");
+                        }
+                    });
                 document.getElementById("modal_title_1").innerHTML = `Laporan <b>Pemetaan mutu</b> Sekolah ${namaSekolah}`;
                 laporanSekolahModal.show();
             }else if(siklus == 2){
@@ -278,21 +330,6 @@
             }
 			
         }
-		// function liatLaporanSiklus1(namaSekolah) {
-			
-		// }
-		// function liatLaporanSiklus2(namaSekolah) {
-        //     laporanSekolahModal.show()
-		// 	document.getElementById("modal_title").innerHTML = `Laporan Sekolah ${namaSekolah} Siklus 2`;
-        // }
-		// function liatLaporanSiklus3(namaSekolah) {
-        //     laporanSekolahModal.show()
-		// 	document.getElementById("modal_title").innerHTML = `Laporan Sekolah ${namaSekolah} Siklus 3`;
-        // }
-		// function liatLaporanSiklus4(namaSekolah) {
-        //     laporanSekolahModal.show()
-		// 	document.getElementById("modal_title").innerHTML = `Laporan Sekolah ${namaSekolah} Siklus 4`;
-        // }
     </script>
 @endsection
 

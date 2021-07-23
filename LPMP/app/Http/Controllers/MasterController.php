@@ -101,4 +101,25 @@ class MasterController extends Controller
         ];
         return view('/admin/laporan',$data, $data_log);
     }
+
+    public function standar($id) {
+        $listStandar = Standar::select("standar.*")
+            ->join('indikator as i','i.standar_id','standar.id')
+            ->join('sub_indikator as s','s.indikator_id','i.id')
+            ->join('raport_sekolah as r','r.sub_indikator_id','s.id')
+            ->where('r.sekolah_id',$id)->get();
+        return json_encode($listStandar);
+    }
+
+    public function indikator($id) {
+        return json_encode(Indikator::where('standar_id',$id)->get());
+    }
+
+    public function subIndikator($id) {
+        return json_encode(SubIndikator::where('indikator_id',$id)->get());
+    }
+
+    public function akarMasalah($id) {
+        return json_encode(AkarMasalah::where('indikator_id',$id)->get());
+    }
 }
