@@ -89,8 +89,6 @@ class PemenuhanMutuImport implements ToCollection, WithHeadingRow
                     'sub_indikator_id' => $subIndikatorId 
                 ]);                    
             }
-            
-            
         }
     }
 }
