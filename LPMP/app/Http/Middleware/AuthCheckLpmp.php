@@ -20,7 +20,7 @@ class AuthCheckLpmp
             return redirect('auth/loginLpmp') -> with('failLpmp','You must be logged in');
         }
         if(session()->has('LoggedUserLpmp') && ($request->path() == 'auth/loginLpmp') ){
-            return back() -> with('fail','You must be logged in');
+            return redirect('lpmp/home');
         }
 
         return $next($request)->header('Cache-Control','no-cache, no-store, max-age=0, must-revalidate')

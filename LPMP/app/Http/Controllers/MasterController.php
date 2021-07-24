@@ -103,7 +103,7 @@ class MasterController extends Controller
     }
 
     public function standar($id) {
-        $listStandar = Standar::select("standar.*")
+        $listStandar = Standar::select("standar.*") -> distinct()
             ->join('indikator as i','i.standar_id','standar.id')
             ->join('sub_indikator as s','s.indikator_id','i.id')
             ->join('raport_sekolah as r','r.sub_indikator_id','s.id')

@@ -20,7 +20,7 @@ class AuthCheckPengawas
             return redirect('auth/loginPengawas') -> with('failPengawas','You must be logged in');
         }
         if(session()->has('LoggedUserPengawas') && ($request->path() == 'auth/loginPengawas') ){
-            return back() -> with('fail','You must be logged in');
+            return redirect("pengawas/home");
         }
 
         return $next($request)->header('Cache-Control','no-cache, no-store, max-age=0, must-revalidate')
