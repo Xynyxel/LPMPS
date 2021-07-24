@@ -500,7 +500,7 @@ if(isset($siklus)) {
 			mText.innerText = (minutes == 1) ? "minute" : "minutes";
 			sText.innerText = (seconds == 1) ? "second" : "seconds";
 			
-			if(days == 0 && hours == "00" && minutes == "00" && seconds == "00") {
+			if(days == 0 && hours == 0 && minutes == 0 && seconds == 0) {
 				location.reload();
 				clearInterval(setTime);
 			}

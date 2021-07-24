@@ -3,7 +3,7 @@
 @section('title', 'Laporan')
 @section('content')
     <style>
-        #data td {
+        #data1 td {
             vertical-align: text-top;
         }
     </style>
@@ -66,6 +66,7 @@
             </div>
         </div>
     </div>
+    
     <!-- Modal Laporan Sekolah siklus 1 -->
     <div class="modal fade" id="laporanSekolahSiklus1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -133,7 +134,6 @@
         </div>
     </div>
     <!-- Modal Laporan Sekolah siklus 1 -->
-
 
     <!-- Modal Laporan Sekolah siklus 2 -->
     <div class="modal fade" id="laporanSekolahSiklus2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
