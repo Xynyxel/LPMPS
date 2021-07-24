@@ -4,6 +4,7 @@ namespace App\Imports;
 use App\Models\Standar;
 use App\Models\Indikator;
 use App\Models\SubIndikator;
+use App\Models\RaportSekolah;
 
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -17,6 +18,14 @@ class PemenuhanMutuImport implements ToCollection, WithHeadingRow
     /**
     * @param Collection $collection
     */
+
+    private $sekolahId = -1;
+
+    public function __construct(int $sekolahId) 
+    {
+        $this->sekolahId = $sekolahId;
+    }
+
     public function collection(Collection $rows)
     {   
         foreach ($rows as $row) 
@@ -72,9 +81,14 @@ class PemenuhanMutuImport implements ToCollection, WithHeadingRow
                     $subIndikator = SubIndikator::where('nomor',$row["Nomor SubIndikator"])-> where('nama',$row["Nama SubIndikator"])->first();
                     $subIndikatorId = $subIndikator["id"];
                 }
+
+                RaportSekolah::create([
+                    'tahun' => $row["Tahun"],
+                    'nilai' => $row["Nilai"], 
+                    'sekolah_id' => $this->sekolahId,
+                    'sub_indikator_id' => $subIndikatorId 
+                ]);                    
             }
-            
-            
         }
     }
 }

@@ -2,6 +2,7 @@
 
 @section('title', 'Data Operational - TPMPS')
 @section('content')
+	
     <!-- Content area -->
     <div class="content container pt-3">
 
@@ -50,7 +51,7 @@
 						<div class="modal fade" id="importExcelStandar" tabindex="-1" role="dialog"
 							aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
-								<form method="post" action="/tpmps/dataOperasional/importExcelPemetaanMutu"
+								<form method="post" action="/tpmps/dataOperasional/importExcelPemetaanMutu/{{  $LoggedUserInfo['sekolah_id'] }}"
 									enctype="multipart/form-data">
 									<div class="modal-content">
 										<div class="modal-header">

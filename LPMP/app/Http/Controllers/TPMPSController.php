@@ -197,7 +197,7 @@ class TPMPSController extends Controller
         return redirect("/dataMaster");
     }
 
-	public function importExcelPemetaanMutu(Request $request) 
+	public function importExcelPemetaanMutu(Request $request, $id) 
 	{
 		// validasi
 		$this->validate($request, [
@@ -214,7 +214,7 @@ class TPMPSController extends Controller
 		$file->move('filePemetaanMutu',$nama_file);
  
 		// import data
-		Excel::import(new PemenuhanMutuImport, public_path('/filePemetaanMutu/'.$nama_file));
+		Excel::import(new PemenuhanMutuImport($id), public_path('/filePemetaanMutu/'.$nama_file));
  
 		// notifikasi dengan session
 		Session::flash('suksesSiklus1','Data Pemetaan Mutu Berhasil Diimport!');
