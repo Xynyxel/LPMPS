@@ -20,7 +20,7 @@ class AuthCheckTpmps
             return redirect('auth/loginTpmps') -> with('failTpmps','You must be logged in');
         }
         if(session()->has('LoggedUserTpmps') && ($request->path() == 'auth/loginTpmps') ){
-            return back() -> with('fail','You must be logged in');
+            return redirect('tpmps/home');
         }
 
         return $next($request)->header('Cache-Control','no-cache, no-store, max-age=0, must-revalidate')

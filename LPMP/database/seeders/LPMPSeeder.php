@@ -200,5 +200,7 @@ class LPMPSeeder extends Seeder
         //     "sekolah_id" => 1,
         //     "sub_indikator_id" => 1,
         // ]);
+            
+
     }
 }
