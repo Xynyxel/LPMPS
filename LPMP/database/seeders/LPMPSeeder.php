@@ -200,7 +200,70 @@ class LPMPSeeder extends Seeder
         //     "sekolah_id" => 1,
         //     "sub_indikator_id" => 1,
         // ]);
-            
+        
+        // rekomendasi
+        DB::table('raport_sekolah')->insert([
+             "tahun" => Carbon::now()->isoFormat('YYYY'),
+             "deskripsi" => "Perlu meningkatkan kompetensi guru dalam menyusun perangkat pembelajaran",
+             "status" => 0,
+             "datetime" => Carbon::now()->isoFormat('dddd, MMMM Do YYYY, h:mm'),
+             "sekolah_id" => 1,
+             "indikator_id" => 1,
+        ]);
+
+        DB::table('raport_sekolah')->insert([
+            "tahun" => Carbon::now()->isoFormat('YYYY'),
+            "deskripsi" => "Perlu meningkatkan pemahaman guru terkait kompetensi keterampilan secara menyeluruh",
+            "status" => 0,
+            "datetime" => Carbon::now()->isoFormat('dddd, MMMM Do YYYY, h:mm'),
+            "sekolah_id" => 1,
+            "indikator_id" => 2,
+       ]);
+
+       DB::table('raport_sekolah')->insert([
+            "tahun" => Carbon::now()->isoFormat('YYYY'),
+            "deskripsi" => "Perlu penyempurnaan visi,misi, dan tujuan sekolah agar fokus pada pencapaian kompetensi keterampilan",
+            "status" => 0,
+            "datetime" => Carbon::now()->isoFormat('dddd, MMMM Do YYYY, h:mm'),
+            "sekolah_id" => 1,
+            "indikator_id" => 3,
+        ]);
+
+        DB::table('masalah')->insert([
+            "tahun" => Carbon::now()->isoFormat('YYYY'),
+            "deskripsi" => "Perangkat pembelajaran  belum sepenuhnya memuat karakteristik kompetensi keterampilan",
+            "status" => 0,
+            "datetime" => Carbon::now()->isoFormat('dddd, MMMM Do YYYY, h:mm'),
+            "sekolah_id" => 1,
+            "indikator_id" => 3,
+        ]);
+
+        DB::table('akar_masalah')->insert([
+            "tahun" => Carbon::now()->isoFormat('YYYY'),
+            "deskripsi" => "Kompetensi guru dalam penyusunan perangkat pembelajaran kurang",
+            "status" => 0,
+            "datetime" => Carbon::now()->isoFormat('dddd, MMMM Do YYYY, h:mm'),
+            "sekolah_id" => 1,
+            "indikator_id" => 3,
+        ]);
+
+        DB::table('akar_masalah')->insert([
+            "tahun" => Carbon::now()->isoFormat('YYYY'),
+            "deskripsi" => "Pemahaman guru terkait kompetensi keterampilan belum menyeluruh",
+            "status" => 0,
+            "datetime" => Carbon::now()->isoFormat('dddd, MMMM Do YYYY, h:mm'),
+            "sekolah_id" => 1,
+            "indikator_id" => 3,
+        ]);
+
+        DB::table('akar_masalah')->insert([
+            "tahun" => Carbon::now()->isoFormat('YYYY'),
+            "deskripsi" => "Visi, misi dan tujuan sekolah tidak fokus pada pencapaian kompetensi keterampilan",
+            "status" => 0,
+            "datetime" => Carbon::now()->isoFormat('dddd, MMMM Do YYYY, h:mm'),
+            "sekolah_id" => 1,
+            "indikator_id" => 3,
+        ]);
 
     }
 }
