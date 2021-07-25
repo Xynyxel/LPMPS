@@ -357,10 +357,6 @@
 										<th>No</th>
 										<th>Tahun</th>
 										<th>Deskripsi</th>
-										<th>Status</th>
-										<th>Tanggal</th>
-										<th>Sekolah</th>
-										<th>Indikator</th>
 										<th class="text-center" style="width: 20px;"><i class="fa fa-chevron-down"></i></th>
 									</tr>
 								</thead>
@@ -374,10 +370,6 @@
 											<td>{{ $no++ }}</td>
 											<td>{{ $akarMasalah->tahun }}</td>
 											<td>{{ $akarMasalah->deskripsi }}</td>
-											<td><span class="badge badge-success-100 text-success">{{ $akarMasalah->status }}</span></td>
-											<td>{{ $akarMasalah->datetime }}</td>
-											<td>{{ $akarMasalah->sekolah->nama }}</td>
-											<td>{{ $akarMasalah->indikator->nama }}</td>
 											<td class="text-center">
 												<div class="dropdown">
 													<a href="#" class="btn btn-outline-light btn-icon btn-sm text-body border-transparent rounded-pill" data-toggle="dropdown">
@@ -883,26 +875,6 @@
 						<div class="form-group">
 							<label class="col-form-label">Deskripsi</label>
 							<textarea name="deskripsi" class="form-control" id="akar_masalah_deskripsi" required></textarea>
-						</div>
-						<div class="form-group">
-							<label class="col-form-label">Status Akar Masalah</label>
-							<input type="number" min="0" value="0" name="status" class="form-control" id="akar_masalah_status" required />
-						</div>
-						<div class="form-group">
-							<label class="col-form-label">Sekolah</label>
-							<select name="sekolah_id" class="form-control" id="akar_masalah_sekolah_id" required />
-							@foreach ($listSekolah as $sekolah)
-								<option value="{{ $sekolah->id }}">{{ $sekolah->nama }}</option>
-							@endforeach
-							</select>
-						</div>
-						<div class="form-group">
-							<label class="col-form-label">Indikator</label>
-							<select name="indikator_id" class="form-control" id="akar_masalah_indikator_id" required />
-							@foreach ($listIndikator as $indikator)
-								<option value="{{ $indikator->id }}">{{ $indikator->nama }}</option>
-							@endforeach
-							</select>
 						</div>
 					</div>
 					<div class="modal-footer">

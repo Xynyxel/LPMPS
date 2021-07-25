@@ -17,8 +17,4 @@ class Indikator extends Model
     public function subIndikator() {
         return $this->hasMany(SubIndikator::class);
     }
-
-    public function akarMasalah() {
-        return $this->hasMany(AkarMasalah::class);
-    }
 }

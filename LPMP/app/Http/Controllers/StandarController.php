@@ -18,8 +18,7 @@ class StandarController extends Controller
     }
 
     public function edit($id) {
-        $standar = Standar::find($id);
-        return json_encode($standar);
+        return Standar::find($id);
     }
     
     public function ubah(Request $request, $id) {

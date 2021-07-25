@@ -7,15 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AkarMasalah extends Model
 {
-    protected $table = "akar_masalah";
+    protected $table = "akar_masalah_master";
     public $timestamps = false;
-    protected $fillable = ['tahun','deskripsi','status','sekolah_id','indikator_id'];
-
-    public function indikator() {
-        return $this->belongsTo(Indikator::class, "indikator_id","id");
-    }
-
-    public function sekolah() {
-        return $this->belongsTo(Sekolah::class, "sekolah_id","id");
-    }
+    protected $fillable = ['tahun','deskripsi'];
 }

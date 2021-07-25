@@ -14,10 +14,6 @@ class Sekolah extends Model
         return $this->belongsTo(KotaKabupaten::class,"kota_kabupaten_id","id");
     }
 
-    public function akarMasalah() {
-        return $this->hasMany(AkarMasalah::class);
-    }
-
     public function raportSekolah() {
         return $this->hasMany(RaportSekolah::class);
     }

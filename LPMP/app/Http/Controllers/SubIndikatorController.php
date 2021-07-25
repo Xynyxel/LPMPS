@@ -20,8 +20,7 @@ class SubIndikatorController extends Controller
     }
 
     public function edit($id) {
-        $subIndikator = SubIndikator::find($id);
-        return json_encode($subIndikator);
+        return SubIndikator::find($id);
     }
     
     public function ubah(Request $request, $id) {

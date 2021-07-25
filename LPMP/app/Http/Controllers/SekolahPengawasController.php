@@ -20,8 +20,7 @@ class SekolahPengawasController extends Controller
     }
 
     public function edit($id) {
-        $sekolahPengawas = SekolahPengawas::find($id);
-        return json_encode($sekolahPengawas);
+        return SekolahPengawas::find($id);
     }
     
     public function ubah(Request $request, $id) {

@@ -109,10 +109,7 @@ Route::post('/raportKPI/ubah/{id}', [RaportKPIController::class,"ubah"]);
 Route::get('/raportKPI/hapus/{id}', [RaportKPIController::class,"hapus"]);
 
 // Siklus 1
-Route::get('/standar/{id}', [MasterController::class,"standar"]);
-Route::get('/indikator/{id}', [MasterController::class,"indikator"]);
-Route::get('/subIndikator/{id}', [MasterController::class,"subIndikator"]);
-Route::get('/akarMasalah/{id}', [MasterController::class,"akarMasalah"]);
+Route::get('/siklus1', [MasterController::class,"siklus1"]);
 
 // Admin
 Route::group(['middleware'=>['AuthCheck']], function(){
@@ -128,7 +125,6 @@ Route::group(['middleware'=>['AuthCheck']], function(){
 
 // guest
 Route::get('/', [GuestController::class, 'index']);
-
 
 // Lpmp
 Route::group(['middleware'=>['AuthCheckLpmp']], function(){

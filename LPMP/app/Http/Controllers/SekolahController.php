@@ -31,8 +31,7 @@ class SekolahController extends Controller
     }
 
     public function edit($id) {
-        $sekolah = Sekolah::find($id);
-        return json_encode($sekolah);
+        return Sekolah::find($id);
     }
     
     public function ubah(Request $request, $id) {

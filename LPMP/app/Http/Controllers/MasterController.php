@@ -15,6 +15,7 @@ use App\Models\Pengawas;
 use App\Models\LPMP;
 use App\Models\SiklusPeriode;
 use App\Models\SekolahPengawas;
+use App\Models\RaportSekolah;
 use App\Models\RaportKPI;
 use Carbon\Carbon;
 
@@ -102,24 +103,47 @@ class MasterController extends Controller
         return view('/admin/laporan',$data, $data_log);
     }
 
-    public function standar($id) {
-        $listStandar = Standar::select("standar.*")
+    public function siklus1() {
+        $listPemetaanMutu = Standar::select(
+                "standar.nomor as nomor_standar",
+                "standar.nama as nama_standar",
+                "i.nama as nama_indikator",
+                "i.nomor as nomor_indikator",
+                "si.nomor as nomor_sub_indikator",
+                "si.nama as nama_sub_indikator",
+                "rs.nilai as nilai_raport",
+                "am.deskripsi as deskripsi_akar_masalah",
+            )
             ->join('indikator as i','i.standar_id','standar.id')
-            ->join('sub_indikator as s','s.indikator_id','i.id')
-            ->join('raport_sekolah as r','r.sub_indikator_id','s.id')
-            ->where('r.sekolah_id',$id)->get();
-        return json_encode($listStandar);
+            ->join('sub_indikator as si','si.indikator_id','i.id')
+            ->join('raport_sekolah as rs','rs.sub_indikator_id','si.id')
+            ->join('akar_masalah as am','am.indikator_id','i.id')
+            ->get();
+        return $listPemetaanMutu;
     }
+    
+    // public function standar($id) {
+    //     $listStandar = Standar::select("standar.*")
+    //         ->join('indikator as i','i.standar_id','standar.id')
+    //         ->join('sub_indikator as s','s.indikator_id','i.id')
+    //         ->join('raport_sekolah as r','r.sub_indikator_id','s.id')
+    //         ->where('r.sekolah_id',$id)->get();
+    //     return json_encode($listStandar);
+    // }
 
-    public function indikator($id) {
-        return json_encode(Indikator::where('standar_id',$id)->get());
-    }
+    // public function indikator($id) {
+    //     return Indikator::where('standar_id',$id)->get();
+    // }
 
-    public function subIndikator($id) {
-        return json_encode(SubIndikator::where('indikator_id',$id)->get());
-    }
+    // public function subIndikator($id) {
+    //     return SubIndikator::where('indikator_id',$id)->get();
+    // }
 
-    public function akarMasalah($id) {
-        return json_encode(AkarMasalah::where('indikator_id',$id)->get());
-    }
+    // public function raportSekolah($id) {
+    //     return RaportSekolah::where('sub_indikator_id',$id)->get();
+    // }
+
+    // public function akarMasalah($id) {
+    //     return AkarMasalah::where('indikator_id',$id)->get();
+    // }
 }

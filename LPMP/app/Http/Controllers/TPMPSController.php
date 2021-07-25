@@ -70,7 +70,27 @@ class TPMPSController extends Controller
             "sekolah_id" => $request->sekolah_id,
         ]);
         return redirect("/dataMaster");
-    }    
+    }
+
+    public function edit($id) {
+        return TPMPS::find($id);
+    }
+    
+    public function ubah(Request $request, $id) {
+        $tpmps = TPMPS::find($id);
+        $tpmps->nama = $request->nama;
+        $tpmps->username = $request->username;
+        $tpmps->password = $request->password;
+        $tpmps->sekolah_id = $request->sekolah_id;
+        $tpmps->save();
+
+        return redirect("/dataMaster");
+    }
+    
+    public function hapus($id) {
+        TPMPS::find($id)->delete();
+        return redirect("/dataMaster");
+    } 
 
     public function import_excel_standar(Request $request) 
 	{
@@ -175,27 +195,6 @@ class TPMPSController extends Controller
 		// alihkan halaman kembali
 		return redirect('/tpmps/dataOperasional');
 	}
-
-    public function edit($id) {
-        $tpmps = TPMPS::find($id);
-        return json_encode($tpmps);
-    }
-    
-    public function ubah(Request $request, $id) {
-        $tpmps = TPMPS::find($id);
-        $tpmps->nama = $request->nama;
-        $tpmps->username = $request->username;
-        $tpmps->password = $request->password;
-        $tpmps->sekolah_id = $request->sekolah_id;
-        $tpmps->save();
-
-        return redirect("/dataMaster");
-    }
-    
-    public function hapus($id) {
-        TPMPS::find($id)->delete();
-        return redirect("/dataMaster");
-    }
 
 	public function importExcelPemetaanMutu(Request $request, $id) 
 	{

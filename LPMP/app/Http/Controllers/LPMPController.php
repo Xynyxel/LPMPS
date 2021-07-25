@@ -49,8 +49,7 @@ class LPMPController extends Controller
     }
 
     public function edit($id) {
-        $lpmp = LPMP::find($id);
-        return json_encode($lpmp);
+        return LPMP::find($id);
     }
     
     public function ubah(Request $request, $id) {

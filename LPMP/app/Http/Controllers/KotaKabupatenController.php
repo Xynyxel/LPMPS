@@ -15,8 +15,7 @@ class KotaKabupatenController extends Controller
     }
 
     public function edit($id) {
-        $kotaKabupaten = KotaKabupaten::find($id);
-        return json_encode($kotaKabupaten);
+        return KotaKabupaten::find($id);
     }
     
     public function ubah(Request $request, $id) {

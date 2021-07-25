@@ -17,8 +17,7 @@ class SiklusPeriodeController extends Controller
     }
 
     public function edit($id) {
-        $siklusPeriode = SiklusPeriode::find($id);
-        return json_encode($siklusPeriode);
+        return SiklusPeriode::find($id);
     }
     
     public function ubah(Request $request, $id) {

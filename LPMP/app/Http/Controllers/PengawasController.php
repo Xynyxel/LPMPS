@@ -69,8 +69,7 @@ class PengawasController extends Controller
     }
 
     public function edit($id) {
-        $pengawas = Pengawas::find($id);
-        return json_encode($pengawas);
+        return Pengawas::find($id);
     }
     
     public function ubah(Request $request, $id) {

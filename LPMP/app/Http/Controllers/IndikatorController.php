@@ -19,8 +19,7 @@ class IndikatorController extends Controller
     }
 
     public function edit($id) {
-        $indikator = Indikator::find($id);
-        return json_encode($indikator);
+        return Indikator::find($id);
     }
     
     public function ubah(Request $request, $id) {

@@ -18,8 +18,7 @@ class RaportKPIController extends Controller
     }
 
     public function edit($id) {
-        $raportKPI = RaportKPI::find($id);
-        return json_encode($raportKPI);
+        return RaportKPI::find($id);
     }
     
     public function ubah(Request $request, $id) {
