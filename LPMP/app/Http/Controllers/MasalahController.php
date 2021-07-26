@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\AkarMasalah;
+use App\Models\Masalah;
 use Carbon\Carbon;
 
-class AkarMasalahController extends Controller
+class MasalahController extends Controller
 {
     public function tambah(Request $request) {
-        AkarMasalah::create([
+        Masalah::create([
             'tahun' => Carbon::now()->isoFormat('YYYY'),
             'deskripsi'=> $request->deskripsi,
             'status' => 0,

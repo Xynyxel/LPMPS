@@ -17,6 +17,8 @@ use App\Models\Indikator;
 use App\Models\SubIndikator;
 use App\Models\TPMPS;
 use App\Models\SiklusPeriode;
+use App\Models\AkarMasalahMaster;
+
 
 //imports
 use App\Imports\RapotSekolahImport;
@@ -38,17 +40,13 @@ class TPMPSController extends Controller
 
 	public function dataOperasional(){
 		$data_log = ['LoggedUserInfo'=>TPMPS::where('id','=', session('LoggedUserTpmps'))-> first()];
-		$rapotSekolah = RaportSekolah::where('sekolah_id','=', $data_log['LoggedUserInfo']['sekolah_id'])->get();
-		$standar = Standar::all();
 		$indikator = Indikator::all();
-		$subIndikator = SubIndikator::all();
+        $akarMasalahMaster = AkarMasalahMaster::all();
         
         $data = [
             "siklus" => siklus(),
-			'rapot_sekolah' => $rapotSekolah, 
-			'standar'=>$standar,
-			'indikator'=>$indikator,
-			'sub_indikator'=>$subIndikator,
+			'listIndikator'=> $indikator,
+            'listAkarMasalahMaster' => $akarMasalahMaster
         ];
 		return view('/tpmps/dataOperasional', $data, $data_log);
 	}
@@ -91,110 +89,6 @@ class TPMPSController extends Controller
         TPMPS::find($id)->delete();
         return redirect("/dataMaster");
     } 
-
-    public function import_excel_standar(Request $request) 
-	{
-		// validasi
-		$this->validate($request, [
-			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
- 
-		// menangkap file excel
-		$file = $request->file('file');
- 
-		// membuat nama file unik
-		$nama_file = rand().$file->getClientOriginalName();
- 
-		// upload ke folder file_siswa di dalam folder public
-		$file->move('file_standar',$nama_file);
- 
-		// import data
-		Excel::import(new StandarImport, public_path('/file_standar/'.$nama_file));
- 
-		// notifikasi dengan session
-		Session::flash('sukses_standar','Data Standar Berhasil Diimport!');
- 
-		// alihkan halaman kembali
-		return redirect('/tpmps/dataOperasional');
-	}
-
-	public function import_excel_indikator(Request $request) 
-	{
-		// validasi
-		$this->validate($request, [
-			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
- 
-		// menangkap file excel
-		$file = $request->file('file');
- 
-		// membuat nama file unik
-		$nama_file = rand().$file->getClientOriginalName();
- 
-		// upload ke folder file_siswa di dalam folder public
-		$file->move('file_indikator',$nama_file);
- 
-		// import data
-		Excel::import(new IndikatorImport, public_path('/file_indikator/'.$nama_file));
- 
-		// notifikasi dengan session
-		Session::flash('sukses_indikator','Data Indikator Berhasil Diimport!');
- 
-		// alihkan halaman kembali
-		return redirect('/tpmps/dataOperasional');
-	}
-
-	public function import_excel_sub_indikator(Request $request) 
-	{
-		// validasi
-		$this->validate($request, [
-			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
- 
-		// menangkap file excel
-		$file = $request->file('file');
- 
-		// membuat nama file unik
-		$nama_file = rand().$file->getClientOriginalName();
- 
-		// upload ke folder file_siswa di dalam folder public
-		$file->move('file_sub_indikator',$nama_file);
- 
-		// import data
-		Excel::import(new SubIndikatorImport, public_path('/file_sub_indikator/'.$nama_file));
- 
-		// notifikasi dengan session
-		Session::flash('sukses_subindikator','Data Sub Indikator Berhasil Diimport!');
- 
-		// alihkan halaman kembali
-		return redirect('/tpmps/dataOperasional');
-	}
-
-	public function import_excel_rapot_sekolah(Request $request) 
-	{
-		// validasi
-		$this->validate($request, [
-			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
- 
-		// menangkap file excel
-		$file = $request->file('file');
- 
-		// membuat nama file unik
-		$nama_file = rand().$file->getClientOriginalName();
- 
-		// upload ke folder file_siswa di dalam folder public
-		$file->move('file_rapot_sekolah',$nama_file);
- 
-		// import data
-		Excel::import(new RapotSekolahImport, public_path('/file_rapot_sekolah/'.$nama_file));
- 
-		// notifikasi dengan session
-		Session::flash('sukses_rapotsekolah','Data Rapot Sekolah Berhasil Diimport!');
- 
-		// alihkan halaman kembali
-		return redirect('/tpmps/dataOperasional');
-	}
 
 	public function importExcelPemetaanMutu(Request $request, $id) 
 	{

@@ -134,29 +134,237 @@
                 </div>
             </div>
 
-            <h1>Akar Masalah</h1>
-            <form>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+            <div class="row">
+                <div class="col-4">
+                    <button class="btn btn-info p-3 mr-3" id="akarMasalahBtn" style="width: 100%" data-toggle="modal"
+                        data-target="#akarMasalahModal">
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="fa fa-users"></i>
+                            <h1 class="m-0">Akar Masalah</h1>
+                        </div>
+                    </button>
                 </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
+                <div class="col-4">
+                    <button class="btn btn-success p-3 mr-3" id="rekomendasiBtn" style="width: 100%" data-toggle="modal"
+                        data-target="#rekomendasiModal">
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="fa fa-school"></i>
+                            <h1 class="m-0">Rekomendasi</h1>
+                        </div>
+                    </button>
                 </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <div class="col-4">
+                    <button class="btn btn-primary p-3 mr-3" id="MasalahBtn" style="width: 100%" data-toggle="modal"
+                        data-target="#masalahModal">
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="fa fa-city"></i>
+                            <h1 class="m-0">Masalah</h1>
+                        </div>
+                    </button>
                 </div>
-                <button type="submit" class="btn btn-primary">Tambah</button>
-              </form>
+            </div>
+
+
+            <!-- Modal -->
+            {{-- akar masalah --}}
+            <div class="modal fade" id="akarMasalahModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Tambah Akar Masalah</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form id="formManual" action="/tpmps/dataOperasional/tambahAkarMasalah" method="post">
+                            @csrf
+                            <div class="modal-body">
+                                <!-- Default switch -->
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="switchAkarMasalah">
+                                    <label id="labelAkarMasalah" class="custom-control-label"
+                                        for="switchAkarMasalah">Otomatis</label>
+                                </div>
+                                <br>
+
+                                <div class="mb-3">
+                                    <select class="custom-select" id="inputGroupSelect01" name="deskripsi">
+                                        <option selected>Pilih Akar Masalah yang sudah ada...</option>
+                                        @foreach ($listAkarMasalahMaster as $akarMasalahMaster)
+                                            <option value="{{ $akarMasalahMaster->deskripsi }}">
+                                                {{ $akarMasalahMaster->deskripsi }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <select class="custom-select" id="inputGroupSelect01" name="indikator_id">
+                                        <option selected>Pilih Jenis Indikator...</option>
+                                        @foreach ($listIndikator as $indikator)
+                                            <option value="{{ $indikator->id }}">{{ $indikator->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <input type="hidden" id="sekolah_id" name="sekolah_id"
+                                    value="{{ $LoggedUserInfo['sekolah_id'] }}">
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary" value="Tambah"></button>
+                            </div>
+                        </form>
+
+
+                        <form id="formOtomatis" action="/tpmps/dataOperasional/tambahAkarMasalah" method="post">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="switchAkarMasalah">
+                                    <label id="labelAkarMasalah" class="custom-control-label"
+                                        for="switchAkarMasalah">Manual</label>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Deskripsi</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                            name="deskripsi"></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <select class="custom-select" id="inputGroupSelect01" name="indikator_id">
+                                        <option selected>Pilih Jenis Indikator...</option>
+                                        @foreach ($listIndikator as $indikator)
+                                            <option value="{{ $indikator->id }}">{{ $indikator->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <input type="hidden" id="sekolah_id" name="sekolah_id"
+                                    value="{{ $LoggedUserInfo['sekolah_id'] }}">
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary" value="Tambah"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            {{-- rekomendasi --}}
+            <div class="modal fade" id="rekomendasiModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Tambah Rekomendasi</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form method="post" action='/tpmps/dataOperasional/tambahRekomendasi'>
+                            @csrf
+                            @if (Session::get('fail'))
+                                <div class="alert alert-danger">
+                                    {{ Session::get('fail') }}
+                                </div>
+                            @endif
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <div class="mb-3">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Deskripsi</label>
+                                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"
+                                                required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <select class="custom-select" id="inputGroupSelect01" name="indikator_id" required>
+                                        <option selected>Pilih Jenis Indikator...</option>
+                                        @foreach ($listIndikator as $indikator)
+                                            <option value="{{ $indikator->id }}">{{ $indikator->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <input type="hidden" id="sekolah_id" name="sekolah_id"
+                                    value="{{ $LoggedUserInfo['sekolah_id'] }}">
+
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary" value="Tambah"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            {{-- masalah --}}
+            <div class="modal fade" id="masalahModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Tambah Masalah</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form method="post" action='/tpmps/dataOperasional/tambahMasalah'>
+                            @csrf
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <div class="mb-3">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Deskripsi</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" name="deskripsi"
+                                                rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <select class="custom-select" id="inputGroupSelect01" name="indikator_id" required>
+                                        <option selected>Pilih Jenis Indikator...</option>
+                                        @foreach ($listIndikator as $indikator)
+                                            <option value="{{ $indikator->id }}">{{ $indikator->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <input type="hidden" id="sekolah_id" name="sekolah_id"
+                                    value="{{ $LoggedUserInfo['sekolah_id'] }}">
+
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary" value="Tambah"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <script>
+                var cekAkarMasalah = document.getElementById('switchAkarMasalah');
+                var labelAkarMasalah = document.getElementById('labelAkarMasalah');
+                var formManual = document.getElementById('formManual');
+                var formOtomatis = document.getElementById('formOtomatis');
+
+                formManual.style.display = 'none';
+                formOtomatis.style.display = 'block';
+                cekAkarMasalah.addEventListener('change', (e) => {
+                    formManual.style.display = 'none';
+                    formOtomatis.style.display = 'none';
+                    if (e.target.checked) {
+                        formManual.style.display = "block";
+                    } else {
+                        formOtomatis.style.display = "block";
+                    }
+                })
+            </script>
+
+
 
         @elseif($sikluss == 2)
             <h1>Siklus 2</h1>
         @elseif($sikluss == 3)
-            <h1>Siklus 2</h1>
+            <h1>Siklus 3</h1>
         @elseif($sikluss == 4)
-            <h1>Siklus 2</h1>
+            <h1>Siklus 4</h1>
         @endif
 
 

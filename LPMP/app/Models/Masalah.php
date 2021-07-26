@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AkarMasalah extends Model
+class Masalah extends Model
 {
-    protected $table = "akar_masalah";
+    protected $table = "masalah";
     public $timestamps = false;
     protected $fillable = ['tahun','deskripsi','status','datetime','sekolah_id','indikator_id'];
 

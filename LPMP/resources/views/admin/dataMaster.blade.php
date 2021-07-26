@@ -855,7 +855,7 @@
 	<div class="modal fade" id="akarMasalah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<form method="POST" action="/akarMasalah/tambah" id="form_akar_masalah">
+				<form method="POST" action="/akarMasalahMaster/tambah" id="form_akar_masalah">
 					{{ csrf_field() }}
 					<div class="modal-header">
 						<h5 class="modal-title" id="title_form_akar_masalah">Tambah Akar Masalah</h5>
@@ -1375,7 +1375,7 @@
 				const indikator_id = document.getElementById('akar_masalah_indikator_id');
 				const btn = document.getElementById('btn_akar_masalah');
 
-				form.action = `/akarMasalah/tambah`;
+				form.action = `/akarMasalahMaster/tambah`;
 				title.innerText = "Tambah Akar Masalah";
 				tahun.value = 2021;
 				deskripsi.innerText = "";

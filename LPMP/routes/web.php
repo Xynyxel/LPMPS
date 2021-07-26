@@ -8,7 +8,7 @@ use App\Http\Controllers\StandarController;
 use App\Http\Controllers\KotaKabupatenController;
 use App\Http\Controllers\IndikatorController;
 use App\Http\Controllers\SubIndikatorController;
-use App\Http\Controllers\AkarMasalahController;
+use App\Http\Controllers\AkarMasalahMasterController;
 use App\Http\Controllers\PemenuhanMutuController;
 use App\Http\Controllers\TPMPSController;
 use App\Http\Controllers\PengawasController;
@@ -16,6 +16,9 @@ use App\Http\Controllers\LPMPController;
 use App\Http\Controllers\SiklusPeriodeController;
 use App\Http\Controllers\SekolahPengawasController;
 use App\Http\Controllers\RaportKPIController;
+use App\Http\Controllers\RekomendasiController;
+use App\Http\Controllers\MasalahController;
+use App\Http\Controllers\AkarMasalahController;
 
 //Other
 use App\Http\Controllers\MasterController;
@@ -66,11 +69,11 @@ Route::get('/subIndikator/edit/{id}', [SubIndikatorController::class,"edit"]);
 Route::post('/subIndikator/ubah/{id}', [SubIndikatorController::class,"ubah"]);
 Route::get('/subIndikator/hapus/{id}', [SubIndikatorController::class,"hapus"]);
 
-// AkarMasalah
-Route::post('/akarMasalah/tambah', [AkarMasalahController::class,"tambah"]);
-Route::get('/akarMasalah/edit/{id}', [AkarMasalahController::class,"edit"]);
-Route::post('/akarMasalah/ubah/{id}', [AkarMasalahController::class,"ubah"]);
-Route::get('/akarMasalah/hapus/{id}', [AkarMasalahController::class,"hapus"]);
+// AkarMasalahMaster
+Route::post('/akarMasalahMaster/tambah', [AkarMasalahMasterController::class,"tambah"]);
+Route::get('/akarMasalahMaster/edit/{id}', [AkarMasalahMasterController::class,"edit"]);
+Route::post('/akarMasalahMaster/ubah/{id}', [AkarMasalahMasterController::class,"ubah"]);
+Route::get('/akarMasalahMaster/hapus/{id}', [AkarMasalahMasterController::class,"hapus"]);
 
 // TPMPS
 Route::post('/tpmps/tambah', [TPMPSController::class,"tambah"]);
@@ -96,11 +99,7 @@ Route::get('/siklusPeriode/edit/{id}', [SiklusPeriodeController::class,"edit"]);
 Route::post('/siklusPeriode/ubah/{id}', [SiklusPeriodeController::class,"ubah"]);
 Route::get('/siklusPeriode/hapus/{id}', [SiklusPeriodeController::class,"hapus"]);
 
-// Sekolah-Pengawas
-Route::post('/sekolahPengawas/tambah', [SekolahPengawasController::class,"tambah"]);
-Route::get('/sekolahPengawas/edit/{id}', [SekolahPengawasController::class,"edit"]);
-Route::post('/sekolahPengawas/ubah/{id}', [SekolahPengawasController::class,"ubah"]);
-Route::get('/sekolahPengawas/hapus/{id}', [SekolahPengawasController::class,"hapus"]);
+
 
 // Raport KPI
 Route::post('/raportKPI/tambah', [RaportKPIController::class,"tambah"]);
@@ -122,6 +121,12 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('/laporan', [MasterController::class,"laporan"]);
     // guest
     Route::get('/', [GuestController::class, 'index']);
+
+    // Sekolah-Pengawas
+    Route::post('/sekolahPengawas/tambah', [SekolahPengawasController::class,"tambah"]);
+    Route::get('/sekolahPengawas/edit/{id}', [SekolahPengawasController::class,"edit"]);
+    Route::post('/sekolahPengawas/ubah/{id}', [SekolahPengawasController::class,"ubah"]);
+    Route::get('/sekolahPengawas/hapus/{id}', [SekolahPengawasController::class,"hapus"]);
 });
 
 // guest
@@ -151,12 +156,11 @@ Route::group(['middleware'=>['AuthCheckTpmps']], function(){
     Route::get('/tpmps/dataOperasional',[TPMPSController::class, 'dataOperasional']);
     Route::get('/tpmps/laporan',[TPMPSController::class, 'laporan']);
     // import excel pemenuhan mutu
-    Route::post('/tpmps/dataOperasional/importExcelPemetaanMutu/{id}',       [TPMPSController::class, 'importExcelPemetaanMutu']);
-    
-    Route::post('/tpmps/dataOperasional/import_excel_standar',       [TPMPSController::class, 'import_excel_standar']);
-    Route::post('/tpmps/dataOperasional/import_excel_indikator',     [TPMPSController::class, 'import_excel_indikator']);
-    Route::post('/tpmps/dataOperasional/import_excel_sub_indikator', [TPMPSController::class, 'import_excel_sub_indikator']);
-    Route::post('/tpmps/dataOperasional/import_excel_rapot_sekolah', [TPMPSController::class, 'import_excel_rapot_sekolah']);
+    Route::post('/tpmps/dataOperasional/importExcelPemetaanMutu/{id}',[TPMPSController::class, 'importExcelPemetaanMutu']);
+    // add forms
+    Route::post('/tpmps/dataOperasional/tambahMasalah',[MasalahController::class,'tambah']);
+    Route::post('/tpmps/dataOperasional/tambahRekomendasi',[RekomendasiController::class,'tambah']);
+    Route::post('/tpmps/dataOperasional/tambahAkarMasalah',[AkarMasalahController::class,'tambah']);
 });
 
 // Check 

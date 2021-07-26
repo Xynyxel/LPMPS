@@ -25,4 +25,16 @@ class Sekolah extends Model
     public function tpmps() {
         return $this->hasOne(TPMPS::class);
     }
+
+    public function masalah() {
+        return $this->hasMany(Masalah::class);
+    }
+
+    public function akarMasalah() {
+        return $this->hasMany(AkarMasalah::class);
+    }
+
+    public function rekomendasi() {
+        return $this->hasMany(Rekomendasi::class);
+    }
 }
