@@ -318,28 +318,48 @@
                     subIndikator.push([extractNilai(parent), parent.children[0].children[1].innerText, tr.length-span+1])
                 }
             }
-
-            console.log(indikator, subIndikator);
             
             let count = 0, idx = 0, 
                 kuat = 0,lemah = 0;
                 
-            for(let j = 0; j <= subIndikator.length; j++) {
-                const kelemahan = document.getElementsByClassName('kelemahan')[subIndikator[j][2]-1];
-                const kekuatan = document.getElementsByClassName('kekuatan')[subIndikator[j][2]-1];
-                if(count == indikator[idx]) {
+            for(let i = 0; i < subIndikator.length; i++) {
+                const kelemahan = document.getElementsByClassName('kelemahan')[lemah];
+                const kekuatan = document.getElementsByClassName('kekuatan')[kuat];
+                if(count == indikator[idx][1]) {
                     idx++;
                 }
-                if(indikator[i][0] < subIndikator[j][0]) {
-                    kekuatan.innerHTML = subIndikator[j][1];
-                    kekuatan.rowSpan = indikator[i][1];
-                    document.getElementsByClassName('kelemahan')[subIndikator[j][2]-1]
+                if(indikator[idx][0] <= subIndikator[i][0]) {
+                    kekuatan.innerHTML = subIndikator[i][1];
+                    kuat++;
+                    document.getElementsByClassName('kekuatan')[kuat].remove();
+                    kekuatan.rowSpan = indikator[idx][1];
                 }
                 else {
-                    kelemahan.innerHTML = subIndikator[j][1];
-                    kelemahan.rowSpan = indikator[i][1];
+                    kelemahan.innerHTML = subIndikator[i][1];
+                    lemah++;
+                    document.getElementsByClassName('kelemahan')[lemah].remove();
+                    kelemahan.rowSpan = indikator[idx][1];
                 }
                 count++;
+                if(count == subIndikator.length) {
+                    while(kuat!=lemah) {
+                        if(kuat>lemah) {
+                            kelemahan.rowSpan = indikator[idx][1];
+                            lemah++;
+                        } 
+                        else if(kuat<lemah) {
+                            kekuatan.rowSpan = indikator[idx][1];
+                            kuat++;
+                        }
+                    }
+                    
+                }
+            }
+            for(let i = kuat; i < document.getElementsByClassName('kekuatan').length; i++) {
+                document.getElementsByClassName('kekuatan')[i--].remove();
+            }
+            for(let i = lemah; i < document.getElementsByClassName('kelemahan').length; i++) {
+                document.getElementsByClassName('kelemahan')[i--].remove();
             }
         }
 		
@@ -417,64 +437,6 @@
                         <tr><td>tidak ada raport sekolah</td><tr>
                     `;
                 }
-                
-                // fetch(`${url}/standar/${id}`)
-                //     .then(response1=>response1.json())
-                //     .then(dataStandar=>{
-                //         console.log("standar");
-                //         console.log(dataStandar);
-                //         data.innerHTML = ""
-                //         if(dataStandar.length > 0) {
-                //             dataStandar.forEach((standar,idx) => {
-                //                 data.innerHTML +=`
-                //                 <tr>
-                //                     <td>${standar.nomor}. ${standar.nama}</td>
-                //                     <td><ul class="indikator"></ul></td>
-                //                     <td><ul class="subIndikator"></ul></td>
-                //                     <td><ul class="kekuatan"></ul></td>
-                //                     <td><ul class="kelemahan"></ul></td>
-                //                     <td><ul class="masalah"></ul></td>
-                //                     <td><ul class="akarMasalah"></ul></td>
-                //                     <td><ul class="rekomendasi"></ul></td>
-                //                 </tr>`;
-
-                //                 fetch(`${url}/indikator/${standar.id}`)
-                //                     .then(response2=>response2.json())
-                //                     .then(dataIndikator=>{ 
-                //                         const indikatorClass = document.getElementsByClassName('indikator')[idx]
-                //                         console.log("indikator");
-                //                         console.log(dataIndikator);
-                                        
-                //                         dataIndikator.forEach((indikator) => {
-                //                             indikatorClass.innerHTML += `<li>${indikator.nomor}. ${indikator.nama}</li>`;
-
-                //                             fetch(`${url}/subIndikator/${indikator.id}`)
-                //                                 .then(response3=>response3.json())
-                //                                 .then(dataSubIndikator=>{ 
-                //                                     console.log("subIndikator");
-                //                                     console.log(dataSubIndikator);
-                //                                     const SubIndikatorClass = document.getElementsByClassName('subIndikator')[idx]
-                //                                     dataSubIndikator.forEach(subIndikator => {
-                //                                         SubIndikatorClass.innerHTML += `<li>${subIndikator.nomor}. ${subIndikator.nama}</li>`;
-                //                                     });
-                //                                 });
-                //                             fetch(`${url}/akarMasalah/${indikator.id}`)
-                //                                 .then(response3=>response3.json())
-                //                                 .then(dataAkarMasalah=>{ 
-                //                                     console.log("akarMasalah");
-                //                                     console.log(dataAkarMasalah);
-                //                                     const akarMasalahClass = document.getElementsByClassName('akarMasalah')[idx]
-                //                                     dataAkarMasalah.forEach(akarMasalah => {
-                //                                         akarMasalahClass.innerHTML += `<li>${akarMasalah.deskripsi}</li>`;
-                //                                     });
-                //                                 });
-                //                         });
-                //                     });
-                //             });
-                //         } else {
-                //             console.log("no standar");
-                //         }
-                //     });
                 document.getElementById("modal_title_1").innerHTML = `Laporan <b>Pemetaan mutu</b> Sekolah ${namaSekolah}`;
                 laporanSekolahModal.show();
             }else if(siklus == 2){
