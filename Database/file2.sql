@@ -306,7 +306,7 @@ CREATE TABLE `sub_indikator` (
   `id` int(100) NOT NULL,
   `tahun` year(4) NOT NULL,
   `nomor` varchar(100) NOT NULL,
-  `nama` varchar(100) NOT NULL,
+  `nama` varchar(250) NOT NULL,
   `status` int(100) NOT NULL,
   `indikator_id` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;

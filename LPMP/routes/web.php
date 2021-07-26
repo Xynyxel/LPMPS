@@ -109,7 +109,8 @@ Route::post('/raportKPI/ubah/{id}', [RaportKPIController::class,"ubah"]);
 Route::get('/raportKPI/hapus/{id}', [RaportKPIController::class,"hapus"]);
 
 // Siklus 1
-Route::get('/siklus1', [MasterController::class,"siklus1"]);
+Route::get('/siklus1/{id}', [MasterController::class,"siklus1"]);
+Route::get('/avgIndikator/{id}', [MasterController::class,"avgIndikator"]);
 
 // Admin
 Route::group(['middleware'=>['AuthCheck']], function(){
