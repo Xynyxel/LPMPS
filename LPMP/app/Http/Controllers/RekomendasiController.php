@@ -9,6 +9,10 @@ use Carbon\Carbon;
 
 class RekomendasiController extends Controller
 {
+    public function dataByIndikatorId($id) {
+        return Rekomendasi::where('indikator_id',$id)->get();
+    }
+    
     public function tambah(Request $request) {
         $newRekomendasi =  Rekomendasi::create([
             'tahun' => Carbon::now()->isoFormat('YYYY'),

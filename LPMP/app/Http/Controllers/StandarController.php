@@ -7,6 +7,10 @@ use App\Models\Standar;
 
 class StandarController extends Controller
 {
+    public function all() {
+        return Standar::get();
+    }
+
     public function tambah(Request $request) {
         Standar::create([
             "tahun" => $request->tahun,

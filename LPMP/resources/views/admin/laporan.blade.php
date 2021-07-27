@@ -7,7 +7,7 @@
             vertical-align: text-top;
         }
         .modal-big {
-            min-width: 80vw!important;
+            min-width: 90vw!important;
         }
     </style>
     <div class="content container pt-3">
@@ -87,15 +87,8 @@
                             <thead>
                                 <tr>
                                     <th>Standar</th>
-                                    <th>Indikator</th>
-                                    <th>SubIndikator</th>
-                                    <th>Kekuatan</th>
-                                    <th>Kelemahan</th>
-                                    <th>Masalah</th>
-                                    <th>Akar Masalah</th>
-                                    <th>Rekomendasi</th>
+                                    <th></th>
                                 </tr>
-                                    
                             </thead>
                             <tbody id="data1">
                                 <tr>
@@ -256,111 +249,97 @@
     <script>
 		const url = "{{URL::to('/')}}";
 
-        const getAVG = async (id) => {
-            const response = await fetch(`${url}/avgIndikator/${id}`);
+        const getData = async (url) => {
+            const response = await fetch(url);
             const data = response.json();
             return new Promise(resolve => {
                 resolve(data);
             })
-        }
-
-        const getData = async (id) => {
-            const response = await fetch(`${url}/siklus1/${id}`);
-            const data = response.json();
-            return new Promise(resolve => {
-                resolve(data);
-            })
-        }
-
-        const extractNilai = (parent) => {
-            const text = parent.children[0].children[1].innerText.split(" ");
-            return text[text.length-1].slice(1,text[text.length-1].length-1)
         }
 
         const setTable = (table, tr) => {
-            let max = []
-            let indikator = [];
-            let subIndikator = [];
-            for(let i = 0; i < tr[0].children.length; i++) {
-                let parent = tr[0].children[i];
-                let span = 1;
-                let count = 0;
-                for(let j = 1; j < tr.length; j++) {
-                    let sub = tr[j].children[i-table[j]];
-                    if(sub.innerHTML == parent.innerHTML && sub.innerHTML!="") {
-                        span++;
-                        table[j]++;
-                        tr[j].removeChild(sub);
-                    } else {
-                        parent.rowSpan = span;
-                        if(i == 0) {
-                            max.push(span);
-                        }
-                        else if(i == 1) {
-                            indikator.push([extractNilai(parent),parent.rowSpan])
-                        }
-                        else if(i == 2) {
-                            subIndikator.push([extractNilai(parent), parent.children[0].children[1].innerText, j])
-                        }
+            // let max = []
+            // let indikator = [];
+            // let subIndikator = [];
+            // for(let i = 0; i < tr[0].children.length; i++) {
+            //     let parent = tr[0].children[i];
+            //     let span = 1;
+            //     let count = 0;
+            //     for(let j = 1; j < tr.length; j++) {
+            //         let sub = tr[j].children[i-table[j]];
+            //         if(sub.innerHTML == parent.innerHTML && sub.innerHTML!="") {
+            //             span++;
+            //             table[j]++;
+            //             tr[j].removeChild(sub);
+            //         } else {
+            //             parent.rowSpan = span;
+            //             if(i == 0) {
+            //                 max.push(span);
+            //             }
+            //             else if(i == 1) {
+            //                 indikator.push([extractNilai(parent),parent.rowSpan])
+            //             }
+            //             else if(i == 2) {
+            //                 subIndikator.push([extractNilai(parent), parent.children[0].children[1].innerText, j])
+            //             }
                         
-                        parent = sub;
-                        span = 1;
-                    }
-                }
-                parent.rowSpan = span;
-                if(i == 0) {
-                    max.push(span);
-                }
-                else if(i == 1){
-                    indikator.push([extractNilai(parent),parent.rowSpan])
-                }
-                else if(i == 2) {
-                    subIndikator.push([extractNilai(parent), parent.children[0].children[1].innerText, tr.length-span+1])
-                }
-            }
+            //             parent = sub;
+            //             span = 1;
+            //         }
+            //     }
+            //     parent.rowSpan = span;
+            //     if(i == 0) {
+            //         max.push(span);
+            //     }
+            //     else if(i == 1){
+            //         indikator.push([extractNilai(parent),parent.rowSpan])
+            //     }
+            //     else if(i == 2) {
+            //         subIndikator.push([extractNilai(parent), parent.children[0].children[1].innerText, tr.length-span+1])
+            //     }
+            // }
             
-            let count = 0, idx = 0, 
-                kuat = 0,lemah = 0;
+            // let count = 0, idx = 0, 
+            //     kuat = 0,lemah = 0;
                 
-            for(let i = 0; i < subIndikator.length; i++) {
-                const kelemahan = document.getElementsByClassName('kelemahan')[lemah];
-                const kekuatan = document.getElementsByClassName('kekuatan')[kuat];
-                if(count == indikator[idx][1]) {
-                    idx++;
-                }
-                if(indikator[idx][0] <= subIndikator[i][0]) {
-                    kekuatan.innerHTML = subIndikator[i][1];
-                    kuat++;
-                    document.getElementsByClassName('kekuatan')[kuat].remove();
-                    kekuatan.rowSpan = indikator[idx][1];
-                }
-                else {
-                    kelemahan.innerHTML = subIndikator[i][1];
-                    lemah++;
-                    document.getElementsByClassName('kelemahan')[lemah].remove();
-                    kelemahan.rowSpan = indikator[idx][1];
-                }
-                count++;
-                if(count == subIndikator.length) {
-                    while(kuat!=lemah) {
-                        if(kuat>lemah) {
-                            kelemahan.rowSpan = indikator[idx][1];
-                            lemah++;
-                        } 
-                        else if(kuat<lemah) {
-                            kekuatan.rowSpan = indikator[idx][1];
-                            kuat++;
-                        }
-                    }
-                    
-                }
-            }
-            for(let i = kuat; i < document.getElementsByClassName('kekuatan').length; i++) {
-                document.getElementsByClassName('kekuatan')[i--].remove();
-            }
-            for(let i = lemah; i < document.getElementsByClassName('kelemahan').length; i++) {
-                document.getElementsByClassName('kelemahan')[i--].remove();
-            }
+            // for(let i = 0; i < subIndikator.length; i++) {
+            //     const kelemahan = document.getElementsByClassName('kelemahan')[lemah];
+            //     const kekuatan = document.getElementsByClassName('kekuatan')[kuat];
+            //     if(count == indikator[idx][1]) {
+            //         idx++;
+            //     }
+            //     if(indikator[idx][0] <= subIndikator[i][0]) {
+            //         kekuatan.innerHTML = subIndikator[i][1];
+            //         kuat++;
+            //         document.getElementsByClassName('kekuatan')[kuat].remove();
+            //         kekuatan.rowSpan = indikator[idx][1];
+            //     }
+            //     else {
+            //         kelemahan.innerHTML = subIndikator[i][1];
+            //         lemah++;
+            //         document.getElementsByClassName('kelemahan')[lemah].remove();
+            //         kelemahan.rowSpan = indikator[idx][1];
+            //     }
+            //     count++;
+            //     if(count == subIndikator.length) {
+            //         while(kuat!=lemah) {
+            //             if(kuat>lemah) {
+            //                 kelemahan.rowSpan = indikator[idx][1];
+            //                 lemah++;
+            //             } 
+            //             else if(kuat<lemah) {
+            //                 kekuatan.rowSpan = indikator[idx][1];
+            //                 kuat++;
+            //             }
+            //         }
+            //     }
+            // }
+            // for(let i = kuat; i < document.getElementsByClassName('kekuatan').length; i++) {
+            //     document.getElementsByClassName('kekuatan')[i--].remove();
+            // }
+            // for(let i = lemah; i < document.getElementsByClassName('kelemahan').length; i++) {
+            //     document.getElementsByClassName('kelemahan')[i--].remove();
+            // }
         }
 		
         const liatLaporanSiklus = async (namaSekolah, id, siklus) => {
@@ -368,74 +347,139 @@
                 keyboard: false
             })
             if(siklus == 1){
-                const data = await getData(id);
-                // console.log("siklus1");
-                // console.log(data);
-                const tbody = document.getElementById("data1");
-                tbody.innerHTML = "";
+                const data = document.getElementById("data1");
                 
-                if(data.length > 0) {
-                    let table = [];
+                const dataStandar = await getData(`${url}/standar/`);
+                // console.log("standar",dataStandar);
+                data.innerHTML = ""
+                if(dataStandar.length > 0) {
                     let count = 0;
-                    data.forEach(async (el,idx) => {
-                        table.push(0);
-                        tbody.innerHTML +=`
-                            <tr>
-                                <td>
-                                    <div class="d-flex">
-                                        <div class="mr-1">${el.nomor_standar}.</div>
-                                        <div>${el.nama_standar}</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div class="mr-1">${el.nomor_indikator}.</div>
-                                        <div class="indikator">${el.nama_indikator}</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div class="mr-1">${el.nomor_sub_indikator}.</div>
-                                        <div>${el.nama_sub_indikator} (${el.nilai_raport})</div>
-                                    </div>
-                                </td>
-                                <td class="kekuatan"></td>
-                                <td class="kelemahan"></td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div class="mr-1">-</div>
-                                        <div>${el.deskripsi_masalah}</div>
-                                    </div></td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div class="mr-1">-</div>
-                                        <div>${el.deskripsi_akar_masalah}</div>
-                                    </div></td>
-                                <td>
-                                    <div class="d-flex">
-                                        <div class="mr-1">-</div>
-                                        <div>${el.deskripsi_rekomendasi}</div>
-                                    </div></td>
-                            </tr>`;
+                    dataStandar.forEach(async (standar, idx) => {
+                        const dataIndikator = await getData(`${url}/indikator/${standar.id}`)
+                        // console.log("indikator",dataIndikator);
 
-                        const result = await getAVG(el.id_indikator);
-                        // console.log(`rata2 ${id}`);
-                        // console.log(result)
-                        if(result) {
-                            const nama = document.getElementsByClassName("indikator")[idx];
-                            nama.innerHTML +=` (${result.toFixed(2)})`;
+                        data.innerHTML +=`
+                        <tr>
+                            <td>${standar.nomor}. ${standar.nama}</td>
+                            <td colspan="7" class="other">
+                                <table class="otherTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Indikator</th>
+                                            <th>SubIndikator</th>
+                                            <th>Kekuatan</th>
+                                            <th>Kelemahan</th>
+                                            <th>Masalah</th>
+                                            <th>Akar Masalah</th>
+                                            <th>Rekomendasi</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </td>
+                        </tr>`;
+                        const otherClass = document.getElementsByClassName('other')[idx]
+                        
+                        dataIndikator.forEach(async (indikator, idx2) => {
+                            const dataSubIndikator = await getData(`${url}/subIndikator/${indikator.id}`)
+                            console.log("subIndikator\n",dataSubIndikator);
+
+                            const dataKekuatan = await getData(`${url}/kekuatan/${indikator.id}`)
+                            console.log("kekuatan\n",dataKekuatan);
+
+                            const dataKelemahan = await getData(`${url}/kelemahan/${indikator.id}`)
+                            console.log("kelemahan\n",dataKelemahan);
+
+                            const dataMasalah = await getData(`${url}/masalah/${indikator.id}`)
+                            console.log("masalah\n",dataMasalah);
+
+                            const dataAkarMasalah = await getData(`${url}/akarMasalah/${indikator.id}`)
+                            console.log("akarMasalah\n",dataAkarMasalah);
+
+                            const dataRekomendasi = await getData(`${url}/rekomendasi/${indikator.id}`)
+                            console.log("rekomendasi\n",dataRekomendasi);
+
+                            const otherTableClass = document.getElementsByClassName('otherTable')[idx]
+                            otherTableClass.innerHTML += `
+                                <tr>
+                                    <td>
+                                        <div class="d-flex">
+                                            <div class="mr-1">${indikator.nomor}.</div>
+                                            <div>${indikator.nama} (${indikator.nilai.toFixed(2)})</div>
+                                        </div>
+                                    </td>
+                                    <td class="subIndikator"></td>
+                                    <td class="kekuatan"></td>
+                                    <td class="kelemahan"></td>
+                                    <td class="masalah"></td>
+                                    <td class="akarMasalah"></td>
+                                    <td class="rekomendasi"></td>
+                                </tr>
+                            `
+
+                            const SubIndikatorClass = document.getElementsByClassName('subIndikator')[count]
+                            dataSubIndikator.forEach(subIndikator => {
+                                SubIndikatorClass.innerHTML += `
+                                    <div class="d-flex">
+                                        <div class="mr-1">${subIndikator.nomor}.</div>
+                                        <div>${subIndikator.nama} (${subIndikator.nilai})</div>
+                                    </div>
+                                `;
+                            });
+
+                            const kekuatanClass = document.getElementsByClassName('kekuatan')[count]
+                            dataKekuatan.forEach(kekuatan => {
+                                kekuatanClass.innerHTML += `
+                                    <div class="d-flex">
+                                        <div class="mr-1">${kekuatan.nomor}.</div>
+                                        <div>${kekuatan.nama} (${kekuatan.nilai})</div>
+                                    </div>
+                                `;
+                            });
+
+                            const kelemahanClass = document.getElementsByClassName('kelemahan')[count]
+                            dataKelemahan.forEach(kelemahan => {
+                                kelemahanClass.innerHTML += `
+                                    <div class="d-flex">
+                                        <div class="mr-1">${kelemahan.nomor}.</div>
+                                        <div>${kelemahan.nama} (${kelemahan.nilai})</div>
+                                    </div>
+                                `;
+                            });
+
+                            const masalahClass = document.getElementsByClassName('masalah')[count]
+                            dataMasalah.forEach(masalah => {
+                                masalahClass.innerHTML += `
+                                    <div class="d-flex">
+                                        <div class="mr-1">-</div>
+                                        <div>${masalah.deskripsi}</div>
+                                    </div>
+                                    `;
+                            });
+
+                            const akarMasalahClass = document.getElementsByClassName('akarMasalah')[count]
+                            dataAkarMasalah.forEach(akarMasalah => {
+                                akarMasalahClass.innerHTML += `
+                                    <div class="d-flex">
+                                        <div class="mr-1">-</div>
+                                        <div>${akarMasalah.deskripsi}</div>
+                                    </div>
+                                    `;
+                            });
+
+                            const rekomendasiClass = document.getElementsByClassName('rekomendasi')[count]
+                            dataRekomendasi.forEach(rekomendasi => {
+                                rekomendasiClass.innerHTML += `
+                                    <div class="d-flex">
+                                        <div class="mr-1">-</div>
+                                        <div>${rekomendasi.deskripsi}</div>
+                                    </div>
+                                    `;
+                            });
                             count++;
-
-                            if(count == data.length) {
-                                setTable(table, tbody.children);
-                            }
-                        }
+                        });
                     });
-                }
-                else {
-                    tbody.innerHTML = `
-                        <tr><td>tidak ada raport sekolah</td><tr>
-                    `;
+                } else {
+                    console.log("no standar");
                 }
                 document.getElementById("modal_title_1").innerHTML = `Laporan <b>Pemetaan mutu</b> Sekolah ${namaSekolah}`;
                 laporanSekolahModal.show();

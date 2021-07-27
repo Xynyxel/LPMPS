@@ -9,6 +9,10 @@ use Carbon\Carbon;
 
 class AkarMasalahController extends Controller
 {
+    public function dataByIndikatorId($id) {
+        return AkarMasalah::where('indikator_id',$id)->get();
+    }
+
     public function tambah(Request $request) {
         AkarMasalah::create([
             'tahun' => Carbon::now()->isoFormat('YYYY'),

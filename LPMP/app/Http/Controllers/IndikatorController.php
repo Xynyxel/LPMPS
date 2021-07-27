@@ -4,9 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Indikator;
+use Illuminate\Support\Facades\DB;
 
 class IndikatorController extends Controller
 {
+    public function all() {
+        return Indikator::get();
+    }
+
+    public function dataByStandarId($id) {
+        return DB::table('indikator')
+            ->selectRaw('indikator.*, AVG(rs.nilai) as nilai')
+            ->join('sub_indikator as si','si.indikator_id','indikator.id')
+            ->join('raport_sekolah as rs','rs.sub_indikator_id','si.id')
+            ->where('standar_id',$id)
+            ->groupBy('indikator.id')->get();
+    }
+
     public function tambah(Request $request) {
         Indikator::create([
             "tahun" => $request->tahun,

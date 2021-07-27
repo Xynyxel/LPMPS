@@ -103,33 +103,34 @@ class MasterController extends Controller
         return view('/admin/laporan',$data, $data_log);
     }
 
-    public function siklus1($id) {
-        $listPemetaanMutu = Standar::select(
-                "standar.nomor as nomor_standar",
-                "standar.nama as nama_standar",
-                "i.id as id_indikator",
-                "i.nama as nama_indikator",
-                "i.nomor as nomor_indikator",
-                "si.nomor as nomor_sub_indikator",
-                "si.nama as nama_sub_indikator",
-                "rs.nilai as nilai_raport",
-                "m.deskripsi as deskripsi_masalah",
-                "r.deskripsi as deskripsi_rekomendasi",
-                "am.deskripsi as deskripsi_akar_masalah",
-            )
-            ->join('indikator as i','i.standar_id','standar.id')
-            ->join('sub_indikator as si','si.indikator_id','i.id')
-            ->join('akar_masalah as am','am.indikator_id','i.id')
-            ->join('masalah as m','m.indikator_id','i.id')
-            ->join('rekomendasi as r','r.indikator_id','i.id')
-            ->join('raport_sekolah as rs','rs.sub_indikator_id','si.id')
-            ->where('r.sekolah_id',$id)
-            ->where('am.sekolah_id',$id)
-            ->where('m.sekolah_id',$id)
-            ->where('rs.sekolah_id',$id)
-            ->get();
-        return $listPemetaanMutu;
-    }
+    // public function siklus1($id) {
+    //     $listPemetaanMutu = Standar::select(
+    //             "standar.nomor as nomor_standar",
+    //             "standar.nama as nama_standar",
+    //             "i.id as id_indikator",
+    //             "i.nama as nama_indikator",
+    //             "i.nomor as nomor_indikator",
+    //             "si.nomor as nomor_sub_indikator",
+    //             "si.nama as nama_sub_indikator",
+    //             "rs.nilai as nilai_raport",
+    //             "m.deskripsi as deskripsi_masalah",
+    //             "r.deskripsi as deskripsi_rekomendasi",
+    //             "am.deskripsi as deskripsi_akar_masalah",
+    //         )
+    //         ->distinct()
+    //         ->join('indikator as i','i.standar_id','standar.id')
+    //         ->join('sub_indikator as si','si.indikator_id','i.id')
+    //         ->join('akar_masalah as am','am.indikator_id','i.id')
+    //         ->join('raport_sekolah as rs','rs.sub_indikator_id','si.id')
+    //         ->join('masalah as m','m.indikator_id','i.id')
+    //         ->join('rekomendasi as r','r.indikator_id','i.id')
+    //         ->where('rs.sekolah_id',$id)
+    //         ->where('r.sekolah_id',$id)
+    //         ->where('am.sekolah_id',$id)
+    //         ->where('m.sekolah_id',$id)
+    //         ->get();
+    //     return $listPemetaanMutu;
+    // }
 
     public function avgIndikator($id) {
         return SubIndikator::join('raport_sekolah as rs','rs.sub_indikator_id','sub_indikator.id')

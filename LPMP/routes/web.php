@@ -8,6 +8,7 @@ use App\Http\Controllers\StandarController;
 use App\Http\Controllers\KotaKabupatenController;
 use App\Http\Controllers\IndikatorController;
 use App\Http\Controllers\SubIndikatorController;
+use App\Http\Controllers\AkarMasalahController;
 use App\Http\Controllers\AkarMasalahMasterController;
 use App\Http\Controllers\PemenuhanMutuController;
 use App\Http\Controllers\TPMPSController;
@@ -18,7 +19,6 @@ use App\Http\Controllers\SekolahPengawasController;
 use App\Http\Controllers\RaportKPIController;
 use App\Http\Controllers\RekomendasiController;
 use App\Http\Controllers\MasalahController;
-use App\Http\Controllers\AkarMasalahController;
 
 //Other
 use App\Http\Controllers\MasterController;
@@ -36,8 +36,6 @@ use App\Http\Controllers\GuestController;
 |
 */
 
-
-
 // Sekolah
 Route::post('/sekolah/tambah', [SekolahController::class,"tambah"]);
 Route::get('/sekolah/edit/{id}', [SekolahController::class,"edit"]);
@@ -46,6 +44,7 @@ Route::post('/sekolah/ubah/{id}', [SekolahController::class,"ubah"]);
 Route::get('/sekolah/hapus/{id}', [SekolahController::class,"hapus"]);
 
 // Standar
+Route::get('/standar', [StandarController::class,"all"]);
 Route::post('/standar/tambah', [StandarController::class,"tambah"]);
 Route::get('/standar/edit/{id}', [StandarController::class,"edit"]);
 Route::post('/standar/ubah/{id}', [StandarController::class,"ubah"]);
@@ -58,16 +57,32 @@ Route::post('/kotaKabupaten/ubah/{id}', [KotaKabupatenController::class,"ubah"])
 Route::get('/kotaKabupaten/hapus/{id}', [KotaKabupatenController::class,"hapus"]);
 
 // Indikator
+Route::get('/indikator', [IndikatorController::class,"all"]);
+Route::get('/indikator/{id}', [IndikatorController::class,"dataByStandarId"]);
 Route::post('/indikator/tambah', [IndikatorController::class,"tambah"]);
 Route::get('/indikator/edit/{id}', [IndikatorController::class,"edit"]);
 Route::post('/indikator/ubah/{id}', [IndikatorController::class,"ubah"]);
 Route::get('/indikator/hapus/{id}', [IndikatorController::class,"hapus"]);
 
 // SubIndikator
+Route::get('/subIndikator', [SubIndikatorController::class,"all"]);
+Route::get('/subIndikator/{id}', [SubIndikatorController::class,"dataByIndikatorId"]);
+Route::get('/kekuatan/{id}', [SubIndikatorController::class,"kekuatan"]);
+Route::get('/kelemahan/{id}', [SubIndikatorController::class,"kelemahan"]);
+
 Route::post('/subIndikator/tambah', [SubIndikatorController::class,"tambah"]);
 Route::get('/subIndikator/edit/{id}', [SubIndikatorController::class,"edit"]);
 Route::post('/subIndikator/ubah/{id}', [SubIndikatorController::class,"ubah"]);
 Route::get('/subIndikator/hapus/{id}', [SubIndikatorController::class,"hapus"]);
+
+// AkarMasalah
+Route::get('/akarMasalah/{id}', [AkarMasalahController::class,"dataByIndikatorId"]);
+
+// Rekomendasi
+Route::get('/rekomendasi/{id}', [RekomendasiController::class,"dataByIndikatorId"]);
+
+// Masalah
+Route::get('/masalah/{id}', [MasalahController::class,"dataByIndikatorId"]);
 
 // AkarMasalahMaster
 Route::post('/akarMasalahMaster/tambah', [AkarMasalahMasterController::class,"tambah"]);
@@ -99,8 +114,6 @@ Route::get('/siklusPeriode/edit/{id}', [SiklusPeriodeController::class,"edit"]);
 Route::post('/siklusPeriode/ubah/{id}', [SiklusPeriodeController::class,"ubah"]);
 Route::get('/siklusPeriode/hapus/{id}', [SiklusPeriodeController::class,"hapus"]);
 
-
-
 // Raport KPI
 Route::post('/raportKPI/tambah', [RaportKPIController::class,"tambah"]);
 Route::get('/raportKPI/edit/{id}', [RaportKPIController::class,"edit"]);
@@ -108,8 +121,8 @@ Route::post('/raportKPI/ubah/{id}', [RaportKPIController::class,"ubah"]);
 Route::get('/raportKPI/hapus/{id}', [RaportKPIController::class,"hapus"]);
 
 // Siklus 1
-Route::get('/siklus1/{id}', [MasterController::class,"siklus1"]);
-Route::get('/avgIndikator/{id}', [MasterController::class,"avgIndikator"]);
+// Route::get('/siklus1/{id}', [MasterController::class,"siklus1"]);
+// Route::get('/avgIndikator/{id}', [MasterController::class,"avgIndikator"]);
 
 // Admin
 Route::group(['middleware'=>['AuthCheck']], function(){
@@ -127,6 +140,7 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('/sekolahPengawas/edit/{id}', [SekolahPengawasController::class,"edit"]);
     Route::post('/sekolahPengawas/ubah/{id}', [SekolahPengawasController::class,"ubah"]);
     Route::get('/sekolahPengawas/hapus/{id}', [SekolahPengawasController::class,"hapus"]);
+
 });
 
 // guest
