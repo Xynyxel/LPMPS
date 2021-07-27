@@ -19,7 +19,10 @@ use App\Http\Controllers\RaportKPIController;
 use App\Http\Controllers\RekomendasiController;
 use App\Http\Controllers\MasalahController;
 use App\Http\Controllers\AkarMasalahController;
-
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\RencanaKerjaController;
+use App\Http\Controllers\RealisasiKerjaController;
 //Other
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\AuthController;
@@ -157,10 +160,16 @@ Route::group(['middleware'=>['AuthCheckTpmps']], function(){
     Route::get('/tpmps/laporan',[TPMPSController::class, 'laporan']);
     // import excel pemenuhan mutu
     Route::post('/tpmps/dataOperasional/importExcelPemetaanMutu/{id}',[TPMPSController::class, 'importExcelPemetaanMutu']);
-    // add forms
+    // add forms siklus 1
     Route::post('/tpmps/dataOperasional/tambahMasalah',[MasalahController::class,'tambah']);
     Route::post('/tpmps/dataOperasional/tambahRekomendasi',[RekomendasiController::class,'tambah']);
     Route::post('/tpmps/dataOperasional/tambahAkarMasalah',[AkarMasalahController::class,'tambah']);
+    // add forms siklus 2
+    Route::post('/tpmps/dataOperasional/tambahProgram',[ProgramController::class,'tambah']);
+    Route::post('/tpmps/dataOperasional/tambahKegiatan',[KegiatanController::class,'tambah']);
+    Route::post('/tpmps/dataOperasional/tambahRencanaKerja',[RencanaKerjaController::class,'tambah']);
+    // add forms siklus 3
+    Route::post('/tpmps/dataOperasional/tambahRealisasiKerja',[RealisasiKerjaController::class,'tambah']);
 });
 
 // Check 

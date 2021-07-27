@@ -18,7 +18,7 @@ class RencanaKerjaController extends Controller
             'is_dana_bos' => $request->is_dana_bos,
             'status' => 0,
             'datetime' => Carbon::now(),
-            'sekolah_id' => $request->sekolah_id,
+            'kegiatan_id' => $request->kegiatan_id,
         ]);
         return redirect("/tpmps/dataOperasional");
     }

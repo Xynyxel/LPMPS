@@ -387,11 +387,11 @@
                         </button>
                     </div>
                     <div class="col-4">
-                        <button class="btn btn-primary p-3 mr-3" id="rencanaKinerjaBtn" style="width: 100%"
-                            data-toggle="modal" data-target="#rencanaKinerjaModal">
+                        <button class="btn btn-primary p-3 mr-3" id="rencanaKerjaBtn" style="width: 100%"
+                            data-toggle="modal" data-target="#rencanaKerjaModal">
                             <div class="d-flex flex-column align-items-center">
                                 <i class="fa fa-city"></i>
-                                <h1 class="m-0">Rencana Kinerja</h1>
+                                <h1 class="m-0">Rencana Kerja</h1>
                             </div>
                         </button>
                     </div>
@@ -409,7 +409,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form method="post" action='/tpmps/dataOperasional/tambahMasalah'>
+                            <form method="post" action='/tpmps/dataOperasional/tambahProgram'>
                                 @csrf
                                 <div class="modal-body">
                                     <div class="mb-3">
@@ -421,10 +421,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="sekolah_id" name="sekolah_id"
-                                        value="{{ $LoggedUserInfo['sekolah_id'] }}">
-
+                                    <div class="mb-3">
+                                        <select class="custom-select" id="inputGroupSelect01" name="rekomendasi_id"
+                                            required>
+                                            <option selected value="">Pilih Rekomendasi...</option>
+                                            @foreach ($listRekomendasi as $rekomendasi)
+                                                <option value="{{ $rekomendasi->id }}">{{ $rekomendasi->deskripsi }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
+                                <input type="hidden" id="sekolah_id" name="sekolah_id"
+                                    value="{{ $LoggedUserInfo['sekolah_id'] }}">
                                 <div class="modal-footer">
                                     <input type="submit" class="btn btn-primary" value="Tambah"></button>
                                 </div>
@@ -444,7 +453,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form method="post" action='/tpmps/dataOperasional/tambahMasalah'>
+                            <form method="post" action='/tpmps/dataOperasional/tambahKegiatan'>
                                 @csrf
                                 <div class="modal-body">
                                     <div class="mb-3">
@@ -457,10 +466,10 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <select class="custom-select" id="inputGroupSelect01" name="indikator_id" required>
+                                        <select class="custom-select" id="inputGroupSelect01" name="program_id" required>
                                             <option selected value="">Pilih Jenis Program...</option>
-                                            @foreach ($listIndikator as $indikator)
-                                                <option value="{{ $indikator->id }}">{{ $indikator->nama }}</option>
+                                            @foreach ($listProgram as $program)
+                                                <option value="{{ $program->id }}">{{ $program->deskripsi }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -477,17 +486,17 @@
                 </div>
 
                 {{-- rencana kinerja --}}
-                <div class="modal fade" id="rencanaKinerjaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div class="modal fade" id="rencanaKerjaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tambah Rencana Kinerja</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Tambah Rencana Kerja</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form method="post" action='/tpmps/dataOperasional/tambahMasalah'>
+                            <form method="post" action='/tpmps/dataOperasional/tambahRencanaKerja'>
                                 @csrf
                                 <div class="modal-body">
                                     <div class="mb-3">
@@ -495,7 +504,7 @@
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Indikator Kinerja</label>
                                                 <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                    name="deskripsi" rows="3"></textarea>
+                                                    name="indikator_kinerja" rows="3"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -504,42 +513,40 @@
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Volume</label>
                                                 <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                    name="deskripsi" rows="3"></textarea>
+                                                    name="volume" rows="3"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-form-label">Biaya</label>
-                                        <input type="number" min="0" value="0" name="status" class="form-control"
-                                            id="indikator_status" required />
+                                        <input type="number" min="0" value="0" class="form-control" id="biaya" name="biaya"
+                                            required />
                                     </div>
                                     <div class="mb-3">
                                         <div class="mb-3">
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Sumber Daya</label>
                                                 <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                    name="deskripsi" rows="3"></textarea>
+                                                    name="sumber_daya" rows="3"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <select class="custom-select" id="inputGroupSelect01" name="indikator_id" required>
+                                        <select class="custom-select" id="inputGroupSelect01" name="kegiatan_id" required>
                                             <option selected value="">Pilih Kegiatan...</option>
-                                            @foreach ($listIndikator as $indikator)
-                                                <option value="{{ $indikator->id }}">{{ $indikator->nama }}</option>
+                                            @foreach ($listKegiatan as $kegiatan)
+                                                <option value="{{ $kegiatan->id }}">{{ $kegiatan->deskripsi }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <select class="custom-select" id="inputGroupSelect01" name="indikator_id" required>
+                                        <select class="custom-select" id="inputGroupSelect01" name="is_dana_bos" required>
                                             <option selected value="">Apakah menggunakan Dana Bos?</option>
-                                            <option value="Ya">Ya</option>
-                                            <option value="Tidak">Tidak</option>
+                                            <option value="1">Ya</option>
+                                            <option value="0">Tidak</option>
                                         </select>
                                     </div>
-                                    <input type="hidden" id="sekolah_id" name="sekolah_id"
-                                        value="{{ $LoggedUserInfo['sekolah_id'] }}">
-
                                 </div>
                                 <div class="modal-footer">
                                     <input type="submit" class="btn btn-primary" value="Tambah"></button>
@@ -562,8 +569,8 @@
 
                 <div class="row">
                     <div class="col-5">
-                        <button class="btn btn-info p-3 mr-3" id="realisasiKinerjaBtn" style="width: 100%" data-toggle="modal"
-                            data-target="#realisasiKinerjaModal">
+                        <button class="btn btn-info p-3 mr-3" id="realisasiKinerjaBtn" style="width: 100%"
+                            data-toggle="modal" data-target="#realisasiKinerjaModal">
                             <div class="d-flex flex-column align-items-center">
                                 <i class="fa fa-users"></i>
                                 <h1 class="m-0">Realisasi Kinerja</h1>
@@ -579,12 +586,12 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tambah Realisasi Kinerja</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Tambah Realisasi Kerja</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form method="post" action='/tpmps/dataOperasional/tambahMasalah'>
+                            <form method="post" action='/tpmps/dataOperasional/tambahRealisasiKerja'>
                                 @csrf
                                 <div class="modal-body">
                                     <div class="mb-3">
@@ -592,7 +599,7 @@
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Penanggung Jawab</label>
                                                 <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                    name="deskripsi" rows="3"></textarea>
+                                                    name="penanggung_jawab" rows="3"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -601,7 +608,16 @@
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Pemangku Kepentingan</label>
                                                 <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                    name="deskripsi" rows="3"></textarea>
+                                                    name="pemangku_kepentingan" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="mb-3">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Waktu Pelaksanaan</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                    name="waktu_pelaksanaan" rows="3"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -610,7 +626,7 @@
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Bukti Fisik</label>
                                                 <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                    name="deskripsi" rows="3"></textarea>
+                                                    name="bukti_fisik_keterangan" rows="3"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -619,17 +635,19 @@
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Url Bukti Fisik</label>
                                                 <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                    name="deskripsi" rows="3"></textarea>
+                                                    name="bukti_fisik_url" rows="3"></textarea>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-form-label">Waktu Pelaksanaan</label>
-                                        <input type="date" name="tanggal_mulai" class="form-control" id="siklus_periode_tanggal_mulai" required />
+                                    <div class="mb-3">
+                                        <select class="custom-select" id="inputGroupSelect01" name="kegiatan_id" required>
+                                            <option selected value="">Pilih Kegiatan...</option>
+                                            @foreach ($listKegiatan as $kegiatan)
+                                                <option value="{{ $kegiatan->id }}">{{ $kegiatan->deskripsi }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <input type="hidden" id="sekolah_id" name="sekolah_id"
-                                        value="{{ $LoggedUserInfo['sekolah_id'] }}">
-
                                 </div>
                                 <div class="modal-footer">
                                     <input type="submit" class="btn btn-primary" value="Tambah"></button>

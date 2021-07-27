@@ -12,13 +12,13 @@ class RealisasiKerjaController extends Controller
     public function tambah(Request $request) {
         RealisasiKerja::create([
             'penanggung_jawab' => $request->penanggung_jawab,
-            'pemangku_kepetingan' => $request->pemangku_kepetingan,
-            'waktu_pelaksanaan' => $request->waktu_pelakasanaan,
+            'pemangku_kepentingan' => $request->pemangku_kepentingan,
+            'waktu_pelaksanaan' => $request->waktu_pelaksanaan,
             'bukti_fisik_keterangan' => $request->bukti_fisik_keterangan,
             'bukti_fisik_url' => $request->bukti_fisik_url,
             'status' => 0,
             'datetime' => Carbon::now(),
-            'sekolah_id' => $request->sekolah_id,
+            'kegiatan_id' => $request->kegiatan_id,
         ]);
         return redirect("/tpmps/dataOperasional");
     }

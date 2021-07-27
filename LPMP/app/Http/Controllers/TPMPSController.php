@@ -18,7 +18,9 @@ use App\Models\SubIndikator;
 use App\Models\TPMPS;
 use App\Models\SiklusPeriode;
 use App\Models\AkarMasalahMaster;
-
+use App\Models\Rekomendasi;
+use App\Models\Program;
+use App\Models\Kegiatan;
 
 //imports
 use App\Imports\RapotSekolahImport;
@@ -42,11 +44,20 @@ class TPMPSController extends Controller
 		$data_log = ['LoggedUserInfo'=>TPMPS::where('id','=', session('LoggedUserTpmps'))-> first()];
 		$indikator = Indikator::all();
         $akarMasalahMaster = AkarMasalahMaster::all();
+        $rekomendasi = Rekomendasi::where('sekolah_id', $data_log['LoggedUserInfo']->sekolah_id)->get();
+        $program = Program::where('sekolah_id', $data_log['LoggedUserInfo']->sekolah_id)->get();
+        $kegiatan = Kegiatan::select('kegiatan.deskripsi as deskripsi', 'kegiatan.id as id')
+                    ->join('program as p','p.id','kegiatan.program_id')
+                    ->where('p.sekolah_id',$data_log['LoggedUserInfo']->sekolah_id)
+                    ->get();
         
         $data = [
             "siklus" => siklus(),
 			'listIndikator'=> $indikator,
-            'listAkarMasalahMaster' => $akarMasalahMaster
+            'listAkarMasalahMaster' => $akarMasalahMaster,
+            'listRekomendasi' => $rekomendasi,
+            'listProgram' => $program,
+            'listKegiatan' => $kegiatan
         ];
 		return view('/tpmps/dataOperasional', $data, $data_log);
 	}

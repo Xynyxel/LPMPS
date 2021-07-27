@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RencanaKerja extends Model
 {
-    protected $table = "rencana_kinerja";
+    protected $table = "rencana_kerja";
     public $timestamps = false;
     protected $fillable = ['indikator_kinerja','volume','biaya','sumber_daya','is_dana_bos','status','datetime','kegiatan_id'];
     
