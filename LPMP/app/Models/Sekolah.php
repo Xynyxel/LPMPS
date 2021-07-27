@@ -37,4 +37,8 @@ class Sekolah extends Model
     public function rekomendasi() {
         return $this->hasMany(Rekomendasi::class);
     }
+
+    public function program() {
+        return $this->hasMany(Program::class);
+    }
 }

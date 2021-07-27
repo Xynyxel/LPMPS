@@ -18,4 +18,8 @@ class Rekomendasi extends Model
     public function sekolah() {
         return $this->belongsTo(Sekolah::class, "sekolah_id","id");
     }
+
+    public function programRekomendasi() {
+        return $this->hasMany(ProgramRekomendasi::class);
+    }
 }
