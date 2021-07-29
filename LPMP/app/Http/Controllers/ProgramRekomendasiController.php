@@ -12,7 +12,7 @@ class ProgramRekomendasiController extends Controller
     public function tambah(Request $request) {
         ProgramRekomendasi::create([
             'program_id' => $request->program_id,
-            'sekolah_id' => $request->sekolah_id,
+            'rekomendasi_id' => $request->rekomendasi_id,
         ]);
         return redirect("/tpmps/dataOperasional");
     }
