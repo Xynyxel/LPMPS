@@ -83,7 +83,17 @@ Route::get('/subIndikator/hapus/{id}', [SubIndikatorController::class,"hapus"]);
 Route::get('/akarMasalah/{id}', [AkarMasalahController::class,"dataByIndikatorId"]);
 
 // Rekomendasi
-Route::get('/rekomendasi/{id}', [RekomendasiController::class,"dataByIndikatorId"]);
+Route::get('/rekomendasi/indikator/{id}', [RekomendasiController::class,"dataByIndikatorId"]);
+Route::get('/rekomendasi/standar/{id}', [RekomendasiController::class,"dataByStandarId"]);
+
+// Program
+Route::get('/program/{id}', [ProgramController::class,"dataByRekomendasiId"]);
+
+// Program
+Route::get('/kegiatan/{id}', [KegiatanController::class,"dataByProgramID"]);
+
+// Rencana Kinerja
+Route::get('/rencanaKerja/{id}', [RencanaKerjaController::class,"dataByKegiatanId"]);
 
 // Masalah
 Route::get('/masalah/{id}', [MasalahController::class,"dataByIndikatorId"]);

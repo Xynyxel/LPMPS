@@ -10,6 +10,12 @@ use Carbon\Carbon;
 
 class ProgramController extends Controller
 {
+    public function dataByRekomendasiId($id) {
+        return ProgramRekomendasi::join('program as p','p.id','program_rekomendasi.program_id')
+            ->where('program_rekomendasi.rekomendasi_id',$id)
+            ->get();
+    }
+    
     public function tambah(Request $request) {
         Program::create([
             'tahun' => Carbon::now()->isoFormat('YYYY'),

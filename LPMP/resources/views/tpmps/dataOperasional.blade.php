@@ -668,6 +668,6 @@
         @else
             <h1>Belum ada Siklus yang Berjalan</h1>
         @endif
+    </div>
 
-
-    @endsection
+@endsection

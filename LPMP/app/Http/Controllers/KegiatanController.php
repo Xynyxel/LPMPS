@@ -9,6 +9,10 @@ use Carbon\Carbon;
 
 class KegiatanController extends Controller
 {
+    public function dataByProgramId($id) {
+        return Kegiatan::where('program_id',$id)->get();
+    }
+
     public function tambah(Request $request) {
         Kegiatan::create([
             'deskripsi'=> $request->deskripsi,

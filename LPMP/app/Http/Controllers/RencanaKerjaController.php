@@ -9,6 +9,10 @@ use Carbon\Carbon;
 
 class RencanaKerjaController extends Controller
 {
+    public function dataByKegiatanId($id) {
+        return RencanaKerja::where('kegiatan_id',$id)->get();
+    }
+    
     public function tambah(Request $request) {
         RencanaKerja::create([
             'indikator_kinerja' => $request->indikator_kinerja,

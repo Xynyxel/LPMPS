@@ -3,6 +3,7 @@
 @section('title',"Home - TPMPS")
 
 @section('content')
+<div class="content container pt-3">
     <!-- Page header -->
 	<div class="page-header">
 		<div class="page-header-content container header-elements-md-inline">
@@ -21,4 +22,5 @@
 		</div>
 	</div>
 	<!-- /page header -->
+</div>
 @endsection

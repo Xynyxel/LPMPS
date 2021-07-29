@@ -3,7 +3,7 @@
 @section('title', 'Laporan')
 @section('content')
     <style>
-        #data1 td {
+        #data1 td, #data2 td, #data3 td, #data4 td {
             vertical-align: text-top;
         }
         .modal-big {
@@ -92,7 +92,7 @@
                             </thead>
                             <tbody id="data1">
                                 <tr>
-                                    <td>2. Isi</td>
+                                    {{-- <td>2. Isi</td>
                                     <td>2.1.	Perangkat pembelajaran sesuai rumusan kompetensi lulusan </td>
                                     <td>
                                         <ul>
@@ -117,7 +117,7 @@
                                     </td>
                                     <td>a</td>
                                     <td>a</td>
-                                    <td>a</td>
+                                    <td>a</td> --}}
                                 </tr>
                             </tbody>
                         </table>
@@ -134,7 +134,7 @@
     <!-- Modal Laporan Sekolah siklus 2 -->
     <div class="modal fade" id="laporanSekolahSiklus2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-dialog modal-big" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 id="modal_title_2" class="modal-title">Laporan Sekolah nama sekolah </h5>
@@ -143,8 +143,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="table-responsive border-top-0">
-                        <table class="table text-nowrap" id="table-raport-sekolah">
+                    <div class="border-top-0">
+                        <table class="table" id="table-raport-sekolah">
                             <thead>
                                 <tr>
                                     <th>Standar</th>
@@ -173,7 +173,7 @@
     <!-- Modal Laporan Sekolah siklus 3 -->
     <div class="modal fade" id="laporanSekolahSiklus3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-dialog modal-big" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 id="modal_title_3" class="modal-title">Laporan Sekolah nama sekolah </h5>
@@ -182,8 +182,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="table-responsive border-top-0">
-                        <table class="table text-nowrap" id="table-raport-sekolah">
+                    <div class="border-top-0">
+                        <table class="table" id="table-raport-sekolah">
                             <thead>
                                 <tr>
                                     <th>Standar</th>
@@ -341,6 +341,97 @@
             //     document.getElementsByClassName('kelemahan')[i--].remove();
             // }
         }
+
+        const waitForData  = async () => {
+            const dataStandar = await getData(`${url}/standar/`);
+            const dataRekomendasi = await Promise.all(dataStandar.map(async standar=>await getData(`${url}/rekomendasi/standar/${standar.id}`)));
+            const dataProgram = await Promise.all(dataRekomendasi.map(async data=>await Promise.all(data.map(async rekomendasi=>await getData(`${url}/program/${rekomendasi.id}`)))));
+            const dataKegiatan = await Promise.all(dataProgram.map(async data1=>await Promise.all(data1.map(async data2=>await Promise.all(data2.map(async program=>await getData(`${url}/kegiatan/${program.id}`)))))));
+            const dataRencana = await Promise.all(dataKegiatan.map(async data1=>await Promise.all(data1.map(async data2=>await Promise.all(data2.map(async data3=>await Promise.all(data3.map(async kegiatan=>await getData(`${url}/rencanaKerja/${kegiatan.id}`)))))))));
+            const allData = []
+            for(let i = 0; i < dataStandar.length; i++) {
+                allData.push({
+                    "standar": dataStandar[i]
+                });
+                for(let j = 0; j < dataRekomendasi[i].length; j++) {
+                    if (j == 0) {
+                        allData[i].rekomendasi = [dataRekomendasi[i][j]];
+                    }
+                    else {
+                        let check = true;
+                        for(let k = 0; k < allData[i].rekomendasi.length; k++) {
+                            if (allData[i].rekomendasi[k] == dataRekomendasi[i][j].deskripsi) {
+                                check = false;
+                                break;
+                            }
+                        }
+                        if (check) {
+                            allData[i].rekomendasi.push(dataRekomendasi[i][j]);
+                        }
+                    }
+
+                    for(let k = 0; k < dataProgram[i][j].length; k++) {
+                        if (k == 0) {
+                            allData[i].program = [dataProgram[i][j][k]];
+                        }
+                        else {
+                            let check = true;
+                            for(let l = 0; l < allData[idx].program.length; l++) {
+                                if (allData[i].program[l] == dataProgram[i][j][k].deskripsi) {
+                                    check = false;
+                                    break;
+                                }
+                            }
+                            if (check) {
+                                allData[i].program.push(dataProgram[i][j][k]);
+                            }
+                        }
+
+                        for(let l = 0; l < dataKegiatan[i][j][k].length; l++) {
+                            if (l == 0) {
+                                allData[i].kegiatan = [dataKegiatan[i][j][k][l]];
+                            }
+                            else {
+                                let check = true;
+                                for(let m = 0; m < allData[i].kegiatan.length; m++) {
+                                    if (allData[i].kegiatan[l] == dataKegiatan[i][j][k][l].deskripsi) {
+                                        check = false;
+                                        break;
+                                    }
+                                }
+                                if (check) {
+                                    allData[i].kegiatan.push(dataKegiatan[i][j][k][l]);
+                                }
+                            }
+
+                            for(let m = 0; m < dataRencana[i][j][k][l].length; m++) {
+                                if (m == 0) {
+                                    allData[i].rencana = [dataRencana[i][j][k][l][m]];
+                                }
+                                else {
+                                    let check = true;
+                                    for(let n = 0; n < allData[i].rencana.length; n++) {
+                                        if (allData[i].rencana[l] == dataRencana[i][j][k][l][m].rencana) {
+                                            check = false;
+                                            break;
+                                        }
+                                    }
+                                    if (check) {
+                                        allData[i].rencana.push(dataRencana[i][j][k][l][m]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            // console.log(dataStandar)
+            // console.log(dataRekomendasi)
+            // console.log(dataProgram)
+            // console.log(dataKegiatan)
+            // console.log(dataRencana)
+            return new Promise(resolve=>resolve(allData));
+        }
 		
         const liatLaporanSiklus = async (namaSekolah, id, siklus) => {
             var laporanSekolahModal = new bootstrap.Modal(document.getElementById(`laporanSekolahSiklus${siklus}`), {
@@ -359,44 +450,45 @@
                         // console.log("indikator",dataIndikator);
 
                         data.innerHTML +=`
-                        <tr>
-                            <td>${standar.nomor}. ${standar.nama}</td>
-                            <td colspan="7" class="other">
-                                <table class="otherTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Indikator</th>
-                                            <th>SubIndikator</th>
-                                            <th>Kekuatan</th>
-                                            <th>Kelemahan</th>
-                                            <th>Masalah</th>
-                                            <th>Akar Masalah</th>
-                                            <th>Rekomendasi</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </td>
-                        </tr>`;
+                            <tr>
+                                <td>${standar.nomor}. ${standar.nama}</td>
+                                <td colspan="7" class="other">
+                                    <table class="otherTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Indikator</th>
+                                                <th>SubIndikator</th>
+                                                <th>Kekuatan</th>
+                                                <th>Kelemahan</th>
+                                                <th>Masalah</th>
+                                                <th>Akar Masalah</th>
+                                                <th>Rekomendasi</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </td>
+                            </tr>
+                        `;
                         const otherClass = document.getElementsByClassName('other')[idx]
                         
                         dataIndikator.forEach(async (indikator, idx2) => {
                             const dataSubIndikator = await getData(`${url}/subIndikator/${indikator.id}`)
-                            console.log("subIndikator\n",dataSubIndikator);
+                            // console.log("subIndikator\n",dataSubIndikator);
 
                             const dataKekuatan = await getData(`${url}/kekuatan/${indikator.id}`)
-                            console.log("kekuatan\n",dataKekuatan);
+                            // console.log("kekuatan\n",dataKekuatan);
 
                             const dataKelemahan = await getData(`${url}/kelemahan/${indikator.id}`)
-                            console.log("kelemahan\n",dataKelemahan);
+                            // console.log("kelemahan\n",dataKelemahan);
 
                             const dataMasalah = await getData(`${url}/masalah/${indikator.id}`)
-                            console.log("masalah\n",dataMasalah);
+                            // console.log("masalah\n",dataMasalah);
 
                             const dataAkarMasalah = await getData(`${url}/akarMasalah/${indikator.id}`)
-                            console.log("akarMasalah\n",dataAkarMasalah);
+                            // console.log("akarMasalah\n",dataAkarMasalah);
 
-                            const dataRekomendasi = await getData(`${url}/rekomendasi/${indikator.id}`)
-                            console.log("rekomendasi\n",dataRekomendasi);
+                            const dataRekomendasi = await getData(`${url}/rekomendasi/indikator/${indikator.id}`)
+                            // console.log("rekomendasi\n",dataRekomendasi);
 
                             const otherTableClass = document.getElementsByClassName('otherTable')[idx]
                             otherTableClass.innerHTML += `
@@ -479,17 +571,182 @@
                         });
                     });
                 } else {
-                    console.log("no standar");
+                    data.innerHTML +=`
+                        <tr>
+                            <td colspan="8">Tidak ada pemetaan mutu</td>
+                        </tr>
+                    `;
                 }
                 document.getElementById("modal_title_1").innerHTML = `Laporan <b>Pemetaan mutu</b> Sekolah ${namaSekolah}`;
                 laporanSekolahModal.show();
-            }else if(siklus == 2){
+            } 
+            else if(siklus == 2){
+                const data = document.getElementById("data2");
+
+                const dataStandar = await getData(`${url}/standar/`);
+                const dataRekomendasi = await Promise.all(dataStandar.map(async standar=>await getData(`${url}/rekomendasi/standar/${standar.id}`)));
+                const dataProgram = await Promise.all(dataRekomendasi.map(async data=>await Promise.all(data.map(async rekomendasi=>await getData(`${url}/program/${rekomendasi.id}`)))));
+                const dataKegiatan = await Promise.all(dataProgram.map(async data1=>await Promise.all(data1.map(async data2=>await Promise.all(data2.map(async program=>await getData(`${url}/kegiatan/${program.id}`)))))));
+                const dataRencana = await Promise.all(dataKegiatan.map(async data1=>await Promise.all(data1.map(async data2=>await Promise.all(data2.map(async data3=>await Promise.all(data3.map(async kegiatan=>await getData(`${url}/rencanaKerja/${kegiatan.id}`)))))))));
+                const allData = []
+                for(let i = 0; i < dataStandar.length; i++) {
+                    allData.push({
+                        "standar": dataStandar[i]
+                    });
+                    for(let j = 0; j < dataRekomendasi[i].length; j++) {
+                        if (j == 0) {
+                            allData[i].rekomendasi = [dataRekomendasi[i][j]];
+                        }
+                        else {
+                            let check = true;
+                            for(let k = 0; k < allData[i].rekomendasi.length; k++) {
+                                if (allData[i].rekomendasi[k] == dataRekomendasi[i][j].deskripsi) {
+                                    check = false;
+                                    break;
+                                }
+                            }
+                            if (check) {
+                                allData[i].rekomendasi.push(dataRekomendasi[i][j]);
+                            }
+                        }
+
+                        for(let k = 0; k < dataProgram[i][j].length; k++) {
+                            if (k == 0) {
+                                allData[i].program = [dataProgram[i][j][k]];
+                            }
+                            else {
+                                let check = true;
+                                for(let l = 0; l < allData[idx].program.length; l++) {
+                                    if (allData[i].program[l] == dataProgram[i][j][k].deskripsi) {
+                                        check = false;
+                                        break;
+                                    }
+                                }
+                                if (check) {
+                                    allData[i].program.push(dataProgram[i][j][k]);
+                                }
+                            }
+
+                            for(let l = 0; l < dataKegiatan[i][j][k].length; l++) {
+                                if (l == 0) {
+                                    allData[i].kegiatan = [dataKegiatan[i][j][k][l]];
+                                }
+                                else {
+                                    let check = true;
+                                    for(let m = 0; m < allData[i].kegiatan.length; m++) {
+                                        if (allData[i].kegiatan[l] == dataKegiatan[i][j][k][l].deskripsi) {
+                                            check = false;
+                                            break;
+                                        }
+                                    }
+                                    if (check) {
+                                        allData[i].kegiatan.push(dataKegiatan[i][j][k][l]);
+                                    }
+                                }
+
+                                for(let m = 0; m < dataRencana[i][j][k][l].length; m++) {
+                                    if (m == 0) {
+                                        allData[i].rencana = [dataRencana[i][j][k][l][m]];
+                                    }
+                                    else {
+                                        let check = true;
+                                        for(let n = 0; n < allData[i].rencana.length; n++) {
+                                            if (allData[i].rencana[l] == dataRencana[i][j][k][l][m].rencana) {
+                                                check = false;
+                                                break;
+                                            }
+                                        }
+                                        if (check) {
+                                            allData[i].rencana.push(dataRencana[i][j][k][l][m]);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                data.innerHTML = ""
+                if(allData.length > 0) {
+                    allData.forEach((el,idx) => {
+                        data.innerHTML +=`
+                            <tr>
+                                <td>${el.standar.nomor}. ${el.standar.nama}</td>
+                                <td class="rekomendasi"></td>
+                                <td class="program"></td>
+                                <td class="kegiatan"></td>
+                                <td class="indikatorKinerja"></td>
+                                <td class="volume"></td>
+                                <td class="kebutuhanBiaya"></td>
+                                <td class="sumberDaya"></td>
+                            </tr>
+                        `;
+                        const rekomendasiClass = document.getElementsByClassName('rekomendasi')[idx];
+                        const programClass = document.getElementsByClassName('program')[idx];
+                        const kegiatanClass = document.getElementsByClassName('kegiatan')[idx];
+                        const indikatorKinerjaClass = document.getElementsByClassName('indikatorKinerja')[idx]
+                        const volumeClass = document.getElementsByClassName('volume')[idx]
+                        const kebutuhanBiayaClass = document.getElementsByClassName('kebutuhanBiaya')[idx]
+                        const sumberDayaClass = document.getElementsByClassName('sumberDaya')[idx]
+                        
+                        if(el.hasOwnProperty('rekomendasi')) {
+                            el.rekomendasi.forEach(rekomendasi=>{
+                                rekomendasiClass.innerHTML += `
+                                    <div class="d-flex">
+                                        <div class="mr-1">-</div>
+                                        <div>${rekomendasi.deskripsi}</div>
+                                    </div>
+                                `;
+                            })
+                        }
+                        
+                        if(el.hasOwnProperty('program')) {
+                            el.program.forEach(program=>{
+                                programClass.innerHTML += `
+                                    <div class="d-flex">
+                                        <div class="mr-1">-</div>
+                                        <div>${program.deskripsi}</div>
+                                    </div>
+                                `;
+                            })
+                        }
+                        
+                        if(el.hasOwnProperty('kegiatan')) {
+                            el.kegiatan.forEach(kegiatan=>{
+                                kegiatanClass.innerHTML += `
+                                    <div class="d-flex">
+                                        <div class="mr-1">-</div>
+                                        <div>${kegiatan.deskripsi}</div>
+                                    </div>
+                                `;
+                            })
+                        }
+                        
+                        if(el.hasOwnProperty('rencana')) {
+                            el.rencana.forEach(rencana=>{
+                                indikatorKinerjaClass.innerHTML += `${rencana.indikator_kinerja}<br/><br/>`;
+                                volumeClass.innerHTML += `${rencana.volume}<br/><br/>`;
+                                kebutuhanBiayaClass.innerHTML += `${rencana.biaya}<br/><br/>`;
+                                sumberDayaClass.innerHTML += `${rencana.is_dana_bos == 1 ? "Dana Bos" : ""}<br/>${rencana.sumber_daya}<br/><br/>`;
+                            })
+                        }
+                    });
+                }
+                else {
+                    data.innerHTML +=`
+                        <tr>
+                            <td colspan="8">Tidak ada rencana pemetaan mutu</td>
+                        </tr>
+                    `;
+                }
                 document.getElementById("modal_title_2").innerHTML = `Laporan <b>Rencana Pemetaan mutu</b> Sekolah ${namaSekolah}`;
                 laporanSekolahModal.show();
-            }else if(siklus == 3){
+            }
+            else if(siklus == 3){
                 document.getElementById("modal_title_3").innerHTML = `Laporan <b>Pelaksanaan Pemetaan mutu</b> Sekolah ${namaSekolah} `;
                 laporanSekolahModal.show();
-            }else if(siklus == 4){
+            }
+            else if(siklus == 4){
                 document.getElementById("modal_title_4").innerHTML = `Laporan <b>Audit mutu</b> Sekolah ${namaSekolah} `;
                 laporanSekolahModal.show();
             }

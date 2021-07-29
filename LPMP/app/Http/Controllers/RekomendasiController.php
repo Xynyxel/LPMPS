@@ -12,6 +12,13 @@ class RekomendasiController extends Controller
     public function dataByIndikatorId($id) {
         return Rekomendasi::where('indikator_id',$id)->get();
     }
+
+    public function dataByStandarId($id) {
+        return Rekomendasi::join('indikator as i','rekomendasi.indikator_id','i.id')
+            ->join('standar as s','i.standar_id','s.id')
+            ->where('indikator_id',$id)
+            ->get();
+    }
     
     public function tambah(Request $request) {
         $newRekomendasi =  Rekomendasi::create([
