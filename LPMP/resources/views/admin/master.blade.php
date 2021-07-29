@@ -427,6 +427,7 @@ if(isset($siklus)) {
 						</div>
 					</div>
 				</div>
+				
                 @yield('content')
 
                 <!-- Footer -->
