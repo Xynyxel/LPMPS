@@ -11,14 +11,19 @@ use Carbon\Carbon;
 class ProgramController extends Controller
 {
     public function tambah(Request $request) {
-        Program::create([
-            'tahun' => Carbon::now()->isoFormat('YYYY'),
-            'deskripsi'=> $request->deskripsi,
-            'status' => 0,
-            'datetime' => Carbon::now(),
-            'sekolah_id' => $request->sekolah_id,
-        ]);
         $program = Program::where('sekolah_id', $request->sekolah_id)-> where('deskripsi',$request->deskripsi)->first();
+        if(! $program){
+            Program::create([
+                'tahun' => Carbon::now()->isoFormat('YYYY'),
+                'deskripsi'=> $request->deskripsi,
+                'status' => 0,
+                'datetime' => Carbon::now(),
+                'sekolah_id' => $request->sekolah_id,
+            ]);
+            $program = Program::where('sekolah_id', $request->sekolah_id)-> where('deskripsi',$request->deskripsi)->first();
+        }
+        
+        
         ProgramRekomendasi::create([
             'program_id' => $program->id,
             'rekomendasi_id' => $request->rekomendasi_id,
