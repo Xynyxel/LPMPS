@@ -84,16 +84,19 @@ Route::get('/akarMasalah/{id}', [AkarMasalahController::class,"dataByIndikatorId
 
 // Rekomendasi
 Route::get('/rekomendasi/indikator/{id}', [RekomendasiController::class,"dataByIndikatorId"]);
-Route::get('/rekomendasi/standar/{id}', [RekomendasiController::class,"dataByStandarId"]);
+Route::get('/rekomendasi/standar/{id}/{sekolah_id}', [RekomendasiController::class,"dataByStandarId"]);
 
 // Program
 Route::get('/program/{id}', [ProgramController::class,"dataByRekomendasiId"]);
 
-// Program
+// Kegiatan
 Route::get('/kegiatan/{id}', [KegiatanController::class,"dataByProgramID"]);
 
 // Rencana Kinerja
 Route::get('/rencanaKerja/{id}', [RencanaKerjaController::class,"dataByKegiatanId"]);
+
+// Rencana Kinerja
+Route::get('/realisasiKerja/{id}', [RealisasiKerjaController::class,"dataByKegiatanId"]);
 
 // Masalah
 Route::get('/masalah/{id}', [MasalahController::class,"dataByIndikatorId"]);
@@ -133,10 +136,6 @@ Route::post('/raportKPI/tambah', [RaportKPIController::class,"tambah"]);
 Route::get('/raportKPI/edit/{id}', [RaportKPIController::class,"edit"]);
 Route::post('/raportKPI/ubah/{id}', [RaportKPIController::class,"ubah"]);
 Route::get('/raportKPI/hapus/{id}', [RaportKPIController::class,"hapus"]);
-
-// Siklus 1
-// Route::get('/siklus1/{id}', [MasterController::class,"siklus1"]);
-// Route::get('/avgIndikator/{id}', [MasterController::class,"avgIndikator"]);
 
 // Admin
 Route::group(['middleware'=>['AuthCheck']], function(){
