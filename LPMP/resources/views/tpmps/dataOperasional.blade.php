@@ -181,6 +181,7 @@
                             <form id="formManual" action="/tpmps/dataOperasional/tambahAkarMasalah" method="post">
                                 @csrf
                                 <div class="modal-body">
+
                                     <!-- Default switch -->
                                     <div class="custom-control custom-switch">
                                         <input type="checkbox" class="custom-control-input" id="switchAkarMasalah">
@@ -341,7 +342,6 @@
                 </div>
                 <script>
                     var cekAkarMasalah = document.getElementById('switchAkarMasalah');
-                    var labelAkarMasalah = document.getElementById('labelAkarMasalah');
                     var formManual = document.getElementById('formManual');
                     var formOtomatis = document.getElementById('formOtomatis');
 
@@ -409,17 +409,27 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form method="post" action='/tpmps/dataOperasional/tambahProgram'>
+
+                            {{-- form tambah program --}}
+                            <form id="formTambahProgram" action='/tpmps/dataOperasional/tambahProgramRekomendasi' method="post">
                                 @csrf
                                 <div class="modal-body">
+
+                                    <!-- Default switch -->
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="switchProgram">
+                                        <label id="labelProgram" class="custom-control-label"
+                                            for="switchProgram">Otomatis</label>
+                                    </div>
+                                    <br>
+
                                     <div class="mb-3">
-                                        <div class="mb-3">
-                                            <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">Deskripsi</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                    name="deskripsi" rows="3"></textarea>
-                                            </div>
-                                        </div>
+                                        <select class="custom-select" id="inputGroupSelect01" name="program_id" required>
+                                            <option selected value="">Pilih Jenis Program...</option>
+                                            @foreach ($listProgram as $program)
+                                                <option value="{{ $program->id }}">{{ $program->deskripsi }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="mb-3">
                                         <select class="custom-select" id="inputGroupSelect01" name="rekomendasi_id"
@@ -432,8 +442,44 @@
                                         </select>
                                     </div>
                                 </div>
-                                <input type="hidden" id="sekolah_id" name="sekolah_id"
-                                    value="{{ $LoggedUserInfo['sekolah_id'] }}">
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary" value="Tambah"></button>
+                                </div>
+                            </form>
+
+
+                            <form id="formTambahProgramRekomendasi" action='/tpmps/dataOperasional/tambahProgram' method="post">
+                                @csrf
+                                <div class="modal-body">
+
+                                    <!-- Default switch -->
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="switchProgram">
+                                        <label id="labelProgram" class="custom-control-label"
+                                            for="switchProgram">Manual</label>
+                                    </div>
+                                    <br>
+
+                                    <div class="mb-3">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Deskripsi</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" name="deskripsi"
+                                                rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <select class="custom-select" id="inputGroupSelect01" name="rekomendasi_id"
+                                            required>
+                                            <option selected value="">Pilih Rekomendasi...</option>
+                                            @foreach ($listRekomendasi as $rekomendasi)
+                                                <option value="{{ $rekomendasi->id }}">{{ $rekomendasi->deskripsi }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <input type="hidden" id="sekolah_id" name="sekolah_id"
+                                        value="{{ $LoggedUserInfo['sekolah_id'] }}">
+                                </div>
                                 <div class="modal-footer">
                                     <input type="submit" class="btn btn-primary" value="Tambah"></button>
                                 </div>
@@ -555,6 +601,24 @@
                         </div>
                     </div>
                 </div>
+                <script>
+                    var cekProgram = document.getElementById('switchProgram');
+                    var formTambahProgram = document.getElementById('formTambahProgram');
+                    var formTambahProgramRekomendasi = document.getElementById('formTambahProgramRekomendasi');
+
+                    formTambahProgram.style.display = 'none';
+                    formTambahProgramRekomendasi.style.display = 'block';
+                    cekProgram.addEventListener('change', (e) => {
+                        formTambahProgram.style.display = 'none';
+                        formTambahProgramRekomendasi.style.display = 'none';
+                        console.log(e.target.checked);
+                        if (e.target.checked) {
+                            formTambahProgram.style.display = "block";
+                        } else {
+                            formTambahProgramRekomendasi.style.display = "block";
+                        }
+                    })
+                </script>
 
             @elseif($siklus->siklus == 3)
                 <h1>Siklus 3</h1>
@@ -656,6 +720,7 @@
                         </div>
                     </div>
                 </div>
+
             @elseif($siklus->siklus == 4)
                 <h1>Siklus 4</h1>
                 {{-- program

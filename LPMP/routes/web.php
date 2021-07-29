@@ -20,6 +20,7 @@ use App\Http\Controllers\RaportKPIController;
 use App\Http\Controllers\RekomendasiController;
 use App\Http\Controllers\MasalahController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ProgramRekomendasiController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\RencanaKerjaController;
 use App\Http\Controllers\RealisasiKerjaController;
@@ -190,6 +191,7 @@ Route::group(['middleware'=>['AuthCheckTpmps']], function(){
     Route::post('/tpmps/dataOperasional/tambahAkarMasalah',[AkarMasalahController::class,'tambah']);
     // add forms siklus 2
     Route::post('/tpmps/dataOperasional/tambahProgram',[ProgramController::class,'tambah']);
+    Route::post('/tpmps/dataOperasional/tambahProgramRekomendasi',[ProgramRekomendasiController::class,'tambah']);
     Route::post('/tpmps/dataOperasional/tambahKegiatan',[KegiatanController::class,'tambah']);
     Route::post('/tpmps/dataOperasional/tambahRencanaKerja',[RencanaKerjaController::class,'tambah']);
     // add forms siklus 3
