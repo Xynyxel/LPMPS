@@ -41,10 +41,17 @@
                                 </div>
                             @endif
 
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <span class="card-title font-weight-semibold">Pemetaan Mutu</span>
-                                <button class="btn btn-primary" onclick="add('sekolah')" data-toggle="modal"
-                                    data-target="#importExcelStandar">IMPORT EXCEL</button>
+                            <div class="card-header d-flex bd-highlight align-items-center">
+                                <div class="p-2 flex-grow-1 bd-highlight">
+                                    <span class="card-title font-weight-semibold">Pemetaan Mutu</span>
+                                </div>
+                                <div class="p-2 bd-highlight">
+                                    <button class="btn btn-primary" onclick="add('sekolah')" data-toggle="modal"
+                                    data-target="#importExcelStandar">Masukkan Nilai Raport</button>
+                                </div>
+                                <div class="p-2 bd-highlight">
+                                    <a href="/tpmps/dataOperasional/exportTemplate" class="btn btn-success" target="_blank">Download Template</a>
+                                </div>
                             </div>
                             <!-- Import Excel -->
                             <div class="modal fade" id="importExcelStandar" tabindex="-1" role="dialog"

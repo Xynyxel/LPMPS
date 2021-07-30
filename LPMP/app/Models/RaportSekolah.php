@@ -18,4 +18,8 @@ class RaportSekolah extends Model
     public function subIndikator() {
         return $this->belongsTo(SubIndikator::class,"sub_indikator_id","id");
     }
+
+    public function raport_sekolah(){
+        return $this->hasOne(RaportSekolahKoreksi::class);
+    }
 }
