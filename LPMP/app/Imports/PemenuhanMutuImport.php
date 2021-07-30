@@ -32,56 +32,14 @@ class PemenuhanMutuImport implements ToCollection, WithHeadingRow
         {
             if($row["No"]!=null){
                 $standar = Standar::where('nomor',$row["Nomor Standar"])-> where('nama',$row["Nama Standar"])->first();
-                $standarId = -1;
-                
-                if($standar){
-                    $standarId = $standar["id"];
-                }else{
-                    Standar::create([
-                        'tahun' => $row["Tahun"],
-                        'nomor' => $row["Nomor Standar"], 
-                        'nama'  => $row["Nama Standar"],
-                        'status' => 0 
-                    ]);
-                    $standar = Standar::where('nomor',$row["Nomor Standar"])-> where('nama',$row["Nama Standar"])->first();
-                    $standarId = $standar["id"];
-                    
-                }
-                
-    
+                $standarId = $standar["id"];
+               
                 $indikator = Indikator::where('nomor',$row["Nomor Indikator"])-> where('nama',$row["Nama Indikator"])->first();
-                $indikatorId = -1;
-                if($indikator){
-                    $indikatorId = $indikator["id"];
-                }else{
-                    Indikator::create([
-                        'tahun' => $row["Tahun"],
-                        'nomor' => $row["Nomor Indikator"], 
-                        'nama'  => $row["Nama Indikator"],
-                        'status' => 0,
-                        'standar_id' => $standarId
-                    ]);
-                    $indikator = Indikator::where('nomor',$row["Nomor Indikator"])-> where('nama',$row["Nama Indikator"])->first();
-                    $indikatorId = $indikator["id"];
-                }
-
+                $indikatorId = $indikator["id"];
 
                 $subIndikator = SubIndikator::where('nomor',$row["Nomor SubIndikator"])-> where('nama',$row["Nama SubIndikator"])->first();
-                $subIndikatorId = -1;
-                if($subIndikator){
-                    $subIndikatorId = $subIndikator["id"];
-                }else{
-                    SubIndikator::create([
-                        'tahun' => $row["Tahun"],
-                        'nomor' => $row["Nomor SubIndikator"], 
-                        'nama'  => $row["Nama SubIndikator"],
-                        'status' => 0,
-                        'indikator_id' => $indikatorId
-                    ]);
-                    $subIndikator = SubIndikator::where('nomor',$row["Nomor SubIndikator"])-> where('nama',$row["Nama SubIndikator"])->first();
-                    $subIndikatorId = $subIndikator["id"];
-                }
-
+                $subIndikatorId = $subIndikator["id"];
+                
                 RaportSekolah::create([
                     'tahun' => $row["Tahun"],
                     'nilai' => $row["Nilai"], 

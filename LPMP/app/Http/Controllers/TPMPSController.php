@@ -29,6 +29,8 @@ use App\Imports\IndikatorImport;
 use App\Imports\SubIndikatorImport;
 use App\Imports\PemenuhanMutuImport;
 
+use App\Exports\TemplateRaportExport;
+
 class TPMPSController extends Controller
 {
     public function home (){
@@ -125,5 +127,10 @@ class TPMPSController extends Controller
  
 		// alihkan halaman kembali
 		return redirect('/tpmps/dataOperasional');
+	}
+
+    public function exportTemplate()
+	{
+		return Excel::download(new TemplateRaportExport, 'template.xlsx');
 	}
 }
