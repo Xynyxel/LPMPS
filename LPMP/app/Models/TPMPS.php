@@ -13,4 +13,12 @@ class TPMPS extends Model
     public function sekolah() {
         return $this->belongsTo(Sekolah::class, 'sekolah_id','id');
     }
+
+    public function pengajuan_siklus() {
+        return $this->hasMany(PengajuanSiklus::class);
+    }
+
+    public function pengajuan_siklus_komunikasi() {
+        return $this->hasMany(PengajuanSiklusKomunikasi::class);
+    }
 }

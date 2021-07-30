@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class PengajuanSiklusKomunikasi extends Model
 {
-    protected $table = "pengajuan_siklus";
+    protected $table = "pengajuan_siklus_komunikasi";
     public $timestamps = false;
-    protected $fillable = ['nilai_koreksi','datetime','raport_sekolah_id'];
+    protected $fillable = ['komentar','tanggal_komentar','status_pemberi_komentar','pengajuan_siklus_id'];
 
-    public function raport_sekolah() {
-        return $this->belongsTo(RaportSekolah::class);
+    public function pengajuan_siklus() {
+        return $this->belongsTo(PengajuanSiklus::class);
     }
 }

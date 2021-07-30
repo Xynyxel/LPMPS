@@ -52,6 +52,11 @@
                                 <div class="p-2 bd-highlight">
                                     <a href="/tpmps/dataOperasional/exportTemplate" class="btn btn-success" target="_blank">Download Template</a>
                                 </div>
+                                <div class="p-2 bd-highlight">
+                                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#koreksiNilaiModal">
+                                        Koreksi Nilai Raport
+                                      </button>
+                                </div>
                             </div>
                             <!-- Import Excel -->
                             <div class="modal fade" id="importExcelStandar" tabindex="-1" role="dialog"
@@ -83,6 +88,44 @@
                                     </form>
                                 </div>
                             </div>
+                            {{-- Koreksi Nilai Raport --}}
+                            <div class="modal fade" id="koreksiNilaiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Koreksi Nilai Raport</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <form action="/tpmps/dataOperasional/KoreksiNilaiRaport" method="post">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <select class="custom-select" id="inputGroupSelect01" name="sub_indikator_id">
+                                                    <option selected>Pilih SubIndikator yang Ingin Dikoreksi</option>
+                                                    @foreach ($listSubIndikator as $subIndikator)
+                                                        <option value="{{ $subIndikator->id }}">
+                                                            {{ $subIndikator->nama }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-form-label">Nilai</label>
+                                                <input type="number" step='0.01' min="0" value="0" class="form-control" name="nilai_koreksi"
+                                                    required />
+                                            </div>
+                                            <input type="hidden" id="sekolah_id" name="sekolah_id"
+                                                value="{{ $LoggedUserInfo['sekolah_id'] }}">
+                                        </div>
+                                       
+                                        <div class="modal-footer">
+                                            <input type="submit" class="btn btn-primary" value="Tambah"></button>
+                                        </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
                             <!-- Table -->
                             <div class="card-body">
                                 <div class="table-responsive border-top-0">

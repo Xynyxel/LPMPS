@@ -10,4 +10,8 @@ class SiklusPeriode extends Model
     protected $table = "siklus_periode";
     public $timestamps = false;
     protected $fillable = ['siklus','tanggal_mulai','tanggal_selesai'];
+
+    public function pengajuan_siklus() {
+        return $this->hasMany(PengajuanSiklus::class);
+    }
 }

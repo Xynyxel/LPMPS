@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 // library needed
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
-use Session;
 use Carbon\Carbon;
+use Session;
 
 //models
 use App\Models\RaportSekolah;
@@ -21,14 +21,10 @@ use App\Models\AkarMasalahMaster;
 use App\Models\Rekomendasi;
 use App\Models\Program;
 use App\Models\Kegiatan;
+use App\Models\RaportSekolahKoreksi;
 
 //imports
-use App\Imports\RapotSekolahImport;
-use App\Imports\StandarImport;
-use App\Imports\IndikatorImport;
-use App\Imports\SubIndikatorImport;
 use App\Imports\PemenuhanMutuImport;
-
 use App\Exports\TemplateRaportExport;
 
 class TPMPSController extends Controller
@@ -52,6 +48,7 @@ class TPMPSController extends Controller
                     ->join('program as p','p.id','kegiatan.program_id')
                     ->where('p.sekolah_id',$data_log['LoggedUserInfo']->sekolah_id)
                     ->get();
+        $subIndikator = SubIndikator::all();
         
         $data = [
             "siklus" => siklus(),
@@ -59,7 +56,8 @@ class TPMPSController extends Controller
             'listAkarMasalahMaster' => $akarMasalahMaster,
             'listRekomendasi' => $rekomendasi,
             'listProgram' => $program,
-            'listKegiatan' => $kegiatan
+            'listKegiatan' => $kegiatan,
+            'listSubIndikator' => $subIndikator
         ];
 		return view('/tpmps/dataOperasional', $data, $data_log);
 	}
@@ -133,4 +131,16 @@ class TPMPSController extends Controller
 	{
 		return Excel::download(new TemplateRaportExport, 'template.xlsx');
 	}
+
+    public function koreksiRaportSekolah(Request $request){
+        $raportSekolah = RaportSekolah::where('sekolah_id', $request->sekolah_id )
+            ->where('sub_indikator_id', $request->sub_indikator_id)
+            ->first();
+        RaportSekolahKoreksi::create([
+            "nilai_koreksi" => $request->nilai_koreksi,
+            "datetime" => Carbon::now(),
+            "raport_sekolah_id" => $raportSekolah->id,
+        ]);
+        return redirect('/tpmps/dataOperasional');
+    }
 }
