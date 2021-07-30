@@ -9,6 +9,9 @@ use Carbon\Carbon;
 
 class RealisasiKerjaController extends Controller
 {
+    public function dataByKegiatanId($id) {
+        return RealisasiKerja::where('kegiatan_id',$id)->get();
+    }
     public function tambah(Request $request) {
         RealisasiKerja::create([
             'penanggung_jawab' => $request->penanggung_jawab,

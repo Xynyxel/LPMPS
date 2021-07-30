@@ -13,10 +13,11 @@ class RekomendasiController extends Controller
         return Rekomendasi::where('indikator_id',$id)->get();
     }
 
-    public function dataByStandarId($id) {
+    public function dataByStandarId($id,$sekolah_id) {
         return Rekomendasi::join('indikator as i','rekomendasi.indikator_id','i.id')
             ->join('standar as s','i.standar_id','s.id')
-            ->where('indikator_id',$id)
+            ->where('i.standar_id',$id)
+            ->where('rekomendasi.sekolah_id',$sekolah_id)
             ->get();
     }
     
