@@ -129,31 +129,26 @@ if(isset($siklus)) {
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="card">
-									<div class="card-header d-flex justify-content-between align-items-center">
-										<span class="card-title font-weight-semibold">Periode Siklus SPMI</span>
+									<div class="card-header d-flex justify-content-between align-items-baseline">
+										<h3 class="card-title ">Periode Siklus SPMI <b>(Siklus {{ $siklus->siklus }})</b> </h3>
+											<div class="d-flex flex-row align-items-baseline">
+												<h2 id="date-now">{{ $mulai }}</h2>
+												<i class="fa fa-arrow-right mx-3"></i>
+												<h2 id="date-end">{{ $selesai }}</h2>
+											</div>
 									</div>
+									<div style="height: 2px; background-color: #ddd; margin: 0 20px;"></div>
 									<div class="card-body p-3">
 										@if ($siklus)
-											<div class="d-flex flex-row align-items-center justify-content-between">
-												<h1 class="mr-3" id="title_siklus">
-													Siklus {{ $siklus->siklus }}
-												</h1>
-												<div class="d-flex flex-row align-items-baseline">
-													<h2 id="date-now">{{ $mulai }}</h2>
-													<i class="fa fa-arrow-right mx-3"></i>
-													<h2 id="date-end">{{ $selesai }}</h2>
-												</div>
-											</div>
-											<div style="height: 2px; background-color: #ddd	"></div>
-											<div id="time" class="d-flex flex-row align-items-start justify-content-around">
-												<h1 id="days">0</h1>
-												<h4 id="daysText" class="mr-1">hari</h4>
-												<h1 id="hours">00</h1>
-												<h4 id="hoursText" class="mr-1">jam</h4>
-												<h1 id="minutes">00</h1>
-												<h4 id="minutesText" class="mr-1">menit</h4>
-												<h1 id="seconds">00</h1>
-												<h4 id="secondsText" class="mr-1">detik</h4>
+											<div id="time" class="d-flex flex-row align-items-start justify-content-center">
+												<h1 id="days" style="font-size: 3.5em;">0</h1>
+												<h4 id="daysText" class="mr-2">Hari</h4>
+												<h1 id="hours" style="font-size: 3.5em;">00</h1>
+												<h4 id="hoursText" class="mr-2">Jam</h4>
+												<h1 id="minutes"  style="font-size: 3.5em;">00</h1>
+												<h4 id="minutesText" class="mr-2">Menit</h4>
+												<h1 id="seconds"  style="font-size: 3.5em;">00</h1>
+												<h4 id="secondsText" class="mr-2">Detik</h4>
 											</div>
 										@else
 											<div class="d-flex flex-row align-items-center justify-content-between">
