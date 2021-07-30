@@ -139,14 +139,14 @@ if(isset($siklus)) {
 											</div>
 											<div style="height: 2px; background-color: #ddd	"></div>
 											<div id="time" class="d-flex flex-row align-items-start justify-content-around">
-												<h1 id="days" class="display-1">0</h1>
-												<h1 id="daysText" class="display-4">days</h1>
-												<h1 id="hours" class="display-1">00</h1>
-												<h1 id="hoursText" class="display-4">hours</h1>
-												<h1 id="minutes" class="display-1">00</h1>
-												<h1 id="minutesText" class="display-4">minutes</h1>
-												<h1 id="seconds" class="display-1">00</h1>
-												<h1 id="secondsText" class="display-4">seconds</h1>
+												<h1 id="days">0</h1>
+												<h4 id="daysText" class="mr-1">hari</h4>
+												<h1 id="hours">00</h1>
+												<h4 id="hoursText" class="mr-1">jam</h4>
+												<h1 id="minutes">00</h1>
+												<h4 id="minutesText" class="mr-1">menit</h4>
+												<h1 id="seconds">00</h1>
+												<h4 id="secondsText" class="mr-1">detik</h4>
 											</div>
 										@else
 											<div class="d-flex flex-row align-items-center justify-content-between">
@@ -257,11 +257,6 @@ if(isset($siklus)) {
 			hours = (hours < 10) ? "0" + hours : hours;
 			minutes = (minutes < 10) ? "0" + minutes : minutes;
 			seconds = (seconds < 10) ? "0" + seconds : seconds;
-			
-			dText.innerText = (days == 1) ? "day" : "days";
-			hText.innerText = (hours == 1) ? "hour" : "hours";
-			mText.innerText = (minutes == 1) ? "minute" : "minutes";
-			sText.innerText = (seconds == 1) ? "second" : "seconds";
 			
 			if(days == 0 && hours == 0 && minutes == 0 && seconds == 0) {
 				location.reload();
