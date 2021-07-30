@@ -39,10 +39,6 @@
 											</td>
 										</tr>
 									@endforeach
-								@else
-									<tr align="center">
-										<td colspan="5">Tidak ada sekolah</td>
-									</tr>
 								@endif
 								</tbody>
 							</table>
@@ -98,10 +94,6 @@
 											</td>
 										</tr>
 									@endforeach
-								@else
-									<tr align="center">
-										<td colspan="5">Tidak ada siklus</td>
-									</tr>
 								@endif
 								</tbody>
 							</table>

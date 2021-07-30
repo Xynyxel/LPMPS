@@ -36,10 +36,6 @@
                                             <td>{{ $sekolahPengawas->sekolah->nama }}</td>
                                         </tr>
                                     @endforeach
-                                @else
-                                    <tr align="center">
-                                        <td colspan="6">Tidak ada sekolah</td>
-                                    </tr>
                                 @endif
                                 </tbody>
                             </table>
@@ -81,10 +77,6 @@
                                             <td>{{$s->subIndikator->nama}}</td>
                                         </tr>
                                         @endforeach
-                                    @else
-                                        <tr align="center">
-                                            <td colspan="5">Tidak ada Raport Sekolah</td>
-                                        </tr>
                                     @endif
                                 </tbody>
                             </table>

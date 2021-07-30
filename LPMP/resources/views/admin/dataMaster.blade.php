@@ -138,10 +138,6 @@
 											</td>
 										</tr>
 									@endforeach
-								@else
-									<tr align="center">
-										<td colspan="6">Tidak ada sekolah</td>
-									</tr>
 								@endif
 								
 								</tbody>
@@ -200,10 +196,6 @@
 											</td>
 										</tr>
 									@endforeach
-								@else
-									<tr align="center">
-										<td colspan="6">Tidak ada standar</td>
-									</tr>
 								@endif
 								
 								</tbody>
@@ -264,10 +256,6 @@
 											</td>
 										</tr>
 									@endforeach
-								@else
-									<tr align="center">
-										<td colspan="7">Tidak ada indikator</td>
-									</tr>
 								@endif
 								</tbody>
 							</table>
@@ -327,10 +315,6 @@
 											</td>
 										</tr>
 									@endforeach
-								@else
-									<tr align="center">
-										<td colspan="7">Tidak ada sub indikator</td>
-									</tr>
 								@endif
 								
 								</tbody>
@@ -385,10 +369,6 @@
 											</td>
 										</tr>
 									@endforeach
-								@else
-									<tr align="center">
-										<td colspan="8">Tidak ada akar masalah</td>
-									</tr>
 								@endif
 								</tbody>
 							</table>
@@ -440,10 +420,6 @@
 											</td>
 										</tr>
 									@endforeach
-								@else
-									<tr align="center">
-										<td colspan="3">Tidak ada kabupaten/kota</td>
-									</tr>
 								@endif
 								</tbody>
 							</table>
@@ -501,10 +477,6 @@
 											</td>
 										</tr>
 									@endforeach
-								@else
-									<tr align="center">
-										<td colspan="6">Tidak ada tpmps</td>
-									</tr>
 								@endif
 								</tbody>
 							</table>
@@ -562,10 +534,6 @@
 											</td>
 										</tr>
 									@endforeach
-								@else
-									<tr align="center">
-										<td colspan="6">Tidak ada pengawas</td>
-									</tr>
 								@endif
 								</tbody>
 							</table>
@@ -621,10 +589,6 @@
 											</td>
 										</tr>
 									@endforeach
-								@else
-									<tr align="center">
-										<td colspan="5">Tidak ada lpmp</td>
-									</tr>
 								@endif
 								</tbody>
 							</table>

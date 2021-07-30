@@ -12,10 +12,11 @@ class SubIndikatorController extends Controller
         return SubIndikator::get();
     }
 
-    public function dataByIndikatorId($id) {
+    public function dataByIndikatorId($id,$sekolah_id) {
         return SubIndikator::select('sub_indikator.*','rs.nilai as nilai')
             ->join('raport_sekolah as rs','rs.sub_indikator_id','sub_indikator.id')
             ->where('indikator_id',$id)
+            ->where('rs.sekolah_id',$sekolah_id)
             ->get();
     }
 
