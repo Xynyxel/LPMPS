@@ -62,10 +62,6 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                    @else
-                                        <tr align="center">
-                                            <td colspan="5">Tidak ada sekolah</td>
-                                        </tr>
                                     @endif
                                 </tbody>
                             </table>
@@ -251,91 +247,6 @@
                 resolve(data);
             })
         }
-
-        const setTable = (table, tr) => {
-            // let max = []
-            // let indikator = [];
-            // let subIndikator = [];
-            // for(let i = 0; i < tr[0].children.length; i++) {
-            //     let parent = tr[0].children[i];
-            //     let span = 1;
-            //     let count = 0;
-            //     for(let j = 1; j < tr.length; j++) {
-            //         let sub = tr[j].children[i-table[j]];
-            //         if(sub.innerHTML == parent.innerHTML && sub.innerHTML!="") {
-            //             span++;
-            //             table[j]++;
-            //             tr[j].removeChild(sub);
-            //         } else {
-            //             parent.rowSpan = span;
-            //             if(i == 0) {
-            //                 max.push(span);
-            //             }
-            //             else if(i == 1) {
-            //                 indikator.push([extractNilai(parent),parent.rowSpan])
-            //             }
-            //             else if(i == 2) {
-            //                 subIndikator.push([extractNilai(parent), parent.children[0].children[1].innerText, j])
-            //             }
-                        
-            //             parent = sub;
-            //             span = 1;
-            //         }
-            //     }
-            //     parent.rowSpan = span;
-            //     if(i == 0) {
-            //         max.push(span);
-            //     }
-            //     else if(i == 1){
-            //         indikator.push([extractNilai(parent),parent.rowSpan])
-            //     }
-            //     else if(i == 2) {
-            //         subIndikator.push([extractNilai(parent), parent.children[0].children[1].innerText, tr.length-span+1])
-            //     }
-            // }
-            
-            // let count = 0, idx = 0, 
-            //     kuat = 0,lemah = 0;
-                
-            // for(let i = 0; i < subIndikator.length; i++) {
-            //     const kelemahan = document.getElementsByClassName('kelemahan')[lemah];
-            //     const kekuatan = document.getElementsByClassName('kekuatan')[kuat];
-            //     if(count == indikator[idx][1]) {
-            //         idx++;
-            //     }
-            //     if(indikator[idx][0] <= subIndikator[i][0]) {
-            //         kekuatan.innerHTML = subIndikator[i][1];
-            //         kuat++;
-            //         document.getElementsByClassName('kekuatan')[kuat].remove();
-            //         kekuatan.rowSpan = indikator[idx][1];
-            //     }
-            //     else {
-            //         kelemahan.innerHTML = subIndikator[i][1];
-            //         lemah++;
-            //         document.getElementsByClassName('kelemahan')[lemah].remove();
-            //         kelemahan.rowSpan = indikator[idx][1];
-            //     }
-            //     count++;
-            //     if(count == subIndikator.length) {
-            //         while(kuat!=lemah) {
-            //             if(kuat>lemah) {
-            //                 kelemahan.rowSpan = indikator[idx][1];
-            //                 lemah++;
-            //             } 
-            //             else if(kuat<lemah) {
-            //                 kekuatan.rowSpan = indikator[idx][1];
-            //                 kuat++;
-            //             }
-            //         }
-            //     }
-            // }
-            // for(let i = kuat; i < document.getElementsByClassName('kekuatan').length; i++) {
-            //     document.getElementsByClassName('kekuatan')[i--].remove();
-            // }
-            // for(let i = lemah; i < document.getElementsByClassName('kelemahan').length; i++) {
-            //     document.getElementsByClassName('kelemahan')[i--].remove();
-            // }
-        }
 		
         const liatLaporanSiklus = async (namaSekolah, id, siklus) => {
             var laporanSekolahModal = new bootstrap.Modal(document.getElementById(`laporanSekolahSiklus${siklus}`), {
@@ -351,7 +262,7 @@
 
                 const dataStandar = await getData(`${url}/standar`);
                 const dataIndikator = await Promise.all(dataStandar.map(async standar=>await getData(`${url}/indikator/${standar.id}`)));
-                const dataSubIndikator = await Promise.all(dataIndikator.map(async data=>await Promise.all(data.map(async indikator=>await getData(`${url}/subIndikator/${indikator.id}`)))));
+                const dataSubIndikator = await Promise.all(dataIndikator.map(async data=>await Promise.all(data.map(async indikator=>await getData(`${url}/subIndikator/${indikator.id}/${id}`)))));
                 const dataKekuatan = await Promise.all(dataIndikator.map(async data=>await Promise.all(data.map(async indikator=>await getData(`${url}/kekuatan/${indikator.id}`)))));
                 const dataKelemahan = await Promise.all(dataIndikator.map(async data=>await Promise.all(data.map(async indikator=>await getData(`${url}/kelemahan/${indikator.id}`)))));
                 const dataMasalah = await Promise.all(dataIndikator.map(async data=>await Promise.all(data.map(async indikator=>await getData(`${url}/masalah/${indikator.id}`)))));
@@ -883,7 +794,14 @@
             }
 			
         }
+        const table = ['table-sekolah']
+        $(document).ready(function() {
+            table.forEach(id => {
+                $(`#${id}`).DataTable();
+            });
+        });
     </script>
+    
 @endsection
 
 @section('notification')

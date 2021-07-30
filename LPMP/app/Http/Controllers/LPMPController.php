@@ -35,6 +35,7 @@ class LPMPController extends Controller
         
         $data = [
             "siklus" => siklus(),
+            "listSekolah" => Sekolah::all()
         ];
 		return view('/lpmp/laporan', $data, $data_log);
 	}

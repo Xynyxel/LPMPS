@@ -71,7 +71,7 @@ Route::get('/indikator/hapus/{id}', [IndikatorController::class,"hapus"]);
 
 // SubIndikator
 Route::get('/subIndikator', [SubIndikatorController::class,"all"]);
-Route::get('/subIndikator/{id}', [SubIndikatorController::class,"dataByIndikatorId"]);
+Route::get('/subIndikator/{id}/{sekolah_id}', [SubIndikatorController::class,"dataByIndikatorId"]);
 Route::get('/kekuatan/{id}', [SubIndikatorController::class,"kekuatan"]);
 Route::get('/kelemahan/{id}', [SubIndikatorController::class,"kelemahan"]);
 

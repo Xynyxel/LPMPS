@@ -13,6 +13,7 @@ use Carbon\Carbon;
 //models
 use App\Models\RaportSekolah;
 use App\Models\Standar;
+use App\Models\Sekolah;
 use App\Models\Indikator;
 use App\Models\SubIndikator;
 use App\Models\TPMPS;
@@ -69,6 +70,7 @@ class TPMPSController extends Controller
 		
         $data = [
             "siklus" => siklus(),
+            "sekolah" => Sekolah::where("id",$data_log['LoggedUserInfo']->sekolah_id)->first(),
         ];
 		return view('/tpmps/laporan',$data,$data_log);
 	}

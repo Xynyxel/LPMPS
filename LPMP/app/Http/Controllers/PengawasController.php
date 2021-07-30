@@ -51,9 +51,13 @@ class PengawasController extends Controller
 
     public function laporan(){
         $data_log = ['LoggedUserInfo'=>Pengawas::where('id','=', session('LoggedUserPengawas'))-> first()];
-        
+        $listSekolah = Sekolah::join('sekolah_pengawas as sp',"sp.sekolah_id","sekolah.id")
+            ->where('sp.pengawas_id',$data_log["LoggedUserInfo"]->id)
+            ->get();
+
         $data = [
             "siklus" => siklus(),
+            "listSekolah" => $listSekolah
         ];
 		return view('/pengawas/laporan', $data, $data_log);
 	}

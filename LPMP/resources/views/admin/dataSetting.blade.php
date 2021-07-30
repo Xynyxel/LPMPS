@@ -54,10 +54,6 @@
 											</td>
 										</tr>
 									@endforeach
-								@else
-									<tr align="center">
-										<td colspan="7">Tidak ada sekolah-pengawas</td>
-									</tr>
 								@endif
 								</tbody>
 							</table>
@@ -114,10 +110,6 @@
 											</td>
 										</tr>
 									@endforeach
-								@else
-									<tr align="center">
-										<td colspan="6">Tidak ada raport KPI</td>
-									</tr>
 								@endif
 								</tbody>
 							</table>
