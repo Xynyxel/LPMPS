@@ -25,7 +25,9 @@ class PengawasController extends Controller
 	public function dataOperasional(){
         $data_log = ['LoggedUserInfo'=>Pengawas::where('id','=', session('LoggedUserPengawas'))-> first()];
         $listPeriode = SiklusPeriode::all();
-        $listSekolah = Sekolah::all();
+        $listSekolah = Sekolah::join('sekolah_pengawas as sp',"sp.sekolah_id","sekolah.id")
+            ->where('sp.pengawas_id',$data_log["LoggedUserInfo"]->id)
+            ->get();
 
         $data = [
             "siklus" => siklus(),
