@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PengajuanSiklus;
 use Illuminate\Http\Request;
 use App\Models\Pengawas;
 use App\Models\SiklusPeriode;
@@ -90,5 +91,26 @@ class PengawasController extends Controller
     public function hapus($id) {
         Pengawas::find($id)->delete();
         return redirect("/dataMaster");
+    }
+
+    public function diproses($id){
+        $pengajuanSiklus = PengajuanSiklus::find($id);
+        $pengajuanSiklus->status = 2;
+        $pengajuanSiklus->save();
+        return view('/pengawas/dataOperasional');
+    }
+
+    public function diterima($id){
+        $pengajuanSiklus = PengajuanSiklus::find($id);
+        $pengajuanSiklus->status = 3;
+        $pengajuanSiklus->save();
+        return view('/pengawas/dataOperasional');
+    }
+
+    public function komunikasi($id){
+        $pengajuanSiklus = PengajuanSiklus::find($id);
+        $pengajuanSiklus->status = 4;
+        $pengajuanSiklus->save();
+        return view('/pengawas/dataOperasional');
     }
 }

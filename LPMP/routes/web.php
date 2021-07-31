@@ -175,6 +175,10 @@ Route::group(['middleware'=>['AuthCheckPengawas']], function(){
     Route::get('/pengawas/dataMaster',[PengawasController::class, 'dataMaster']);
     Route::get('/pengawas/dataOperasional',[PengawasController::class, 'dataOperasional']);
     Route::get('/pengawas/laporan',[PengawasController::class, 'laporan']);
+    
+    Route::get('/pengawas/dataOperasional/diproses/{id}',[PengawasController::class,'diproses']);
+    Route::get('/pengawas/dataOperasional/diterima/{id}',[PengawasController::class,'diterima']);
+    Route::get('/pengawas/dataOperasional/komunikasi/{id}',[PengawasController::class,'komunikasi']);
 });
 
 // Tpmps

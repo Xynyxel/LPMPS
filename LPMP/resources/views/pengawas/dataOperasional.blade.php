@@ -47,19 +47,16 @@
 																data-toggle="modal" data-target="#raportSekolah">
 																Raport Sekolah
 															</a>
-															<a onclick="fillRaport({{ $sekolah->id }})"
-																class="dropdown-item"
-																data-toggle="modal" data-target="#raportSekolah">
+															<a href="/pengawas/dataOperasional/diproses/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
+																class="dropdown-item">
 																Diproses
 															</a>
-															<a onclick="fillRaport({{ $sekolah->id }})"
-																class="dropdown-item"
-																data-toggle="modal" data-target="#raportSekolah">
+															<a href="/pengawas/dataOperasional/diterima/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
+																class="dropdown-item">
 																Diterima
 															</a>
-															<a onclick="fillRaport({{ $sekolah->id }})"
-																class="dropdown-item"
-																data-toggle="modal" data-target="#raportSekolah">
+															<a href="/pengawas/dataOperasional/komunikasi/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
+																class="dropdown-item">
 																Komunikasi
 															</a>
                                                         </div>
