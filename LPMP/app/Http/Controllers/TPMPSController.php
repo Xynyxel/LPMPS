@@ -114,7 +114,7 @@ class TPMPSController extends Controller
 		$file = $request->file('file');
  
 		// membuat nama file unik
-		$nama_file = rand().$file->getClientOriginalName();
+		$nama_file = $file->getClientOriginalName();
  
 		// upload ke folder file_siswa di dalam folder public
 		$file->move('filePemetaanMutu',$nama_file);

@@ -19,7 +19,7 @@
     <div class="content container pt-3">
         {{-- First Layer --}}
         <div class="row pb-3 justify-content-md-center">
-            <div class="col-lg-12">
+            <div class="col-lg-10">
                 <div class="row">
                     @php
                         $bg = ["btn-info","btn-success","btn-primary","btn-danger"];

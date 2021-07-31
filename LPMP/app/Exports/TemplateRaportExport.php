@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\models\Standar;
+use App\Models\Standar;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -14,6 +14,7 @@ class TemplateRaportExport implements FromCollection, WithHeadings, WithStyles
     /**
      * @return \Illuminate\Support\Collection
      */
+
     public function collection()
     {
         $value = Standar::select('standar.tahun as Tahun', 'standar.nomor as Nomor_Standar', 'standar.nama as Nama_standar','in.nomor as Nomor_Indikator','in.nama as Nama_Indikator','sb.nomor as Nomor_SubIndikator','sb.nama as Nama_SubIndikator')
