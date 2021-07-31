@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 use Session;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 //models
 use App\Models\RaportSekolah;
@@ -27,53 +28,77 @@ use App\Models\RaportSekolahKoreksi;
 //imports
 use App\Imports\PemenuhanMutuImport;
 use App\Exports\TemplateRaportExport;
+use App\Models\PengajuanSiklus;
 
 class TPMPSController extends Controller
 {
-    public function home (){
-		$data_log = ['LoggedUserInfo'=>TPMPS::where('id','=', session('LoggedUserTpmps'))-> first()];
-		
+    public function home()
+    {
+        $data_log = ['LoggedUserInfo' => TPMPS::where('id', '=', session('LoggedUserTpmps'))->first()];
+
         $data = [
             "siklus" => siklus(),
         ];
-        return view('tpmps/index',$data,$data_log);
+        return view('tpmps/index', $data, $data_log);
     }
 
-	public function dataOperasional(){
-		$data_log = ['LoggedUserInfo'=>TPMPS::where('id','=', session('LoggedUserTpmps'))-> first()];
-		$indikator = Indikator::all();
+    public function dataOperasional()
+    {
+        $data_log = ['LoggedUserInfo' => TPMPS::where('id', '=', session('LoggedUserTpmps'))->first()];
+        $siklus = siklus();
+        $indikator = Indikator::all();
         $akarMasalahMaster = AkarMasalahMaster::all();
         $rekomendasi = Rekomendasi::where('sekolah_id', $data_log['LoggedUserInfo']->sekolah_id)->get();
         $program = Program::where('sekolah_id', $data_log['LoggedUserInfo']->sekolah_id)->get();
         $kegiatan = Kegiatan::select('kegiatan.deskripsi as deskripsi', 'kegiatan.id as id')
-                    ->join('program as p','p.id','kegiatan.program_id')
-                    ->where('p.sekolah_id',$data_log['LoggedUserInfo']->sekolah_id)
-                    ->get();
+            ->join('program as p', 'p.id', 'kegiatan.program_id')
+            ->where('p.sekolah_id', $data_log['LoggedUserInfo']->sekolah_id)
+            ->get();
         $subIndikator = SubIndikator::all();
-        
+
+        $thisYear = Carbon::now()->isoFormat('YYYY');
+        $nama_file =  $data_log['LoggedUserInfo']->id. ' _ ' . $thisYear . '.xlsx';
+        if (file_exists(public_path('filePemetaanMutu/' . $nama_file))) {
+            $verifikasi =  true;
+        } else {
+            $verifikasi =  false;
+        }
+        $verifikasiPengajuan = PengajuanSiklus::where('tpmps_id', $data_log['LoggedUserInfo']->id)
+                                                ->where('siklus_periode_id',$siklus->id)
+                                                ->first();
+        if($verifikasiPengajuan){
+            $verifikasiPengajuanCek = true;
+        }else{
+            $verifikasiPengajuanCek = false;
+        }
+
         $data = [
-            "siklus" => siklus(),
-			'listIndikator'=> $indikator,
+            "siklus" => $siklus,
+            'listIndikator' => $indikator,
             'listAkarMasalahMaster' => $akarMasalahMaster,
             'listRekomendasi' => $rekomendasi,
             'listProgram' => $program,
             'listKegiatan' => $kegiatan,
-            'listSubIndikator' => $subIndikator
+            'listSubIndikator' => $subIndikator,
+            'verifikasi' => $verifikasi,
+            'verifikasiPengajuanCek' => $verifikasiPengajuanCek
         ];
-		return view('/tpmps/dataOperasional', $data, $data_log);
-	}
+        return view('/tpmps/dataOperasional', $data, $data_log);
+    }
 
-    public function laporan(){
-		$data_log = ['LoggedUserInfo'=>TPMPS::where('id','=', session('LoggedUserTpmps'))-> first()];
-		
+    public function laporan()
+    {
+        $data_log = ['LoggedUserInfo' => TPMPS::where('id', '=', session('LoggedUserTpmps'))->first()];
+
         $data = [
             "siklus" => siklus(),
-            "sekolah" => Sekolah::where("id",$data_log['LoggedUserInfo']->sekolah_id)->first(),
+            "sekolah" => Sekolah::where("id", $data_log['LoggedUserInfo']->sekolah_id)->first(),
         ];
-		return view('/tpmps/laporan',$data,$data_log);
-	}
+        return view('/tpmps/laporan', $data, $data_log);
+    }
 
-    public function tambah(Request $request) {
+    public function tambah(Request $request)
+    {
         TPMPS::create([
             "nama" => $request->nama,
             "username" => $request->username,
@@ -83,11 +108,13 @@ class TPMPSController extends Controller
         return redirect("/dataMaster");
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         return TPMPS::find($id);
     }
-    
-    public function ubah(Request $request, $id) {
+
+    public function ubah(Request $request, $id)
+    {
         $tpmps = TPMPS::find($id);
         $tpmps->nama = $request->nama;
         $tpmps->username = $request->username;
@@ -97,45 +124,50 @@ class TPMPSController extends Controller
 
         return redirect("/dataMaster");
     }
-    
-    public function hapus($id) {
+
+    public function hapus($id)
+    {
         TPMPS::find($id)->delete();
         return redirect("/dataMaster");
-    } 
+    }
 
-	public function importExcelPemetaanMutu(Request $request, $id) 
-	{
-		// validasi
-		$this->validate($request, [
-			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
- 
-		// menangkap file excel
-		$file = $request->file('file');
- 
-		// membuat nama file unik
-		$nama_file = $file->getClientOriginalName();
- 
-		// upload ke folder file_siswa di dalam folder public
-		$file->move('filePemetaanMutu',$nama_file);
- 
-		// import data
-		Excel::import(new PemenuhanMutuImport($id), public_path('/filePemetaanMutu/'.$nama_file));
- 
-		// notifikasi dengan session
-		Session::flash('suksesSiklus1','Data Pemetaan Mutu Berhasil Diimport!');
- 
-		// alihkan halaman kembali
-		return redirect('/tpmps/dataOperasional');
-	}
+    public function importExcelPemetaanMutu(Request $request, $id, $tpmps_id)
+    {
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        // menangkap file excel
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        // $nama_file = $file->getClientOriginalName();
+        $thisYear = Carbon::now()->isoFormat('YYYY');
+        $nama_file = $tpmps_id . " _ " . $thisYear . ".xlsx";
+
+
+        // upload ke folder file_siswa di dalam folder public
+        $file->move('filePemetaanMutu', $nama_file);
+
+        // import data
+        Excel::import(new PemenuhanMutuImport($id), public_path('/filePemetaanMutu/' . $nama_file));
+
+        // notifikasi dengan session
+        Session::flash('suksesSiklus1', 'Data Pemetaan Mutu Berhasil Diimport!');
+
+        // alihkan halaman kembali
+        return redirect('/tpmps/dataOperasional');
+    }
 
     public function exportTemplate()
-	{
-		return Excel::download(new TemplateRaportExport, 'template.xlsx');
-	}
+    {
+        return Excel::download(new TemplateRaportExport, 'template.xlsx');
+    }
 
-    public function koreksiRaportSekolah(Request $request){
-        $raportSekolah = RaportSekolah::where('sekolah_id', $request->sekolah_id )
+    public function koreksiRaportSekolah(Request $request)
+    {
+        $raportSekolah = RaportSekolah::where('sekolah_id', $request->sekolah_id)
             ->where('sub_indikator_id', $request->sub_indikator_id)
             ->first();
         RaportSekolahKoreksi::create([
@@ -145,4 +177,16 @@ class TPMPSController extends Controller
         ]);
         return redirect('/tpmps/dataOperasional');
     }
+
+    public function ajukan($tpmps_id, $siklus_periode){
+        PengajuanSiklus::create([
+            "tanggal_pengajuan" => Carbon::now(),
+            "status" => 1,
+            "tpmps_id" => $tpmps_id,
+            "siklus_periode_id" => $siklus_periode
+        ]);
+        return redirect('/tpmps/dataOperasional');
+    }
+
+    
 }

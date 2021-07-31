@@ -184,13 +184,14 @@ Route::group(['middleware'=>['AuthCheckTpmps']], function(){
     Route::get('/tpmps/dataOperasional',[TPMPSController::class, 'dataOperasional']);
     Route::get('/tpmps/laporan',[TPMPSController::class, 'laporan']);
     // import excel pemenuhan mutu
-    Route::post('/tpmps/dataOperasional/importExcelPemetaanMutu/{id}',[TPMPSController::class, 'importExcelPemetaanMutu']);
+    Route::post('/tpmps/dataOperasional/importExcelPemetaanMutu/{id}/{tpmps_id}',[TPMPSController::class, 'importExcelPemetaanMutu']);
     // add forms siklus 1
     Route::post('/tpmps/dataOperasional/tambahMasalah',[MasalahController::class,'tambah']);
     Route::post('/tpmps/dataOperasional/tambahRekomendasi',[RekomendasiController::class,'tambah']);
     Route::post('/tpmps/dataOperasional/tambahAkarMasalah',[AkarMasalahController::class,'tambah']);
     Route::get('/tpmps/dataOperasional/exportTemplate',[TPMPSController::class, 'exportTemplate']);
     Route::post('/tpmps/dataOperasional/KoreksiNilaiRaport',[TPMPSController::class,'koreksiRaportSekolah']);
+    Route::get('/tpmps/dataOperasional/ajukan/{id}/{siklus_id}',[TPMPSController::class,'ajukan']);
     // add forms siklus 2
     Route::post('/tpmps/dataOperasional/tambahProgram',[ProgramController::class,'tambah']);
     Route::post('/tpmps/dataOperasional/tambahProgramRekomendasi',[ProgramRekomendasiController::class,'tambah']);

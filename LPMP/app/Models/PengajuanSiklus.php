@@ -12,7 +12,7 @@ class PengajuanSiklus extends Model
     protected $fillable = ['tanggal_pengajuan','status','tpmps_id','siklus_periode_id'];
 
     public function tpmps() {
-        return $this->belongsTo(TPMPS::class);
+        return $this->belongsTo(TPMPS::class, 'tpmps_id','id');
     }
 
     public function siklus_periode() {

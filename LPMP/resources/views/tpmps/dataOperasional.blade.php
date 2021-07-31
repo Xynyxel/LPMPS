@@ -50,9 +50,19 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><button type="button" class="btn btn-success"
-                                                    style="width: 100%">
-                                                <b style="font-size: 1.3em">Ajukan</b></button></td>
+                                            <td>
+                                                <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}"
+                                                    class="btn btn-info {{ $verifikasiPengajuanCek == true ? 'disabled' : '' }}" style="width: 100%; margin-bottom:1.3em"  >
+                                                    <b style="font-size: 1.3em" >Ajukan</b>
+                                                </a>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn btn-success" style="width: 100%">
+                                                    <b style="font-size: 1.3em">Lihat Laporan</b></button>
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>
@@ -66,8 +76,10 @@
                                         </td>
                                         <td>
                                             <div class="p-2 bd-highlight">
+
                                                 <button class="btn btn-primary" onclick="add('sekolah')" data-toggle="modal"
-                                                    data-target="#importExcelStandar">Masukkan Nilai Raport</button>
+                                                    data-target="#importExcelStandar"
+                                                    {{ $verifikasi == true ? 'disabled' : '' }}>Masukkan Nilai Raport</button>
                                             </div>
                                         </td>
                                         <td>
@@ -112,7 +124,7 @@
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <form method="post"
-                                        action="/tpmps/dataOperasional/importExcelPemetaanMutu/{{ $LoggedUserInfo['sekolah_id'] }}"
+                                        action="/tpmps/dataOperasional/importExcelPemetaanMutu/{{ $LoggedUserInfo['sekolah_id'] }}/{{ $LoggedUserInfo['id'] }}"
                                         enctype="multipart/form-data">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -175,60 +187,6 @@
                                             </div>
                                         </form>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- Table -->
-                            <div class="card-body">
-                                <div class="table-responsive border-top-0">
-                                    <table class="table text-nowrap" id="table-sekolah">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>tahun</th>
-                                                <th>nomor</th>
-                                                <th>nama</th>
-                                                <th>status</th>
-                                                <th class="text-center" style="width: 20px;"><i
-                                                        class="fa fa-chevron-down"></i>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr align="center">
-                                                <td colspan="6">Belum ada Laporan Pemetaan Mutu</td>
-                                            </tr>
-                                        </tbody>
-                                        {{-- <thead>
-										<tr>
-											<th>No</th>
-											<th>tahun</th>
-											<th>nomor</th>
-											<th>nama</th>
-											<th>status</th>
-											<th class="text-center" style="width: 20px;"><i class="fa fa-chevron-down"></i></th>
-										</tr>
-									</thead>
-									<tbody>
-										@if ($standar->count() > 0)
-											@php $i=1 @endphp
-											@foreach ($standar as $s)
-												<tr>
-													<td>{{ $i++ }}</td>
-													<td>{{ $s->tahun }}</td>
-													<td>{{ $s->nomor }}</td>
-													<td>{{ $s->nama }}</td>
-													<td><span
-															class="badge badge-success-100 text-success">{{ $s->status }}</span>
-													</td>
-												</tr>
-											@endforeach
-										@else
-											<tr align="center">
-												<td colspan="6">Belum ada Laporan Pemetaan Mutu</td>
-											</tr>
-										@endif
-									</tbody> --}}
-                                    </table>
                                 </div>
                             </div>
                         </div>
