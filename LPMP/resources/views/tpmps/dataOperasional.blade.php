@@ -43,27 +43,88 @@
 
                             <div class="card-header d-flex bd-highlight align-items-center">
                                 <div class="p-2 flex-grow-1 bd-highlight">
-                                    <span class="card-title font-weight-semibold">Pemetaan Mutu</span>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <h1>Pemetaan Mutu</h1>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}"
+                                                    class="btn btn-info {{ $verifikasiPengajuanCek == true ? 'disabled' : '' }}" style="width: 100%; margin-bottom:1.3em"  >
+                                                    <b style="font-size: 1.3em" >Ajukan</b>
+                                                </a>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn btn-success" style="width: 100%">
+                                                    <b style="font-size: 1.3em">Lihat Laporan</b></button>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
-                                <div class="p-2 bd-highlight">
-                                    <button class="btn btn-primary" onclick="add('sekolah')" data-toggle="modal"
-                                    data-target="#importExcelStandar">Masukkan Nilai Raport</button>
-                                </div>
-                                <div class="p-2 bd-highlight">
-                                    <a href="/tpmps/dataOperasional/exportTemplate" class="btn btn-success" target="_blank">Download Template</a>
-                                </div>
-                                <div class="p-2 bd-highlight">
-                                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#koreksiNilaiModal">
-                                        Koreksi Nilai Raport
-                                      </button>
-                                </div>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div class="p-2 bd-highlight">
+                                                <a href="/tpmps/dataOperasional/exportTemplate" class="btn btn-info"
+                                                    target="_blank">Download Template</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="p-2 bd-highlight">
+
+                                                <button class="btn btn-primary" onclick="add('sekolah')" data-toggle="modal"
+                                                    data-target="#importExcelStandar"
+                                                    {{ $verifikasi == true ? 'disabled' : '' }}>Masukkan Nilai Raport</button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="p-2 bd-highlight">
+                                                <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                    data-target="#koreksiNilaiModal">
+                                                    Koreksi Nilai Raport
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="p-2 bd-highlight">
+                                                <button class="btn btn-primary" style="width: 100%; id=" akarMasalahBtn"
+                                                    data-toggle="modal" data-target="#akarMasalahModal">
+                                                    Akar Masalah
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="p-2 bd-highlight">
+                                                <button class="btn btn-primary" style="width: 100%; id=" rekomendasiBtn"
+                                                    data-toggle="modal" data-target="#rekomendasiModal">
+                                                    Rekomendasi
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="p-2 bd-highlight">
+                                                <button class="btn btn-primary" id="MasalahBtn" data-toggle="modal"
+                                                    data-target="#masalahModal" style="width: 100%">
+                                                    Masalah
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                             <!-- Import Excel -->
                             <div class="modal fade" id="importExcelStandar" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <form method="post"
-                                        action="/tpmps/dataOperasional/importExcelPemetaanMutu/{{ $LoggedUserInfo['sekolah_id'] }}"
+                                        action="/tpmps/dataOperasional/importExcelPemetaanMutu/{{ $LoggedUserInfo['sekolah_id'] }}/{{ $LoggedUserInfo['id'] }}"
                                         enctype="multipart/form-data">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -89,131 +150,49 @@
                                 </div>
                             </div>
                             {{-- Koreksi Nilai Raport --}}
-                            <div class="modal fade" id="koreksiNilaiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="koreksiNilaiModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">Koreksi Nilai Raport</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Koreksi Nilai Raport</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="/tpmps/dataOperasional/KoreksiNilaiRaport" method="post">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <select class="custom-select" id="inputGroupSelect01"
+                                                        name="sub_indikator_id">
+                                                        <option selected>Pilih SubIndikator yang Ingin Dikoreksi</option>
+                                                        @foreach ($listSubIndikator as $subIndikator)
+                                                            <option value="{{ $subIndikator->id }}">
+                                                                {{ $subIndikator->nama }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Nilai</label>
+                                                    <input type="number" step='0.01' min="0" value="0" class="form-control"
+                                                        name="nilai_koreksi" required />
+                                                </div>
+                                                <input type="hidden" id="sekolah_id" name="sekolah_id"
+                                                    value="{{ $LoggedUserInfo['sekolah_id'] }}">
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <input type="submit" class="btn btn-primary" value="Tambah"></button>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <form action="/tpmps/dataOperasional/KoreksiNilaiRaport" method="post">
-                                        @csrf
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <select class="custom-select" id="inputGroupSelect01" name="sub_indikator_id">
-                                                    <option selected>Pilih SubIndikator yang Ingin Dikoreksi</option>
-                                                    @foreach ($listSubIndikator as $subIndikator)
-                                                        <option value="{{ $subIndikator->id }}">
-                                                            {{ $subIndikator->nama }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-form-label">Nilai</label>
-                                                <input type="number" step='0.01' min="0" value="0" class="form-control" name="nilai_koreksi"
-                                                    required />
-                                            </div>
-                                            <input type="hidden" id="sekolah_id" name="sekolah_id"
-                                                value="{{ $LoggedUserInfo['sekolah_id'] }}">
-                                        </div>
-                                       
-                                        <div class="modal-footer">
-                                            <input type="submit" class="btn btn-primary" value="Tambah"></button>
-                                        </div>
-                                    </form>
-                                  </div>
-                                </div>
-                              </div>
-                            <!-- Table -->
-                            <div class="card-body">
-                                <div class="table-responsive border-top-0">
-                                    <table class="table text-nowrap" id="table-sekolah">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>tahun</th>
-                                                <th>nomor</th>
-                                                <th>nama</th>
-                                                <th>status</th>
-                                                <th class="text-center" style="width: 20px;"><i
-                                                        class="fa fa-chevron-down"></i>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr align="center">
-                                                <td colspan="6">Belum ada Laporan Pemetaan Mutu</td>
-                                            </tr>
-                                        </tbody>
-                                        {{-- <thead>
-										<tr>
-											<th>No</th>
-											<th>tahun</th>
-											<th>nomor</th>
-											<th>nama</th>
-											<th>status</th>
-											<th class="text-center" style="width: 20px;"><i class="fa fa-chevron-down"></i></th>
-										</tr>
-									</thead>
-									<tbody>
-										@if ($standar->count() > 0)
-											@php $i=1 @endphp
-											@foreach ($standar as $s)
-												<tr>
-													<td>{{ $i++ }}</td>
-													<td>{{ $s->tahun }}</td>
-													<td>{{ $s->nomor }}</td>
-													<td>{{ $s->nama }}</td>
-													<td><span
-															class="badge badge-success-100 text-success">{{ $s->status }}</span>
-													</td>
-												</tr>
-											@endforeach
-										@else
-											<tr align="center">
-												<td colspan="6">Belum ada Laporan Pemetaan Mutu</td>
-											</tr>
-										@endif
-									</tbody> --}}
-                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-
-                <div class="row">
-                    <div class="col-4">
-                        <button class="btn btn-info p-3 mr-3" id="akarMasalahBtn" style="width: 100%" data-toggle="modal"
-                            data-target="#akarMasalahModal">
-                            <div class="d-flex flex-column align-items-center">
-                                <i class="fa fa-users"></i>
-                                <h1 class="m-0">Akar Masalah</h1>
-                            </div>
-                        </button>
-                    </div>
-                    <div class="col-4">
-                        <button class="btn btn-success p-3 mr-3" id="rekomendasiBtn" style="width: 100%" data-toggle="modal"
-                            data-target="#rekomendasiModal">
-                            <div class="d-flex flex-column align-items-center">
-                                <i class="fa fa-school"></i>
-                                <h1 class="m-0">Rekomendasi</h1>
-                            </div>
-                        </button>
-                    </div>
-                    <div class="col-4">
-                        <button class="btn btn-primary p-3 mr-3" id="MasalahBtn" style="width: 100%" data-toggle="modal"
-                            data-target="#masalahModal">
-                            <div class="d-flex flex-column align-items-center">
-                                <i class="fa fa-city"></i>
-                                <h1 class="m-0">Masalah</h1>
-                            </div>
-                        </button>
-                    </div>
-                </div>
 
 
                 <!-- Modal -->
@@ -461,7 +440,8 @@
                             </div>
 
                             {{-- form tambah program --}}
-                            <form id="formTambahProgram" action='/tpmps/dataOperasional/tambahProgramRekomendasi' method="post">
+                            <form id="formTambahProgram" action='/tpmps/dataOperasional/tambahProgramRekomendasi'
+                                method="post">
                                 @csrf
                                 <div class="modal-body">
 
@@ -498,7 +478,8 @@
                             </form>
 
 
-                            <form id="formTambahProgramRekomendasi" action='/tpmps/dataOperasional/tambahProgram' method="post">
+                            <form id="formTambahProgramRekomendasi" action='/tpmps/dataOperasional/tambahProgram'
+                                method="post">
                                 @csrf
                                 <div class="modal-body">
 

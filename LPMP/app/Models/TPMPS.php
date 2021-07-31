@@ -15,7 +15,7 @@ class TPMPS extends Model
     }
 
     public function pengajuan_siklus() {
-        return $this->hasMany(PengajuanSiklus::class);
+        return $this->hasMany(PengajuanSiklus::class, 'tpmps_id','id');
     }
 
     public function pengajuan_siklus_komunikasi() {
