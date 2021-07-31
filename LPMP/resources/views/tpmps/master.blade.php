@@ -33,6 +33,83 @@
 	<script src="{{asset('js/demo_charts/pages/dashboard_6/light/line_label_marks.js')}}"></script>
 	<!-- /theme JS files -->
 </head>
+<style>
+	#fab {
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		margin: 30px;
+		padding: 20px;
+		border: 1px solid black;
+		border-radius: 50%;
+		color: white;
+	}
+
+	.comment-container {
+		display: flex;
+		flex-direction: column;
+		margin-top: 25px;
+	}
+	.comment-header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		font-weight: bold;
+		font-size: 1.2em;
+	}
+	.comment-body {
+		display: flex;
+	}
+	.comment {
+		padding: 10px;
+		border: 1px solid #ddd;
+		width: 80%;
+		border-radius: 10px;
+	}
+	.date {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.left {
+		display: flex;
+		width: 100%;
+	}
+	.left .comment-header {
+		display: flex;
+		justify-content: flex-start;
+		margin-bottom: 10px;
+	}
+	.left .comment-body{
+		justify-content: flex-start;
+		align-items: center;
+	}
+	.left .comment {
+		margin-right: 20px;
+	}
+	.left .date {
+		align-items: flex-start;
+	}
+
+	.right {
+		display: flex;
+		width: 100%;
+	}
+	.right .comment-header {
+		display: flex;
+		justify-content: flex-end;
+	}
+	.right .comment-body{
+		justify-content: flex-end;
+		align-items: center;
+	}
+	.right .comment {
+		margin-left: 20px;
+	}
+	.right .date {
+		align-items: flex-end;
+	}
+</style>
 <body>
 	
 @php
@@ -189,6 +266,65 @@ if(isset($siklus)) {
 	</div>
 	<!-- /page content -->
 
+	<button id="fab" class="bg-dark" data-toggle="modal" data-target="#comments">
+		<i class="fa fa-comments fa-2x"></i>
+	</button>
+	<!-- Comments -->
+	<div class="modal fade" id="comments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="exampleModalLabel">Komentar</h3>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div id="list-comments">
+						@for ($i = 0; $i < 10; $i++)
+							@if ($i%2==0)
+								<div class="comment-container right">
+									<div class="comment-header">
+										<span>TPMPS</span>
+									</div>
+									<div class="comment-body">
+										<h6 class="date">
+											<span>{{ date("Y-m-d") }}</span>
+											<span>{{ date("H:i:s") }}</span>
+										</h6>
+										<div class="comment">
+											<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam atque assumenda quis nam corporis. Magnam sit porro voluptates ipsam at, possimus excepturi! Ducimus adipisci illo cumque molestias ea est nihil!</span>
+										</div>
+									</div>
+								</div>
+							@else
+								<div class="comment-container left">
+									<div class="comment-header">
+										<span>Pengawas</span>
+									</div>
+									<div class="comment-body">
+										<div class="comment">
+											<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam atque assumenda quis nam corporis. Magnam sit porro voluptates ipsam at, possimus excepturi! Ducimus adipisci illo cumque molestias ea est nihil!</span>
+										</div>
+										<h6 class="date">
+											<span>{{ date("Y-m-d") }}</span>
+											<span>{{ date("H:i:s") }}</span>
+										</h6>
+									</div>
+								</div>
+							@endif
+						@endfor
+					</div>
+				</div>
+				{{-- <div class="modal-footer">
+					<button type="button" class="btn btn-primary alert alert-danger" data-dismiss="modal">Ok I Understand</button>
+				</div> --}}
+			</div>
+		</div>
+	</div>
+	<!-- Comments -->
+
     @yield('notification')
 
 	@if (Session::get('fail'))
@@ -212,6 +348,7 @@ if(isset($siklus)) {
 			</div>
 		</div>
 	</div>
+	<!-- Modal -->
 	<script>
 		var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
 			keyboard: false
