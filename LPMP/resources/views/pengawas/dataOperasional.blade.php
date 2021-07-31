@@ -32,7 +32,17 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $sekolah->nama }}</td>
                                                 <td>
-													{{ $sekolah->tpmps->pengajuan_siklus[0]->status}}
+                                                    @if ($sekolah->tpmps->pengajuan_siklus[0]->status == 1)
+                                                        <span class="badge badge-primary-100 text-primary">Diajukan</span>
+                                                    @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 2)
+                                                        <span class="badge badge-info-100 text-info">Diproses</span>
+                                                    @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 3)
+                                                        <span class="badge badge-success-100 text-success">Diterima</span>
+                                                    @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 4)
+                                                        <span class="badge badge-warning-100 text-warning">Komunikasi koordinasi</span>
+                                                    @else
+                                                        <span class="badge badge-secondary-100 text-secondary">Belum ada status</span>
+                                                    @endif
 												</td>
 												<td class="text-center">
                                                     <div class="dropdown">

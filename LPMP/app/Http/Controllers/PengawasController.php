@@ -97,20 +97,20 @@ class PengawasController extends Controller
         $pengajuanSiklus = PengajuanSiklus::find($id);
         $pengajuanSiklus->status = 2;
         $pengajuanSiklus->save();
-        return view('/pengawas/dataOperasional');
+        return redirect('/pengawas/dataOperasional');
     }
 
     public function diterima($id){
         $pengajuanSiklus = PengajuanSiklus::find($id);
         $pengajuanSiklus->status = 3;
         $pengajuanSiklus->save();
-        return view('/pengawas/dataOperasional');
+        return redirect('/pengawas/dataOperasional');
     }
 
     public function komunikasi($id){
         $pengajuanSiklus = PengajuanSiklus::find($id);
         $pengajuanSiklus->status = 4;
         $pengajuanSiklus->save();
-        return view('/pengawas/dataOperasional');
+        return redirect('/pengawas/dataOperasional');
     }
 }
