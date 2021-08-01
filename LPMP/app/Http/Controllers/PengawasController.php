@@ -9,6 +9,8 @@ use App\Models\SiklusPeriode;
 use App\Models\Sekolah;
 use App\Models\SekolahPengawas;
 use App\Models\RaportSekolah;
+use App\Models\PengajuanSiklusKomunikasi;
+use App\Models\TPMPS;
 use Carbon\Carbon;
 
 class PengawasController extends Controller
@@ -64,6 +66,30 @@ class PengawasController extends Controller
         ];
 		return view('/pengawas/laporan', $data, $data_log);
 	}
+
+    public function comment(Request $request) {
+        // var_dump($request);die;
+        $tpmps = TPMPS::where('sekolah_id', $request->sekolah)->first();
+        $pengajuan_siklus = PengajuanSiklus::join('tpmps as t','t.id','pengajuan_siklus.tpmps_id')
+            ->where('pengajuan_siklus.tpmps_id',$tpmps->id)
+            ->orderBy('tanggal_pengajuan','DESC')
+            ->first();
+        PengajuanSiklusKomunikasi::create([
+            "komentar" => $request->comment,
+            "tanggal_komentar" => Carbon::now(),
+            "status_pemberi_komentar" => 2,
+            "pengajuan_siklus_id" => $pengajuan_siklus->id,
+        ]);
+        return redirect()->back();
+    }
+
+    public function comments($id) {
+        $tpmps = TPMPS::where('sekolah_id', $id)->first();
+        return PengajuanSiklusKomunikasi::join('pengajuan_siklus as ps','ps.id','pengajuan_siklus_komunikasi.pengajuan_siklus_id')
+            ->where('ps.tpmps_id',$tpmps->id)
+            ->where('ps.siklus_periode_id',siklus()->id)
+            ->get();
+    }
 
     public function tambah(Request $request) {
         Pengawas::create([

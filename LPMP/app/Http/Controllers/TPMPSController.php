@@ -24,11 +24,12 @@ use App\Models\Rekomendasi;
 use App\Models\Program;
 use App\Models\Kegiatan;
 use App\Models\RaportSekolahKoreksi;
+use App\Models\PengajuanSiklus;
+use App\Models\PengajuanSiklusKomunikasi;
 
 //imports
 use App\Imports\PemenuhanMutuImport;
 use App\Exports\TemplateRaportExport;
-use App\Models\PengajuanSiklus;
 
 class TPMPSController extends Controller
 {
@@ -95,6 +96,30 @@ class TPMPSController extends Controller
             "sekolah" => Sekolah::where("id", $data_log['LoggedUserInfo']->sekolah_id)->first(),
         ];
         return view('/tpmps/laporan', $data, $data_log);
+    }
+
+    public function comment(Request $request) {
+        // var_dump($request);die;
+        $tpmps = TPMPS::where('id', '=', session('LoggedUserTpmps'))->first();
+        $pengajuan_siklus = PengajuanSiklus::join('tpmps as t','t.id','pengajuan_siklus.tpmps_id')
+            ->where('pengajuan_siklus.tpmps_id',$tpmps->id)
+            ->orderBy('tanggal_pengajuan','DESC')
+            ->first();
+        PengajuanSiklusKomunikasi::create([
+            "komentar" => $request->comment,
+            "tanggal_komentar" => Carbon::now(),
+            "status_pemberi_komentar" => 1,
+            "pengajuan_siklus_id" => $pengajuan_siklus->id,
+        ]);
+        return redirect()->back();
+    }
+
+    public function comments() {
+        $tpmps = TPMPS::where('id', '=', session('LoggedUserTpmps'))->first();
+        return PengajuanSiklusKomunikasi::join('pengajuan_siklus as ps','ps.id','pengajuan_siklus_komunikasi.pengajuan_siklus_id')
+            ->where('ps.tpmps_id',$tpmps->id)
+            ->where('ps.siklus_periode_id',siklus()->id)
+            ->get();
     }
 
     public function tambah(Request $request)

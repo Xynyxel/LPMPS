@@ -2,6 +2,93 @@
 
 @section('title', 'DataOperasional - Pengawas')
 @section('content')
+    <style>
+        #fab {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin: 30px;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 50%;
+            color: white;
+            outline: none;
+        }
+        #modal-custom {
+            overflow-y: auto;
+            max-height: 50vh!important;
+        }
+        .comment-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 25px;
+        }
+        .comment-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .comment-body {
+            display: flex;
+        }
+        .comment {
+            padding: 10px;
+            border: 1px solid #ddd;
+            width: 80%;
+            border-radius: 10px;
+        }
+        .date {
+            display: flex;
+            flex-direction: column;
+        }
+        #editor { 
+            width: 100%;
+        }
+        .ck-content {
+            min-height: 100px;
+        }
+
+        .left {
+            display: flex;
+            width: 100%;
+        }
+        .left .comment-header {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+        .left .comment-body{
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .left .comment {
+            margin-right: 20px;
+        }
+        .left .date {
+            align-items: flex-start;
+        }
+
+        .right {
+            display: flex;
+            width: 100%;
+        }
+        .right .comment-header {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .right .comment-body{
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .right .comment {
+            margin-left: 20px;
+        }
+        .right .date {
+            align-items: flex-end;
+        }
+    </style>
     <!-- Content area -->
     <div class="content container pt-3">
         {{-- Table Sekolah --}}
@@ -82,8 +169,7 @@
                                                                     </i>
                                                                 </a>
                                                             @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 4)
-                                                                <a href=""
-                                                                    class="dropdown-item">
+                                                                <a href="" class="dropdown-item" data-toggle="modal" data-target="#comments" onclick="setID({{ $sekolah->id }})">
                                                                     <i class="fas fa-comments">
                                                                         <span>Komentar</span>
                                                                     </i>
@@ -95,8 +181,6 @@
                                                                     </i>
                                                                 </a>
                                                             @endif
-
-
                                                         </div>
                                                     </div>
                                                 </td>
@@ -111,6 +195,36 @@
             </div>
         </div>
     </div>
+
+    <!-- Comments -->
+	<div class="modal fade" id="comments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Komentar</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4" id="modal-custom">
+                    <div id="list-comments"></div>
+                    <div style="height: 2px; background-color: #ddd; margin-top: 15px;"></div>
+                </div>
+                <div class="modal-footer">
+                    <div class="w-100">
+                        <form action="/pengawas/comment" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="sekolah" id="sekolah">
+                            <textarea id="editor" name="comment" rows="5"></textarea>
+                            <input type="submit" class="btn btn-primary mt-3" value="Send">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Comments -->
 
     <!-- Modal Raport Sekolah -->
     <div class="modal fade" id="raportSekolah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -148,6 +262,81 @@
 
     <script>
         const url = "{{ URL::to('/') }}";
+
+        let editor;
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .then(newEditor => {
+                editor = newEditor
+            })
+            .catch( error => {
+                console.error( error );
+            } );
+
+        const getData = async () => {
+            const id = sessionStorage.getItem('sekolahID')
+            const response = await fetch(`${url}/pengawas/comments/${id ? id : 0}`);
+            const data = response.json();
+            return new Promise(resolve=>{
+                resolve(data);
+            });
+        }
+
+        const getComments = async () => {
+            const listComment = document.getElementById('list-comments');
+            const comments = await getData();
+            listComment.innerHTML = "";
+            if(comments.length > 0) {
+                comments.forEach(comment => {
+                    const arr = comment.tanggal_komentar.split(' ');
+                    const direction = comment.status_pemberi_komentar == 2 ? "right" : "left"
+                    listComment.innerHTML += `
+                        <div class="comment-container ${direction}">
+                            <div class="comment-header">
+                                <span>${
+                                    (comment.status_pemberi_komentar == 1) ? 
+                                    "TPMPS" : (comment.status_pemberi_komentar == 2) ? 
+                                    "Pengawas" : "LPMP"
+                                }</span>
+                            </div>
+                            <div class="comment-body">
+                                ${direction == "left" ? `
+                                    <div class="comment">
+                                        ${comment.komentar}
+                                    </div>
+                                    <h6 class="date">
+                                        <span>${arr[0]}</span>
+                                        <span>${arr[1]}</span>
+                                    </h6>
+                                ` : `
+                                    <h6 class="date">
+                                        <span>${arr[0]}</span>
+                                        <span>${arr[1]}</span>
+                                    </h6>
+                                    <div class="comment">
+                                        ${comment.komentar}
+                                    </div>
+                                `}
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            else {
+                listComment.innerHTML = "<h1>Tidak ada komentar</h1>"
+            }
+        }
+
+        const setID = (id) => {
+            document.getElementById('sekolah').value = id;
+            sessionStorage.setItem('sekolahID',id);
+        }
+
+        setInterval(()=>{
+            getComments();
+        },5000);
+
+        getComments();
 
         const fillRaport = (id) => {
             fetch(`${url}/sekolah/fillRaport/${id}`)

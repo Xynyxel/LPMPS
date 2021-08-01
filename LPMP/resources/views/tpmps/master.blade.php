@@ -44,6 +44,11 @@
 		border: 1px solid black;
 		border-radius: 50%;
 		color: white;
+		outline: none;
+	}
+	#modal-custom {
+		overflow-y: auto;
+		max-height: 50vh!important;
 	}
 	.comment-container {
 		display: flex;
@@ -275,6 +280,7 @@ if(isset($siklus)) {
 	<button id="fab" class="bg-dark" data-toggle="modal" data-target="#comments">
 		<i class="fa fa-comments fa-2x"></i>
 	</button>
+	
 	<!-- Comments -->
 	<div class="modal fade" id="comments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		aria-hidden="true">
@@ -286,47 +292,17 @@ if(isset($siklus)) {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body p-4">
-					<div id="list-comments">
-						@for ($i = 0; $i < 10; $i++)
-							@if ($i%2==0)
-								<div class="comment-container right">
-									<div class="comment-header">
-										<span>TPMPS</span>
-									</div>
-									<div class="comment-body">
-										<h6 class="date">
-											<span>{{ date("Y-m-d") }}</span>
-											<span>{{ date("H:i:s") }}</span>
-										</h6>
-										<div class="comment">
-											<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam atque assumenda quis nam corporis. Magnam sit porro voluptates ipsam at, possimus excepturi! Ducimus adipisci illo cumque molestias ea est nihil!</span>
-										</div>
-									</div>
-								</div>
-							@else
-								<div class="comment-container left">
-									<div class="comment-header">
-										<span>Pengawas</span>
-									</div>
-									<div class="comment-body">
-										<div class="comment">
-											<span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam atque assumenda quis nam corporis. Magnam sit porro voluptates ipsam at, possimus excepturi! Ducimus adipisci illo cumque molestias ea est nihil!</span>
-										</div>
-										<h6 class="date">
-											<span>{{ date("Y-m-d") }}</span>
-											<span>{{ date("H:i:s") }}</span>
-										</h6>
-									</div>
-								</div>
-							@endif
-						@endfor
-					</div>
+				<div class="modal-body p-4" id="modal-custom">
+					<div id="list-comments"></div>
+					<div style="height: 2px; background-color: #ddd; margin-top: 15px;"></div>
 				</div>
 				<div class="modal-footer">
 					<div class="w-100">
-						<textarea id="editor" rows="5"></textarea>
-						<button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+						<form action="/tpmps/comment" method="post">
+							{{ csrf_field() }}
+							<textarea id="editor" name="comment" rows="5"></textarea>
+							<input type="submit" class="btn btn-primary mt-3" value="Send">
+						</form>
 					</div>
 				</div>
 			</div>
@@ -367,13 +343,76 @@ if(isset($siklus)) {
 	@endif
 
 	<script>
+		const url = "{{URL::to('/')}}";
+
+		let editor;
 		ClassicEditor
 			.create( document.querySelector( '#editor' ) )
+			.then(newEditor => {
+				editor = newEditor
+			})
 			.catch( error => {
 				console.error( error );
 			} );
-	</script>
-	<script>
+
+		const getData = async () => {
+			const response = await fetch(`${url}/tpmps/comments`);
+			const data = response.json();
+			return new Promise(resolve=>{
+				resolve(data);
+			});
+		}
+
+		const getComments = async () => {
+			const listComment = document.getElementById('list-comments');
+			const comments = await getData();
+			listComment.innerHTML = "";
+			if(comments.length > 0) {
+				comments.forEach(comment => {
+					const arr = comment.tanggal_komentar.split(' ');
+					const direction = comment.status_pemberi_komentar == 1 ? "right" : "left"
+					listComment.innerHTML += `
+						<div class="comment-container ${direction}">
+							<div class="comment-header">
+								<span>${
+									(comment.status_pemberi_komentar == 1) ? 
+									"TPMPS" : (comment.status_pemberi_komentar == 2) ? 
+									"Pengawas" : "LPMP"
+								}</span>
+							</div>
+							<div class="comment-body">
+								${direction == "left" ? `
+									<div class="comment">
+										${comment.komentar}
+									</div>
+									<h6 class="date">
+										<span>${arr[0]}</span>
+										<span>${arr[1]}</span>
+									</h6>
+								` : `
+									<h6 class="date">
+										<span>${arr[0]}</span>
+										<span>${arr[1]}</span>
+									</h6>
+									<div class="comment">
+										${comment.komentar}
+									</div>
+								`}
+							</div>
+						</div>
+					`;
+				});
+			}
+			else {
+				listComment.innerHTML = "<h1>Tidak ada komentar</h1>"
+			}
+		}
+
+		setInterval(()=>{
+			getComments();
+		},5000);
+		
+		getComments();
 
 		const dateEnd = document.getElementById('date-end');
 

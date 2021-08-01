@@ -179,6 +179,10 @@ Route::group(['middleware'=>['AuthCheckPengawas']], function(){
     Route::get('/pengawas/dataOperasional/diproses/{id}',[PengawasController::class,'diproses']);
     Route::get('/pengawas/dataOperasional/diterima/{id}',[PengawasController::class,'diterima']);
     Route::get('/pengawas/dataOperasional/komunikasi/{id}',[PengawasController::class,'komunikasi']);
+    
+    //komentar
+    Route::post('/pengawas/comment',[PengawasController::class,'comment']);
+    Route::get('/pengawas/comments/{id}',[PengawasController::class,'comments']);
 });
 
 // Tpmps
@@ -203,6 +207,10 @@ Route::group(['middleware'=>['AuthCheckTpmps']], function(){
     Route::post('/tpmps/dataOperasional/tambahRencanaKerja',[RencanaKerjaController::class,'tambah']);
     // add forms siklus 3
     Route::post('/tpmps/dataOperasional/tambahRealisasiKerja',[RealisasiKerjaController::class,'tambah']);
+
+    //komentar
+    Route::post('/tpmps/comment',[TPMPSController::class,'comment']);
+    Route::get('/tpmps/comments',[TPMPSController::class,'comments']);
 });
 
 // Check 
