@@ -39,12 +39,14 @@
                                                     @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 3)
                                                         <span class="badge badge-success-100 text-success">Diterima</span>
                                                     @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 4)
-                                                        <span class="badge badge-warning-100 text-warning">Komunikasi koordinasi</span>
+                                                        <span class="badge badge-warning-100 text-warning">Komunikasi
+                                                            koordinasi</span>
                                                     @else
-                                                        <span class="badge badge-secondary-100 text-secondary">Belum ada status</span>
+                                                        <span class="badge badge-secondary-100 text-secondary">Belum ada
+                                                            status</span>
                                                     @endif
-												</td>
-												<td class="text-center">
+                                                </td>
+                                                <td class="text-center">
                                                     <div class="dropdown">
                                                         <a href="#"
                                                             class="btn btn-outline-light btn-icon btn-sm text-body border-transparent rounded-pill"
@@ -52,23 +54,49 @@
                                                             <i class="fa fa-bars"></i>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right">
-															<a onclick="fillRaport({{ $sekolah->id }})"
-																class="dropdown-item"
-																data-toggle="modal" data-target="#raportSekolah">
-																Raport Sekolah
-															</a>
-															<a href="/pengawas/dataOperasional/diproses/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
-																class="dropdown-item">
-																Diproses
-															</a>
-															<a href="/pengawas/dataOperasional/diterima/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
-																class="dropdown-item">
-																Diterima
-															</a>
-															<a href="/pengawas/dataOperasional/komunikasi/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
-																class="dropdown-item">
-																Komunikasi
-															</a>
+                                                            <a onclick="fillRaport({{ $sekolah->id }})"
+                                                                class="dropdown-item" data-toggle="modal"
+                                                                data-target="#raportSekolah">
+                                                                <i class="fas fa-file-alt">
+                                                                    <span>Raport Sekolah</span>
+                                                                </i>
+                                                            </a>
+                                                            @if ($sekolah->tpmps->pengajuan_siklus[0]->status == 1)
+                                                                <a href="/pengawas/dataOperasional/diproses/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
+                                                                    class="dropdown-item">
+                                                                    <i class="fas fa-tasks">
+                                                                        <span>Diproses</span>
+                                                                    </i>
+                                                                </a>
+                                                            @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 2)
+                                                                <a href="/pengawas/dataOperasional/diterima/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
+                                                                    class="dropdown-item">
+                                                                    <i class="fas fa-check-square">
+                                                                        <span>Diterima</span>
+                                                                    </i>
+                                                                </a>
+                                                                <a href="/pengawas/dataOperasional/komunikasi/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
+                                                                    class="dropdown-item">
+                                                                    <i class="fas fa-comment-alt">
+                                                                        <span>Komunikasi</span>
+                                                                    </i>
+                                                                </a>
+                                                            @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 4)
+                                                                <a href=""
+                                                                    class="dropdown-item">
+                                                                    <i class="fas fa-comments">
+                                                                        <span>Komentar</span>
+                                                                    </i>
+                                                                </a>
+                                                                <a href="/pengawas/dataOperasional/diterima/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
+                                                                    class="dropdown-item">
+                                                                    <i class="fas fa-check-square">
+                                                                        <span>Diterima</span>
+                                                                    </i>
+                                                                </a>
+                                                            @endif
+
+
                                                         </div>
                                                     </div>
                                                 </td>
