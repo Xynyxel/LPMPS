@@ -58,18 +58,18 @@ class TPMPSController extends Controller
         $subIndikator = SubIndikator::all();
 
         $thisYear = Carbon::now()->isoFormat('YYYY');
-        $nama_file =  $data_log['LoggedUserInfo']->id. ' _ ' . $thisYear . '.xlsx';
+        $nama_file =  $data_log['LoggedUserInfo']->id . ' _ ' . $thisYear . '.xlsx';
         if (file_exists(public_path('filePemetaanMutu/' . $nama_file))) {
             $verifikasi =  true;
         } else {
             $verifikasi =  false;
         }
         $verifikasiPengajuan = PengajuanSiklus::where('tpmps_id', $data_log['LoggedUserInfo']->id)
-                                                ->where('siklus_periode_id',$siklus->id)
-                                                ->first();
-        if($verifikasiPengajuan){
+            ->where('siklus_periode_id', $siklus->id)
+            ->first();
+        if ($verifikasiPengajuan) {
             $verifikasiPengajuanCek = true;
-        }else{
+        } else {
             $verifikasiPengajuanCek = false;
         }
 
@@ -98,12 +98,13 @@ class TPMPSController extends Controller
         return view('/tpmps/laporan', $data, $data_log);
     }
 
-    public function comment(Request $request) {
+    public function comment(Request $request)
+    {
         // var_dump($request);die;
         $tpmps = TPMPS::where('id', '=', session('LoggedUserTpmps'))->first();
-        $pengajuan_siklus = PengajuanSiklus::join('tpmps as t','t.id','pengajuan_siklus.tpmps_id')
-            ->where('pengajuan_siklus.tpmps_id',$tpmps->id)
-            ->orderBy('tanggal_pengajuan','DESC')
+        $pengajuan_siklus = PengajuanSiklus::join('tpmps as t', 't.id', 'pengajuan_siklus.tpmps_id')
+            ->where('pengajuan_siklus.tpmps_id', $tpmps->id)
+            ->orderBy('tanggal_pengajuan', 'DESC')
             ->first();
         PengajuanSiklusKomunikasi::create([
             "komentar" => $request->comment,
@@ -114,23 +115,28 @@ class TPMPSController extends Controller
         return redirect()->back();
     }
 
-    public function comments() {
+    public function comments()
+    {
         $tpmps = TPMPS::where('id', '=', session('LoggedUserTpmps'))->first();
-        return PengajuanSiklusKomunikasi::join('pengajuan_siklus as ps','ps.id','pengajuan_siklus_komunikasi.pengajuan_siklus_id')
-            ->where('ps.tpmps_id',$tpmps->id)
-            ->where('ps.siklus_periode_id',siklus()->id)
+        return PengajuanSiklusKomunikasi::join('pengajuan_siklus as ps', 'ps.id', 'pengajuan_siklus_komunikasi.pengajuan_siklus_id')
+            ->where('ps.tpmps_id', $tpmps->id)
+            ->where('ps.siklus_periode_id', siklus()->id)
             ->get();
     }
 
     public function tambah(Request $request)
     {
-        TPMPS::create([
-            "nama" => $request->nama,
-            "username" => $request->username,
-            "password" => $request->password,
-            "sekolah_id" => $request->sekolah_id,
-        ]);
-        return redirect("/dataMaster");
+        try {
+            $tpmps_create = TPMPS::create([
+                "nama" => $request->nama,
+                "username" => $request->username,
+                "password" => $request->password,
+                "sekolah_id" => $request->sekolah_id,
+            ]);
+            return redirect("/dataMaster")->with('success', 'Berhasil Menambahkan TPMPS');
+        } catch (\Exception $e) {
+            return redirect("/dataMaster")->with('fail', 'Gagal Menambahkan TPMPS');
+        }
     }
 
     public function edit($id)
@@ -203,7 +209,8 @@ class TPMPSController extends Controller
         return redirect('/tpmps/dataOperasional');
     }
 
-    public function ajukan($tpmps_id, $siklus_periode){
+    public function ajukan($tpmps_id, $siklus_periode)
+    {
         PengajuanSiklus::create([
             "tanggal_pengajuan" => Carbon::now(),
             "status" => 1,
@@ -212,6 +219,4 @@ class TPMPSController extends Controller
         ]);
         return redirect('/tpmps/dataOperasional');
     }
-
-    
 }
