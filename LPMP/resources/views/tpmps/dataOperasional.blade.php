@@ -573,7 +573,6 @@
                     </div>
                 </div>
 
-
                 {{-- program --}}
                 <div class="modal fade" id="programModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -812,7 +811,6 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-
                             <div class="card-header d-flex bd-highlight align-items-center">
                                 <div class="p-2 flex-grow-1 bd-highlight">
                                     <table>
@@ -946,7 +944,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 {{-- realisasi kinerja --}}
                 <div class="modal fade" id="realisasiKinerjaModal" tabindex="-1" aria-labelledby="exampleModalLabel"

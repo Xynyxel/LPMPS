@@ -19,17 +19,17 @@
     <div class="content container pt-3">
         {{-- First Layer --}}
         <div class="row pb-3 justify-content-md-center">
-            <div class="col-lg-10">
+            <div class="col-lg-12">
                 <div class="row">
                     @php
                         $bg = ["btn-info","btn-success","btn-primary","btn-danger"];
+                        $namaSiklus = ["Pemetaan Mutu","Rencana Pemetaan Mutu","Pelaksanaan Pemetaan Mutu","Audit Mutu"]
                     @endphp
                     @for ($i = 0; $i < count($bg); $i++)
                         <div class="col-3">
-                            <button onclick="liatLaporanSiklus('{{ $sekolah->nama }}',{{$i+1}})" class="btn {{ $bg[$i] }} p-3 mr-3" id="penggunaBtn" style="width: 100%">
+                            <button onclick="liatLaporanSiklus('{{ $sekolah->nama }}',{{$i+1}})" class="btn {{ $bg[$i] }} p-3 mr-3" id="penggunaBtn" style="width: 100%; height: 100%">
                                 <div class="d-flex flex-column align-items-center">
-                                    <h1 class="m-0">Siklus</h1>
-                                    <h1 class="m-0">{{ $i+1 }}</h1>
+                                    <h1 class="m-0">{{ $namaSiklus[$i] }}</h1>
                                 </div>
                             </button>
                         </div>
@@ -204,7 +204,6 @@
     </div>
     <!-- Modal Laporan Sekolah siklus 4 -->
 <script>
-    const url = "{{URL::to('/')}}";
     const id = "{{ $LoggedUserInfo['sekolah_id'] }}"
 
     const getData = async (url) => {
@@ -294,7 +293,6 @@
                     }
                 }
             }
-            console.log(allData);
 
             data.innerHTML = ""
             if(allData.length > 0) {

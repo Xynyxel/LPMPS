@@ -355,7 +355,7 @@ if(isset($siklus)) {
 				console.error( error );
 			} );
 
-		const getData = async () => {
+		const getDataComment = async () => {
 			const response = await fetch(`${url}/tpmps/comments`);
 			const data = response.json();
 			return new Promise(resolve=>{
@@ -365,7 +365,7 @@ if(isset($siklus)) {
 
 		const getComments = async () => {
 			const listComment = document.getElementById('list-comments');
-			const comments = await getData();
+			const comments = await getDataComment();
 			listComment.innerHTML = "";
 			if(comments.length > 0) {
 				comments.forEach(comment => {
