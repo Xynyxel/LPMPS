@@ -32,6 +32,7 @@
 	<script src="{{asset('js/demo_charts/pages/dashboard_6/light/bars_grouped.js')}}"></script>
 	<script src="{{asset('js/demo_charts/pages/dashboard_6/light/line_label_marks.js')}}"></script>
 	<!-- /theme JS files -->
+	<script src="{{asset('ckeditor5/ckeditor.js')}}"></script>
 </head>
 <style>
 	#fab {
@@ -44,7 +45,6 @@
 		border-radius: 50%;
 		color: white;
 	}
-
 	.comment-container {
 		display: flex;
 		flex-direction: column;
@@ -69,6 +69,12 @@
 	.date {
 		display: flex;
 		flex-direction: column;
+	}
+	#editor { 
+		width: 100%;
+	}
+	.ck-content {
+		min-height: 100px;
 	}
 
 	.left {
@@ -280,7 +286,7 @@ if(isset($siklus)) {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body p-4">
 					<div id="list-comments">
 						@for ($i = 0; $i < 10; $i++)
 							@if ($i%2==0)
@@ -317,9 +323,12 @@ if(isset($siklus)) {
 						@endfor
 					</div>
 				</div>
-				{{-- <div class="modal-footer">
-					<button type="button" class="btn btn-primary alert alert-danger" data-dismiss="modal">Ok I Understand</button>
-				</div> --}}
+				<div class="modal-footer">
+					<div class="w-100">
+						<textarea id="editor" rows="5"></textarea>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -356,8 +365,16 @@ if(isset($siklus)) {
 		myModal.show()
 	</script>
 	@endif
-	
+
 	<script>
+		ClassicEditor
+			.create( document.querySelector( '#editor' ) )
+			.catch( error => {
+				console.error( error );
+			} );
+	</script>
+	<script>
+
 		const dateEnd = document.getElementById('date-end');
 
 		const daysText = document.getElementById('days');

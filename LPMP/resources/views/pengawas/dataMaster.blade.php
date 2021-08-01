@@ -86,4 +86,12 @@
             </div>
         </div>
     </div>
+    <script>
+        const table = ['table-sekolah','table-sekolah-pengawas']
+        $(document).ready(function() {
+            table.forEach(id => {
+                $(`#${id}`).DataTable();
+            });
+        });
+    </script>
 @endsection
