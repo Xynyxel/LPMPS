@@ -44,50 +44,9 @@
                 </div>
             </div>
         </div>
-        {{-- Tabel Rapot Sekolah --}}
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <span class="card-title font-weight-semibold">Data Raport Sekolah</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive border-top-0">
-                            <table class="table text-nowrap" id="table-sekolah">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Tahun</th>
-                                        <th>Nilai</th>
-                                        <th>Sekolah</th>
-                                        <th>Sub Indikator</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if ($rapot_sekolah->count() > 0)
-                                        @php
-                                        $no = 1
-                                        @endphp
-                                        @foreach($rapot_sekolah as $s)
-                                        <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{$s->tahun}}</td>
-                                            <td>{{$s->nilai}}</td>
-                                            <td>{{$s->sekolah->nama}}</td>
-                                            <td>{{$s->subIndikator->nama}}</td>
-                                        </tr>
-                                        @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <script>
-        const table = ['table-sekolah','table-sekolah-pengawas']
+        const table = ['table-sekolah-pengawas']
         $(document).ready(function() {
             table.forEach(id => {
                 $(`#${id}`).DataTable();
