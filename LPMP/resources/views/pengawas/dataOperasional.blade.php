@@ -274,7 +274,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="table-responsive border-top-0">
-                        <table class="table text-nowrap" id="table-raport-sekolah">
+                        <table class="table" id="table-raport-sekolah">
                             <thead>
                                 <tr>
                                     <th>No</th>
