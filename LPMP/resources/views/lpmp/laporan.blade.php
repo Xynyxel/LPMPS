@@ -793,7 +793,7 @@
             }
 			
         }
-        const table = ['table-sekolah']
+        const table = ['table-sekolah',]
         $(document).ready(function() {
             table.forEach(id => {
                 $(`#${id}`).DataTable();
