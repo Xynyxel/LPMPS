@@ -15,6 +15,6 @@ class RaportKPI extends Model
     }
 
     public function sub_indikator() {
-        return $this->belongsTo(Pengawas::class,'sub_indikator_id','id');
+        return $this->belongsTo(SubIndikator::class,'sub_indikator_id','id');
     }
 }

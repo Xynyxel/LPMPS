@@ -231,13 +231,15 @@ class LPMPSeeder extends Seeder
     //         "pengawas_id" => 2,
     //     ]);
 
-    //     // Raport KPI
-    //     DB::table('raport_kpi')->insert([
-    //         "tahun" => Carbon::now()->isoFormat('YYYY'),
-    //         "nilai_kpi" => 86.1,
-    //         "kota_kabupaten_id" => 4,
-    //         "sub_indikator_id" => 1,
-    //     ]);
+        // // Raport KPI
+        // for($i = 1; $i <= 38; $i++) {
+        //     DB::table('raport_kpi')->insert([
+        //         "tahun" => Carbon::now()->isoFormat('YYYY'),
+        //         "nilai_kpi" => 5,
+        //         "kota_kabupaten_id" => 1,
+        //         "sub_indikator_id" => $i,
+        //     ]);
+        // }
 
     //     // Raport Sekolah
     //     DB::table('raport_sekolah')->insert([
