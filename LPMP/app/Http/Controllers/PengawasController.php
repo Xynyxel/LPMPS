@@ -30,11 +30,13 @@ class PengawasController extends Controller
         $listSekolah = Sekolah::join('sekolah_pengawas as sp',"sp.sekolah_id","sekolah.id")
             ->where('sp.pengawas_id',$data_log["LoggedUserInfo"]->id)
             ->get();
+        $pengajuanSiklus = PengajuanSiklus::where('siklus_periode_id', siklus()->id)->get();
 
         $data = [
             "siklus" => siklus(),
             "listPeriode" => $listPeriode,
             "listSekolah" => $listSekolah,
+            "listPengajuanSiklus" => $pengajuanSiklus
         ];
 		return view('/pengawas/dataOperasional', $data, $data_log);
 	}

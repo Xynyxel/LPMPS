@@ -7,6 +7,7 @@ use App\Models\LPMP;
 use App\Models\SiklusPeriode;
 use App\Models\Sekolah;
 use Carbon\Carbon;
+use App\Models\PengajuanSiklus;
 
 class LPMPController extends Controller
 {
@@ -22,10 +23,12 @@ class LPMPController extends Controller
 	public function dataOperasional(){
         $data_log = ['LoggedUserInfo'=>LPMP::where('id','=', session('LoggedUserLpmp'))-> first()];
         $listSekolah = Sekolah::all();
+        $pengajuanSiklus = PengajuanSiklus::where('siklus_periode_id', siklus()->id)->get();
         
         $data = [
             "siklus" => siklus(),
             "listSekolah" => $listSekolah,
+            "listPengajuanSiklus" => $pengajuanSiklus
         ];
 		return view('/lpmp/dataOperasional', $data, $data_log);
 	}
@@ -66,5 +69,26 @@ class LPMPController extends Controller
     public function hapus($id) {
         LPMP::find($id)->delete();
         return redirect("/dataMaster");
+    }
+
+    public function diproses($id){
+        $pengajuanSiklus = PengajuanSiklus::find($id);
+        $pengajuanSiklus->status = 2;
+        $pengajuanSiklus->save();
+        return redirect('/lpmp/dataOperasional');
+    }
+
+    public function diterima($id){
+        $pengajuanSiklus = PengajuanSiklus::find($id);
+        $pengajuanSiklus->status = 3;
+        $pengajuanSiklus->save();
+        return redirect('/lpmp/dataOperasional');
+    }
+
+    public function komunikasi($id){
+        $pengajuanSiklus = PengajuanSiklus::find($id);
+        $pengajuanSiklus->status = 4;
+        $pengajuanSiklus->save();
+        return redirect('/lpmp/dataOperasional');
     }
 }
