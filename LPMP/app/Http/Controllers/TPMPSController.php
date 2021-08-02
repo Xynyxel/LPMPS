@@ -39,6 +39,7 @@ class TPMPSController extends Controller
 
         $data = [
             "siklus" => siklus(),
+            "pengajuanSiklus" => $this->getPengajuanSiklus()
         ];
         return view('tpmps/index', $data, $data_log);
     }
@@ -82,7 +83,8 @@ class TPMPSController extends Controller
             'listKegiatan' => $kegiatan,
             'listSubIndikator' => $subIndikator,
             'verifikasi' => $verifikasi,
-            'verifikasiPengajuanCek' => $verifikasiPengajuanCek
+            'verifikasiPengajuanCek' => $verifikasiPengajuanCek,
+            "pengajuanSiklus" => $this->getPengajuanSiklus()
         ];
         return view('/tpmps/dataOperasional', $data, $data_log);
     }
@@ -94,6 +96,7 @@ class TPMPSController extends Controller
         $data = [
             "siklus" => siklus(),
             "sekolah" => Sekolah::where("id", $data_log['LoggedUserInfo']->sekolah_id)->first(),
+            "pengajuanSiklus" => $this->getPengajuanSiklus()
         ];
         return view('/tpmps/laporan', $data, $data_log);
     }
@@ -218,5 +221,12 @@ class TPMPSController extends Controller
             "siklus_periode_id" => $siklus_periode
         ]);
         return redirect('/tpmps/dataOperasional');
+    }
+
+    function getPengajuanSiklus(){
+        $tpmps = TPMPS::where('id', '=', session('LoggedUserTpmps'))->first();
+        return PengajuanSiklus::where('tpmps_id', $tpmps->id)
+                                        ->where('siklus_periode_id', siklus()->id)
+                                        ->first();
     }
 }

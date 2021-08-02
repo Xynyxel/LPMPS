@@ -119,6 +119,7 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $sekolah->nama }}</td>
                                                 <td>
+                                                @if (count($sekolah->tpmps->pengajuan_siklus)>0)
                                                     @if ($sekolah->tpmps->pengajuan_siklus[0]->status == 1)
                                                         <span class="badge badge-primary-100 text-primary">Diajukan</span>
                                                     @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 2)
@@ -132,6 +133,7 @@
                                                         <span class="badge badge-secondary-100 text-secondary">Belum ada
                                                             status</span>
                                                     @endif
+                                                @endif
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="dropdown">
@@ -143,9 +145,9 @@
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <a onclick="fillRaport({{ $sekolah->id }})"
                                                                 class="dropdown-item" data-toggle="modal"
-                                                                data-target="#raportSekolah">
+                                                                 data-target="#raportSekolah">
                                                                 <i class="fas fa-file-alt">
-                                                                    <span>Raport Sekolah</span>
+                                                                   <span>Raport Sekolah</span>
                                                                 </i>
                                                             </a>
                                                             @if ($sekolah->tpmps->pengajuan_siklus[0]->status == 1)
