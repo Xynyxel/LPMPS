@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SubIndikator;
 use App\Models\Indikator;
 use App\Models\RaportSekolah;
+use App\Models\RaportSekolahKoreksi;
 
 class SubIndikatorController extends Controller
 {
@@ -22,15 +23,25 @@ class SubIndikatorController extends Controller
     }
 
     public function kekuatan($id, $sekolah_id) {
-        $raport = RaportSekolah::select('si.*','raport_sekolah.nilai')
-            ->join('sub_indikator as si','si.id','raport_sekolah.sub_indikator_id')
-            ->join('raport_kpi as rk','rk.sub_indikator_id','si.id')
-            ->join('kota_kabupaten as kk','kk.id','rk.kota_kabupaten_id')
-            ->join('sekolah as s','s.kota_kabupaten_id','kk.id')
-            ->where('raport_sekolah.nilai','>=','rk.nilai_kpi')
-            ->where('s.id',$sekolah_id)
-            ->where('si.indikator_id',$id)
-            ->get();
+        // $raport = RaportSekolah::select('si.*','raport_sekolah.nilai')
+        //     ->join('sub_indikator as si','si.id','raport_sekolah.sub_indikator_id')
+        //     ->join('raport_kpi as rk','rk.sub_indikator_id','si.id')
+        //     ->join('kota_kabupaten as kk','kk.id','rk.kota_kabupaten_id')
+        //     ->join('sekolah as s','s.kota_kabupaten_id','kk.id')
+        //     ->where('raport_sekolah.nilai','>=','rk.nilai_kpi')
+        //     ->where('s.id',$sekolah_id)
+        //     ->where('si.indikator_id',$id)
+        //     ->get();
+
+        $raport = RaportSekolah::select('sub_indikator.nama','raport_sekolah.nilai','raport_kpi.nilai_kpi')
+                ->join('sub_indikator','raport_sekolah.sub_indikator_id','sub_indikator.id')
+                ->join('raport_kpi','raport_kpi.sub_indikator_id','sub_indikator.id')
+                ->join('kota_kabupaten','raport_kpi.kota_kabupaten_id','kota_kabupaten.id')
+                ->join('sekolah','sekolah.kota_kabupaten_id','kota_kabupaten.id')
+                ->where('raport_sekolah.nilai ','>=','raport_kpi.nilai_kpi')
+                ->where('sekolah.id',$sekolah_id)
+                ->where('sub_indikator.indikator_id',$id)
+                ->get();
 
         // $data = [];
         // for($i = 0; $i < $raport->count(); $i++) {
