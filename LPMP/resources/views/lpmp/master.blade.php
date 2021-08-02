@@ -32,6 +32,7 @@
 	<script src="{{asset('js/demo_charts/pages/dashboard_6/light/bars_grouped.js')}}"></script>
 	<script src="{{asset('js/demo_charts/pages/dashboard_6/light/line_label_marks.js')}}"></script>
 	<!-- /theme JS files -->
+	<script src="{{asset('ckeditor5/ckeditor.js')}}"></script>
 </head>
 <body>
 	
