@@ -14,15 +14,18 @@
             color: white;
             outline: none;
         }
+
         #modal-custom {
             overflow-y: auto;
-            max-height: 50vh!important;
+            max-height: 50vh !important;
         }
+
         .comment-container {
             display: flex;
             flex-direction: column;
             margin-top: 25px;
         }
+
         .comment-header {
             display: flex;
             flex-direction: row;
@@ -30,22 +33,27 @@
             font-weight: bold;
             font-size: 1.2em;
         }
+
         .comment-body {
             display: flex;
         }
+
         .comment {
             padding: 10px;
             border: 1px solid #ddd;
             width: 80%;
             border-radius: 10px;
         }
+
         .date {
             display: flex;
             flex-direction: column;
         }
-        #editor { 
+
+        #editor {
             width: 100%;
         }
+
         .ck-content {
             min-height: 100px;
         }
@@ -54,18 +62,22 @@
             display: flex;
             width: 100%;
         }
+
         .left .comment-header {
             display: flex;
             justify-content: flex-start;
             margin-bottom: 10px;
         }
-        .left .comment-body{
+
+        .left .comment-body {
             justify-content: flex-start;
             align-items: center;
         }
+
         .left .comment {
             margin-right: 20px;
         }
+
         .left .date {
             align-items: flex-start;
         }
@@ -74,20 +86,25 @@
             display: flex;
             width: 100%;
         }
+
         .right .comment-header {
             display: flex;
             justify-content: flex-end;
         }
-        .right .comment-body{
+
+        .right .comment-body {
             justify-content: flex-end;
             align-items: center;
         }
+
         .right .comment {
             margin-left: 20px;
         }
+
         .right .date {
             align-items: flex-end;
         }
+
     </style>
     <!-- Content area -->
     <div class="content container pt-3">
@@ -119,16 +136,32 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $sekolah->nama }}</td>
                                                 <td>
-                                                    @if ($sekolah->tpmps->pengajuan_siklus[0]->status == 1)
-                                                        <span class="badge badge-primary-100 text-primary">Diajukan</span>
-                                                    @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 2)
-                                                        <span class="badge badge-info-100 text-info">Diproses</span>
-                                                    @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 3)
-                                                        <span class="badge badge-success-100 text-success">Diterima</span>
-                                                    @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 4)
-                                                        <span class="badge badge-warning-100 text-warning">Komunikasi
-                                                            koordinasi</span>
-                                                    @else
+                                                    @php
+                                                        $cek = false;
+                                                        $pengajuanSiklusstatus="";
+                                                    @endphp
+                                                    @foreach ($listPengajuanSiklus as $pengajuanSiklus)
+                                                        @if ($pengajuanSiklus->tpmps->id == $sekolah->id)
+                                                            @php
+                                                                $cek = true;
+                                                                $pengajuanSiklusstatus = $pengajuanSiklus;
+                                                            @endphp
+                                                            @if ($pengajuanSiklus->status == 1)
+                                                                <span
+                                                                    class="badge badge-primary-100 text-primary">Diajukan</span>
+                                                            @elseif($pengajuanSiklus->status == 2)
+                                                                <span class="badge badge-info-100 text-info">Diproses</span>
+                                                            @elseif($pengajuanSiklus->status == 3)
+                                                                <span
+                                                                    class="badge badge-success-100 text-success">Diterima</span>
+                                                            @elseif($pengajuanSiklus->status == 4)
+                                                                <span
+                                                                    class="badge badge-warning-100 text-warning">Komunikasi
+                                                                    koordinasi</span>
+                                                            @endif
+                                                        @endif
+                                                    @endforeach
+                                                    @if ($cek == false)
                                                         <span class="badge badge-secondary-100 text-secondary">Belum ada
                                                             status</span>
                                                     @endif
@@ -148,33 +181,35 @@
                                                                     <span>Raport Sekolah</span>
                                                                 </i>
                                                             </a>
-                                                            @if ($sekolah->tpmps->pengajuan_siklus[0]->status == 1)
-                                                                <a href="/pengawas/dataOperasional/diproses/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
+                                                            @if ($pengajuanSiklusstatus->status == 1)
+                                                                <a href="/pengawas/dataOperasional/diproses/{{ $pengajuanSiklusstatus->id }}"
                                                                     class="dropdown-item">
                                                                     <i class="fas fa-tasks">
                                                                         <span>Diproses</span>
                                                                     </i>
                                                                 </a>
-                                                            @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 2)
-                                                                <a href="/pengawas/dataOperasional/diterima/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
+                                                            @elseif($pengajuanSiklusstatus->status == 2)
+                                                                <a href="/pengawas/dataOperasional/diterima/{{ $pengajuanSiklusstatus->id }}"
                                                                     class="dropdown-item">
                                                                     <i class="fas fa-check-square">
                                                                         <span>Diterima</span>
                                                                     </i>
                                                                 </a>
-                                                                <a href="/pengawas/dataOperasional/komunikasi/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
+                                                                <a href="/pengawas/dataOperasional/komunikasi/{{ $pengajuanSiklusstatus->id }}"
                                                                     class="dropdown-item">
                                                                     <i class="fas fa-comment-alt">
                                                                         <span>Komunikasi</span>
                                                                     </i>
                                                                 </a>
-                                                            @elseif($sekolah->tpmps->pengajuan_siklus[0]->status == 4)
-                                                                <a href="" class="dropdown-item" data-toggle="modal" data-target="#comments" onclick="setID({{ $sekolah->id }})">
+                                                            @elseif($pengajuanSiklusstatus->status == 4)
+                                                                <a href="" class="dropdown-item" data-toggle="modal"
+                                                                    data-target="#comments"
+                                                                    onclick="setID({{ $sekolah->id }})">
                                                                     <i class="fas fa-comments">
                                                                         <span>Komentar</span>
                                                                     </i>
                                                                 </a>
-                                                                <a href="/pengawas/dataOperasional/diterima/{{ $sekolah->tpmps->pengajuan_siklus[0]->id }}"
+                                                                <a href="/pengawas/dataOperasional/diterima/{{ $pengajuanSiklusstatus->id }}"
                                                                     class="dropdown-item">
                                                                     <i class="fas fa-check-square">
                                                                         <span>Diterima</span>
@@ -197,8 +232,8 @@
     </div>
 
     <!-- Comments -->
-	<div class="modal fade" id="comments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+    <div class="modal fade" id="comments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -265,19 +300,19 @@
 
         let editor;
         ClassicEditor
-            .create( document.querySelector( '#editor' ) )
+            .create(document.querySelector('#editor'))
             .then(newEditor => {
                 editor = newEditor
             })
-            .catch( error => {
-                console.error( error );
-            } );
+            .catch(error => {
+                console.error(error);
+            });
 
         const getData = async () => {
             const id = sessionStorage.getItem('sekolahID')
             const response = await fetch(`${url}/pengawas/comments/${id ? id : 0}`);
             const data = response.json();
-            return new Promise(resolve=>{
+            return new Promise(resolve => {
                 resolve(data);
             });
         }
@@ -286,7 +321,7 @@
             const listComment = document.getElementById('list-comments');
             const comments = await getData();
             listComment.innerHTML = "";
-            if(comments.length > 0) {
+            if (comments.length > 0) {
                 comments.forEach(comment => {
                     const arr = comment.tanggal_komentar.split(' ');
                     const direction = comment.status_pemberi_komentar == 2 ? "right" : "left"
@@ -301,40 +336,39 @@
                             </div>
                             <div class="comment-body">
                                 ${direction == "left" ? `
-                                    <div class="comment">
-                                        ${comment.komentar}
-                                    </div>
-                                    <h6 class="date">
-                                        <span>${arr[0]}</span>
-                                        <span>${arr[1]}</span>
-                                    </h6>
-                                ` : `
-                                    <h6 class="date">
-                                        <span>${arr[0]}</span>
-                                        <span>${arr[1]}</span>
-                                    </h6>
-                                    <div class="comment">
-                                        ${comment.komentar}
-                                    </div>
-                                `}
+                                        <div class="comment">
+                                            ${comment.komentar}
+                                        </div>
+                                        <h6 class="date">
+                                            <span>${arr[0]}</span>
+                                            <span>${arr[1]}</span>
+                                        </h6>
+                                    ` : `
+                                        <h6 class="date">
+                                            <span>${arr[0]}</span>
+                                            <span>${arr[1]}</span>
+                                        </h6>
+                                        <div class="comment">
+                                            ${comment.komentar}
+                                        </div>
+                                    `}
                             </div>
                         </div>
                     `;
                 });
-            }
-            else {
+            } else {
                 listComment.innerHTML = "<h1>Tidak ada komentar</h1>"
             }
         }
 
         const setID = (id) => {
             document.getElementById('sekolah').value = id;
-            sessionStorage.setItem('sekolahID',id);
+            sessionStorage.setItem('sekolahID', id);
         }
 
-        setInterval(()=>{
+        setInterval(() => {
             getComments();
-        },5000);
+        }, 5000);
 
         getComments();
 

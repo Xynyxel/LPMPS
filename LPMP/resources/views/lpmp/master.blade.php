@@ -47,10 +47,7 @@ if(isset($siklus)) {
 	<div class="navbar navbar-expand-xl navbar-light navbar-static px-0">
 		<div class="d-flex flex-1 pl-3">
 			<div class="navbar-brand wmin-0 mr-1">
-				<a href="index.html" class="d-inline-block">
-					<img src="{{asset('images/logo_dark.png')}}" class="d-none d-sm-block" alt="">
-					<img src="{{asset('images/logo_icon_dark.png')}}" class="d-sm-none" alt="">
-				</a>
+				<a href="index.html" class="d-inline-block"><h6 class="m-0">LPMP</h6></a>
 			</div>
 		</div>
 

@@ -166,6 +166,10 @@ Route::group(['middleware'=>['AuthCheckLpmp']], function(){
     Route::get('/lpmp/home',[LPMPController::class, 'home']);
     Route::get('/lpmp/dataOperasional',[LPMPController::class, 'dataOperasional']);
     Route::get('/lpmp/laporan',[LPMPController::class, 'laporan']);
+
+    Route::get('/lpmp/dataOperasional/diproses/{id}',[LPMPController::class,'diproses']);
+    Route::get('/lpmp/dataOperasional/diterima/{id}',[LPMPController::class,'diterima']);
+    Route::get('/lpmp/dataOperasional/komunikasi/{id}',[LPMPController::class,'komunikasi']);
 });
 
 // Pengawas
