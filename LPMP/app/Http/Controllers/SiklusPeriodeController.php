@@ -21,6 +21,14 @@ class SiklusPeriodeController extends Controller
     }
     
     public function ubah(Request $request, $id) {
+        if ($id > 1) {
+            $check = SiklusPeriode::where('id',$id-1)
+                ->where('tanggal_selesai','>',$request->tanggal_mulai)->get();
+            if ($check->count() > 0) {
+                return redirect("/dataOperasional")->with('fail','Tanggal sudah ditempati oleh siklus lain');
+            }
+        }
+        
         $siklusPeriode = SiklusPeriode::find($id);
         $siklusPeriode->siklus = $request->siklus;
         $siklusPeriode->tanggal_mulai = $request->tanggal_mulai;

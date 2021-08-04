@@ -48,13 +48,18 @@
 			</div>
 		</div>
 
+		@if (Session::get('fail'))
+            <div class="alert alert-danger">
+                {{ Session::get('fail') }}
+            </div>
+        @endif
+
 		{{-- Table Siklus Periode --}}
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
 						<span class="card-title font-weight-semibold">Data Siklus Periode</span>
-						<button onclick="add()" class="btn btn-primary" data-toggle="modal" data-target="#siklusPeriode">Tambah</button>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive border-top-0">
@@ -120,15 +125,15 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="col-form-label">Siklus</label>
-							<input type="number" name="siklus" min="1" value="1" class="form-control" id="siklus_periode_siklus" required />
+							<input type="number" name="siklus" min="1" value="1" class="form-control" id="siklus_periode_siklus" readonly />
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Tanggal Mulai</label>
-							<input type="date" name="tanggal_mulai" class="form-control" id="siklus_periode_tanggal_mulai" required />
+							<input type="date" name="tanggal_mulai" onchange="setTanggalSelesai(event)" class="form-control" id="siklus_periode_tanggal_mulai" required />
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Tanggal Selesai</label>
-							<input type="date" name="tanggal_selesai" class="form-control" id="siklus_periode_tanggal_selesai" required />
+							<input type="date" name="tanggal_selesai" onchange="setTanggalMulai(event)" class="form-control" id="siklus_periode_tanggal_selesai" required />
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -176,21 +181,14 @@
 	<script>
 		const url = "{{URL::to('/')}}";
 
-		const add = () => {
-			const form = document.getElementById('form_siklus_periode');
-			const title = document.getElementById('title_form_siklus_periode');
-			const siklus = document.getElementById('siklus_periode_siklus');
-			const tanggalMulai = document.getElementById('siklus_periode_tanggal_mulai');
-			const tanggalSelesai = document.getElementById('siklus_periode_tanggal_selesai');
-			const btn = document.getElementById('btn_siklus_periode');
-			
-			form.action = `/siklusPeriode/tambah`;
-			title.innerText = "Tambah Siklus Periode";
-			siklus.value = "1"
-			tanggalMulai.value = ""
-			tanggalSelesai.value = ""
-			btn.value = "Tambah";
+		const setTanggalSelesai = (e) => {
+			document.getElementById('siklus_periode_tanggal_selesai').min=e.target.value;
 		}
+
+		const setTanggalMulai = (e) => {
+			document.getElementById('siklus_periode_tanggal_mulai').max=e.target.value;
+		}
+
 		const edit = (id) => {
 			const form = document.getElementById('form_siklus_periode');
 			const title = document.getElementById('title_form_siklus_periode');
