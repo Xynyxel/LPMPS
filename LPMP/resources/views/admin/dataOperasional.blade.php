@@ -9,7 +9,7 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
-						<span class="card-title font-weight-semibold">Data Sekolah</span>
+						<span class="card-title font-weight-semibold">Raport Sekolah</span>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive border-top-0">
@@ -63,7 +63,7 @@
 									<tr>
 										<th>No</th>
 										<th>Siklus</th>
-										<th>Tanggal Akhir</th>
+										<th>Tanggal Mulai</th>
 										<th>Tanggal Selesai</th>
 										<th class="text-center" style="width: 20px;"><i class="fa fa-chevron-down"></i></th>
 									</tr>
@@ -152,7 +152,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="table-responsive border-top-0">
-						<table class="table text-nowrap" id="table-raport-sekolah">
+						<table class="table" id="table-raport-sekolah">
 							<thead>
 								<tr>
 									<th>No</th>

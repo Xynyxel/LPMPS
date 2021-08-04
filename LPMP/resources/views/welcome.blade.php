@@ -1,14 +1,18 @@
 @extends('master')
 @section('content')
+    <style>
+        h4 {
+            margin: 0;
+        }
+    </style>
     {{-- content --}}
-    <div class="container">
-
-        <div class="row">
+    <div class="container" style="padding: 1.25rem; display: flex; flex-grow:1; flex-direction: column; justify-content: space-evenly">
+        <div class="d-flex justify-content-between">
             {{-- admin --}}
-            <div class="col-md-2">
-                <div class="card border-info mb-3" style="width: 30rem;">
+            <div class="col-md-5">
+                <div class="card">
                     <div class="card-body">
-                        <h3>Admin</h3>
+                        <h1 style="font-weight: bold">Admin</h1>
                         <p class="lead mb-0">
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
@@ -23,10 +27,10 @@
                 </div>
             </div>
             {{-- tpmps --}}
-            <div class="col-md-2 offset-md-4">
-                <div class="card border-info mb-3" style="width: 30rem;">
+            <div class="col-md-5">
+                <div class="card">
                     <div class="card-body">
-                        <h3>TPMPS</h3>
+                        <h1 style="font-weight: bold">TPMPS</h1>
                         <p class="lead mb-0">
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
@@ -42,12 +46,12 @@
             </div>
         </div>
 
-        <div class="row" style="margin-top:100px">
+        <div class="d-flex justify-content-between">
             {{-- pengawas --}}
-            <div class="col-md-2">
-                <div class="card border-info mb-3" style="width: 30rem;">
+            <div class="col-md-5">
+                <div class="card">
                     <div class="card-body">
-                        <h3>Pengawas</h3>
+                        <h1 style="font-weight: bold">Pengawas</h1>
                         <p class="lead mb-0">
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
@@ -62,10 +66,10 @@
                 </div>
             </div>
             {{-- lpmp --}}
-            <div class="col-md-2 offset-md-4">
-                <div class="card border-info mb-3" style="width: 30rem;">
+            <div class="col-md-5">
+                <div class="card">
                     <div class="card-body">
-                        <h3>LPMP</h3>
+                        <h1 style="font-weight: bold">LPMP</h1>
                         <p class="lead mb-0">
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
@@ -81,6 +85,4 @@
             </div>
         </div>
     </div>
-    <br>
-    <br>
 @endsection
