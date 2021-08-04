@@ -17,8 +17,10 @@
             width: fit-content!important;
         }
     </style>
+
     <!-- Content area -->
     <div class="content container pt-3">
+        <!-- Modal Loading -->
         <div class="modal fade" id="loading" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-small" role="document">
@@ -34,6 +36,7 @@
             </div>
         </div>
         <!-- Modal Loading -->
+
         @if (isset($siklus))
             @if ($siklus->siklus == 1)
                 <h1>Siklus 1</h1>
@@ -77,7 +80,6 @@
                                                     </i>
                                                 </button>
                                             </td>
-                                            {{--  --}}
                                             <!-- Ajukan Modal -->
                                             <div class="modal fade" id="ajukanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -149,31 +151,28 @@
                                     <tr>
                                         <td>
                                             <div class="p-2 bd-highlight">
-                                                <button class="btn btn-primary" style="width: 100%; id=" akarMasalahBtn"
-                                                    data-toggle="modal" data-target="#akarMasalahModal">
-                                                    <i class="fas fa-plus-square">
-                                                        <span>Akar Masalah</span>
-                                                    </i>
+                                                <button class="btn btn-primary" id="akarMasalahBtn" style="width: 100%;"
+                                                    {{-- data-toggle="modal" data-target="#akarMasalahModal" --}}
+                                                    >
+                                                    <span>Akar Masalah</span>
                                                 </button>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="p-2 bd-highlight">
-                                                <button class="btn btn-primary" style="width: 100%; id=" rekomendasiBtn"
-                                                    data-toggle="modal" data-target="#rekomendasiModal">
-                                                    <i class="fas fa-plus-square">
-                                                        <span>Rekomendasi</span>
-                                                    </i>
+                                                <button class="btn btn-primary" id="rekomendasiBtn" style="width: 100%;"
+                                                    {{-- data-toggle="modal" data-target="#rekomendasiModal" --}}
+                                                    >
+                                                    <span>Rekomendasi</span>
                                                 </button>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="p-2 bd-highlight">
-                                                <button class="btn btn-primary" id="MasalahBtn" data-toggle="modal"
-                                                    data-target="#masalahModal" style="width: 100%">
-                                                    <i class="fas fa-plus-square">
-                                                        <span>Masalah</span>
-                                                    </i>
+                                                <button class="btn btn-primary" id="masalahBtn" style="width: 100%"
+                                                    {{-- data-toggle="modal" data-target="#masalahModal" --}}
+                                                    >
+                                                    <span>Masalah</span>
                                                 </button>
                                             </div>
                                         </td>
@@ -288,6 +287,207 @@
                     </div>
                 </div>
 
+                {{-- Tabel Akar Masalah --}}
+                <div class="row" id="rowAkarMasalah" style="display: none">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <span class="card-title font-weight-semibold">Data Akar Masalah</span>
+                                <button onclick="add('akarMasalah')" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#akarMasalahModal">Tambah</button>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive border-top-0">
+                                    <table class="table" id="table-akar-masalah">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Tahun</th>
+                                                <th>Deskripsi</th>
+                                                <th>Status</th>
+                                                <th>Tanggal</th>
+                                                <th>Sekolah</th>
+                                                <th>Indikator</th>
+                                                <th class="text-center" style="width: 20px;"><i class="fa fa-chevron-down"></i></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($listAkarMasalah->count() > 0)
+                                                @php
+                                                    $no = 1;
+                                                @endphp
+                                                @foreach ($listAkarMasalah as $akarMasalah)
+                                                    <tr>
+                                                        <td>{{ $no++ }}</td>
+                                                        <td>{{ $akarMasalah->tahun }}</td>
+                                                        <td>{{ $akarMasalah->deskripsi }}</td>
+                                                        <td>{{ $akarMasalah->status }}</td>
+                                                        <td>{{ $akarMasalah->datetime }}</td>
+                                                        <td>{{ $akarMasalah->sekolah->nama }}</td>
+                                                        <td>{{ $akarMasalah->indikator->nama }}</td>
+                                                        <td class="text-center">
+                                                            <div class="dropdown">
+                                                                <a href="#"
+                                                                    class="btn btn-outline-light btn-icon btn-sm text-body border-transparent rounded-pill"
+                                                                    data-toggle="dropdown">
+                                                                    <i class="fa fa-bars"></i>
+                                                                </a>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <a onclick="edit('akarMasalah',{{ $akarMasalah->id }})"
+                                                                        class="dropdown-item" data-toggle="modal"
+                                                                        data-target="#akarMasalahModal">
+                                                                        <i class="fa fa-edit"></i>Edit
+                                                                    </a>
+                                                                    <a href="/tpmps/dataOperasional/hapusAkarMasalah/{{ $akarMasalah->id }}"
+                                                                        class="dropdown-item"><i class="fa fa-trash"></i>Hapus</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Tabel Rekomendasi --}}
+                <div class="row" id="rowRekomendasi" style="display: none">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <span class="card-title font-weight-semibold">Data Rekomendasi</span>
+                                <button onclick="add('rekomendasi')" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#rekomendasiModal">Tambah</button>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive border-top-0">
+                                    <table class="table" id="table-rekomendasi">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Tahun</th>
+                                                <th>Deskripsi</th>
+                                                <th>Status</th>
+                                                <th>Tanggal</th>
+                                                <th>Sekolah</th>
+                                                <th>Indikator</th>
+                                                <th class="text-center" style="width: 20px;"><i class="fa fa-chevron-down"></i></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($listRekomendasi->count() > 0)
+                                                @php
+                                                    $no = 1;
+                                                @endphp
+                                                @foreach ($listRekomendasi as $rekomendasi)
+                                                    <tr>
+                                                        <td>{{ $no++ }}</td>
+                                                        <td>{{ $rekomendasi->tahun }}</td>
+                                                        <td>{{ $rekomendasi->deskripsi }}</td>
+                                                        <td>{{ $rekomendasi->status }}</td>
+                                                        <td>{{ $rekomendasi->datetime }}</td>
+                                                        <td>{{ $rekomendasi->sekolah->nama }}</td>
+                                                        <td>{{ $rekomendasi->indikator->nama }}</td>
+                                                        <td class="text-center">
+                                                            <div class="dropdown">
+                                                                <a href="#"
+                                                                    class="btn btn-outline-light btn-icon btn-sm text-body border-transparent rounded-pill"
+                                                                    data-toggle="dropdown">
+                                                                    <i class="fa fa-bars"></i>
+                                                                </a>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <a onclick="edit('rekomendasi',{{ $rekomendasi->id }})"
+                                                                        class="dropdown-item" data-toggle="modal"
+                                                                        data-target="#rekomendasihModal">
+                                                                        <i class="fa fa-edit"></i>Edit
+                                                                    </a>
+                                                                    <a href="/rekomendasi/hapus/{{ $rekomendasi->id }}"
+                                                                        class="dropdown-item"><i class="fa fa-trash"></i>Hapus</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Tabel Masalah --}}
+                <div class="row" id="rowMasalah" style="display: none">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <span class="card-title font-weight-semibold">Data Masalah</span>
+                                <button onclick="add('masalah')" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#masalahModal">Tambah</button>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive border-top-0">
+                                    <table class="table" id="table-masalah">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Tahun</th>
+                                                <th>Deskripsi</th>
+                                                <th>Status</th>
+                                                <th>Tanggal</th>
+                                                <th>Sekolah</th>
+                                                <th>Indikator</th>
+                                                <th class="text-center" style="width: 20px;"><i class="fa fa-chevron-down"></i></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($listMasalah->count() > 0)
+                                                @php
+                                                    $no = 1;
+                                                @endphp
+                                                @foreach ($listMasalah as $masalah)
+                                                    <tr>
+                                                        <td>{{ $no++ }}</td>
+                                                        <td>{{ $masalah->tahun }}</td>
+                                                        <td>{{ $masalah->deskripsi }}</td>
+                                                        <td>{{ $masalah->status }}</td>
+                                                        <td>{{ $masalah->datetime }}</td>
+                                                        <td>{{ $masalah->sekolah->nama }}</td>
+                                                        <td>{{ $masalah->indikator->nama }}</td>
+                                                        <td class="text-center">
+                                                            <div class="dropdown">
+                                                                <a href="#"
+                                                                    class="btn btn-outline-light btn-icon btn-sm text-body border-transparent rounded-pill"
+                                                                    data-toggle="dropdown">
+                                                                    <i class="fa fa-bars"></i>
+                                                                </a>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <a onclick="edit('masalah',{{ $masalah->id }})"
+                                                                        class="dropdown-item" data-toggle="modal"
+                                                                        data-target="#masalahhModal">
+                                                                        <i class="fa fa-edit"></i>Edit
+                                                                    </a>
+                                                                    <a href="/masalah/hapus/{{ $masalah->id }}"
+                                                                        class="dropdown-item"><i class="fa fa-trash"></i>Hapus</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Modal -->
                 {{-- akar masalah --}}
                 <div class="modal fade" id="akarMasalahModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -295,11 +495,12 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tambah Akar Masalah</h5>
+                                <h5 class="modal-title" id="title-modal-akar-masalah">Tambah Akar Masalah</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+
                             <form id="formManual" action="/tpmps/dataOperasional/tambahAkarMasalah" method="post">
                                 @csrf
                                 <div class="modal-body">
@@ -337,7 +538,32 @@
                                 </div>
                             </form>
 
-
+                            <form id="formEdit" method="post">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Deskripsi</label>
+                                            <textarea class="form-control" id="akar-masalah-deskripsi" rows="3"
+                                                name="deskripsi"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <select class="custom-select" id="akar-masalah-indikator" name="indikator_id">
+                                            <option selected>Pilih Jenis Indikator...</option>
+                                            @foreach ($listIndikator as $indikator)
+                                                <option value="{{ $indikator->id }}">{{ $indikator->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <input type="hidden" id="sekolah_id" name="sekolah_id"
+                                        value="{{ $LoggedUserInfo['sekolah_id'] }}">
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary" value="Ubah"></button>
+                                </div>
+                            </form>
+                            
                             <form id="formOtomatis" action="/tpmps/dataOperasional/tambahAkarMasalah" method="post">
                                 @csrf
                                 <div class="modal-body">
@@ -462,15 +688,19 @@
                         </div>
                     </div>
                 </div>
+
                 <script>
                     var cekAkarMasalah = document.getElementById('switchAkarMasalah');
                     var formManual = document.getElementById('formManual');
                     var formOtomatis = document.getElementById('formOtomatis');
+                    var formEdit = document.getElementById('formEdit');
 
                     formManual.style.display = 'none';
                     formOtomatis.style.display = 'block';
+                    formEdit.style.display = 'none';
                     cekAkarMasalah.addEventListener('change', (e) => {
                         formManual.style.display = 'none';
+                        formEdit.style.display = 'none';
                         formOtomatis.style.display = 'none';
                         if (e.target.checked) {
                             formManual.style.display = "block";
@@ -478,6 +708,119 @@
                             formOtomatis.style.display = "block";
                         }
                     })
+                    const table = ['table-akar_masalah','table-masalah','table-rekomendasi']
+                    const row = ['rowAkarMasalah', 'rowMasalah','rowRekomendasi']
+
+                    const akarMasalahBtn = document.getElementById('akarMasalahBtn');
+                    const masalahBtn = document.getElementById('masalahBtn');
+                    const rekomendasiBtn = document.getElementById('rekomendasiBtn');
+
+                    window.addEventListener("DOMContentLoaded", () => {
+                        closeAll();
+                        akarMasalahBtn.addEventListener('click', () => {
+                            blockID('rowAkarMasalah');
+                        })
+                        masalahBtn.addEventListener('click', () => {
+                            blockID('rowMasalah');
+                        })
+                        rekomendasiBtn.addEventListener('click', () => {
+                            blockID('rowRekomendasi');
+                        })
+                    })
+
+                    const edit = (table, id) => {
+                        if(table == "akarMasalah") {
+                            const title = document.getElementById('title-modal-akar-masalah');
+                            const deskripsi = document.getElementById('akar-masalah-deskripsi');
+                            const indikator = document.getElementById('akar-masalah-indikator');
+                            fetch(`${url}/tpmps/dataOperasional/editAkarMasalah/${id}`)
+                                .then(response=>response.json())
+                                .then(data=>{
+                                    formManual.style.display = 'none';
+                                    formOtomatis.style.display = 'none';
+                                    formEdit.style.display = 'block';
+                                    formEdit.action=`/tpmps/dataOperasional/ubahAkarMasalah/${id}`
+                                    title.innerText = "Edit Akar Masalah";
+                                    deskripsi.innerText = data.deskripsi;
+                                    indikator.value = data.indikator_id;
+                                })
+                        }
+                        else if(table == "raportKPI") {
+                            const form = document.getElementById('form_raport_kpi');
+                            const title = document.getElementById('title_form_raport_kpi');
+                            const tahun = document.getElementById('raport_kpi_tahun');
+                            const nilai_kpi = document.getElementById('raport_kpi_nilai_kpi');
+                            const kota_kabupaten_id = document.getElementById('raport_kpi_kota_kabupaten_id');
+                            const sub_indikator_id = document.getElementById('raport_kpi_sub_indikator_id');
+                            const btn = document.getElementById('btn_raport_kpi');
+                            fetch(`${url}/raportKPI/edit/${id}`)
+                                .then(response=>response.json())
+                                .then(data=>{
+                                    form.action = `/raportKPI/ubah/${id}`;
+                                    title.innerText = "Edit Raport KPI";
+                                    tahun.value = data.tahun;
+                                    nilai_kpi.value = data.nilai_kpi;
+                                    kota_kabupaten_id.value = data.kota_kabupaten_id;
+                                    sub_indikator_id.value = data.sub_indikator_id;
+                                    btn.value = "Edit";
+                                })
+                        }
+                    }
+                    const add = (table) => {
+                        if(table == "sekolahPengawas") {
+                            const form = document.getElementById('form_sekolah_pengawas');
+                            const title = document.getElementById('title_form_sekolah_pengawas');
+                            const tgl_sk = document.getElementById('sekolah_pengawas_tgl_sk');
+                            const no_sk = document.getElementById('sekolah_pengawas_no_sk');
+                            const sekolah_id = document.getElementById('sekolah_pengawas_sekolah_id');
+                            const pengawas_id = document.getElementById('sekolah_pengawas_pengawas_id');
+                            const btn = document.getElementById('btn_sekolah_pengawas');
+
+                            form.action = "/sekolahPengawas/tambah";
+                            title.innerText = "Tambah Sekolah - Pengawas";
+                            tgl_sk.value = "";
+                            no_sk.value = "";
+                            sekolah_id.value = "";
+                            pengawas_id.value = "";
+                            btn.value = "Tambah";
+                        }
+                        else if(table == "raportKPI") {
+                            const form = document.getElementById('form_raport_kpi');
+                            const title = document.getElementById('title_form_raport_kpi');
+                            const tahun = document.getElementById('raport_kpi_tahun');
+                            const nilai_kpi = document.getElementById('raport_kpi_nilai_kpi');
+                            const kota_kabupaten_id = document.getElementById('raport_kpi_kota_kabupaten_id');
+                            const sub_indikator_id = document.getElementById('raport_kpi_sub_indikator_id');
+                            const btn = document.getElementById('btn_raport_kpi');
+                            fetch(`${url}/raportKPI/edit/${id}`)
+                                .then(response=>response.json())
+                                .then(data=>{
+                                    form.action = `/raportKPI/tambah`;
+                                    title.innerText = "Tambah Raport KPI";
+                                    tahun.value = "";
+                                    nilai_kpi.value = "";
+                                    kota_kabupaten_id.value = "";
+                                    sub_indikator_id.value = "";
+                                    btn.value = "Tambah";
+                                })
+                        }
+                    }
+                    
+                    const blockID = (id) => {
+                        closeAll();
+                        document.getElementById(id).style.display = "block"
+                    }
+
+                    const closeAll = () => {
+                        row.forEach(id => {
+                            document.getElementById(id).style.display = "none"
+                        })
+                    }
+                    $(document).ready(function() {
+                        table.forEach(id => {
+                            $(`#${id}`).DataTable();
+                        });
+                    });
                 </script>
             @elseif($siklus->siklus == 2)
                 <h1>Siklus 2</h1>
@@ -547,9 +890,7 @@
                                                 style="width: 100%; margin-bottom:1.3em" data-toggle="modal"
                                                 data-target="#programModal">
                                                 <div class="d-flex flex-column align-items-center">
-                                                    <i class="fas fa-plus-square">
-                                                        <span class="m-1">Program</span>
-                                                    </i>
+                                                    <span class="m-1">Program</span>
                                                 </div>
                                             </button>
                                         </td>
@@ -560,9 +901,7 @@
                                                 style="width: 100%; margin-bottom:1.3em" data-toggle="modal"
                                                 data-target="#kegiatanModal">
                                                 <div class="d-flex flex-column align-items-center">
-                                                    <i class="fas fa-plus-square">
-                                                        <span class="m-1">Kegiatan</span>
-                                                    </i>
+                                                    <span class="m-1">Kegiatan</span>
                                                 </div>
                                             </button>
                                         </td>
@@ -572,9 +911,7 @@
                                             <button class="btn btn-primary" id="rencanaKerjaBtn" data-toggle="modal"
                                                 data-target="#rencanaKerjaModal">
                                                 <div class="d-flex flex-column align-items-center">
-                                                    <i class="fas fa-plus-square">
-                                                        <span class="m-1">Rencana Kerja</span>
-                                                    </i>
+                                                    <span class="m-1">Rencana Kerja</span>
                                                 </div>
                                             </button>
                                         </td>

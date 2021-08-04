@@ -24,4 +24,21 @@ class AkarMasalahController extends Controller
         ]);
         return redirect("/tpmps/dataOperasional");
     }
+
+    public function edit($id) {
+        return AkarMasalah::find($id);
+    }
+
+    public function ubah(Request $request, $id) {
+        $akarMasalah = AkarMasalah::find($id);
+        $akarMasalah->deskripsi = $request->deskripsi;
+        $akarMasalah->indikator_id = $request->indikator_id;
+        $akarMasalah->save();
+        return redirect('/tpmps/dataOperasional');
+    }
+
+    public function hapus($id) {
+        AkarMasalah::find($id)->delete();
+        return redirect('/tpmps/dataOperasional');
+    }
 }

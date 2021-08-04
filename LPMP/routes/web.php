@@ -204,6 +204,9 @@ Route::group(['middleware'=>['AuthCheckTpmps']], function(){
     Route::post('/tpmps/dataOperasional/tambahMasalah',[MasalahController::class,'tambah']);
     Route::post('/tpmps/dataOperasional/tambahRekomendasi',[RekomendasiController::class,'tambah']);
     Route::post('/tpmps/dataOperasional/tambahAkarMasalah',[AkarMasalahController::class,'tambah']);
+    Route::get('/tpmps/dataOperasional/editAkarMasalah/{id}',[AkarMasalahController::class,'edit']);
+    Route::post('/tpmps/dataOperasional/ubahAkarMasalah/{id}',[AkarMasalahController::class,'ubah']);
+    Route::get('/tpmps/dataOperasional/hapusAkarMasalah/{id}',[AkarMasalahController::class,'hapus']);
     Route::get('/tpmps/dataOperasional/exportTemplate',[TPMPSController::class, 'exportTemplate']);
     Route::post('/tpmps/dataOperasional/KoreksiNilaiRaport',[TPMPSController::class,'koreksiRaportSekolah']);
     Route::get('/tpmps/dataOperasional/ajukan/{id}/{siklus_id}',[TPMPSController::class,'ajukan']);

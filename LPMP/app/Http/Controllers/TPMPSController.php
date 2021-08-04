@@ -19,8 +19,10 @@ use App\Models\Indikator;
 use App\Models\SubIndikator;
 use App\Models\TPMPS;
 use App\Models\SiklusPeriode;
+use App\Models\AkarMasalah;
 use App\Models\AkarMasalahMaster;
 use App\Models\Rekomendasi;
+use App\Models\Masalah;
 use App\Models\Program;
 use App\Models\Kegiatan;
 use App\Models\RaportSekolahKoreksi;
@@ -50,6 +52,8 @@ class TPMPSController extends Controller
         $siklus = siklus();
         $indikator = Indikator::all();
         $akarMasalahMaster = AkarMasalahMaster::all();
+        $akarMasalah = AkarMasalah::where('sekolah_id', $data_log['LoggedUserInfo']->sekolah_id)->get();
+        $masalah = Masalah::where('sekolah_id', $data_log['LoggedUserInfo']->sekolah_id)->get();
         $rekomendasi = Rekomendasi::where('sekolah_id', $data_log['LoggedUserInfo']->sekolah_id)->get();
         $program = Program::where('sekolah_id', $data_log['LoggedUserInfo']->sekolah_id)->get();
         $kegiatan = Kegiatan::select('kegiatan.deskripsi as deskripsi', 'kegiatan.id as id')
@@ -78,6 +82,8 @@ class TPMPSController extends Controller
             "siklus" => $siklus,
             'listIndikator' => $indikator,
             'listAkarMasalahMaster' => $akarMasalahMaster,
+            'listAkarMasalah' => $akarMasalah,
+            'listMasalah' => $masalah,
             'listRekomendasi' => $rekomendasi,
             'listProgram' => $program,
             'listKegiatan' => $kegiatan,
