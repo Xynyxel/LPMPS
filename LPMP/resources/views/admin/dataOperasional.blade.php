@@ -84,7 +84,12 @@
 											<td>{{ $periode->siklus }}</td>
 											<td>{{ $periode->tanggal_mulai }}</td>
 											<td>{{ $periode->tanggal_selesai }}</td>
-											<td class="text-center">
+											<td>
+												<a onclick="edit({{ $periode->id }})" class="btn btn-primary" data-toggle="modal" data-target="#siklusPeriode">
+													<i class="fa fa-edit mr-2"></i>Edit
+												</a>
+											</td>
+											{{-- <td class="text-center">
 												<div class="dropdown">
 													<a href="#" class="btn btn-outline-light btn-icon btn-sm text-body border-transparent rounded-pill" data-toggle="dropdown">
 														<i class="fa fa-bars"></i>
@@ -96,7 +101,7 @@
 														<a href="/siklusPeriode/hapus/{{ $periode->id }}" class="dropdown-item"><i class="fa fa-trash"></i>Hapus</a>
 													</div>
 												</div>
-											</td>
+											</td> --}}
 										</tr>
 									@endforeach
 								@endif
