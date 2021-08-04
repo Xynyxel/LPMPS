@@ -75,12 +75,12 @@ if(isset($siklus)) {
 					</a>
 				</li>
 
-				<li class="nav-item dropdown nav-item-dropdown-xl">
+				{{-- <li class="nav-item dropdown nav-item-dropdown-xl">
 					<a href="/pengawas/laporan" class="navbar-nav-link {{ (request()->is('pengawas/laporan')) ? 'active' : '' }}">
 						<i class="fas fa-file"></i>
 						Laporan
 					</a>
-				</li>
+				</li> --}}
 			</ul>
 		</div>
 

@@ -101,7 +101,7 @@
                         </div>
                         
                         <p class="lead mb-0">
-                            Pengelolaan untuk akun Pengawas<br>
+                            Pengelolaan untuk akun LPMP<br>
                             Berfokus dalam <b>mengawasi data</b> yang 
                             diberikan sekolah serta <b> memeriksa dan memberikan masukan</b>
                             kepada semua sekolah 

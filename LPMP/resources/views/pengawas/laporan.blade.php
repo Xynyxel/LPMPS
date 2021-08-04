@@ -3,20 +3,6 @@
 @section('title',"Laporan - Pengawas")
 
 @section('content')
-    <style>
-        #data1 td, #data2 td, #data3 td, #data4 td {
-            vertical-align: text-top;
-        }
-        .modal {
-            overflow-y: auto;
-        }
-        .modal-big {
-            min-width: 90vw!important;
-        }
-        .modal-small{
-            width: fit-content!important;
-        }
-    </style>
     <div class="content container pt-3">
         {{-- Table Sekolah --}}
         <div class="row">
