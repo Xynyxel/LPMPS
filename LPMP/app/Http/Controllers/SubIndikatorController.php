@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SubIndikator;
 use App\Models\Indikator;
 use App\Models\RaportSekolah;
+use App\Models\RaportSekolahKoreksi;
 
 class SubIndikatorController extends Controller
 {
@@ -22,6 +23,7 @@ class SubIndikatorController extends Controller
     }
 
     public function kekuatan($id, $sekolah_id) {
+
         $raport = RaportSekolah::select('si.*','raport_sekolah.nilai','rk.nilai_kpi')
             ->join('sub_indikator as si','si.id','raport_sekolah.sub_indikator_id')
             ->join('raport_kpi as rk','rk.sub_indikator_id','si.id')
