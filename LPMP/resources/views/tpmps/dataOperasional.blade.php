@@ -402,7 +402,7 @@
                                                                 <div class="dropdown-menu dropdown-menu-right">
                                                                     <a onclick="edit('rekomendasi',{{ $rekomendasi->id }})"
                                                                         class="dropdown-item" data-toggle="modal"
-                                                                        data-target="#rekomendasihModal">
+                                                                        data-target="#rekomendasiModal">
                                                                         <i class="fa fa-edit"></i>Edit
                                                                     </a>
                                                                     <a href="/rekomendasi/hapus/{{ $rekomendasi->id }}"
@@ -469,7 +469,7 @@
                                                                 <div class="dropdown-menu dropdown-menu-right">
                                                                     <a onclick="edit('masalah',{{ $masalah->id }})"
                                                                         class="dropdown-item" data-toggle="modal"
-                                                                        data-target="#masalahhModal">
+                                                                        data-target="#masalahModal">
                                                                         <i class="fa fa-edit"></i>Edit
                                                                     </a>
                                                                     <a href="/masalah/hapus/{{ $masalah->id }}"
@@ -604,12 +604,12 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tambah Rekomendasi</h5>
+                                <h5 class="modal-title" id="title-modal-rekomendasi">Tambah Rekomendasi</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form method="post" action='/tpmps/dataOperasional/tambahRekomendasi'>
+                            <form method="post" id="form-rekomendasi" action='/tpmps/dataOperasional/tambahRekomendasi'>
                                 @csrf
                                 @if (Session::get('fail'))
                                     <div class="alert alert-danger">
@@ -621,13 +621,13 @@
                                         <div class="mb-3">
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Deskripsi</label>
-                                                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"
+                                                <textarea class="form-control" id="rekomendasi-deskripsi" id="deskripsi" name="deskripsi" rows="3"
                                                     required></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <select class="custom-select" id="inputGroupSelect01" name="indikator_id" required>
+                                        <select class="custom-select" id="rekomendasi-indikator" name="indikator_id" required>
                                             <option selected>Pilih Jenis Indikator...</option>
                                             @foreach ($listIndikator as $indikator)
                                                 <option value="{{ $indikator->id }}">{{ $indikator->nama }}</option>
@@ -639,7 +639,7 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="submit" class="btn btn-primary" value="Tambah"></button>
+                                    <input type="submit" class="btn btn-primary" id="rekomendasi-btn" value="Tambah"></button>
                                 </div>
                             </form>
                         </div>
@@ -745,46 +745,53 @@
                                     indikator.value = data.indikator_id;
                                 })
                         }
-                        else if(table == "raportKPI") {
-                            const form = document.getElementById('form_raport_kpi');
-                            const title = document.getElementById('title_form_raport_kpi');
-                            const tahun = document.getElementById('raport_kpi_tahun');
-                            const nilai_kpi = document.getElementById('raport_kpi_nilai_kpi');
-                            const kota_kabupaten_id = document.getElementById('raport_kpi_kota_kabupaten_id');
-                            const sub_indikator_id = document.getElementById('raport_kpi_sub_indikator_id');
-                            const btn = document.getElementById('btn_raport_kpi');
-                            fetch(`${url}/raportKPI/edit/${id}`)
+                        else if(table == "rekomendasi") {
+                            const form = document.getElementById('form-rekomendasi');
+                            const title = document.getElementById('title-modal-rekomendasi');
+                            const deskripsi = document.getElementById('rekomendasi-deskripsi');
+                            const indikator = document.getElementById('rekomendasi-indikator');
+                            const btn = document.getElementById('rekomendasi_btn');
+                            fetch(`${url}/tpmps/dataOperasional/editRekomendasi/${id}`)
                                 .then(response=>response.json())
                                 .then(data=>{
-                                    form.action = `/raportKPI/ubah/${id}`;
-                                    title.innerText = "Edit Raport KPI";
-                                    tahun.value = data.tahun;
-                                    nilai_kpi.value = data.nilai_kpi;
-                                    kota_kabupaten_id.value = data.kota_kabupaten_id;
-                                    sub_indikator_id.value = data.sub_indikator_id;
+                                    form.action = `/tpmps/dataOperasional/ubahRekomendasi/${id}`;
+                                    title.innerText = "Edit Rekomenadasi"
+                                    deskripsi.innerText = data.deskripsi;
+                                    indikator.value = data.indikator_id;
+                                    btn.value = "Edit";
+                                })
+                        }
+                        else if(table == "masalah") {
+                            const form = document.getElementById('form-rekomendasi');
+                            const title = document.getElementById('title-modal-rekomendasi');
+                            const deskripsi = document.getElementById('rekomendasi-deskripsi');
+                            const indikator = document.getElementById('rekomendasi-indikator');
+                            const btn = document.getElementById('rekomendasi_btn');
+                            fetch(`${url}/tpmps/dataOperasional/editRekomendasi/${id}`)
+                                .then(response=>response.json())
+                                .then(data=>{
+                                    form.action = `/tpmps/dataOperasional/ubahRekomendasi/${id}`;
+                                    title.innerText = "Edit Rekomenadasi"
+                                    deskripsi.innerText = data.deskripsi;
+                                    indikator.value = data.indikator_id;
                                     btn.value = "Edit";
                                 })
                         }
                     }
                     const add = (table) => {
-                        if(table == "sekolahPengawas") {
-                            const form = document.getElementById('form_sekolah_pengawas');
-                            const title = document.getElementById('title_form_sekolah_pengawas');
-                            const tgl_sk = document.getElementById('sekolah_pengawas_tgl_sk');
-                            const no_sk = document.getElementById('sekolah_pengawas_no_sk');
-                            const sekolah_id = document.getElementById('sekolah_pengawas_sekolah_id');
-                            const pengawas_id = document.getElementById('sekolah_pengawas_pengawas_id');
-                            const btn = document.getElementById('btn_sekolah_pengawas');
-
-                            form.action = "/sekolahPengawas/tambah";
-                            title.innerText = "Tambah Sekolah - Pengawas";
-                            tgl_sk.value = "";
-                            no_sk.value = "";
-                            sekolah_id.value = "";
-                            pengawas_id.value = "";
+                        if(table == "rekomendasi") {
+                            const form = document.getElementById('form-rekomendasi');
+                            const title = document.getElementById('title-modal-rekomendasi');
+                            const deskripsi = document.getElementById('rekomendasi-deskripsi');
+                            const indikator = document.getElementById('rekomendasi-indikator');
+                            const btn = document.getElementById('rekomendasi_btn');
+                            form.action = `/tpmps/dataOperasional/tambahRekomendasi`;
+                            title.innerText = "Tambah Rekomendasi"
+                            deskripsi.innerText = ""
+                            indikator.value = ""
                             btn.value = "Tambah";
                         }
-                        else if(table == "raportKPI") {
+                        else if(table == "masalah") {
                             const form = document.getElementById('form_raport_kpi');
                             const title = document.getElementById('title_form_raport_kpi');
                             const tahun = document.getElementById('raport_kpi_tahun');
@@ -792,17 +799,11 @@
                             const kota_kabupaten_id = document.getElementById('raport_kpi_kota_kabupaten_id');
                             const sub_indikator_id = document.getElementById('raport_kpi_sub_indikator_id');
                             const btn = document.getElementById('btn_raport_kpi');
-                            fetch(`${url}/raportKPI/edit/${id}`)
-                                .then(response=>response.json())
-                                .then(data=>{
-                                    form.action = `/raportKPI/tambah`;
-                                    title.innerText = "Tambah Raport KPI";
-                                    tahun.value = "";
-                                    nilai_kpi.value = "";
-                                    kota_kabupaten_id.value = "";
-                                    sub_indikator_id.value = "";
-                                    btn.value = "Tambah";
-                                })
+                            form.action = `/tpmps/dataOperasional/tambahRekomendasi`;
+                            title.innerText = "Tambah Rekomendasi"
+                            deskripsi.innerText = ""
+                            indikator.value = ""
+                            btn.value = "Tambah";
                         }
                     }
                     

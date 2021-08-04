@@ -338,17 +338,13 @@
 				const kota_kabupaten_id = document.getElementById('raport_kpi_kota_kabupaten_id');
 				const sub_indikator_id = document.getElementById('raport_kpi_sub_indikator_id');
 				const btn = document.getElementById('btn_raport_kpi');
-				fetch(`${url}/raportKPI/edit/${id}`)
-					.then(response=>response.json())
-					.then(data=>{
-						form.action = `/raportKPI/tambah`;
-						title.innerText = "Tambah Raport KPI";
-						tahun.value = "";
-						nilai_kpi.value = "";
-						kota_kabupaten_id.value = "";
-						sub_indikator_id.value = "";
-						btn.value = "Tambah";
-					})
+				form.action = `/raportKPI/tambah`;
+				title.innerText = "Tambah Raport KPI";
+				tahun.value = "";
+				nilai_kpi.value = "";
+				kota_kabupaten_id.value = "";
+				sub_indikator_id.value = "";
+				btn.value = "Tambah";
 			}
 		}
 		$(document).ready(function() {

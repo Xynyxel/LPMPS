@@ -35,4 +35,21 @@ class RekomendasiController extends Controller
         }
         return redirect("/tpmps/dataOperasional");
     }
+
+    public function edit($id) {
+        return Rekomendasi::find($id);
+    }
+
+    public function ubah(Request $request, $id) {
+        $akarMasalah = Rekomendasi::find($id);
+        $akarMasalah->deskripsi = $request->deskripsi;
+        $akarMasalah->indikator_id = $request->indikator_id;
+        $akarMasalah->save();
+        return redirect('/tpmps/dataOperasional');
+    }
+
+    public function hapus($id) {
+        Rekomendasi::find($id)->delete();
+        return redirect('/tpmps/dataOperasional');
+    }
 }
