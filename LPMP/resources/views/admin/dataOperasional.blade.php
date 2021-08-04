@@ -4,8 +4,31 @@
 @section('content')
 	<!-- Content area -->
 	<div class="content container pt-3">
+		<div class="row justify-content-center mb-3">
+			<div class="col-lg-10">
+				<div class="row justify-content-center">
+					<div class="col-4">
+						<button class="btn btn-info p-3 mr-3" id="raportBtn" style="width: 100%">
+							<div class="d-flex flex-column align-items-center">
+								<i class="fa fa-clipboard fa-2x"></i>
+								<h1 class="m-0">Raport Sekolah</h1>
+							</div>
+						</button>
+					</div>
+					<div class="col-4">
+						<button class="btn btn-success p-3 mr-3" id="siklusBtn" style="width: 100%">
+							<div class="d-flex flex-column align-items-center">
+								<i class="fa fa-sync-alt fa-2x"></i>
+								<h1 class="m-0">Siklus Periode</h1>
+							</div>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		{{-- Table Sekolah --}}
-		<div class="row">
+		<div class="row" id="rowSekolah">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
@@ -55,7 +78,7 @@
         @endif
 
 		{{-- Table Siklus Periode --}}
-		<div class="row">
+		<div class="row" id="rowSiklusPeriode">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
@@ -180,6 +203,32 @@
 
 	<script>
 		const url = "{{URL::to('/')}}";
+		const table = ['table-siklus-periode','table-sekolah', 'table-raport-sekolah']
+		const row = ['rowSekolah', 'rowSiklusPeriode']
+
+		const raportBtn = document.getElementById('raportBtn');
+		const siklusBtn = document.getElementById('siklusBtn');
+
+		window.addEventListener("DOMContentLoaded", () => {
+            closeAll();
+            raportBtn.addEventListener('click', () => {
+                blockID('rowSekolah');
+            })
+            siklusBtn.addEventListener('click', () => {
+                blockID('rowSiklusPeriode');
+            })
+        })
+		
+		const blockID = (id) => {
+            closeAll();
+            document.getElementById(id).style.display = "block"
+        }
+
+        const closeAll = () => {
+            row.forEach(id => {
+                document.getElementById(id).style.display = "none"
+            })
+        }
 
 		const setTanggalSelesai = (e) => {
 			document.getElementById('siklus_periode_tanggal_selesai').min=e.target.value;
@@ -239,7 +288,6 @@
 				})
 		}
 
-		const table = ['table-siklus-periode','table-sekolah', 'table-raport-sekolah']
 		$(document).ready(function() {
 			table.forEach(id => {
 				$(`#${id}`).DataTable();

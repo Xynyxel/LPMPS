@@ -2,9 +2,6 @@
 
 @section('title', 'Data Master - Admin')
 @section('content')
-
-    
-
     <!-- Content area -->
     <div class="content container pt-3">
         {{-- First Layer --}}

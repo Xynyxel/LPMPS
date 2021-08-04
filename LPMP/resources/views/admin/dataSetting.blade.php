@@ -4,8 +4,32 @@
 @section('content')
 	<!-- Content area -->
 	<div class="content container pt-3">
+
+		<div class="row justify-content-center mb-3">
+			<div class="col-lg-10">
+				<div class="row justify-content-center">
+					<div class="col-4">
+						<button class="btn btn-info p-3 mr-3" id="spBtn" style="width: 100%">
+							<div class="d-flex flex-column align-items-center">
+								<i class="fa fa-users fa-2x"></i>
+								<h1 class="m-0">Sekolah - Pengawas</h1>
+							</div>
+						</button>
+					</div>
+					<div class="col-4">
+						<button class="btn btn-success p-3 mr-3" id="rkBtn" style="width: 100%">
+							<div class="d-flex flex-column align-items-center">
+								<i class="fa fa-clipboard fa-2x"></i>
+								<h1 class="m-0">Raport KPI</h1>
+							</div>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		{{-- Tabel Sekolah-Pengawas --}}
-		<div class="row">
+		<div class="row" id="rowSp">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
@@ -62,8 +86,9 @@
 				</div>
 			</div>
 		</div>
+
 		{{-- Tabel Raport KPI --}}
-		<div class="row">
+		<div class="row" id="rowRk">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header d-flex justify-content-between align-items-center">
@@ -218,6 +243,33 @@
 
 	<script>
 		const url = "{{URL::to('/')}}";
+		const table = ['table-sekolah-pengawas','table-raport-kpi']
+        const row = ['rowSp', 'rowRk']
+
+		const SPBtn = document.getElementById('spBtn');
+		const rkBtn = document.getElementById('rkBtn');
+
+		window.addEventListener("DOMContentLoaded", () => {
+            closeAll();
+            SPBtn.addEventListener('click', () => {
+                blockID('rowSp');
+            })
+            rkBtn.addEventListener('click', () => {
+                blockID('rowRk');
+            })
+        })
+		
+		const blockID = (id) => {
+            closeAll();
+            document.getElementById(id).style.display = "block"
+        }
+
+        const closeAll = () => {
+            row.forEach(id => {
+                document.getElementById(id).style.display = "none"
+            })
+        }
+
 		const edit = (table, id) => {
 			if(table == "sekolahPengawas") {
 				const form = document.getElementById('form_sekolah_pengawas');
@@ -299,7 +351,6 @@
 					})
 			}
 		}
-		const table = ['table-sekolah-pengawas','table-raport-kpi']
 		$(document).ready(function() {
 			table.forEach(id => {
 				$(`#${id}`).DataTable();
