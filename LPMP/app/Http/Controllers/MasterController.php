@@ -8,7 +8,7 @@ use App\Models\Standar;
 use App\Models\Sekolah;
 use App\Models\Indikator;
 use App\Models\SubIndikator;
-use App\Models\AkarMasalah;
+use App\Models\AkarMasalahMaster;
 use App\Models\Admin;
 use App\Models\TPMPS;
 use App\Models\Pengawas;
@@ -37,7 +37,7 @@ class MasterController extends Controller
         $sekolah = Sekolah::all();
         $indikator = Indikator::all();
         $subIndikator = SubIndikator::all();
-        $akarMasalah = AkarMasalah::all();
+        $akarMasalah = AkarMasalahMaster::all();
         $tpmps = TPMPS::all();
         $pengawas = Pengawas::all();
         $lpmp = LPMP::all();
