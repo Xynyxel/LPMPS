@@ -180,41 +180,43 @@
 																<span>Raport Sekolah</span>
 															</i>
 														</a>
-														@if ($pengajuanSiklusstatus->status == 1)
-															<a href="/lpmp/dataOperasional/diproses/{{ $pengajuanSiklusstatus->id }}"
-																class="dropdown-item">
-																<i class="fas fa-tasks">
-																	<span>Diproses</span>
-																</i>
-															</a>
-														@elseif($pengajuanSiklusstatus->status == 2)
-															<a href="/lpmp/dataOperasional/diterima/{{ $pengajuanSiklusstatus->id }}"
-																class="dropdown-item">
-																<i class="fas fa-check-square">
-																	<span>Diterima</span>
-																</i>
-															</a>
-															<a href="/lpmp/dataOperasional/komunikasi/{{ $pengajuanSiklusstatus->id }}"
-																class="dropdown-item">
-																<i class="fas fa-comment-alt">
-																	<span>Komunikasi</span>
-																</i>
-															</a>
-														@elseif($pengajuanSiklusstatus->status == 4)
-															<a href="" class="dropdown-item" data-toggle="modal"
-																data-target="#comments"
-																onclick="setID({{ $sekolah->id }})">
-																<i class="fas fa-comments">
-																	<span>Komentar</span>
-																</i>
-															</a>
-															<a href="/lpmp/dataOperasional/diterima/{{ $pengajuanSiklusstatus->id }}"
-																class="dropdown-item">
-																<i class="fas fa-check-square">
-																	<span>Diterima</span>
-																</i>
-															</a>
-														@endif
+														@if($pengajuanSiklusstatus != '')
+                                                                @if ($pengajuanSiklusstatus->status == 1)
+                                                                    <a href="/pengawas/dataOperasional/diproses/{{ $pengajuanSiklusstatus->id }}"
+                                                                        class="dropdown-item">
+                                                                        <i class="fas fa-tasks">
+                                                                            <span>Diproses</span>
+                                                                        </i>
+                                                                    </a>
+                                                                @elseif($pengajuanSiklusstatus->status == 2)
+                                                                    <a href="/pengawas/dataOperasional/diterima/{{ $pengajuanSiklusstatus->id }}"
+                                                                        class="dropdown-item">
+                                                                        <i class="fas fa-check-square">
+                                                                            <span>Diterima</span>
+                                                                        </i>
+                                                                    </a>
+                                                                    <a href="/pengawas/dataOperasional/komunikasi/{{ $pengajuanSiklusstatus->id }}"
+                                                                        class="dropdown-item">
+                                                                        <i class="fas fa-comment-alt">
+                                                                            <span>Komunikasi</span>
+                                                                        </i>
+                                                                    </a>
+                                                                @elseif($pengajuanSiklusstatus->status == 4)
+                                                                    <a href="" class="dropdown-item" data-toggle="modal"
+                                                                        data-target="#comments"
+                                                                        onclick="setID({{ $sekolah->id }})">
+                                                                        <i class="fas fa-comments">
+                                                                            <span>Komentar</span>
+                                                                        </i>
+                                                                    </a>
+                                                                    <a href="/pengawas/dataOperasional/diterima/{{ $pengajuanSiklusstatus->id }}"
+                                                                        class="dropdown-item">
+                                                                        <i class="fas fa-check-square">
+                                                                            <span>Diterima</span>
+                                                                        </i>
+                                                                    </a>
+                                                                @endif
+                                                            @endif
 													</div>
 												</div>
 											</td>

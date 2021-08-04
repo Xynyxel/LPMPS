@@ -19,20 +19,6 @@
     </style>
     <!-- Content area -->
     <div class="content container pt-3">
-
-        {{-- cek siklus
-			siklus == 1: 
-				import Pemetaan Mutu
-				koreksi nilai rapot (optional)
-			siklus == 2: 
-				import Rencana Pemetaan Mutu
-			siklus == 3: 
-				import Pelaksanaan Pemetaan Mutu
-			siklus == 4: 
-				import Audit Mutu --}}
-
-
-        <!-- Modal Loading -->
         <div class="modal fade" id="loading" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-small" role="document">
@@ -80,18 +66,38 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}"
+                                                <Button
                                                     class="btn btn-info {{ $verifikasiPengajuanCek == true ? 'disabled' : '' }}"
-                                                    style="width: 100%; margin-bottom:1.3em">
+                                                    style="width: 100%; margin-bottom:1.3em"
+                                                    data-toggle="modal" data-target="#ajukanModal">
                                                     <i class="fas fa-plus-square">
                                                         <span class="m-1">
                                                             <b style="font-size: 1.3em">Ajukan</b>
                                                         </span>
                                                     </i>
-
-                                                </a>
+                                                </button>
                                             </td>
-
+                                            {{--  --}}
+                                            <!-- Ajukan Modal -->
+                                            <div class="modal fade" id="ajukanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Ajukan</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Apakah Anda yakin? 
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                    <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}" type="button" class="btn btn-primary">Yes</a>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                         <tr>
                                             <td>
@@ -131,7 +137,8 @@
                                         <td>
                                             <div class="p-2 bd-highlight">
                                                 <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                    data-target="#koreksiNilaiModal">
+                                                    data-target="#koreksiNilaiModal"
+                                                    {{ $verifikasi == false ? 'disabled' : '' }}>
                                                     <i class="fas fa-edit">
                                                         <span class="m-1">Koreksi Nilai Raport</span>
                                                     </i>
@@ -474,14 +481,6 @@
                 </script>
             @elseif($siklus->siklus == 2)
                 <h1>Siklus 2</h1>
-                {{-- standar sekolah
-                    rekomendasi berdasarkan indikator
-                    tambah program
-                    tambah kegiatan
-                    tambah Indikatori Kinerja
-                    tambah Volume
-                    tambah Kebutuhan Biaya
-                    tambah Sumber Daya --}}
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -495,16 +494,38 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}"
+                                                <Button
                                                     class="btn btn-info {{ $verifikasiPengajuanCek == true ? 'disabled' : '' }}"
-                                                    style="width: 100%; margin-bottom:1.3em">
+                                                    style="width: 100%; margin-bottom:1.3em"
+                                                    data-toggle="modal" data-target="#ajukanModal">
                                                     <i class="fas fa-plus-square">
                                                         <span class="m-1">
                                                             <b style="font-size: 1.3em">Ajukan</b>
                                                         </span>
                                                     </i>
-                                                </a>
+                                                </button>
                                             </td>
+                                            {{--  --}}
+                                            <!-- Ajukan Modal -->
+                                            <div class="modal fade" id="ajukanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Ajukan</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Apakah Anda yakin? 
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                    <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}" type="button" class="btn btn-primary">Yes</a>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                         <tr>
                                             <td>
@@ -829,15 +850,6 @@
 
             @elseif($siklus->siklus == 3)
                 <h1>Siklus 3</h1>
-                {{-- standar sekolah
-                    rekomendasi
-                    program
-                    kegiatan
-                    tambah penanggung jawab
-                    tambah pemangku kepentingan dilibatkan
-                    tambah waktu pelaksanaan
-                    tambah Bukti Fisik --}}
-
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -851,16 +863,38 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}"
+                                            <Button
                                                     class="btn btn-info {{ $verifikasiPengajuanCek == true ? 'disabled' : '' }}"
-                                                    style="width: 100%; margin-bottom:1.3em">
+                                                    style="width: 100%; margin-bottom:1.3em"
+                                                    data-toggle="modal" data-target="#ajukanModal">
                                                     <i class="fas fa-plus-square">
                                                         <span class="m-1">
                                                             <b style="font-size: 1.3em">Ajukan</b>
                                                         </span>
                                                     </i>
-                                                </a>
+                                                </button>
                                             </td>
+                                            {{--  --}}
+                                            <!-- Ajukan Modal -->
+                                            <div class="modal fade" id="ajukanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Ajukan</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Apakah Anda yakin? 
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                    <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}" type="button" class="btn btn-primary">Yes</a>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                         <tr>
                                             <td>
@@ -1012,12 +1046,6 @@
 
             @elseif($siklus->siklus == 4)
                 <h1>Siklus 4</h1>
-                {{-- program
-                    kegiatan
-                    tambah input
-                    tambah proses
-                    tambah output
-                    tambah outcome --}}
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -1032,16 +1060,38 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}"
+                                            <Button
                                                     class="btn btn-info {{ $verifikasiPengajuanCek == true ? 'disabled' : '' }}"
-                                                    style="width: 100%; margin-bottom:1.3em">
+                                                    style="width: 100%; margin-bottom:1.3em"
+                                                    data-toggle="modal" data-target="#ajukanModal">
                                                     <i class="fas fa-plus-square">
-                                                        <span>
+                                                        <span class="m-1">
                                                             <b style="font-size: 1.3em">Ajukan</b>
                                                         </span>
                                                     </i>
-                                                </a>
+                                                </button>
                                             </td>
+                                            {{--  --}}
+                                            <!-- Ajukan Modal -->
+                                            <div class="modal fade" id="ajukanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Ajukan</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Apakah Anda yakin? 
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                    <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}" type="button" class="btn btn-primary">Yes</a>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                         <tr>
                                             <td>

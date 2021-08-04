@@ -1,6 +1,9 @@
 @extends('auth/loginMaster')
 
 @section('title', 'Login Pengawas')
+@section('icon')
+    <span class='fa fa-user-tie fa-2x'></span>
+@endsection
 @section('content')
     <form action="{{ route('auth.checkPengawas') }}" class="login-form" method="post">
         @if(Session::get('failPengawas'))

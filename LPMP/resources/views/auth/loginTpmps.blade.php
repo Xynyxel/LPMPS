@@ -1,6 +1,9 @@
 @extends('auth/loginMaster')
 
 @section('title', 'Login TPMPS')
+@section('icon')
+    <span class='fa fa-user-plus fa-2x'></span>
+@endsection
 @section('content')
     <form action="{{ route('auth.checkTpmps') }}" class="login-form" method="post">
         @if (Session::get('failTpmps'))

@@ -127,7 +127,7 @@
         <div class="container">
             <div class="d-flex flex-1 align-items-center">
                 <img src="{{ asset('Logo_LPMP.png') }}" class="mr-2 my-2" style="width: 80px; height: 80px" />
-                <a href="index.html"><h1 class="m-0">LPMP</h1></a>
+                <a href="/"><h1 class="m-0">E-SPMI LPMP Riau</h1></a>
             </div>
         </div>
     </div>

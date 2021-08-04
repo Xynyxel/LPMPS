@@ -48,7 +48,7 @@ if(isset($siklus)) {
 	<div class="navbar navbar-expand-xl navbar-light navbar-static px-0">
 		<div class="d-flex flex-1 pl-3">
 			<div class="navbar-brand wmin-0 mr-1">
-				<a href="index.html" class="d-inline-block"><h6 class="m-0">LPMP</h6></a>
+				<a href="index.html" class="d-inline-block"><h6 class="m-0">E-SPMI LPMP Riau</h6></a>
 			</div>
 		</div>
 
@@ -56,21 +56,21 @@ if(isset($siklus)) {
 			<ul class="navbar-nav navbar-nav-underline flex-row text-nowrap mx-auto">
 				<li class="nav-item">
 					<a href="/lpmp/home" class="navbar-nav-link {{ (request()->is('lpmp/home')) ? 'active' : '' }}">
-						<i class="icon-home4 mr-2"></i>
+						<i class="fas fa-home"></i>
 						Home
 					</a>
 				</li>
 
 				<li class="nav-item mega-menu-full nav-item-dropdown-xl">
 					<a href="/lpmp/dataOperasional" class="navbar-nav-link {{ (request()->is('lpmp/dataOperasional')) ? 'active' : '' }}">
-						<i class="icon-make-group mr-2"></i>
+						<i class="fas fa-user-cog fa-1x mr-1" ></i>
 						Data Operasional
 					</a>
 				</li>
 
 				<li class="nav-item dropdown nav-item-dropdown-xl">
 					<a href="/lpmp/laporan" class="navbar-nav-link {{ (request()->is('lpmp/laporan')) ? 'active' : '' }}">
-						<i class="icon-strategy mr-2"></i>
+						<i class="fas fa-file"></i>
 						Laporan
 					</a>
 				</li>
@@ -79,12 +79,6 @@ if(isset($siklus)) {
 
 		<div class="d-flex flex-xl-1 justify-content-xl-end order-0 order-xl-1 pr-3">
 			<ul class="navbar-nav navbar-nav-underline flex-row">
-				<li class="nav-item">
-					<a href="#notifications" class="navbar-nav-link navbar-nav-link-toggler" data-toggle="modal">
-						<i class="icon-bell2"></i>
-						<span class="badge badge-mark border-pink bg-pink"></span>
-					</a>
-				</li>
 		
 				<li class="nav-item nav-item-dropdown-xl dropdown dropdown-user h-100">
 					<a href="#" class="navbar-nav-link navbar-nav-link-toggler d-flex align-items-center h-100 dropdown-toggle" data-toggle="dropdown">
@@ -186,8 +180,6 @@ if(isset($siklus)) {
 		<!-- /main content -->
 	</div>
 	<!-- /page content -->
-
-    @yield('notification')
 
 	@if (Session::get('fail'))
 	<!-- Modal -->

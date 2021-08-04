@@ -1,6 +1,9 @@
 @extends('auth/loginMaster')
 
 @section('title', 'Login Admin')
+@section('icon')
+    <span class='fa fa-user-cog fa-2x'></span>
+@endsection
 @section('content')
     <form action="{{ route('auth.check') }}" class="login-form" method="post">
         @if (Session::get('fail'))
