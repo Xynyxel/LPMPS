@@ -149,19 +149,18 @@ CREATE TABLE `kota_kabupaten` (
 --
 
 INSERT INTO `kota_kabupaten` (`id`, `nama`) VALUES
-(1, 'Pekanbaru'),
-(2, 'Kabupaten Bengkalis'),
-(3, 'Kabupaten Indragri Hilir'),
-(4, 'Kabupaten Indragiri Hulu'),
-(5, 'Kabupaten Kampar'),
-(6, 'Kabupaten Kuantan Singingi'),
-(7, 'Kabupaten Pelalawan'),
-(8, 'Kabupaten Rokan Hilir'),
-(9, 'Kabupaten Rokan Hulu'),
-(10, 'Kabupaten Siak'),
-(11, 'Kabupaten Kepulauan'),
-(12, 'Kota Pekanbaru'),
-(13, 'Kota Dumai');
+(1, 'Kabupaten Bengkalis'),
+(2, 'Kabupaten Indragri Hilir'),
+(3, 'Kabupaten Indragiri Hulu'),
+(4, 'Kabupaten Kampar'),
+(5, 'Kabupaten Kuantan Singingi'),
+(6, 'Kabupaten Pelalawan'),
+(7, 'Kabupaten Rokan Hilir'),
+(8, 'Kabupaten Rokan Hulu'),
+(9, 'Kabupaten Siak'),
+(10, 'Kabupaten Kepulauan'),
+(11, 'Kota Pekanbaru'),
+(12, 'Kota Dumai');
 
 -- --------------------------------------------------------
 
@@ -320,45 +319,7 @@ CREATE TABLE `raport_sekolah` (
 -- Dumping data for table `raport_sekolah`
 --
 
-INSERT INTO `raport_sekolah` (`id`, `tahun`, `nilai`, `sekolah_id`, `sub_indikator_id`) VALUES
-(1, 2021, 5.12, 1, 1),
-(2, 2021, 5.53, 1, 2),
-(3, 2021, 4.75, 1, 3),
-(4, 2021, 6.04, 1, 4),
-(5, 2021, 6.15, 1, 5),
-(6, 2021, 5.22, 1, 6),
-(7, 2021, 6.94, 1, 7),
-(8, 2021, 5.77, 1, 8),
-(9, 2021, 6.03, 1, 9),
-(10, 2021, 7, 1, 10),
-(11, 2021, 2.85, 1, 11),
-(12, 2021, 6.53, 1, 12),
-(13, 2021, 6.54, 1, 13),
-(14, 2021, 7, 1, 14),
-(15, 2021, 6.76, 1, 15),
-(16, 2021, 6.48, 1, 16),
-(17, 2021, 6.76, 1, 17),
-(18, 2021, 6.88, 1, 18),
-(19, 2021, 4.69, 1, 19),
-(20, 2021, 6.48, 1, 20),
-(21, 2021, 6.76, 1, 21),
-(22, 2021, 6.5, 1, 22),
-(23, 2021, 6.76, 1, 23),
-(24, 2021, 6.41, 1, 24),
-(25, 2021, 6.37, 1, 25),
-(26, 2021, 6.9, 1, 26),
-(27, 2021, 6.72, 1, 27),
-(28, 2021, 6.37, 1, 28),
-(29, 2021, 4.57, 1, 29),
-(30, 2021, 5.93, 1, 30),
-(31, 2021, 5.93, 1, 31),
-(32, 2021, 6.66, 1, 32),
-(33, 2021, 3.57, 1, 33),
-(34, 2021, 4.66, 1, 34),
-(35, 2021, 5.9, 1, 35),
-(36, 2021, 5.29, 1, 36),
-(37, 2021, 5.53, 1, 37),
-(38, 2021, 5.97, 1, 38);
+
 
 -- --------------------------------------------------------
 

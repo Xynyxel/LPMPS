@@ -77,6 +77,7 @@ class TPMPSController extends Controller
         } else {
             $verifikasiPengajuanCek = false;
         }
+        $raportSekolah = RaportSekolah::where('sekolah_id', $data_log['LoggedUserInfo']->sekolah_id)->get();
 
         $data = [
             "siklus" => $siklus,
@@ -90,7 +91,8 @@ class TPMPSController extends Controller
             'listSubIndikator' => $subIndikator,
             'verifikasi' => $verifikasi,
             'verifikasiPengajuanCek' => $verifikasiPengajuanCek,
-            "pengajuanSiklus" => $this->getPengajuanSiklus()
+            "pengajuanSiklus" => $this->getPengajuanSiklus(),
+            'listRaportSekolah' => $raportSekolah
         ];
         return view('/tpmps/dataOperasional', $data, $data_log);
     }
@@ -205,15 +207,15 @@ class TPMPSController extends Controller
         return Excel::download(new TemplateRaportExport, 'template.xlsx');
     }
 
-    public function koreksiRaportSekolah(Request $request)
+    public function koreksiRaportSekolah(Request $request, $id)
     {
-        $raportSekolah = RaportSekolah::where('sekolah_id', $request->sekolah_id)
-            ->where('sub_indikator_id', $request->sub_indikator_id)
-            ->first();
+        // $raportSekolah = RaportSekolah::where('sekolah_id', $request->sekolah_id)
+        //     ->where('sub_indikator_id', $request->sub_indikator_id)
+        //     ->first();
         RaportSekolahKoreksi::create([
             "nilai_koreksi" => $request->nilai_koreksi,
             "datetime" => Carbon::now(),
-            "raport_sekolah_id" => $raportSekolah->id,
+            "raport_sekolah_id" => $id,
         ]);
         return redirect('/tpmps/dataOperasional');
     }

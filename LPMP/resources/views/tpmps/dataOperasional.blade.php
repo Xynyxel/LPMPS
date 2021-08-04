@@ -4,18 +4,25 @@
 @section('content')
 
     <style>
-        #data1 td, #data2 td, #data3 td, #data4 td {
+        #data1 td,
+        #data2 td,
+        #data3 td,
+        #data4 td {
             vertical-align: text-top;
         }
+
         .modal {
             overflow-y: auto;
         }
+
         .modal-big {
-            min-width: 90vw!important;
+            min-width: 90vw !important;
         }
-        .modal-small{
-            width: fit-content!important;
+
+        .modal-small {
+            width: fit-content !important;
         }
+
     </style>
 
     <!-- Content area -->
@@ -70,9 +77,9 @@
                                         <tr>
                                             <td>
                                                 <Button
-                                                    class="btn btn-info {{ $verifikasiPengajuanCek == true ? 'disabled' : '' }}"
-                                                    style="width: 100%; margin-bottom:1.3em"
-                                                    data-toggle="modal" data-target="#ajukanModal">
+                                                    class="btn btn-info {{ $verifikasiPengajuanCek == true || $verifikasi == false ? 'disabled' : '' }}"
+                                                    style="width: 100%; margin-bottom:1.3em" data-toggle="modal"
+                                                    data-target="#ajukanModal">
                                                     <i class="fas fa-plus-square">
                                                         <span class="m-1">
                                                             <b style="font-size: 1.3em">Ajukan</b>
@@ -81,29 +88,34 @@
                                                 </button>
                                             </td>
                                             <!-- Ajukan Modal -->
-                                            <div class="modal fade" id="ajukanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="ajukanModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Ajukan</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Ajukan</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Apakah Anda yakin?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">No</button>
+                                                            <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}"
+                                                                type="button" class="btn btn-primary">Yes</a>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        Apakah Anda yakin? 
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                                    <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}" type="button" class="btn btn-primary">Yes</a>
-                                                    </div>
-                                                </div>
                                                 </div>
                                             </div>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <button type="button" class="btn btn-success" style="width: 100%" onclick="liatLaporanSiklus('{{ $LoggedUserInfo->sekolah->nama }}',{{$siklus->siklus}})">
+                                                <button type="button" class="btn btn-success" style="width: 100%"
+                                                    onclick="liatLaporanSiklus('{{ $LoggedUserInfo->sekolah->nama }}',{{ $siklus->siklus }})">
                                                     <i class="fas fa-file-alt">
                                                         <span class="m-1">
                                                             <b style="font-size: 1.3em">Lihat Laporan</b>
@@ -138,22 +150,19 @@
                                         </td>
                                         <td>
                                             <div class="p-2 bd-highlight">
-                                                <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                    data-target="#koreksiNilaiModal"
-                                                    {{ $verifikasi == false ? 'disabled' : '' }}>
-                                                    <i class="fas fa-edit">
-                                                        <span class="m-1">Koreksi Nilai Raport</span>
-                                                    </i>
+                                                <button class="btn btn-primary" id="raportSekolahBtn" style="width: 100%;"
+                                                    {{-- data-toggle="modal" data-target="#rekomendasiModal" --}}>
+                                                    <span>Raport Sekolah</span>
                                                 </button>
                                             </div>
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td>
                                             <div class="p-2 bd-highlight">
                                                 <button class="btn btn-primary" id="akarMasalahBtn" style="width: 100%;"
-                                                    {{-- data-toggle="modal" data-target="#akarMasalahModal" --}}
-                                                    >
+                                                    {{-- data-toggle="modal" data-target="#akarMasalahModal" --}}>
                                                     <span>Akar Masalah</span>
                                                 </button>
                                             </div>
@@ -161,8 +170,7 @@
                                         <td>
                                             <div class="p-2 bd-highlight">
                                                 <button class="btn btn-primary" id="rekomendasiBtn" style="width: 100%;"
-                                                    {{-- data-toggle="modal" data-target="#rekomendasiModal" --}}
-                                                    >
+                                                    {{-- data-toggle="modal" data-target="#rekomendasiModal" --}}>
                                                     <span>Rekomendasi</span>
                                                 </button>
                                             </div>
@@ -170,8 +178,7 @@
                                         <td>
                                             <div class="p-2 bd-highlight">
                                                 <button class="btn btn-primary" id="masalahBtn" style="width: 100%"
-                                                    {{-- data-toggle="modal" data-target="#masalahModal" --}}
-                                                    >
+                                                    {{-- data-toggle="modal" data-target="#masalahModal" --}}>
                                                     <span>Masalah</span>
                                                 </button>
                                             </div>
@@ -181,8 +188,8 @@
                             </div>
 
                             <!-- Modal Laporan Sekolah siklus 1 -->
-                            <div class="modal fade" id="laporanSekolahSiklus1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
+                            <div class="modal fade" id="laporanSekolahSiklus1" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-xl modal-big" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -193,7 +200,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="border-top-0">
-                                                <table class="table" id="table-raport-sekolah" style="column-width: 10%;"> 
+                                                <table class="table" id="table-raport-sekolah" style="column-width: 10%;">
                                                     <thead>
                                                         <tr>
                                                             <th>Standar</th>
@@ -254,18 +261,18 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="/tpmps/dataOperasional/KoreksiNilaiRaport" method="post">
+                                        <form id='formKoreksiNilai' action="/tpmps/dataOperasional/KoreksiNilaiRaport" method="post">
                                             @csrf
                                             <div class="modal-body">
                                                 <div class="mb-3">
-                                                    <select class="custom-select" id="inputGroupSelect01"
+                                                    {{-- <select class="custom-select" id="inputGroupSelect01"
                                                         name="sub_indikator_id">
                                                         <option selected>Pilih SubIndikator yang Ingin Dikoreksi</option>
                                                         @foreach ($listSubIndikator as $subIndikator)
                                                             <option value="{{ $subIndikator->id }}">
                                                                 {{ $subIndikator->nama }}</option>
                                                         @endforeach
-                                                    </select>
+                                                    </select> --}}
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-form-label">Nilai</label>
@@ -308,7 +315,8 @@
                                                 <th>Tanggal</th>
                                                 <th>Sekolah</th>
                                                 <th>Indikator</th>
-                                                <th class="text-center" style="width: 20px;"><i class="fa fa-chevron-down"></i></th>
+                                                <th class="text-center" style="width: 20px;"><i
+                                                        class="fa fa-chevron-down"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -339,9 +347,68 @@
                                                                         <i class="fa fa-edit"></i>Edit
                                                                     </a>
                                                                     <a href="/tpmps/dataOperasional/hapusAkarMasalah/{{ $akarMasalah->id }}"
-                                                                        class="dropdown-item"><i class="fa fa-trash"></i>Hapus</a>
+                                                                        class="dropdown-item"><i
+                                                                            class="fa fa-trash"></i>Hapus</a>
                                                                 </div>
                                                             </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Tabel Koreksi Nilai --}}
+                <div class="row" id="rowRaportSekolah" style="display: none">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <span class="card-title font-weight-semibold">Data Raport</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive border-top-0">
+                                    <table class="table" id="table-raport-sekolah">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Sub Indikator</th>
+                                                <th>Nilai</th>
+                                                <th>Nilai Koreksi</th>
+                                                <th class="text-center" style="width: 20px;"><i
+                                                    class="fa fa-chevron-down"></i></th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            @if ($listRaportSekolah->count() > 0)
+                                                @php
+                                                    $no = 1;
+                                                @endphp
+                                                @foreach ($listRaportSekolah as $raport)
+                                                    <tr>
+                                                        <td>{{ $no++ }}</td>
+                                                        <td>{{ $raport->subIndikator->nama }}</td>
+                                                        <td>{{ $raport->nilai }}</td>
+                                                        <td>
+                                                            @if (count($raport->raport_sekolahKoreksi) > 0)
+                                                                {{ $raport->raport_sekolahKoreksi[count($raport->raport_sekolahKoreksi) - 1]->nilai_koreksi }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-warning" onclick="edit('raportSekolah',{{ $raport->id }})"
+                                                                data-toggle="modal" data-target="#koreksiNilaiModal"
+                                                                {{ $verifikasi == false ? 'disabled' : '' }}>
+                                                                <i class="fas fa-edit">
+                                                                    <span class="m-1">Koreksi Nilai Raport</span>
+                                                                </i>
+                                                            </button>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -375,7 +442,8 @@
                                                 <th>Tanggal</th>
                                                 <th>Sekolah</th>
                                                 <th>Indikator</th>
-                                                <th class="text-center" style="width: 20px;"><i class="fa fa-chevron-down"></i></th>
+                                                <th class="text-center" style="width: 20px;"><i
+                                                        class="fa fa-chevron-down"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -406,7 +474,8 @@
                                                                         <i class="fa fa-edit"></i>Edit
                                                                     </a>
                                                                     <a href="/rekomendasi/hapus/{{ $rekomendasi->id }}"
-                                                                        class="dropdown-item"><i class="fa fa-trash"></i>Hapus</a>
+                                                                        class="dropdown-item"><i
+                                                                            class="fa fa-trash"></i>Hapus</a>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -442,7 +511,8 @@
                                                 <th>Tanggal</th>
                                                 <th>Sekolah</th>
                                                 <th>Indikator</th>
-                                                <th class="text-center" style="width: 20px;"><i class="fa fa-chevron-down"></i></th>
+                                                <th class="text-center" style="width: 20px;"><i
+                                                        class="fa fa-chevron-down"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -473,7 +543,8 @@
                                                                         <i class="fa fa-edit"></i>Edit
                                                                     </a>
                                                                     <a href="/masalah/hapus/{{ $masalah->id }}"
-                                                                        class="dropdown-item"><i class="fa fa-trash"></i>Hapus</a>
+                                                                        class="dropdown-item"><i
+                                                                            class="fa fa-trash"></i>Hapus</a>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -563,7 +634,7 @@
                                     <input type="submit" class="btn btn-primary" value="Ubah"></button>
                                 </div>
                             </form>
-                            
+
                             <form id="formOtomatis" action="/tpmps/dataOperasional/tambahAkarMasalah" method="post">
                                 @csrf
                                 <div class="modal-body">
@@ -708,12 +779,13 @@
                             formOtomatis.style.display = "block";
                         }
                     })
-                    const table = ['table-akar_masalah','table-masalah','table-rekomendasi']
-                    const row = ['rowAkarMasalah', 'rowMasalah','rowRekomendasi']
+                    const table = ['table-akar_masalah', 'table-masalah', 'table-rekomendasi', 'table-raport-sekolah']
+                    const row = ['rowAkarMasalah', 'rowMasalah', 'rowRekomendasi', 'rowRaportSekolah']
 
                     const akarMasalahBtn = document.getElementById('akarMasalahBtn');
                     const masalahBtn = document.getElementById('masalahBtn');
                     const rekomendasiBtn = document.getElementById('rekomendasiBtn');
+                    const raportSekolahBtn = document.getElementById('raportSekolahBtn');
 
                     window.addEventListener("DOMContentLoaded", () => {
                         closeAll();
@@ -726,20 +798,23 @@
                         rekomendasiBtn.addEventListener('click', () => {
                             blockID('rowRekomendasi');
                         })
+                        raportSekolahBtn.addEventListener('click', () => {
+                            blockID('rowRaportSekolah');
+                        })
                     })
 
                     const edit = (table, id) => {
-                        if(table == "akarMasalah") {
+                        if (table == "akarMasalah") {
                             const title = document.getElementById('title-modal-akar-masalah');
                             const deskripsi = document.getElementById('akar-masalah-deskripsi');
                             const indikator = document.getElementById('akar-masalah-indikator');
                             fetch(`${url}/tpmps/dataOperasional/editAkarMasalah/${id}`)
-                                .then(response=>response.json())
-                                .then(data=>{
+                                .then(response => response.json())
+                                .then(data => {
                                     formManual.style.display = 'none';
                                     formOtomatis.style.display = 'none';
                                     formEdit.style.display = 'block';
-                                    formEdit.action=`/tpmps/dataOperasional/ubahAkarMasalah/${id}`
+                                    formEdit.action = `/tpmps/dataOperasional/ubahAkarMasalah/${id}`
                                     title.innerText = "Edit Akar Masalah";
                                     deskripsi.innerText = data.deskripsi;
                                     indikator.value = data.indikator_id;
@@ -777,6 +852,10 @@
                                     btn.value = "Edit";
                                 })
                         }
+                        else if(table == 'raportSekolah'){
+                            const form = document.getElementById('formKoreksiNilai');
+                            form.action = `/tpmps/dataOperasional/KoreksiNilaiRaport/${id}`;
+                        }
                     }
                     const add = (table) => {
                         if(table == "rekomendasi") {
@@ -802,9 +881,10 @@
                             deskripsi.innerText = ""
                             indikator.value = ""
                             btn.value = "Tambah";
+
                         }
                     }
-                    
+
                     const blockID = (id) => {
                         closeAll();
                         document.getElementById(id).style.display = "block"
@@ -838,8 +918,8 @@
                                             <td>
                                                 <Button
                                                     class="btn btn-info {{ $verifikasiPengajuanCek == true ? 'disabled' : '' }}"
-                                                    style="width: 100%; margin-bottom:1.3em"
-                                                    data-toggle="modal" data-target="#ajukanModal">
+                                                    style="width: 100%; margin-bottom:1.3em" data-toggle="modal"
+                                                    data-target="#ajukanModal">
                                                     <i class="fas fa-plus-square">
                                                         <span class="m-1">
                                                             <b style="font-size: 1.3em">Ajukan</b>
@@ -849,29 +929,34 @@
                                             </td>
                                             {{--  --}}
                                             <!-- Ajukan Modal -->
-                                            <div class="modal fade" id="ajukanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="ajukanModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Ajukan</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Ajukan</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Apakah Anda yakin?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">No</button>
+                                                            <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}"
+                                                                type="button" class="btn btn-primary">Yes</a>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        Apakah Anda yakin? 
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                                    <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}" type="button" class="btn btn-primary">Yes</a>
-                                                    </div>
-                                                </div>
                                                 </div>
                                             </div>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <button type="button" class="btn btn-success" style="width: 100%" onclick="liatLaporanSiklus('{{ $LoggedUserInfo->sekolah->nama }}',{{$siklus->siklus}})">
+                                                <button type="button" class="btn btn-success" style="width: 100%"
+                                                    onclick="liatLaporanSiklus('{{ $LoggedUserInfo->sekolah->nama }}',{{ $siklus->siklus }})">
                                                     <i class="fas fa-file-alt">
                                                         <span class="m-1">
                                                             <b style="font-size: 1.3em">Lihat Laporan</b>
@@ -922,8 +1007,8 @@
                 </div>
 
                 <!-- Modal Laporan Sekolah siklus 2 -->
-                <div class="modal fade" id="laporanSekolahSiklus2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="laporanSekolahSiklus2" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-big" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -1199,10 +1284,10 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                            <Button
+                                                <Button
                                                     class="btn btn-info {{ $verifikasiPengajuanCek == true ? 'disabled' : '' }}"
-                                                    style="width: 100%; margin-bottom:1.3em"
-                                                    data-toggle="modal" data-target="#ajukanModal">
+                                                    style="width: 100%; margin-bottom:1.3em" data-toggle="modal"
+                                                    data-target="#ajukanModal">
                                                     <i class="fas fa-plus-square">
                                                         <span class="m-1">
                                                             <b style="font-size: 1.3em">Ajukan</b>
@@ -1212,29 +1297,34 @@
                                             </td>
                                             {{--  --}}
                                             <!-- Ajukan Modal -->
-                                            <div class="modal fade" id="ajukanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="ajukanModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Ajukan</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Ajukan</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Apakah Anda yakin?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">No</button>
+                                                            <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}"
+                                                                type="button" class="btn btn-primary">Yes</a>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        Apakah Anda yakin? 
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                                    <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}" type="button" class="btn btn-primary">Yes</a>
-                                                    </div>
-                                                </div>
                                                 </div>
                                             </div>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <button type="button" class="btn btn-success" style="width: 100%" onclick="liatLaporanSiklus('{{ $LoggedUserInfo->sekolah->nama }}',{{$siklus->siklus}})">
+                                                <button type="button" class="btn btn-success" style="width: 100%"
+                                                    onclick="liatLaporanSiklus('{{ $LoggedUserInfo->sekolah->nama }}',{{ $siklus->siklus }})">
                                                     <i class="fas fa-file-alt">
                                                         <span class="m-1">
                                                             <b style="font-size: 1.3em">Lihat Laporan</b>
@@ -1265,8 +1355,8 @@
                 </div>
 
                 <!-- Modal Laporan Sekolah siklus 3 -->
-                <div class="modal fade" id="laporanSekolahSiklus3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="laporanSekolahSiklus3" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-big" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -1396,10 +1486,10 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                            <Button
+                                                <Button
                                                     class="btn btn-info {{ $verifikasiPengajuanCek == true ? 'disabled' : '' }}"
-                                                    style="width: 100%; margin-bottom:1.3em"
-                                                    data-toggle="modal" data-target="#ajukanModal">
+                                                    style="width: 100%; margin-bottom:1.3em" data-toggle="modal"
+                                                    data-target="#ajukanModal">
                                                     <i class="fas fa-plus-square">
                                                         <span class="m-1">
                                                             <b style="font-size: 1.3em">Ajukan</b>
@@ -1409,29 +1499,34 @@
                                             </td>
                                             {{--  --}}
                                             <!-- Ajukan Modal -->
-                                            <div class="modal fade" id="ajukanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="ajukanModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Ajukan</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Ajukan</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Apakah Anda yakin?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">No</button>
+                                                            <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}"
+                                                                type="button" class="btn btn-primary">Yes</a>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        Apakah Anda yakin? 
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                                    <a href="/tpmps/dataOperasional/ajukan/{{ $LoggedUserInfo['id'] }}/{{ $siklus->id }}" type="button" class="btn btn-primary">Yes</a>
-                                                    </div>
-                                                </div>
                                                 </div>
                                             </div>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <button type="button" class="btn btn-success" style="width: 100%" onclick="liatLaporanSiklus('{{ $LoggedUserInfo->sekolah->nama }}',{{$siklus->siklus}})">
+                                                <button type="button" class="btn btn-success" style="width: 100%"
+                                                    onclick="liatLaporanSiklus('{{ $LoggedUserInfo->sekolah->nama }}',{{ $siklus->siklus }})">
                                                     <i class="fas fa-file-alt">
                                                         <span>
                                                             <b style="font-size: 1.3em">Lihat Laporan</b>
@@ -1442,28 +1537,14 @@
                                         </tr>
                                     </table>
                                 </div>
-                                {{-- <table>
-                                    <tr>
-                                        <td>
-                                            <button class="btn btn-primary" id="realisasiKinerjaBtn" style="width: 100%"
-                                                data-toggle="modal" data-target="#realisasiKinerjaModal">
-                                                <div class="d-flex flex-column align-items-center">
-                                                    <i class="fas fa-plus-square">
-                                                        <span>Realisasi Kinerja</span>
-                                                    </i>
-                                                </div>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table> --}}
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Modal Laporan Sekolah siklus 4 -->
-                <div class="modal fade" id="laporanSekolahSiklus4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="laporanSekolahSiklus4" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-xl" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -1504,7 +1585,7 @@
     </div>
     <script>
         const id = "{{ $LoggedUserInfo['sekolah_id'] }}"
-    
+
         const getData = async (url) => {
             const response = await fetch(url);
             const data = response.json();
@@ -1512,92 +1593,96 @@
                 resolve(data);
             })
         }
-    
+
         const liatLaporanSiklus = async (namaSekolah, siklus) => {
-            var laporanSekolahModal = new bootstrap.Modal(document.getElementById(`laporanSekolahSiklus${siklus}`), {
+            var laporanSekolahModal = new bootstrap.Modal(document.getElementById(
+                `laporanSekolahSiklus${siklus}`), {
                 keyboard: false
             })
             var loadingModal = new bootstrap.Modal(document.getElementById('loading'), {
                 keyboard: false
             })
-    
-            if(siklus == 1){
+
+            if (siklus == 1) {
                 loadingModal.show();
                 const data = document.getElementById("data1");
-    
+
                 const dataStandar = await getData(`${url}/standar`);
-                const dataIndikator = await Promise.all(dataStandar.map(async standar=>await getData(`${url}/indikator/${standar.id}`)));
-                const dataSubIndikator = await Promise.all(dataIndikator.map(async data=>await Promise.all(data.map(async indikator=>await getData(`${url}/subIndikator/${indikator.id}/${id}`)))));
-                const dataKekuatan = await Promise.all(dataIndikator.map(async data=>await Promise.all(data.map(async indikator=>await getData(`${url}/kekuatan/${indikator.id}/${id}`)))));
-                const dataKelemahan = await Promise.all(dataIndikator.map(async data=>await Promise.all(data.map(async indikator=>await getData(`${url}/kelemahan/${indikator.id}/${id}`)))));
-                const dataMasalah = await Promise.all(dataIndikator.map(async data=>await Promise.all(data.map(async indikator=>await getData(`${url}/masalah/${indikator.id}`)))));
-                const dataAkarMasalah = await Promise.all(dataIndikator.map(async data=>await Promise.all(data.map(async indikator=>await getData(`${url}/akarMasalah/${indikator.id}`)))));
-                const dataRekomendasi = await Promise.all(dataIndikator.map(async data=>await Promise.all(data.map(async indikator=>await getData(`${url}/rekomendasi/indikator/${indikator.id}`)))));
-    
+                const dataIndikator = await Promise.all(dataStandar.map(async standar => await getData(
+                    `${url}/indikator/${standar.id}`)));
+                const dataSubIndikator = await Promise.all(dataIndikator.map(async data => await Promise.all(data
+                    .map(async indikator => await getData(
+                        `${url}/subIndikator/${indikator.id}/${id}`)))));
+                const dataKekuatan = await Promise.all(dataIndikator.map(async data => await Promise.all(data.map(
+                    async indikator => await getData(`${url}/kekuatan/${indikator.id}/${id}`)))));
+                const dataKelemahan = await Promise.all(dataIndikator.map(async data => await Promise.all(data.map(
+                    async indikator => await getData(`${url}/kelemahan/${indikator.id}/${id}`)))));
+                const dataMasalah = await Promise.all(dataIndikator.map(async data => await Promise.all(data.map(
+                    async indikator => await getData(`${url}/masalah/${indikator.id}`)))));
+                const dataAkarMasalah = await Promise.all(dataIndikator.map(async data => await Promise.all(data
+                    .map(async indikator => await getData(`${url}/akarMasalah/${indikator.id}`)))));
+                const dataRekomendasi = await Promise.all(dataIndikator.map(async data => await Promise.all(data
+                    .map(async indikator => await getData(
+                        `${url}/rekomendasi/indikator/${indikator.id}`)))));
+
                 const allData = [];
-                for(let i = 0; i < dataStandar.length; i++) {
+                for (let i = 0; i < dataStandar.length; i++) {
                     allData.push({
                         "standar": dataStandar[i],
                         "indikator": []
                     });
-                    for(let j = 0; j < dataIndikator[i].length; j++) {
+                    for (let j = 0; j < dataIndikator[i].length; j++) {
                         allData[i].indikator.push(dataIndikator[i][j]);
-                        for(let k = 0; k < dataSubIndikator[i][j].length; k++) {
-                            if(k == 0){
+                        for (let k = 0; k < dataSubIndikator[i][j].length; k++) {
+                            if (k == 0) {
                                 allData[i].indikator[j].subIndikator = [dataSubIndikator[i][j][k]];
-                            }
-                            else {
+                            } else {
                                 allData[i].indikator[j].subIndikator.push(dataSubIndikator[i][j][k]);
                             }
                         }
-                        for(let k = 0; k < dataKekuatan[i][j].length; k++) {
-                            if(k == 0){
+                        for (let k = 0; k < dataKekuatan[i][j].length; k++) {
+                            if (k == 0) {
                                 allData[i].indikator[j].kekuatan = [dataKekuatan[i][j][k]];
-                            }
-                            else {
+                            } else {
                                 allData[i].indikator[j].kekuatan.push(dataKekuatan[i][j][k]);
                             }
                         }
-                        for(let k = 0; k < dataKelemahan[i][j].length; k++) {
-                            if(k == 0){
+                        for (let k = 0; k < dataKelemahan[i][j].length; k++) {
+                            if (k == 0) {
                                 allData[i].indikator[j].kelemahan = [dataKelemahan[i][j][k]];
-                            }
-                            else {
+                            } else {
                                 allData[i].indikator[j].kelemahan.push(dataKelemahan[i][j][k]);
                             }
                         }
-                        for(let k = 0; k < dataMasalah[i][j].length; k++) {
-                            if(k == 0){
+                        for (let k = 0; k < dataMasalah[i][j].length; k++) {
+                            if (k == 0) {
                                 allData[i].indikator[j].masalah = [dataMasalah[i][j][k]];
-                            }
-                            else {
+                            } else {
                                 allData[i].indikator[j].masalah.push(dataMasalah[i][j][k]);
                             }
                         }
-                        for(let k = 0; k < dataAkarMasalah[i][j].length; k++) {
-                            if(k == 0){
+                        for (let k = 0; k < dataAkarMasalah[i][j].length; k++) {
+                            if (k == 0) {
                                 allData[i].indikator[j].akarMasalah = [dataAkarMasalah[i][j][k]];
-                            }
-                            else {
+                            } else {
                                 allData[i].indikator[j].akarMasalah.push(dataAkarMasalah[i][j][k]);
                             }
                         }
-                        for(let k = 0; k < dataRekomendasi[i][j].length; k++) {
-                            if(k == 0){
+                        for (let k = 0; k < dataRekomendasi[i][j].length; k++) {
+                            if (k == 0) {
                                 allData[i].indikator[j].rekomendasi = [dataRekomendasi[i][j][k]]
-                            }
-                            else {
+                            } else {
                                 allData[i].indikator[j].rekomendasi.push(dataRekomendasi[i][j][k]);
                             }
                         }
                     }
                 }
-    
+
                 data.innerHTML = ""
-                if(allData.length > 0) {
+                if (allData.length > 0) {
                     let count = 0;
-                    allData.forEach((el,idx)=>{
-                        data.innerHTML +=`
+                    allData.forEach((el, idx) => {
+                        data.innerHTML += `
                             <tr>
                                 <td>${el.standar.nomor}. ${el.standar.nama}</td>
                                 <td colspan="7">
@@ -1618,8 +1703,9 @@
                             </tr>
                         `;
                         el.indikator.forEach(el2 => {
-                            const otherTableClass = document.getElementsByClassName('otherTable')[idx]
-    
+                            const otherTableClass = document.getElementsByClassName('otherTable')[
+                                idx]
+
                             otherTableClass.innerHTML += `
                                 <tr>
                                     <td>
@@ -1636,15 +1722,19 @@
                                     <td class="rekomendasi"></td>
                                 </tr>
                             `
-                            
-                            const SubIndikatorClass = document.getElementsByClassName('subIndikator')[count]
+
+                            const SubIndikatorClass = document.getElementsByClassName(
+                                'subIndikator')[count]
                             const kekuatanClass = document.getElementsByClassName('kekuatan')[count]
-                            const kelemahanClass = document.getElementsByClassName('kelemahan')[count]
+                            const kelemahanClass = document.getElementsByClassName('kelemahan')[
+                                count]
                             const masalahClass = document.getElementsByClassName('masalah')[count]
-                            const akarMasalahClass = document.getElementsByClassName('akarMasalah')[count]
-                            const rekomendasiClass = document.getElementsByClassName('rekomendasi')[count]
-    
-                            if(el2.hasOwnProperty("subIndikator")) {
+                            const akarMasalahClass = document.getElementsByClassName('akarMasalah')[
+                                count]
+                            const rekomendasiClass = document.getElementsByClassName('rekomendasi')[
+                                count]
+
+                            if (el2.hasOwnProperty("subIndikator")) {
                                 el2.subIndikator.forEach(subIndikator => {
                                     SubIndikatorClass.innerHTML += `
                                         <div class="d-flex">
@@ -1654,8 +1744,8 @@
                                     `;
                                 });
                             }
-    
-                            if(el2.hasOwnProperty("kekuatan")) {
+
+                            if (el2.hasOwnProperty("kekuatan")) {
                                 el2.kekuatan.forEach(kekuatan => {
                                     kekuatanClass.innerHTML += `
                                         <div class="d-flex">
@@ -1665,8 +1755,8 @@
                                     `;
                                 });
                             }
-    
-                            if(el2.hasOwnProperty("kelemahan")) {
+
+                            if (el2.hasOwnProperty("kelemahan")) {
                                 el2.kelemahan.forEach(kelemahan => {
                                     kelemahanClass.innerHTML += `
                                         <div class="d-flex">
@@ -1676,8 +1766,8 @@
                                     `;
                                 });
                             }
-    
-                            if(el2.hasOwnProperty("masalah")) {
+
+                            if (el2.hasOwnProperty("masalah")) {
                                 el2.masalah.forEach(masalah => {
                                     masalahClass.innerHTML += `
                                         <div class="d-flex">
@@ -1687,8 +1777,8 @@
                                         `;
                                 });
                             }
-                            
-                            if(el2.hasOwnProperty("akarMasalah")) {
+
+                            if (el2.hasOwnProperty("akarMasalah")) {
                                 el2.akarMasalah.forEach(akarMasalah => {
                                     akarMasalahClass.innerHTML += `
                                         <div class="d-flex">
@@ -1698,8 +1788,8 @@
                                         `;
                                 });
                             }
-                            
-                            if(el2.hasOwnProperty("rekomendasi")) {
+
+                            if (el2.hasOwnProperty("rekomendasi")) {
                                 el2.rekomendasi.forEach(rekomendasi => {
                                     rekomendasiClass.innerHTML += `
                                         <div class="d-flex">
@@ -1712,39 +1802,44 @@
                             count++;
                         });
                     })
-                }
-                else {
-                    data.innerHTML +=`
+                } else {
+                    data.innerHTML += `
                         <tr>
                             <td colspan="8">Tidak ada pemetaan mutu</td>
                         </tr>
                     `;
                 }
-                document.getElementById("modal_title_1").innerHTML = `Laporan <b>Pemetaan mutu</b> Sekolah ${namaSekolah}`;
+                document.getElementById("modal_title_1").innerHTML =
+                    `Laporan <b>Pemetaan mutu</b> Sekolah ${namaSekolah}`;
                 loadingModal.hide();
                 laporanSekolahModal.show();
-            } 
-            else if(siklus == 2){
+            } else if (siklus == 2) {
                 loadingModal.show();
                 const data = document.getElementById("data2");
-    
+
                 const dataStandar = await getData(`${url}/standar`);
-                const dataRekomendasi = await Promise.all(dataStandar.map(async standar=>await getData(`${url}/rekomendasi/standar/${standar.id}/${id}`)));
-                const dataProgram = await Promise.all(dataRekomendasi.map(async data=>await Promise.all(data.map(async rekomendasi=>await getData(`${url}/program/${rekomendasi.id}`)))));
-                const dataKegiatan = await Promise.all(dataProgram.map(async data1=>await Promise.all(data1.map(async data2=>await Promise.all(data2.map(async program=>await getData(`${url}/kegiatan/${program.id}`)))))));
-                const dataRencana = await Promise.all(dataKegiatan.map(async data1=>await Promise.all(data1.map(async data2=>await Promise.all(data2.map(async data3=>await Promise.all(data3.map(async kegiatan=>await getData(`${url}/rencanaKerja/${kegiatan.id}`)))))))));
+                const dataRekomendasi = await Promise.all(dataStandar.map(async standar => await getData(
+                    `${url}/rekomendasi/standar/${standar.id}/${id}`)));
+                const dataProgram = await Promise.all(dataRekomendasi.map(async data => await Promise.all(data.map(
+                    async rekomendasi => await getData(`${url}/program/${rekomendasi.id}`)))));
+                const dataKegiatan = await Promise.all(dataProgram.map(async data1 => await Promise.all(data1.map(
+                    async data2 => await Promise.all(data2.map(async program => await getData(
+                        `${url}/kegiatan/${program.id}`)))))));
+                const dataRencana = await Promise.all(dataKegiatan.map(async data1 => await Promise.all(data1.map(
+                    async data2 => await Promise.all(data2.map(async data3 => await Promise.all(
+                        data3.map(async kegiatan => await getData(
+                            `${url}/rencanaKerja/${kegiatan.id}`)))))))));
                 const allData = []
-                for(let i = 0; i < dataStandar.length; i++) {
+                for (let i = 0; i < dataStandar.length; i++) {
                     allData.push({
                         "standar": dataStandar[i]
                     });
-                    for(let j = 0; j < dataRekomendasi[i].length; j++) {
+                    for (let j = 0; j < dataRekomendasi[i].length; j++) {
                         if (j == 0) {
                             allData[i].rekomendasi = [dataRekomendasi[i][j]];
-                        }
-                        else {
+                        } else {
                             let check = true;
-                            for(let k = 0; k < allData[i].rekomendasi.length; k++) {
+                            for (let k = 0; k < allData[i].rekomendasi.length; k++) {
                                 if (allData[i].rekomendasi[k] == dataRekomendasi[i][j].deskripsi) {
                                     check = false;
                                     break;
@@ -1754,14 +1849,13 @@
                                 allData[i].rekomendasi.push(dataRekomendasi[i][j]);
                             }
                         }
-    
-                        for(let k = 0; k < dataProgram[i][j].length; k++) {
+
+                        for (let k = 0; k < dataProgram[i][j].length; k++) {
                             if (k == 0) {
                                 allData[i].program = [dataProgram[i][j][k]];
-                            }
-                            else {
+                            } else {
                                 let check = true;
-                                for(let l = 0; l < allData[idx].program.length; l++) {
+                                for (let l = 0; l < allData[idx].program.length; l++) {
                                     if (allData[i].program[l] == dataProgram[i][j][k].deskripsi) {
                                         check = false;
                                         break;
@@ -1771,14 +1865,13 @@
                                     allData[i].program.push(dataProgram[i][j][k]);
                                 }
                             }
-    
-                            for(let l = 0; l < dataKegiatan[i][j][k].length; l++) {
+
+                            for (let l = 0; l < dataKegiatan[i][j][k].length; l++) {
                                 if (l == 0) {
                                     allData[i].kegiatan = [dataKegiatan[i][j][k][l]];
-                                }
-                                else {
+                                } else {
                                     let check = true;
-                                    for(let m = 0; m < allData[i].kegiatan.length; m++) {
+                                    for (let m = 0; m < allData[i].kegiatan.length; m++) {
                                         if (allData[i].kegiatan[l] == dataKegiatan[i][j][k][l].deskripsi) {
                                             check = false;
                                             break;
@@ -1788,14 +1881,13 @@
                                         allData[i].kegiatan.push(dataKegiatan[i][j][k][l]);
                                     }
                                 }
-    
-                                for(let m = 0; m < dataRencana[i][j][k][l].length; m++) {
+
+                                for (let m = 0; m < dataRencana[i][j][k][l].length; m++) {
                                     if (m == 0) {
                                         allData[i].rencana = [dataRencana[i][j][k][l][m]];
-                                    }
-                                    else {
+                                    } else {
                                         let check = true;
-                                        for(let n = 0; n < allData[i].rencana.length; n++) {
+                                        for (let n = 0; n < allData[i].rencana.length; n++) {
                                             if (allData[i].rencana[l] == dataRencana[i][j][k][l][m].rencana) {
                                                 check = false;
                                                 break;
@@ -1810,11 +1902,11 @@
                         }
                     }
                 }
-                
+
                 data.innerHTML = ""
-                if(allData.length > 0) {
-                    allData.forEach((el,idx) => {
-                        data.innerHTML +=`
+                if (allData.length > 0) {
+                    allData.forEach((el, idx) => {
+                        data.innerHTML += `
                             <tr>
                                 <td>${el.standar.nomor}. ${el.standar.nama}</td>
                                 <td class="rekomendasi2"></td>
@@ -1829,13 +1921,14 @@
                         const rekomendasiClass = document.getElementsByClassName('rekomendasi2')[idx];
                         const programClass = document.getElementsByClassName('program')[idx];
                         const kegiatanClass = document.getElementsByClassName('kegiatan')[idx];
-                        const indikatorKinerjaClass = document.getElementsByClassName('indikatorKinerja')[idx]
+                        const indikatorKinerjaClass = document.getElementsByClassName('indikatorKinerja')[
+                            idx]
                         const volumeClass = document.getElementsByClassName('volume')[idx]
                         const kebutuhanBiayaClass = document.getElementsByClassName('kebutuhanBiaya')[idx]
                         const sumberDayaClass = document.getElementsByClassName('sumberDaya')[idx]
-                        
-                        if(el.hasOwnProperty('rekomendasi')) {
-                            el.rekomendasi.forEach(rekomendasi=>{
+
+                        if (el.hasOwnProperty('rekomendasi')) {
+                            el.rekomendasi.forEach(rekomendasi => {
                                 rekomendasiClass.innerHTML += `
                                     <div class="d-flex">
                                         <div class="mr-1">-</div>
@@ -1844,9 +1937,9 @@
                                 `;
                             })
                         }
-                        
-                        if(el.hasOwnProperty('program')) {
-                            el.program.forEach(program=>{
+
+                        if (el.hasOwnProperty('program')) {
+                            el.program.forEach(program => {
                                 programClass.innerHTML += `
                                     <div class="d-flex">
                                         <div class="mr-1">-</div>
@@ -1855,9 +1948,9 @@
                                 `;
                             })
                         }
-                        
-                        if(el.hasOwnProperty('kegiatan')) {
-                            el.kegiatan.forEach(kegiatan=>{
+
+                        if (el.hasOwnProperty('kegiatan')) {
+                            el.kegiatan.forEach(kegiatan => {
                                 kegiatanClass.innerHTML += `
                                     <div class="d-flex">
                                         <div class="mr-1">-</div>
@@ -1866,49 +1959,56 @@
                                 `;
                             })
                         }
-                        
-                        if(el.hasOwnProperty('rencana')) {
-                            el.rencana.forEach(rencana=>{
-                                indikatorKinerjaClass.innerHTML += `${rencana.indikator_kinerja}<br/><br/>`;
+
+                        if (el.hasOwnProperty('rencana')) {
+                            el.rencana.forEach(rencana => {
+                                indikatorKinerjaClass.innerHTML +=
+                                    `${rencana.indikator_kinerja}<br/><br/>`;
                                 volumeClass.innerHTML += `${rencana.volume}<br/><br/>`;
                                 kebutuhanBiayaClass.innerHTML += `${rencana.biaya}<br/><br/>`;
-                                sumberDayaClass.innerHTML += `${rencana.is_dana_bos == 1 ? "Dana Bos" : ""}<br/>${rencana.sumber_daya}<br/><br/>`;
+                                sumberDayaClass.innerHTML +=
+                                    `${rencana.is_dana_bos == 1 ? "Dana Bos" : ""}<br/>${rencana.sumber_daya}<br/><br/>`;
                             })
                         }
                     });
-                }
-                else {
-                    data.innerHTML +=`
+                } else {
+                    data.innerHTML += `
                         <tr>
                             <td colspan="8">Tidak ada rencana pemetaan mutu</td>
                         </tr>
                     `;
                 }
-                document.getElementById("modal_title_2").innerHTML = `Laporan <b>Rencana Pemetaan mutu</b> Sekolah ${namaSekolah}`;
+                document.getElementById("modal_title_2").innerHTML =
+                    `Laporan <b>Rencana Pemetaan mutu</b> Sekolah ${namaSekolah}`;
                 loadingModal.hide();
                 laporanSekolahModal.show();
-            }
-            else if(siklus == 3){
+            } else if (siklus == 3) {
                 loadingModal.show();
                 const data = document.getElementById("data3");
-    
+
                 const dataStandar = await getData(`${url}/standar`);
-                const dataRekomendasi = await Promise.all(dataStandar.map(async standar=>await getData(`${url}/rekomendasi/standar/${standar.id}/${id}`)));
-                const dataProgram = await Promise.all(dataRekomendasi.map(async data=>await Promise.all(data.map(async rekomendasi=>await getData(`${url}/program/${rekomendasi.id}`)))));
-                const dataKegiatan = await Promise.all(dataProgram.map(async data1=>await Promise.all(data1.map(async data2=>await Promise.all(data2.map(async program=>await getData(`${url}/kegiatan/${program.id}`)))))));
-                const dataRealisasi = await Promise.all(dataKegiatan.map(async data1=>await Promise.all(data1.map(async data2=>await Promise.all(data2.map(async data3=>await Promise.all(data3.map(async kegiatan=>await getData(`${url}/realisasiKerja/${kegiatan.id}`)))))))));
+                const dataRekomendasi = await Promise.all(dataStandar.map(async standar => await getData(
+                    `${url}/rekomendasi/standar/${standar.id}/${id}`)));
+                const dataProgram = await Promise.all(dataRekomendasi.map(async data => await Promise.all(data.map(
+                    async rekomendasi => await getData(`${url}/program/${rekomendasi.id}`)))));
+                const dataKegiatan = await Promise.all(dataProgram.map(async data1 => await Promise.all(data1.map(
+                    async data2 => await Promise.all(data2.map(async program => await getData(
+                        `${url}/kegiatan/${program.id}`)))))));
+                const dataRealisasi = await Promise.all(dataKegiatan.map(async data1 => await Promise.all(data1.map(
+                    async data2 => await Promise.all(data2.map(async data3 => await Promise.all(
+                        data3.map(async kegiatan => await getData(
+                            `${url}/realisasiKerja/${kegiatan.id}`)))))))));
                 const allData = []
-                for(let i = 0; i < dataStandar.length; i++) {
+                for (let i = 0; i < dataStandar.length; i++) {
                     allData.push({
                         "standar": dataStandar[i]
                     });
-                    for(let j = 0; j < dataRekomendasi[i].length; j++) {
+                    for (let j = 0; j < dataRekomendasi[i].length; j++) {
                         if (j == 0) {
                             allData[i].rekomendasi = [dataRekomendasi[i][j]];
-                        }
-                        else {
+                        } else {
                             let check = true;
-                            for(let k = 0; k < allData[i].rekomendasi.length; k++) {
+                            for (let k = 0; k < allData[i].rekomendasi.length; k++) {
                                 if (allData[i].rekomendasi[k] == dataRekomendasi[i][j].deskripsi) {
                                     check = false;
                                     break;
@@ -1918,14 +2018,13 @@
                                 allData[i].rekomendasi.push(dataRekomendasi[i][j]);
                             }
                         }
-    
-                        for(let k = 0; k < dataProgram[i][j].length; k++) {
+
+                        for (let k = 0; k < dataProgram[i][j].length; k++) {
                             if (k == 0) {
                                 allData[i].program = [dataProgram[i][j][k]];
-                            }
-                            else {
+                            } else {
                                 let check = true;
-                                for(let l = 0; l < allData[idx].program.length; l++) {
+                                for (let l = 0; l < allData[idx].program.length; l++) {
                                     if (allData[i].program[l] == dataProgram[i][j][k].deskripsi) {
                                         check = false;
                                         break;
@@ -1935,14 +2034,13 @@
                                     allData[i].program.push(dataProgram[i][j][k]);
                                 }
                             }
-    
-                            for(let l = 0; l < dataKegiatan[i][j][k].length; l++) {
+
+                            for (let l = 0; l < dataKegiatan[i][j][k].length; l++) {
                                 if (l == 0) {
                                     allData[i].kegiatan = [dataKegiatan[i][j][k][l]];
-                                }
-                                else {
+                                } else {
                                     let check = true;
-                                    for(let m = 0; m < allData[i].kegiatan.length; m++) {
+                                    for (let m = 0; m < allData[i].kegiatan.length; m++) {
                                         if (allData[i].kegiatan[l] == dataKegiatan[i][j][k][l].deskripsi) {
                                             check = false;
                                             break;
@@ -1952,14 +2050,13 @@
                                         allData[i].kegiatan.push(dataKegiatan[i][j][k][l]);
                                     }
                                 }
-    
-                                for(let m = 0; m < dataRealisasi[i][j][k][l].length; m++) {
+
+                                for (let m = 0; m < dataRealisasi[i][j][k][l].length; m++) {
                                     if (m == 0) {
                                         allData[i].realisasi = [dataRealisasi[i][j][k][l][m]];
-                                    }
-                                    else {
+                                    } else {
                                         let check = true;
-                                        for(let n = 0; n < allData[i].rencana.length; n++) {
+                                        for (let n = 0; n < allData[i].rencana.length; n++) {
                                             if (allData[i].realisasi[l] == dataRealisasi[i][j][k][l][m].rencana) {
                                                 check = false;
                                                 break;
@@ -1974,11 +2071,11 @@
                         }
                     }
                 }
-                
+
                 data.innerHTML = ""
-                if(allData.length > 0) {
-                    allData.forEach((el,idx) => {
-                        data.innerHTML +=`
+                if (allData.length > 0) {
+                    allData.forEach((el, idx) => {
+                        data.innerHTML += `
                             <tr>
                                 <td>${el.standar.nomor}. ${el.standar.nama}</td>
                                 <td class="rekomendasi3"></td>
@@ -1995,11 +2092,12 @@
                         const kegiatanClass = document.getElementsByClassName('kegiatan3')[idx];
                         const penanggungJawabClass = document.getElementsByClassName('penanggungJawab')[idx]
                         const pemangkuClass = document.getElementsByClassName('pemangku')[idx]
-                        const waktuPelaksanaanClass = document.getElementsByClassName('waktuPelaksanaan')[idx]
+                        const waktuPelaksanaanClass = document.getElementsByClassName('waktuPelaksanaan')[
+                            idx]
                         const buktiFisikClass = document.getElementsByClassName('buktiFisik')[idx]
-                        
-                        if(el.hasOwnProperty('rekomendasi')) {
-                            el.rekomendasi.forEach(rekomendasi=>{
+
+                        if (el.hasOwnProperty('rekomendasi')) {
+                            el.rekomendasi.forEach(rekomendasi => {
                                 rekomendasiClass.innerHTML += `
                                     <div class="d-flex">
                                         <div class="mr-1">-</div>
@@ -2008,9 +2106,9 @@
                                 `;
                             })
                         }
-                        
-                        if(el.hasOwnProperty('program')) {
-                            el.program.forEach(program=>{
+
+                        if (el.hasOwnProperty('program')) {
+                            el.program.forEach(program => {
                                 programClass.innerHTML += `
                                     <div class="d-flex">
                                         <div class="mr-1">-</div>
@@ -2019,9 +2117,9 @@
                                 `;
                             })
                         }
-                        
-                        if(el.hasOwnProperty('kegiatan')) {
-                            el.kegiatan.forEach(kegiatan=>{
+
+                        if (el.hasOwnProperty('kegiatan')) {
+                            el.kegiatan.forEach(kegiatan => {
                                 kegiatanClass.innerHTML += `
                                     <div class="d-flex">
                                         <div class="mr-1">-</div>
@@ -2030,30 +2128,34 @@
                                 `;
                             })
                         }
-                        
-                        if(el.hasOwnProperty('realisasi')) {
-                            el.realisasi.forEach(realisasi=>{
-                                penanggungJawabClass.innerHTML += `${realisasi.penanggung_jawab}<br/><br/>`;
-                                pemangkuClass.innerHTML += `${realisasi.pemangku_kepentingan}<br/><br/>`;
-                                waktuPelaksanaanClass.innerHTML += `${realisasi.waktu_pelaksanaan}<br/><br/>`;
-                                buktiFisikClass.innerHTML += `${realisasi.bukti_fisik_keterangan}<br/><br/>`;
+
+                        if (el.hasOwnProperty('realisasi')) {
+                            el.realisasi.forEach(realisasi => {
+                                penanggungJawabClass.innerHTML +=
+                                    `${realisasi.penanggung_jawab}<br/><br/>`;
+                                pemangkuClass.innerHTML +=
+                                    `${realisasi.pemangku_kepentingan}<br/><br/>`;
+                                waktuPelaksanaanClass.innerHTML +=
+                                    `${realisasi.waktu_pelaksanaan}<br/><br/>`;
+                                buktiFisikClass.innerHTML +=
+                                    `${realisasi.bukti_fisik_keterangan}<br/><br/>`;
                             })
                         }
                     });
-                }
-                else {
-                    data.innerHTML +=`
+                } else {
+                    data.innerHTML += `
                         <tr>
                             <td colspan="8">Tidak ada pelaksanaan pemetaan mutu</td>
                         </tr>
                     `;
                 }
-                document.getElementById("modal_title_3").innerHTML = `Laporan <b>Pelaksanaan Pemetaan mutu</b> Sekolah ${namaSekolah} `;
+                document.getElementById("modal_title_3").innerHTML =
+                    `Laporan <b>Pelaksanaan Pemetaan mutu</b> Sekolah ${namaSekolah} `;
                 loadingModal.hide();
                 laporanSekolahModal.show();
-            }
-            else if(siklus == 4){
-                document.getElementById("modal_title_4").innerHTML = `Laporan <b>Audit mutu</b> Sekolah ${namaSekolah} `;
+            } else if (siklus == 4) {
+                document.getElementById("modal_title_4").innerHTML =
+                    `Laporan <b>Audit mutu</b> Sekolah ${namaSekolah} `;
                 laporanSekolahModal.show();
             }
         }
