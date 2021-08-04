@@ -202,6 +202,9 @@ Route::group(['middleware'=>['AuthCheckTpmps']], function(){
     Route::post('/tpmps/dataOperasional/importExcelPemetaanMutu/{id}/{tpmps_id}',[TPMPSController::class, 'importExcelPemetaanMutu']);
     // add forms siklus 1
     Route::post('/tpmps/dataOperasional/tambahMasalah',[MasalahController::class,'tambah']);
+    Route::get('/tpmps/dataOperasional/editMasalah/{id}',[MasalahController::class,'edit']);
+    Route::post('/tpmps/dataOperasional/ubahMasalah/{id}',[MasalahController::class,'ubah']);
+    Route::get('/tpmps/dataOperasional/hapusMasalah/{id}',[MasalahController::class,'hapus']);
     Route::post('/tpmps/dataOperasional/tambahRekomendasi',[RekomendasiController::class,'tambah']);
     Route::get('/tpmps/dataOperasional/editRekomendasi/{id}',[RekomendasiController::class,'edit']);
     Route::post('/tpmps/dataOperasional/ubahRekomendasi/{id}',[RekomendasiController::class,'ubah']);

@@ -24,4 +24,21 @@ class MasalahController extends Controller
         ]);
         return redirect("/tpmps/dataOperasional");
     }
+
+    public function edit($id) {
+        return Masalah::find($id);
+    }
+
+    public function ubah(Request $request, $id) {
+        $masalah = Masalah::find($id);
+        $masalah->deskripsi = $request->deskripsi;
+        $masalah->indikator_id = $request->indikator_id;
+        $masalah->save();
+        return redirect('/tpmps/dataOperasional');
+    }
+
+    public function hapus($id) {
+        Masalah::find($id)->delete();
+        return redirect('/tpmps/dataOperasional');
+    }
 }

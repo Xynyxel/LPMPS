@@ -22,7 +22,7 @@ class RekomendasiController extends Controller
     }
     
     public function tambah(Request $request) {
-        $newRekomendasi =  Rekomendasi::create([
+        $rekomendasi =  Rekomendasi::create([
             'tahun' => Carbon::now()->isoFormat('YYYY'),
             'deskripsi'=> $request->deskripsi,
             'status' => 0,
@@ -30,7 +30,7 @@ class RekomendasiController extends Controller
             'sekolah_id' => $request->sekolah_id,
             'indikator_id' => $request->indikator_id,
         ]);
-        if(!$newRekomendasi){
+        if(!$rekomendasi){
             return redirect("/tpmps/dataOperasional")->with('fail','There Something Wrong');
         }
         return redirect("/tpmps/dataOperasional");
@@ -41,10 +41,10 @@ class RekomendasiController extends Controller
     }
 
     public function ubah(Request $request, $id) {
-        $akarMasalah = Rekomendasi::find($id);
-        $akarMasalah->deskripsi = $request->deskripsi;
-        $akarMasalah->indikator_id = $request->indikator_id;
-        $akarMasalah->save();
+        $rekomendasi = Rekomendasi::find($id);
+        $rekomendasi->deskripsi = $request->deskripsi;
+        $rekomendasi->indikator_id = $request->indikator_id;
+        $rekomendasi->save();
         return redirect('/tpmps/dataOperasional');
     }
 

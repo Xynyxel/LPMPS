@@ -652,25 +652,25 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tambah Masalah</h5>
+                                <h5 class="modal-title" id="title-modal-masalah">Tambah Masalah</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form method="post" action='/tpmps/dataOperasional/tambahMasalah'>
+                            <form method="post" id="form-masalah" action='/tpmps/dataOperasional/tambahMasalah'>
                                 @csrf
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <div class="mb-3">
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Deskripsi</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                <textarea class="form-control" id="masalah-deskripsi"
                                                     name="deskripsi" rows="3"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <select class="custom-select" id="inputGroupSelect01" name="indikator_id" required>
+                                        <select class="custom-select" id="masalah-indikator" name="indikator_id" required>
                                             <option selected>Pilih Jenis Indikator...</option>
                                             @foreach ($listIndikator as $indikator)
                                                 <option value="{{ $indikator->id }}">{{ $indikator->nama }}</option>
@@ -682,7 +682,7 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="submit" class="btn btn-primary" value="Tambah"></button>
+                                    <input type="submit" class="btn btn-primary" id="masalah-btn" value="Tambah"></button>
                                 </div>
                             </form>
                         </div>
@@ -750,28 +750,28 @@
                             const title = document.getElementById('title-modal-rekomendasi');
                             const deskripsi = document.getElementById('rekomendasi-deskripsi');
                             const indikator = document.getElementById('rekomendasi-indikator');
-                            const btn = document.getElementById('rekomendasi_btn');
+                            const btn = document.getElementById('rekomendasi-btn');
                             fetch(`${url}/tpmps/dataOperasional/editRekomendasi/${id}`)
                                 .then(response=>response.json())
                                 .then(data=>{
                                     form.action = `/tpmps/dataOperasional/ubahRekomendasi/${id}`;
-                                    title.innerText = "Edit Rekomenadasi"
+                                    title.innerText = "Edit Rekomendasi"
                                     deskripsi.innerText = data.deskripsi;
                                     indikator.value = data.indikator_id;
                                     btn.value = "Edit";
                                 })
                         }
                         else if(table == "masalah") {
-                            const form = document.getElementById('form-rekomendasi');
-                            const title = document.getElementById('title-modal-rekomendasi');
-                            const deskripsi = document.getElementById('rekomendasi-deskripsi');
-                            const indikator = document.getElementById('rekomendasi-indikator');
-                            const btn = document.getElementById('rekomendasi_btn');
-                            fetch(`${url}/tpmps/dataOperasional/editRekomendasi/${id}`)
+                            const form = document.getElementById('form-masalah');
+                            const title = document.getElementById('title-modal-masalah');
+                            const deskripsi = document.getElementById('masalah-deskripsi');
+                            const indikator = document.getElementById('masalah-indikator');
+                            const btn = document.getElementById('masalah-btn');
+                            fetch(`${url}/tpmps/dataOperasional/editMasalah/${id}`)
                                 .then(response=>response.json())
                                 .then(data=>{
-                                    form.action = `/tpmps/dataOperasional/ubahRekomendasi/${id}`;
-                                    title.innerText = "Edit Rekomenadasi"
+                                    form.action = `/tpmps/dataOperasional/ubahMasalah/${id}`;
+                                    title.innerText = "Edit Masalah"
                                     deskripsi.innerText = data.deskripsi;
                                     indikator.value = data.indikator_id;
                                     btn.value = "Edit";
@@ -784,7 +784,7 @@
                             const title = document.getElementById('title-modal-rekomendasi');
                             const deskripsi = document.getElementById('rekomendasi-deskripsi');
                             const indikator = document.getElementById('rekomendasi-indikator');
-                            const btn = document.getElementById('rekomendasi_btn');
+                            const btn = document.getElementById('rekomendasi-btn');
                             form.action = `/tpmps/dataOperasional/tambahRekomendasi`;
                             title.innerText = "Tambah Rekomendasi"
                             deskripsi.innerText = ""
@@ -792,15 +792,13 @@
                             btn.value = "Tambah";
                         }
                         else if(table == "masalah") {
-                            const form = document.getElementById('form_raport_kpi');
-                            const title = document.getElementById('title_form_raport_kpi');
-                            const tahun = document.getElementById('raport_kpi_tahun');
-                            const nilai_kpi = document.getElementById('raport_kpi_nilai_kpi');
-                            const kota_kabupaten_id = document.getElementById('raport_kpi_kota_kabupaten_id');
-                            const sub_indikator_id = document.getElementById('raport_kpi_sub_indikator_id');
-                            const btn = document.getElementById('btn_raport_kpi');
-                            form.action = `/tpmps/dataOperasional/tambahRekomendasi`;
-                            title.innerText = "Tambah Rekomendasi"
+                            const form = document.getElementById('form-masalah');
+                            const title = document.getElementById('title-modal-masalah');
+                            const deskripsi = document.getElementById('masalah-deskripsi');
+                            const indikator = document.getElementById('masalah-indikator');
+                            const btn = document.getElementById('masalah-btn');
+                            form.action = `/tpmps/dataOperasional/tambahMasalah`;
+                            title.innerText = "Tambah Masalah"
                             deskripsi.innerText = ""
                             indikator.value = ""
                             btn.value = "Tambah";
