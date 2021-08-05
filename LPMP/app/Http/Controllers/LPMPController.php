@@ -25,7 +25,10 @@ class LPMPController extends Controller
 	public function dataOperasional(){
         $data_log = ['LoggedUserInfo'=>LPMP::where('id','=', session('LoggedUserLpmp'))-> first()];
         $listSekolah = Sekolah::all();
-        $pengajuanSiklus = PengajuanSiklus::where('siklus_periode_id', siklus()->id)->get();
+        $idSiklus = siklus();
+        if($idSiklus=="")   $idSiklus = 0;
+        else                $idSiklus = siklus()->id;
+        $pengajuanSiklus = PengajuanSiklus::where('siklus_periode_id', $idSiklus)->get();
         
         $data = [
             "siklus" => siklus(),
@@ -63,9 +66,12 @@ class LPMPController extends Controller
 
     public function comments($id) {
         $tpmps = TPMPS::where('sekolah_id', $id)->first();
+        $idSiklus = siklus();
+        if($idSiklus=="")   $idSiklus = 0;
+        else                $idSiklus = siklus()->id;
         return PengajuanSiklusKomunikasi::join('pengajuan_siklus as ps','ps.id','pengajuan_siklus_komunikasi.pengajuan_siklus_id')
             ->where('ps.tpmps_id',$tpmps->id)
-            ->where('ps.siklus_periode_id',siklus()->id)
+            ->where('ps.siklus_periode_id',$idSiklus)
             ->get();
     }
     

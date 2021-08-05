@@ -37,7 +37,7 @@
 <body>
 	
 @php
-if(isset($siklus)) {
+if($siklus!="") {
 	$arr = explode("-",$siklus->tanggal_mulai);
 	$arr2 = explode("-",$siklus->tanggal_selesai);
 	$mulai = $arr[2]."-".$arr[1]."-".$arr[0];
@@ -121,35 +121,37 @@ if(isset($siklus)) {
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="card">
-									<div class="card-header d-flex justify-content-between align-items-baseline">
-										<h3 class="card-title ">Periode Siklus SPMI <b>(Siklus {{ $siklus->siklus }})</b> </h3>
+									@if ($siklus!="")
+                                        <div class="card-header d-flex justify-content-between align-items-baseline">
+                                            <h3 class="card-title ">Periode Siklus SPMI <b>(Siklus {{ $siklus->siklus }})</b> </h3>
 											<div class="d-flex flex-row align-items-baseline">
 												<h2 id="date-now">{{ $mulai }}</h2>
 												<i class="fa fa-arrow-right mx-3"></i>
 												<h2 id="date-end">{{ $selesai }}</h2>
 											</div>
-									</div>
-									<div style="height: 2px; background-color: #ddd; margin: 0 20px;"></div>
-									<div class="card-body p-3">
-										@if ($siklus)
-											<div id="time" class="d-flex flex-row align-items-start justify-content-center">
-												<h1 id="days" style="font-size: 3.5em;">0</h1>
-												<h4 id="daysText" class="mr-2">Hari</h4>
-												<h1 id="hours" style="font-size: 3.5em;">00</h1>
-												<h4 id="hoursText" class="mr-2">Jam</h4>
-												<h1 id="minutes"  style="font-size: 3.5em;">00</h1>
-												<h4 id="minutesText" class="mr-2">Menit</h4>
-												<h1 id="seconds"  style="font-size: 3.5em;">00</h1>
-												<h4 id="secondsText" class="mr-2">Detik</h4>
-											</div>
-										@else
-											<div class="d-flex flex-row align-items-center justify-content-between">
-												<h1 class="mr-3">
-													Tidak ada siklus yang berjalan
-												</h1>
-											</div>
-										@endif
-									</div>
+                                        </div>
+                                        <div style="height: 2px; background-color: #ddd; margin: 0 20px;"></div>
+                                        <div class="card-body p-3">
+                                            <div id="time" class="d-flex flex-row align-items-start justify-content-center">
+                                                <h1 id="days" style="font-size: 3.5em;">0</h1>
+                                                <h4 id="daysText" class="mr-2">Hari</h4>
+                                                <h1 id="hours" style="font-size: 3.5em;">00</h1>
+                                                <h4 id="hoursText" class="mr-2">Jam</h4>
+                                                <h1 id="minutes"  style="font-size: 3.5em;">00</h1>
+                                                <h4 id="minutesText" class="mr-2">Menit</h4>
+                                                <h1 id="seconds"  style="font-size: 3.5em;">00</h1>
+                                                <h4 id="secondsText" class="mr-2">Detik</h4>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="card-body">
+                                            <div class="d-flex flex-row align-items-center justify-content-between">
+                                                <h1 class="mr-0">
+                                                    Tidak ada siklus yang berjalan
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    @endif
 								</div>
 							</div>
 						</div>
@@ -220,48 +222,50 @@ if(isset($siklus)) {
 
 	
 	<script>
-		const dateEnd = document.getElementById('date-end');
+		@if($siklus!="")
+            const dateEnd = document.getElementById('date-end');
 
-		const daysText = document.getElementById('days');
-		const dText = document.getElementById('daysText');
-		const hoursText = document.getElementById('hours');
-		const hText = document.getElementById('hoursText');
-		const minutesText = document.getElementById('minutes');
-		const mText = document.getElementById('minutesText');
-		const secondsText = document.getElementById('seconds');
-		const sText = document.getElementById('secondsText');
+            const daysText = document.getElementById('days');
+            const dText = document.getElementById('daysText');
+            const hoursText = document.getElementById('hours');
+            const hText = document.getElementById('hoursText');
+            const minutesText = document.getElementById('minutes');
+            const mText = document.getElementById('minutesText');
+            const secondsText = document.getElementById('seconds');
+            const sText = document.getElementById('secondsText');
 
-		const arr = dateEnd.innerText.split("-");
-		const end = new Date(`${arr[2]}-${arr[1]}-${arr[0]} 00:00:00`);
+            const arr = dateEnd.innerText.split("-");
+            const end = new Date(`${arr[2]}-${arr[1]}-${arr[0]} 00:00:00`);
 
-		const setTime = setInterval(()=>{
-			now();
-		},1000)
+            const setTime = setInterval(()=>{
+                now();
+            },1000)
 
-		const now = () => {
-			const date = new Date();
-			const dif = end - date;
+            const now = () => {
+                const date = new Date();
+                const dif = end - date;
 
-			let milliseconds = parseInt((dif % 1000) / 100);
-			let seconds = Math.floor((dif / 1000) % 60);
-			let minutes = Math.floor((dif / (1000 * 60)) % 60);
-			let hours = Math.floor((dif / (1000 * 60 * 60)) % 24);
-			let days = Math.floor((end - date) / (1000 * 60 * 60 * 24));
+                let milliseconds = parseInt((dif % 1000) / 100);
+                let seconds = Math.floor((dif / 1000) % 60);
+                let minutes = Math.floor((dif / (1000 * 60)) % 60);
+                let hours = Math.floor((dif / (1000 * 60 * 60)) % 24);
+                let days = Math.floor((end - date) / (1000 * 60 * 60 * 24));
 
-			hours = (hours < 10) ? "0" + hours : hours;
-			minutes = (minutes < 10) ? "0" + minutes : minutes;
-			seconds = (seconds < 10) ? "0" + seconds : seconds;
-			
-			if(days == 0 && hours == 0 && minutes == 0 && seconds == 0) {
-				location.reload();
-				clearInterval(setTime);
-			}
+                hours = (hours < 10) ? "0" + hours : hours;
+                minutes = (minutes < 10) ? "0" + minutes : minutes;
+                seconds = (seconds < 10) ? "0" + seconds : seconds;
+                
+                if(days == 0 && hours == 0 && minutes == 0 && seconds == 0) {
+                    location.reload();
+                    clearInterval(setTime);
+                }
 
-			daysText.innerText = days;
-			hoursText.innerText = hours;
-			minutesText.innerText = minutes;
-			secondsText.innerText = seconds;
-		}
+                daysText.innerText = days;
+                hoursText.innerText = hours;
+                minutesText.innerText = minutes;
+                secondsText.innerText = seconds;
+            }
+        @endif
 	</script>
 </body>
 </html>
