@@ -1,0 +1,767 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2099 1635" width="2099" height="1635" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs/>
+    <g transform="translate(-634.27,-264.33)">
+        <g transform="translate(658.6,1638.71)" id="table1">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,30L0,30L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="20" x="27">Pengawas</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,30L114,30L114,105.3L0,105.3L0,30z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="40.7" x="52">id</tspan>
+                    <tspan y="56.7" x="41">nama</tspan>
+                    <tspan y="72.7" x="45">asal</tspan>
+                    <tspan y="88.7" x="28.5">username</tspan>
+                    <tspan y="104.7" x="29.5">password</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(658.6,1458.25)" id="table2">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,35.5L0,35.5L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="22.7" x="34.5">TPMPS</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,35.5L114,35.5L114,143.5L0,143.5L0,35.5z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="62.5" x="52">id</tspan>
+                    <tspan y="78.5" x="41">nama</tspan>
+                    <tspan y="94.5" x="28.5">username</tspan>
+                    <tspan y="110.5" x="29.5">password</tspan>
+                    <tspan y="126.5" x="26">sekolah_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(1083.6,992.8)" id="table3">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,39.4L0,39.4L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="24.7" x="33.5">Sekolah</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,39.4L114,39.4L114,138.3L0,138.3L0,39.4z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="61.9" x="52">id</tspan>
+                    <tspan y="77.9" x="41">nama</tspan>
+                    <tspan y="93.9" x="37.5">alamat</tspan>
+                    <tspan y="109.9" x="38">telefon</tspan>
+                    <tspan y="125.9" x="25.5">kab_kot_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(1083.6,1061.96)" id="shape4">
+            <path stroke="#6d6d6d" d="M0,0L-123,0L-123,468.1L-311,468.1" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="-22.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="-22.5">1</tspan>
+            </text>
+            <rect y="460.1" width="7" x="-293.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="473.1" x="-293.5">1</tspan>
+            </text>
+        </g>
+        <g transform="translate(1013.6,1608.99)" id="table5">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,43.3L0,43.3L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="18.7" x="29.5">Sekolah - </tspan>
+                    <tspan y="34.7" x="27">Pengawas</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,43.3L114,43.3L114,150.7L0,150.7L0,43.3z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="62" x="52">id</tspan>
+                    <tspan y="78" x="41">tahun</tspan>
+                    <tspan y="94" x="39.5">tgl_sk</tspan>
+                    <tspan y="110" x="28.5">nomor_sk</tspan>
+                    <tspan y="126" x="26">sekolah_id</tspan>
+                    <tspan y="142" x="19.5">pengawas_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(1140.6,1131.13)" id="shape6">
+            <path stroke="#6d6d6d" d="M0,0L0,445.9L-70,445.9L-70,477.9" stroke-width="3" fill="none"/>
+            <rect y="12" width="7" x="-2.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="25" x="-2.5">1</tspan>
+            </text>
+            <rect y="449.9" width="9" x="-73.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="462.9" x="-73.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(772.6,1681.6)" id="shape7">
+            <path stroke="#6d6d6d" d="M0,0L209,0L209,-5.1L241,-5.1" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="17.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="17.5">1</tspan>
+            </text>
+            <rect y="-13.1" width="9" x="217.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-0.1" x="217.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(2137.6,1317.46)" id="table8">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,30L0,30L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="20" x="34.5">Standar</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,30L114,30L114,105.3L0,105.3L0,30z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="40.7" x="52">id</tspan>
+                    <tspan y="56.7" x="41">tahun</tspan>
+                    <tspan y="72.7" x="39">nomor</tspan>
+                    <tspan y="88.7" x="41">nama</tspan>
+                    <tspan y="104.7" x="39">status</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(1887.6,1317.46)" id="table9">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,27.3L0,27.3L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="18.7" x="32.5">Indikator</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,27.3L114,27.3L114,134.7L0,134.7L0,27.3z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="46" x="52">id</tspan>
+                    <tspan y="62" x="41">tahun</tspan>
+                    <tspan y="78" x="39">nomor</tspan>
+                    <tspan y="94" x="41">nama</tspan>
+                    <tspan y="110" x="39">status</tspan>
+                    <tspan y="126" x="27">standar_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(1587.1,1529.85)" id="table10">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,30L0,30L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="20" x="19">Sub Indikator</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,30L114,30L114,121.3L0,121.3L0,30z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="40.7" x="52">id</tspan>
+                    <tspan y="56.7" x="41">tahun</tspan>
+                    <tspan y="72.7" x="39">nomor</tspan>
+                    <tspan y="88.7" x="41">nama</tspan>
+                    <tspan y="104.7" x="39">status</tspan>
+                    <tspan y="120.7" x="24">indikator_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(2137.6,1360.35)" id="shape11">
+            <path stroke="#6d6d6d" d="M0,0L-104,0L-104,24.4L-136,24.4" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="-22.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="-22.5">1</tspan>
+            </text>
+            <rect y="16.4" width="9" x="-119.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="29.4" x="-119.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1944.6,1452.13)" id="shape12">
+            <path stroke="#6d6d6d" d="M0,0L0,120.6L-243.5,120.6" stroke-width="3" fill="none"/>
+            <rect y="12" width="7" x="-2.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="25" x="-2.5">1</tspan>
+            </text>
+            <rect y="112.6" width="9" x="-227" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="125.6" x="-227">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1318.1,1701.85)" id="table13">
+            <g>
+                <path stroke="#838383" d="M0,0L133,0L133,30L0,30L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="20" x="24">raport_sekolah</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,30L133,30L133,121.3L0,121.3L0,30z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="40.7" x="61.5">id</tspan>
+                    <tspan y="56.7" x="50.5">tahun</tspan>
+                    <tspan y="72.7" x="55">nilai</tspan>
+                    <tspan y="88.7" x="35.5">sekolah_id</tspan>
+                    <tspan y="104.7" x="19.5">sub_indikator_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(1169.1,1131.13)" id="shape14">
+            <path stroke="#6d6d6d" d="M0,0L0,631.4L149,631.4" stroke-width="3" fill="none"/>
+            <rect y="12" width="7" x="-2.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="25" x="-2.5">1</tspan>
+            </text>
+            <rect y="623.4" width="9" x="125.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="636.4" x="125.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1587.1,1551.3)" id="shape15">
+            <path stroke="#6d6d6d" d="M0,0L-104,0L-104,211.2L-136,211.2" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="-22.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="-22.5">1</tspan>
+            </text>
+            <rect y="203.2" width="9" x="-119.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="216.2" x="-119.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1291.6,1142.9)" id="table16">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,30L0,30L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="20" x="32">Kab_Kot</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,30L114,30L114,85.8L0,85.8L0,30z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="54.9" x="52">id</tspan>
+                    <tspan y="70.9" x="41">nama</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(1291.6,1220.38)" id="shape17">
+            <path stroke="#6d6d6d" d="M0,0L-42,0L-42,-123.8L-94,-123.8" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="-22.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="-22.5">1</tspan>
+            </text>
+            <rect y="-131.8" width="9" x="-77.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-118.8" x="-77.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1471.6,1286.34)" id="table18">
+            <g>
+                <path stroke="#838383" d="M0,0L138,0L138,30L0,30L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="20" x="38.5">KPI_raport</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,30L138,30L138,121.3L0,121.3L0,30z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="40.7" x="64">id</tspan>
+                    <tspan y="56.7" x="53">tahun</tspan>
+                    <tspan y="72.7" x="45.5">nilai_kpi</tspan>
+                    <tspan y="88.7" x="34">kab_kota_id</tspan>
+                    <tspan y="104.7" x="22">sub_indikator_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(1405.6,1185.8)" id="shape19">
+            <path stroke="#6d6d6d" d="M0,0L34,0L34,153.2L66,153.2" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="17.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="17.5">1</tspan>
+            </text>
+            <rect y="145.2" width="9" x="42.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="158.2" x="42.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1644.1,1529.85)" id="shape20">
+            <path stroke="#6d6d6d" d="M0,0L0,-190.8L-34.5,-190.8" stroke-width="3" fill="none"/>
+            <rect y="-28" width="7" x="-2.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-15" x="-2.5">1</tspan>
+            </text>
+            <rect y="-198.8" width="9" x="-18" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-185.8" x="-18">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1471.6,930.8)" id="table21">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,34.5L0,34.5L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="22.3" x="32.5">Masalah</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,34.5L114,34.5L114,157.8L0,157.8L0,34.5z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="53.2" x="52">id</tspan>
+                    <tspan y="69.2" x="41">tahun</tspan>
+                    <tspan y="85.2" x="31">deskripsi</tspan>
+                    <tspan y="101.2" x="39">status</tspan>
+                    <tspan y="117.2" x="32">datetime</tspan>
+                    <tspan y="133.2" x="26">sekolah_id</tspan>
+                    <tspan y="149.2" x="24">indikator_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(1887.6,1418.46)" id="shape22">
+            <path stroke="#6d6d6d" d="M0,0L-203,0L-203,-383L-302,-383" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="-22.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="-22.5">1</tspan>
+            </text>
+            <rect y="-391" width="9" x="-285.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-378" x="-285.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1197.6,1061.96)" id="shape23">
+            <path stroke="#6d6d6d" d="M0,0L137,0L137,-26.5L274,-26.5" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="17.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="17.5">1</tspan>
+            </text>
+            <rect y="-34.5" width="9" x="250.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-21.5" x="250.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1655.6,805.13)" id="table24">
+            <g>
+                <path stroke="#838383" d="M0,0L123,0L123,30L0,30L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="20" x="20">Akar_masalah</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,30L123,30L123,153.3L0,153.3L0,30z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="40.7" x="56.5">id</tspan>
+                    <tspan y="56.7" x="45.5">tahun</tspan>
+                    <tspan y="72.7" x="35.5">deskripsi</tspan>
+                    <tspan y="88.7" x="43.5">status</tspan>
+                    <tspan y="104.7" x="36.5">datetime</tspan>
+                    <tspan y="120.7" x="30.5">sekolah_id</tspan>
+                    <tspan y="136.7" x="28.5">indikator_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(1887.6,1384.8)" id="shape25">
+            <path stroke="#6d6d6d" d="M0,0L-170.5,0L-170.5,-442.3" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="-22.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="-22.5">1</tspan>
+            </text>
+            <rect y="-430.3" width="9" x="-174" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-417.3" x="-174">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1197.6,1027.38)" id="shape26">
+            <path stroke="#6d6d6d" d="M0,0L60.5,0L60.5,-119.3L458,-119.3" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="17.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="17.5">1</tspan>
+            </text>
+            <rect y="-127.3" width="9" x="434.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-114.3" x="434.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1382.4,583.31)" id="table27">
+            <g>
+                <path stroke="#838383" d="M0,0L139.6,0L139.6,46L0,46L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="20" x="13">Master_akar_masal</tspan>
+                    <tspan y="36" x="63">ah</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,46L139.6,46L139.6,124L0,124L0,46z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="66" x="65">id</tspan>
+                    <tspan y="82" x="54">tahun</tspan>
+                    <tspan y="98" x="40.5">deskpripsi</tspan>
+                    <tspan y="114" x="23">sub_indikator_id</tspan>
+                </text>
+            </g>
+        </g>
+        <path transform="translate(1522,645.31)" stroke="#6d6d6d" stroke-dasharray="2,5" d="M0,0L101.6,0L101.6,228.5L133.6,228.5" stroke-width="3" fill="none" id="shape28"/>
+        <g transform="translate(1169.1,992.8)" id="shape29">
+            <path stroke="#6d6d6d" d="M0,0L0,-267.4L56.7,-267.4C56.7,-270.7,59.4,-273.4,62.7,-273.4C66,-273.4,68.7,-270.7,68.7,-267.4L448.5,-267.4C448.5,-270.7,451.2,-273.4,454.5,-273.4C457.8,-273.4,460.5,-270.7,460.5,-267.4L621.8,-267.4" stroke-width="3" fill="none"/>
+            <rect y="-28" width="7" x="-2.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-15" x="-2.5">1</tspan>
+            </text>
+            <rect y="-275.4" width="9" x="598.3" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-262.4" x="598.3">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1887.6,1351.13)" id="shape30">
+            <path stroke="#6d6d6d" d="M0,0L-66,0L-66,-557" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="-22.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="-22.5">1</tspan>
+            </text>
+            <rect y="-545" width="9" x="-69.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-532" x="-69.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1790.85,656.76)" id="table31">
+            <g>
+                <path stroke="#838383" d="M0,0L123,0L123,30L0,30L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="20" x="22">Rekomendasi</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,30L123,30L123,153.3L0,153.3L0,30z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="40.7" x="56.5">id</tspan>
+                    <tspan y="56.7" x="45.5">tahun</tspan>
+                    <tspan y="72.7" x="35.5">deskripsi</tspan>
+                    <tspan y="88.7" x="43.5">status</tspan>
+                    <tspan y="104.7" x="36.5">datetime</tspan>
+                    <tspan y="120.7" x="30.5">sekolah_id</tspan>
+                    <tspan y="136.7" x="28.5">indikator_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(635.6,670.31)" id="table32">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,30L0,30L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="20" x="13.5">Siklus_Periode</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,30L114,30L114,105.3L0,105.3L0,30z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="40.7" x="52">id</tspan>
+                    <tspan y="56.7" x="39">Siklus</tspan>
+                    <tspan y="72.7" x="17">tanggal_mulai</tspan>
+                    <tspan y="88.7" x="13.5">tanggal_selesa</tspan>
+                    <tspan y="104.7" x="55.5">i</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(2188.6,519.31)" id="table33">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,30L0,30L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="20" x="32.5">Program</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,30L114,30L114,121.3L0,121.3L0,30z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="40.7" x="52">id</tspan>
+                    <tspan y="56.7" x="41">tahun</tspan>
+                    <tspan y="72.7" x="31">deskripsi</tspan>
+                    <tspan y="88.7" x="39">status</tspan>
+                    <tspan y="104.7" x="32">datetime</tspan>
+                    <tspan y="120.7" x="26">sekolah_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(2004.6,599.31)" id="table34">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,30L0,30L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="12" x="17.5">program_reko</tspan>
+                    <tspan y="28" x="32.5">mendasi</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,30L114,30L114,89.3L0,89.3L0,30z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="40.7" x="52">id</tspan>
+                    <tspan y="56.7" x="25">program_id</tspan>
+                    <tspan y="72.7" x="15">rekomendasi_i</tspan>
+                    <tspan y="88.7" x="53.5">d</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(1913.85,725.43)" id="shape35">
+            <path stroke="#6d6d6d" d="M0,0L58.8,0L58.8,-83.2L90.8,-83.2" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="17.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="17.5">1</tspan>
+            </text>
+            <rect y="-91.2" width="9" x="67.3" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-78.2" x="67.3">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(2118.6,642.2)" id="shape36">
+            <path stroke="#6d6d6d" d="M0,0L38,0L38,-80L70,-80" stroke-width="3" fill="none"/>
+            <rect y="-8" width="9" x="16.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="16.5">N</tspan>
+            </text>
+            <rect y="-88" width="7" x="47.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-75" x="47.5">1</tspan>
+            </text>
+        </g>
+        <g transform="translate(1112.1,992.8)" id="shape37">
+            <path stroke="#6d6d6d" d="M0,0L0,-505.5L113.7,-505.5C113.7,-508.8,116.4,-511.5,119.7,-511.5C123,-511.5,125.7,-508.8,125.7,-505.5L241.9,-505.5C241.9,-508.8,244.6,-511.5,247.9,-511.5C251.2,-511.5,253.9,-508.8,253.9,-505.5L1133.5,-505.5L1133.5,-473.5" stroke-width="3" fill="none"/>
+            <rect y="-28" width="7" x="-2.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-15" x="-2.5">1</tspan>
+            </text>
+            <rect y="-501.5" width="9" x="1130" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="-488.5" x="1130">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(2354.6,631.58)" id="table38">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,38.1L0,38.1L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="24" x="31.5">Kegiatan</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,38.1L114,38.1L114,129.4L0,129.4L0,38.1z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="56.7" x="52">id</tspan>
+                    <tspan y="72.7" x="31">deskripsi</tspan>
+                    <tspan y="88.7" x="39">status</tspan>
+                    <tspan y="104.7" x="32">datetime</tspan>
+                    <tspan y="120.7" x="25">program_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(2302.6,562.2)" id="shape39">
+            <path stroke="#6d6d6d" d="M0,0L20,0L20,134.1L52,134.1" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="17.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="17.5">1</tspan>
+            </text>
+            <rect y="126.1" width="9" x="28.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="139.1" x="28.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(2572.61,893.1)" id="table40">
+            <g>
+                <path stroke="#838383" d="M0,0L158.8,0L158.8,34.5L0,34.5L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="22.3" x="30.5">Rencana_Kinerja</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,34.5L158.8,34.5L158.8,194.9L0,194.9L0,34.5z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="55.7" x="74.5">id</tspan>
+                    <tspan y="71.7" x="32.5">indikator_kinerja</tspan>
+                    <tspan y="87.7" x="59.5">volume</tspan>
+                    <tspan y="103.7" x="64">biaya</tspan>
+                    <tspan y="119.7" x="40.5">sumber_daya</tspan>
+                    <tspan y="135.7" x="39.5">is_dana_BOS</tspan>
+                    <tspan y="151.7" x="61.5">status</tspan>
+                    <tspan y="167.7" x="54.5">datetime</tspan>
+                    <tspan y="183.7" x="46.5">kegiatan_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(2468.6,696.28)" id="shape41">
+            <path stroke="#6d6d6d" d="M0,0L72,0L72,294.3L104,294.3" stroke-width="3" fill="none"/>
+            <rect y="-8" width="7" x="17.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="5" x="17.5">1</tspan>
+            </text>
+            <rect y="286.3" width="9" x="80.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="299.3" x="80.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(2572.61,1131.54)" id="table42">
+            <g>
+                <path stroke="#838383" d="M0,0L158.8,0L158.8,34.5L0,34.5L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="22.3" x="29.5">Realisasi_Kinerja</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,34.5L158.8,34.5L158.8,194.9L0,194.9L0,34.5z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="47.7" x="74.5">id</tspan>
+                    <tspan y="63.7" x="24.5">penanggung_jawab</tspan>
+                    <tspan y="79.7" x="14.5">pemangku_kepentinga</tspan>
+                    <tspan y="95.7" x="76">n</tspan>
+                    <tspan y="111.7" x="22.5">waktu_pelaksanaan</tspan>
+                    <tspan y="127.7" x="15">bukti_fisik_keterangan</tspan>
+                    <tspan y="143.7" x="40">bukti_fisik_url</tspan>
+                    <tspan y="159.7" x="61.5">status</tspan>
+                    <tspan y="175.7" x="54.5">datetime</tspan>
+                    <tspan y="191.7" x="46.5">kegiatan_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(2411.6,760.99)" id="shape43">
+            <path stroke="#6d6d6d" d="M0,0L0,468L161,468" stroke-width="3" fill="none"/>
+            <rect y="12" width="7" x="-2.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="25" x="-2.5">1</tspan>
+            </text>
+            <rect y="460" width="9" x="137.5" height="16" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                <tspan y="473" x="137.5">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(644.6,931.1)" id="shape44">
+            <path fill-opacity="0.08" d="M2,2L172,2L172,87L2,87L2,2z" fill="#000000"/>
+            <path stroke="#6d6d6d" d="M0,0L170,0L170,85L0,85L0,0z" fill-rule="evenodd" fill="#92d050"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt;font-weight:bold">
+                <tspan y="47.5" x="13.5">DAPODIK API Services</tspan>
+            </text>
+        </g>
+        <g transform="translate(814.6,974.1)" id="shape45">
+            <path stroke="#6d6d6d" stroke-dasharray="2,5" d="M0,0L237,0L237,53.3L264.6,53.3" fill="none"/>
+            <path stroke="#6d6d6d" d="M269,53.3L263.8,50.3C264.3,51.2,264.6,52.2,264.6,53.3C264.6,54.4,264.3,55.4,263.8,56.3L269,53.3" stroke-width="1" stroke-linecap="round" fill="#6d6d6d"/>
+        </g>
+        <g transform="translate(1977.6,1810.1)" id="shape46">
+            <path fill-opacity="0.08" d="M2,2L172,2L172,87L2,87L2,2z" fill="#000000"/>
+            <path stroke="#6d6d6d" d="M0,0L170,0L170,85L0,85L0,0z" fill-rule="evenodd" fill="#92d050"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt;font-weight:bold">
+                <tspan y="47.5" x="23.5">Upload CSV / Excel</tspan>
+            </text>
+        </g>
+        <g transform="matrix(0.2,-0.98,0.98,0.2,2118.6,1810.1)" id="shape47">
+            <path stroke="#6d6d6d" stroke-dasharray="2,5" d="M0,0L381.2,0" fill="none"/>
+            <path stroke="#6d6d6d" d="M385.6,0L380.4,-3C380.9,-2.1,381.2,-1.1,381.2,0C381.2,1.1,380.9,2.1,380.4,3L385.6,0" stroke-width="1" stroke-linecap="round" fill="#6d6d6d"/>
+        </g>
+        <g transform="matrix(-0.24,-0.97,0.97,-0.24,2062.6,1810.1)" id="shape48">
+            <path stroke="#6d6d6d" stroke-dasharray="2,5" d="M0,0L364.6,0" fill="none"/>
+            <path stroke="#6d6d6d" d="M369,0L363.8,-3C364.3,-2.1,364.6,-1.1,364.6,0C364.6,1.1,364.3,2.1,363.8,3L369,0" stroke-width="1" stroke-linecap="round" fill="#6d6d6d"/>
+        </g>
+        <g transform="matrix(-0.85,-0.52,0.52,-0.85,1995.6,1810.1)" id="shape49">
+            <path stroke="#6d6d6d" stroke-dasharray="2,5" d="M0,0L339.5,0" fill="none"/>
+            <path stroke="#6d6d6d" d="M343.9,0L338.7,-3C339.2,-2.1,339.5,-1.1,339.5,0C339.5,1.1,339.2,2.1,338.7,3L343.9,0" stroke-width="1" stroke-linecap="round" fill="#6d6d6d"/>
+        </g>
+        <g transform="matrix(-0.99,-0.11,0.11,-0.99,1977.6,1853.1)" id="shape50">
+            <path stroke="#6d6d6d" stroke-dasharray="2,5" d="M0,0L525.5,0" fill="none"/>
+            <path stroke="#6d6d6d" d="M529.9,0L524.7,-3C525.3,-2.1,525.5,-1.1,525.5,0C525.5,1.1,525.3,2.1,524.7,3L529.9,0" stroke-width="1" stroke-linecap="round" fill="#6d6d6d"/>
+        </g>
+        <g transform="translate(658.6,1775.67)" id="table51">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,30L0,30L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="20" x="43">lpmp</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,30L114,30L114,105.3L0,105.3L0,30z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="48.7" x="52">id</tspan>
+                    <tspan y="64.7" x="41">nama</tspan>
+                    <tspan y="80.7" x="28.5">username</tspan>
+                    <tspan y="96.7" x="29.5">password</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(1162,583.31)" id="table52">
+            <g>
+                <path stroke="#838383" d="M0,0L139.6,0L139.6,43.3L0,43.3L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="26.7" x="22">Master_masalah</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,43.3L139.6,43.3L139.6,121.3L0,121.3L0,43.3z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="63.3" x="65">id</tspan>
+                    <tspan y="79.3" x="54">tahun</tspan>
+                    <tspan y="95.3" x="40.5">deskpripsi</tspan>
+                    <tspan y="111.3" x="23">sub_indikator_id</tspan>
+                </text>
+            </g>
+        </g>
+        <path transform="translate(1231.8,704.64)" stroke="#6d6d6d" stroke-dasharray="2,5" d="M0,0L0,261L20.3,261C20.3,257.7,23,255,26.3,255C29.6,255,32.3,257.7,32.3,261L239.8,261" stroke-width="3" fill="none" id="shape53"/>
+        <g transform="translate(1647.3,457.33)" id="table54">
+            <g>
+                <path stroke="#838383" d="M0,0L139.6,0L139.6,43.3L0,43.3L0,0z" stroke-width="3" fill="#969696"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="26.7" x="22">Master_masalah</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,43.3L139.6,43.3L139.6,121.3L0,121.3L0,43.3z" stroke-width="3" fill="#ffffff"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="63.3" x="65">id</tspan>
+                    <tspan y="79.3" x="54">tahun</tspan>
+                    <tspan y="95.3" x="40.5">deskpripsi</tspan>
+                    <tspan y="111.3" x="23">sub_indikator_id</tspan>
+                </text>
+            </g>
+        </g>
+        <path transform="translate(1786.9,518)" stroke="#6d6d6d" stroke-dasharray="2,5" d="M0,0L32,0L32,106.8L-28.1,106.8L-28.1,173.1L3.9,173.1" stroke-width="3" fill="none" id="shape55"/>
+        <g transform="translate(1303,265.67)" id="table56">
+            <g>
+                <path stroke="#838383" d="M0,0L114,0L114,30L0,30L0,0z" stroke-width="3" fill="#88b0f5"/>
+                <text xml:space="preserve" style="fill:#ffffff;font-family:Arial;font-size:10pt">
+                    <tspan y="20" x="19">Sub Indikator</tspan>
+                </text>
+            </g>
+            <g>
+                <path stroke="#838383" d="M0,30L114,30L114,121.3L0,121.3L0,30z" stroke-width="3" fill="#88b0f5"/>
+                <text xml:space="preserve" style="fill:#303030;font-family:Arial;font-size:10pt">
+                    <tspan y="40.7" x="52">id</tspan>
+                    <tspan y="56.7" x="41">tahun</tspan>
+                    <tspan y="72.7" x="39">nomor</tspan>
+                    <tspan y="88.7" x="41">nama</tspan>
+                    <tspan y="104.7" x="39">status</tspan>
+                    <tspan y="120.7" x="24">indikator_id</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(1303,308.56)" id="shape57">
+            <path stroke="#6d6d6d" d="M0,0L-71.2,0L-71.2,270.4" fill="none"/>
+            <path stroke="#6d6d6d" d="M-71.2,274.7L-68.2,269.5C-69.1,270.1,-70.1,270.4,-71.2,270.4C-72.3,270.4,-73.3,270.1,-74.2,269.5L-71.2,274.7" stroke-width="1" stroke-linecap="round" fill="#6d6d6d"/>
+            <rect y="-10" width="8" x="-38.6" height="20" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Times New Roman;font-size:12pt">
+                <tspan y="6" x="-38.6">1</tspan>
+            </text>
+            <rect y="215.6" width="12" x="-76.2" height="20" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Times New Roman;font-size:12pt">
+                <tspan y="231.6" x="-76.2">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1360,351.46)" id="shape58">
+            <path stroke="#6d6d6d" d="M0,0L0,199.8L92.2,199.8L92.2,227.5" fill="none"/>
+            <path stroke="#6d6d6d" d="M92.2,231.8L95.2,226.7C94.3,227.2,93.3,227.5,92.2,227.5C91.1,227.5,90.1,227.2,89.2,226.7L92.2,231.8" stroke-width="1" stroke-linecap="round" fill="#6d6d6d"/>
+            <rect y="57.3" width="8" x="-3" height="20" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Times New Roman;font-size:12pt">
+                <tspan y="73.3" x="-3">1</tspan>
+            </text>
+            <rect y="189.8" width="12" x="61" height="20" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Times New Roman;font-size:12pt">
+                <tspan y="205.8" x="61">N</tspan>
+            </text>
+        </g>
+        <g transform="translate(1417,308.56)" id="shape59">
+            <path stroke="#6d6d6d" d="M0,0L300.1,0L300.1,144.4" fill="none"/>
+            <path stroke="#6d6d6d" d="M300.1,148.8L303.1,143.6C302.2,144.1,301.2,144.4,300.1,144.4C299,144.4,298,144.1,297.1,143.6L300.1,148.8" stroke-width="1" stroke-linecap="round" fill="#6d6d6d"/>
+            <rect y="-10" width="8" x="38.3" height="20" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Times New Roman;font-size:12pt">
+                <tspan y="6" x="38.3">1</tspan>
+            </text>
+            <rect y="95.6" width="12" x="295.1" height="20" fill="#ffffff"/>
+            <text xml:space="preserve" style="fill:#303030;font-family:Times New Roman;font-size:12pt">
+                <tspan y="111.6" x="295.1">N</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

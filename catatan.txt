@@ -1,0 +1,11 @@
+Peta(Open layers)
+
+kurikulum
+Branding Sekolah
+Foto identitas	
+Foto Prestasi 	
+Kegiatan
+Foto Kegiatan 
+
+upload foto(dropzone.js)
+tampilkan foto (carousel js)
