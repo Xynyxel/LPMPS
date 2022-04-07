@@ -129,9 +129,12 @@ class TPMPSController extends Controller
     public function comments()
     {
         $tpmps = TPMPS::where('id', '=', session('LoggedUserTpmps'))->first();
+        $idSiklus = siklus();
+        if($idSiklus=="")   $idSiklus = 0;
+        else                $idSiklus = siklus()->id;
         return PengajuanSiklusKomunikasi::join('pengajuan_siklus as ps', 'ps.id', 'pengajuan_siklus_komunikasi.pengajuan_siklus_id')
             ->where('ps.tpmps_id', $tpmps->id)
-            ->where('ps.siklus_periode_id', siklus()->id)
+            ->where('ps.siklus_periode_id', $idSiklus)
             ->get();
     }
 
@@ -233,8 +236,11 @@ class TPMPSController extends Controller
 
     function getPengajuanSiklus(){
         $tpmps = TPMPS::where('id', '=', session('LoggedUserTpmps'))->first();
+        $idSiklus = siklus();
+        if($idSiklus=="")   $idSiklus = 0;
+        else                $idSiklus = siklus()->id;
         return PengajuanSiklus::where('tpmps_id', $tpmps->id)
-                                        ->where('siklus_periode_id', siklus()->id)
-                                        ->first();
+            ->where('siklus_periode_id',$idSiklus)
+            ->first();
     }
 }

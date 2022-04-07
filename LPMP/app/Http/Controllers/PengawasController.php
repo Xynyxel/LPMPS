@@ -30,7 +30,10 @@ class PengawasController extends Controller
         $listSekolah = Sekolah::join('sekolah_pengawas as sp',"sp.sekolah_id","sekolah.id")
             ->where('sp.pengawas_id',$data_log["LoggedUserInfo"]->id)
             ->get();
-        $pengajuanSiklus = PengajuanSiklus::where('siklus_periode_id', siklus()->id)->get();
+        $idSiklus = siklus();
+        if($idSiklus=="")   $idSiklus = 0;
+        else                $idSiklus = siklus()->id;
+        $pengajuanSiklus = PengajuanSiklus::where('siklus_periode_id', $idSiklus)->get();
 
         $data = [
             "siklus" => siklus(),
@@ -87,9 +90,12 @@ class PengawasController extends Controller
 
     public function comments($id) {
         $tpmps = TPMPS::where('sekolah_id', $id)->first();
+        $idSiklus = siklus();
+        if($idSiklus=="")   $idSiklus = 0;
+        else                $idSiklus = siklus()->id;
         return PengajuanSiklusKomunikasi::join('pengajuan_siklus as ps','ps.id','pengajuan_siklus_komunikasi.pengajuan_siklus_id')
             ->where('ps.tpmps_id',$tpmps->id)
-            ->where('ps.siklus_periode_id',siklus()->id)
+            ->where('ps.siklus_periode_id',$idSiklus)
             ->get();
     }
 
